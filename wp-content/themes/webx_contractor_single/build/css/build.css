@@ -99,6 +99,17 @@ footer, header, hgroup, menu, nav, section, img {
     transform: translateY(-50%);
     z-index: 1; }
 
+  section:not(.home-hero).hero,
+  section:not(.home-hero) .hero-tint {
+    height: 60vh; }
+  section:not(.home-hero) .hero-text {
+    left: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+
   .hero-text-header {
     font-size: 4.8rem;
     color: white; }
@@ -146,6 +157,15 @@ footer, header, hgroup, menu, nav, section, img {
     transform: translate(0, 0);
     top: auto;
     bottom: 10%; }
+
+  section:not(.home-hero) .hero-text {
+    bottom: auto;
+    top: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
 
   .hero-text-header {
     font-size: 9.6rem;
@@ -1546,6 +1566,10 @@ footer, header, hgroup, menu, nav, section, img {
   .mobilefooter {
     display: none; } }
 @media only screen {
+  .home-hero,
+  .home-hero-tint {
+    height: 100vh; }
+
   .home-hero-text-button {
     text-decoration: none;
     color: black;
@@ -1942,7 +1966,8 @@ footer, header, hgroup, menu, nav, section, img {
     position: relative; }
 
   .areas-served-areas-grid {
-    margin-top: 40px; }
+    margin-top: 40px;
+    margin-bottom: 40px; }
 
   .areas-served-hero-text {
     z-index: 2; }

@@ -1,4 +1,6 @@
 <?php
+
+	get_template_part('partials/global', 'recent_posts');
 	get_template_part('partials/global', 'popups');
 	get_template_part('partials/navigation/footer', 'mobile');
 	get_template_part('partials/navigation/footer', 'desktop');

@@ -23,6 +23,16 @@
 		@include transform(translateY(-50%));
 		z-index: 1;
 	}
+	section:not(.home-hero){
+		&.hero,
+		.hero-tint{
+			height: 60vh;
+		}
+		.hero-text{
+			left: 50%;
+			@include transform(translate(-50%,-50%));
+		}
+	}
 	.hero-text-header{
 		font-size: 4.8rem;
 		color: white;
@@ -71,6 +81,13 @@
 		@include transform(translate(0,0));
 		top: auto;
 		bottom: 10%;
+	}
+	section:not(.home-hero){
+		.hero-text{
+			bottom: auto;
+			top: 50%;
+			@include transform(translate(-50%, -50%));
+		}
 	}
 	.hero-text-header{
 		font-size: 9.6rem;

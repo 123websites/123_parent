@@ -30,10 +30,4 @@
 			<?php endwhile; ?>
 		<?php endif; ?>
 	</section>
-	<?php
-
-	get_template_part('partials/global', 'recent_posts');
-	get_template_part('partials/global', 'contact');
-
-	?>
 </main>

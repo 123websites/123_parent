@@ -55,5 +55,4 @@
 		
 		<?php endif; ?>
 	</section>
-	<?php get_template_part('partials/global', 'contact');?>
 </main>

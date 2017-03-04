@@ -1,6 +1,7 @@
 <?php get_header(); 
 
 $sections = array(
+	'heroslider',
 	'company',
 	'gallery',
 	'services',
@@ -13,8 +14,13 @@ $sections = array(
 );
 
 foreach($sections as $section){
-	if(get_field($section . '-toggle', 'option')){
-		include(locate_template( 'modules/' . $section . '.php' ));
+	if($section !== 'heroslider'){
+		if(get_field($section . '-toggle', 'option')){
+			include(locate_template( 'modules/' . $section . '.php' ));
+		}
+	}
+	else{
+		include(locate_template( 'modules/heroslider.php' ));
 	}
 }
 

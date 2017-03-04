@@ -89,10 +89,4 @@
 	</section>
 	<?php endif; ?>
 	<?php endif; ?>
-	<?php
-
-	get_template_part('partials/global', 'recent_posts');
-	get_template_part('partials/global', 'contact');
-
-	?>
 </main>
