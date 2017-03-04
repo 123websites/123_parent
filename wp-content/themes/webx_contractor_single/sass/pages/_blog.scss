@@ -63,6 +63,11 @@
 	.blog-blog-sidebar{
 		display: none;
 	}
+	.blog-blog-seemore{
+		position: relative;
+		left: 50%;
+		@include transform(translateX(-50%));
+	}
 }
 
 @media only screen and (min-width: $medium){
@@ -100,6 +105,11 @@
 		max-width: none;
 		display: inline-block;
 		margin: 0;
+	}
+	#blog{
+		.blog-blog-grid{
+			width: 100%;
+		}
 	}
 	.blog-blog-sidebar{
 		display: inline-block;

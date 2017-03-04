@@ -1,4 +1,4 @@
-<main class="testimonials">
+<main class="testimonials" id="testimonials">
 	<section class="testimonials-hero hero" style="background-image: url('<?php echo get_field('testimonials-bg', 'option'); ?>');">
 		<div class="testimonials-hero-text hero-text">
 			<h1 class="testimonials-hero-text-header hero-text-header">Testimonials</h1>

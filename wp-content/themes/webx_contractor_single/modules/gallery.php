@@ -1,4 +1,4 @@
-<main class="gallery">
+<main class="gallery" id="gallery">
 	<section class="gallery-hero hero" style="background-image: url('<?php echo get_field('gallery-bg', 'option'); ?>');">
 		<div class="gallery-hero-text hero-text">
 			<h1 class="gallery-hero-text-header hero-text-header">Gallery</h1>

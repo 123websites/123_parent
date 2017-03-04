@@ -23,7 +23,7 @@
 		@include transform(translateY(-50%));
 		z-index: 1;
 	}
-	section:not(.home-hero){
+	section:not(.home-hero):not(.coupons):not(.blog){
 		&.hero,
 		.hero-tint{
 			height: 60vh;
@@ -82,7 +82,7 @@
 		top: auto;
 		bottom: 10%;
 	}
-	section:not(.home-hero){
+	section:not(.home-hero):not(.coupons):not(.blog){
 		.hero-text{
 			bottom: auto;
 			top: 50%;

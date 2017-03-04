@@ -1,4 +1,4 @@
-<main class="company">
+<main class="company" id="company">
 	<section class="company-hero hero" style="background-image: url('<?php echo get_field('company-bg', 'option'); ?>');">
 		<div class="company-hero-text hero-text">
 			<h1 class="company-hero-text-header hero-text-header"><?php echo get_field('company-header', 'option'); ?></h1>

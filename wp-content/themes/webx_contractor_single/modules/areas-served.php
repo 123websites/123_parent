@@ -1,4 +1,4 @@
-<main class="areas-served">
+<main class="areas-served" id="areas-served">
 	<section class="areas-served-hero hero"">
 		<div class="areas-served-hero-text hero-text">
 			<h1 class="areas-served-hero-text-header hero-text-header">areas served</h1>

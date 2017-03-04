@@ -82,6 +82,13 @@ function enqueue_login_scripts(){
 }
 add_action( 'login_enqueue_scripts', 'enqueue_login_scripts' );
 
+// make nav-fadein-toggle available in javascript
+function localize_home_dir(){
+	wp_localize_script( 'theme', 'Home_URL', get_site_url());
+}
+add_action('wp_enqueue_scripts', 'localize_home_dir');
+
+
 function is_login_page() {
     return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
 }
@@ -544,8 +551,18 @@ function render_page_links($menu_class = '', $menu_item_class = '', $menu_item_l
 	$active_pages = get_active_pages();
 
 	foreach($active_pages as $active_page){
+
+		$link_url = '';
+
+		if( is_home() ){
+			$link_url = '#' . $active_page['name'];
+		}
+		else{
+			$link_url = get_site_url() . '/#' . $active_page['name'];
+		}
+
 		$page_name =  get_field($active_page['name'].'-alt-toggle', 'option') && !empty(get_field($active_page['name'].'-alt', 'option')) ? get_field($active_page['name'].'-alt', 'option') : str_replace('-', ' ', $active_page['name']);
-		$render_string .= '<li class="' . $menu_item_class .'">' . '<a href="' . site_url() . '/' . $active_page['name'] . '" class="' . $menu_item_link_class . '">' . $page_name . '</a></li>';
+		$render_string .= '<li class="' . $menu_item_class .'">' . '<a href="' . $link_url . '" class="' . $menu_item_link_class . '">' . $page_name . '</a></li>';
 	}
 
 	$render_string .= '</ul>';

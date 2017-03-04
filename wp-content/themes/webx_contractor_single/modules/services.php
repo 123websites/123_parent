@@ -1,4 +1,4 @@
-<main class="services">
+<main class="services" id="services">
 	<section class="services-hero hero" style="background-image: url('<?php echo get_field('services-bg', 'option'); ?>');">
 		<div class="services-hero-text hero-text">
 			<h1 class="services-hero-text-header hero-text-header">services</h1>

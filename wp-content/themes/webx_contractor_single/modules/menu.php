@@ -1,4 +1,4 @@
-<main class="menu">
+<main class="menu" id="menu">
 	<section class="menu-hero hero" style="background-image: url('<?php echo get_field('menu-bg', 'option'); ?>');">
 		<div class="menu-hero-text hero-text">
 			<h1 class="menu-hero-text-header hero-text-header">menu</h1>

@@ -249,6 +249,30 @@ var objectFitImages=function(){"use strict";function t(t){for(var e,r=getCompute
 		DesktopNav._init();
 
 
+		var AnimateNavScrolling = {
+			links : $('.header-content-menus-pages-menu-item-link'),
+			_init : function(){
+				if((window.location.origin + window.location.pathname).slice(0,-1) == Home_URL){
+					AnimateNavScrolling.links.click(AnimateNavScrolling._linkClickHandler);
+					$(window).on('load', AnimateNavScrolling._linkClickHandler);
+				}
+			},
+			_linkClickHandler : function(e){
+				e.preventDefault();
+				var hash = e.target.hash == undefined ? window.location.hash : e.target.hash;
+				setTimeout(function(){
+					$('html, body').animate({
+						scrollTop: $(hash).offset().top - $('.header-tint')[0].clientHeight,
+					}, 500, function(){
+						window.location.hash = hash;
+					});
+				}, 100);
+			},
+		}
+
+		AnimateNavScrolling._init();
+
+
 
 		var HomeTestimonialsSlider = {
 			slides : $('.home-testimonials-grid-item'),

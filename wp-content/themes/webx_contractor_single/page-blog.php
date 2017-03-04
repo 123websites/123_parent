@@ -1,4 +1,12 @@
-<main class="blog" id="blog">
+<?php
+
+if( !get_field('coupons-toggle', 'option') ){
+	header( "Location: " . site_url() . "/404.php" );
+}
+
+get_header(); ?>
+
+<main class="blog">
 	<section class="blog-hero hero" style="background-image: url('<?php echo get_field('general-blog-bg', 'option'); ?>');">
 		<div class="blog-hero-text hero-text">
 			<h1 class="blog-hero-text-header hero-text-header">blog</h1>
@@ -32,8 +40,29 @@
 				</div>
 			</div>
 			<?php endwhile; ?>
+			<div class="blog-blog-pagination">
+
+				<?php 
+
+				$original_global = $wp_query;
+				$wp_query = null;
+				$wp_query = $the_query;
+
+				echo paginate_links(array(
+					'prev_text' => '<< Prev',
+				));
+
+				wp_reset_postdata();
+
+				$wp_query = $original_global;
+
+				?>
+			</div>
 		</div>
-		<a href="<?php echo site_url('blog'); ?>" class="blog-blog-seemore global-recentposts-viewall">View All</a>
+		<?php get_template_part('partials/navigation/blog', 'sidebar'); ?>
+		
 		<?php endif; ?>
 	</section>
 </main>
+
+<?php get_footer(); ?>

@@ -1,4 +1,4 @@
-<main class="contact">
+<main class="contact" id="contact">
 	<section class="contact-hero hero">
 		<div class="contact-hero-text hero-text">
 			<h1 class="contact-hero-text-header hero-text-header">contact</h1>
