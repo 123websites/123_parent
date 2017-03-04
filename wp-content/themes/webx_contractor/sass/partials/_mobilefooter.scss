@@ -1,0 +1,120 @@
+@media only screen {
+	.mobilefooter{
+		padding: 20px;
+		text-align: center;
+		background-color: $footer-grey;
+		color: white;
+		ul{
+			list-style: none;
+		}
+	}
+	.mobilefooter-logo{
+		text-align: center;
+	}
+	.mobilefooter-logo-image{
+		display: inline-block;
+		max-height: 100px;
+		max-width: 100%;
+	}
+	.mobilefooter-contactlinks{
+		font-size: 0;
+	}
+	.mobilefooter-contactlinks-email,
+	.mobilefooter-contactlinks-fax,
+	.mobilefooter-contactlinks-phone{
+		font-size: 2.4rem;
+		display: inline-block;
+		color: white;
+		text-decoration: none;
+		padding: 5px;
+	}
+	.mobilefooter-contactlinks-address{
+		font-size: 1.8rem;
+		color: white;
+		display: inline-block;
+		padding: 10px 0 20px 0;
+	}
+	.mobilefooter-sharebutton{
+		color: black;
+		background-color: $primary;
+		padding: 10px 20px;
+		text-transform: uppercase;
+		margin: 5px 0 20px 0;
+		display: inline-block;
+		text-decoration: none;
+	}
+	.mobilefooter-sharebutton-icon{
+		padding-right: 10px;
+	}
+	.mobilefooter-sociallinks{
+		font-size: 0;
+	}
+	.mobilefooter-sociallinks-item{
+		display: inline-block;
+		background-color: $primary;
+		width: 45px;
+		height: 45px;
+		border-radius: 330px;
+		position: relative;
+		margin: 0 5px;
+	}
+	.mobilefooter-sociallinks-item-link{
+		font-size: 2.8rem;
+		color: black;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%,-50%));
+		display: inline-block;
+	}
+	.mobilefooter-sociallinks-item-link-icon{
+		display: inline-block;
+	    vertical-align: top;
+	    position: relative;
+	    top: 3px;
+	}
+	.mobilefooter-pagelinks{
+		margin: 20px 0;
+	}
+	.mobilefooter-pagelinks-item-link{
+		color: white;
+		text-transform: uppercase;
+		text-decoration: none;
+		padding: 5px 0;
+		display: inline-block;
+		font-size: 1.8rem;
+	}
+	.mobilefooter-webxlink{
+		display: inline-block;
+		margin: 20px auto 0 auto;
+	}
+	.mobilefooter-copyright-tclink{
+		color: white;
+	}
+	footer.mobilefooter.light{
+		background-color: $footer-bg;
+		color: black;
+		.mobilefooter-contactlinks-phone,
+		.mobilefooter-contactlinks-fax,
+		.mobilefooter-contactlinks-address,
+		.mobilefooter-pagelinks-item-link,
+		.mobilefooter-copyright-tclink{
+			color: black;
+		}
+	}
+	footer.mobilefooter.invertlogo{
+		.mobilefooter-logo-image{
+			@include filter(invert, 100%);
+		}
+	}
+}
+
+@media only screen and (min-width: $medium){
+
+}
+
+@media only screen and (min-width: $large){
+	.mobilefooter{
+		display: none;
+	}
+}

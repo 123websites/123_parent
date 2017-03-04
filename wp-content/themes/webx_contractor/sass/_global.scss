@@ -1,0 +1,85 @@
+@media only screen {
+	.section{
+		text-align: center;
+		padding: 20px;
+	}
+	.section-header{
+		display: inline-block;
+		border-left: 2px solid $primary;
+		border-right: 2px solid $primary;
+		padding: 0 10px;
+	}	
+	.hero{
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 80vh;
+		position: relative;
+	}
+	.hero-text{
+		position: absolute;
+		top: 50%;
+		left: 20px;
+		@include transform(translateY(-50%));
+		z-index: 1;
+	}
+	.hero-text-header{
+		font-size: 4.8rem;
+		color: white;
+	}
+	.hero-text-subheader{
+		font-size: 1.8rem;
+		color: white;
+		max-width: 720px;
+	}
+	.hero-tint{
+		background-color: rgba(0,0,0,0.35);
+		position: absolute;
+		width: 100vw;
+		height: 80vh;
+		top: 0;
+		left: 0;
+		pointer-events: none;
+	}
+	.terms{
+		box-sizing: border-box;
+		padding: 20px;
+		margin: -10px 0;
+		p{
+			margin: 10px 0;
+		}
+	}
+	.terms-header{
+		text-align: center;
+		margin-top: 20px;
+	}
+}
+@media only screen and (min-width: $medium){
+	.hero-text-header{
+		font-size: 7.2rem;
+	}
+}
+@media only screen and (min-width: $large){
+	.section-header{
+		font-size: 3.6rem;
+		margin: 40px 0;
+		border-left-width: 4px;
+		border-right-width: 4px;
+	}
+	.hero-text{
+		left: 40px;
+		@include transform(translate(0,0));
+		top: auto;
+		bottom: 10%;
+	}
+	.hero-text-header{
+		font-size: 9.6rem;
+		max-width: 580px;
+	}
+}
+
+@media only screen and (min-width: 1520px){
+	.hero-text{
+		left: calc((100vw - 1440px) / 2);
+	}
+}

@@ -1,0 +1,81 @@
+@media only screen {
+	.gallery-galleries-gallery-header{
+		background-color: $primary;
+		padding: 10px 20px;
+		font-size: 2.4rem;
+	}
+	.gallery-galleries-gallery-imagecontainer{
+		width: 100%;
+		height: 100vw;
+		display: block;
+	}
+	.gallery-galleries-gallery-imagecontainer-image{
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+	}
+	#baguetteBox-overlay .full-image figure figcaption{
+		background-color: $primary;
+		color: black;
+		font-size: 2.8rem;
+		text-transform: uppercase;
+		font-family: $header;
+	}
+}
+
+@media only screen and (min-width: $medium){
+	.gallery-galleries-gallery{
+		font-size: 0;
+	}
+	.gallery-galleries-gallery-header{
+		font-size: 2.8rem;
+	}
+	.gallery-galleries-gallery-imagecontainer{
+		display: inline-block;
+		width: 50%;
+		height: 50vw;
+	}
+	.medium-1{
+		width: 100%;
+		height: 50vw;
+	}
+}
+
+@media only screen and (min-width: $large){
+	.gallery-galleries-gallery{
+		position: relative;
+	    max-width: 1000px;
+	    left: 50%;
+	    transform: translateX(-50%);
+	    margin: 40px 0;
+	}
+	.gallery-galleries-gallery-imagecontainer{
+		display: inline-block;
+		width: 25%;
+		height: 250px;
+		overflow: hidden;
+		&:hover{
+			.gallery-galleries-gallery-imagecontainer-image{
+				@include transform(scale(1.15));
+			}
+		}
+	}
+	.gallery-galleries-gallery-imagecontainer-image{
+		@include transition(transform 0.5s ease);
+	}
+	.medium-1{
+		height: 250px;
+		width: 25vw;
+	}
+	.large-1{
+		width: 100%;
+	}
+	.large-2{
+		width: 50%;
+	}
+	.large-3{
+		width: calc(100% / 3);
+	}
+}

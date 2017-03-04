@@ -1,0 +1,40 @@
+@media only screen {
+	.home-hero-text-button{
+		text-decoration: none;
+		color: black;
+		text-transform: uppercase;
+		background-color: $primary;
+		padding: 15px 20px;
+		margin-top: 20px;
+		display: inline-block;
+	}
+	.home-hero-slides{
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+	}
+	.home-hero-slides-slide{
+		height: 150%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%, -50%));
+		display: none;
+		transform-origin: 100% 100%;
+		-webkit-transform-origin: 100% 100%;
+		&:first-child{
+			display: block;
+		}
+	}
+}
+
+@media only screen and (min-width: $large){
+	.home-hero-text-button{
+		font-size: 2.4rem;
+		font-weight: normal;
+	}
+	.home-hero-slides-slide{
+		width: 150%;
+		height: auto;
+	}
+}

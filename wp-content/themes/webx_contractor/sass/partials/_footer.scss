@@ -1,0 +1,210 @@
+@media only screen {
+	.footer{
+		display: none;
+	}
+	.footer-middlecolumn1-sitemap{
+		display: none;
+	}
+	.footer-copyright{
+		display: none;
+	}
+}	
+
+@media only screen and (min-width: $medium){
+
+}
+
+@media only screen and (min-width: $large){
+	.footer{
+		display: block;
+		background-color: $footer-grey;
+		ul{
+			list-style: none;
+		}
+	}
+	.footer-wrap{
+		@include flexbox();
+		padding: 40px;
+		font-size: 0;
+		max-width: 1440px;
+		margin: 0 auto;
+	}
+	.footer-logo{
+		display: inline-block;
+	}
+	.footer-logo-image{
+		max-width: 100%;
+		max-height: 64px;
+	}
+	.footer-sociallinks{
+		font-size: 0;
+		display: inline-block;
+		vertical-align: middle;
+		position: relative;
+		top: 1px;
+	}
+	.footer-sociallinks-item{
+		display: inline-block;
+		background-color: $primary;
+		width: 45px;
+		height: 45px;
+		border-radius: 330px;
+		position: relative;
+		margin-left: 10px;
+	}
+	.footer-sociallinks-item-link{
+		font-size: 2.8rem;
+		color: black;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%,-50%));
+		display: inline-block;
+	}
+	.footer-sociallinks-item-link-icon{
+		display: inline-block;
+	    vertical-align: top;
+	    position: relative;
+	    top: 3px;
+	}
+	.footer-contactlinks{
+		font-size: 0;
+		padding-top: 10px;
+	}
+	.footer-contactlinks-email,
+	.footer-contactlinks-fax,
+	.footer-contactlinks-phone{
+		font-size: 1.3rem;
+		display: block;
+		color: white;
+		text-decoration: none;
+		padding: 5px;
+		padding-left: 0;
+	}
+	.footer-contactlinks-address{
+		font-size: 1.3rem;
+		color: white;
+		padding-top: 10px;
+	}
+	.footer-webxlink{
+		margin-top: 20px;
+		display: block;
+		text-decoration: none;
+		color: white;
+		font-size: 1.5rem;
+		text-align: right;
+	}
+	.footer-webxlink-logo{
+		display: inline-block;
+	}
+	.footer-pagelinks-item-link{
+		color: white;
+		text-transform: uppercase;
+		text-decoration: none;
+		padding-bottom: 10px;
+		display: inline-block;
+		font-size: 1.6rem;
+	}
+	.footer-copyright{
+		color: white;
+		font-size: 1.3rem;
+		text-align: center;
+		padding: 10px 0;
+		width: 100%;
+		background-color: black;
+		display: block;
+	}
+	.footer-copyright-tclink{
+		color: white;
+	}
+	.footer-leftcolumn,
+	.footer-middlecolumn1,
+	.footer-rightcolumn{
+		display: inline-block;
+		vertical-align: top;
+		@include align-items(stretch);
+	}
+	.footer-leftcolumn{
+		width: 25%;
+		padding-right: 20px;
+		box-sizing: border-box;
+	}
+	.footer-middlecolumn1{
+		width: calc(40% - 22px);
+		border-left: 2px solid white;
+	    padding-left: 20px;
+	}
+	.footer-pagelinks{
+		@include column-count(2);
+	}
+	.footer-middlecolumn1-sitemap,
+	.footer-middlecolumn2-payment{
+		display: inline-block;
+		font-size: 1.8rem;
+		border-bottom: 1px solid white;
+		color: white;
+		text-transform: uppercase;
+		margin-bottom: 20px;
+		padding-bottom: 4px;
+	}
+	.footer-middlecolumn2{
+		width: calc(17.5% - 4px);
+		border-left: 2px solid white;
+	    padding-left: 15px;
+	    border-right: 2px solid white;
+	    padding-right: 15px;
+	    box-sizing: border-box;
+	}
+	.footer-middlecolumn2-payment-type{
+		width: calc(239px / 5);
+		height: 30px;
+		background-image: url('../../library/img/payment-types.jpg');
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		margin: 10px 0;
+		&:nth-child(3){
+			background-position: 25% 0;
+		}
+		&:nth-child(4){
+			background-position: 50% 0;
+		}
+		&:nth-child(5){
+			background-position: 75% 0;
+		}
+		&:nth-child(6){
+			background-position: 100% 0;
+		}
+	}
+	.footer-rightcolumn{
+		width: 17.5%;
+		text-align: right;
+		position: relative;
+	}
+	.footer-webxlink{
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}	
+	footer.footer.light{
+		background-color: $footer-bg;
+		color: black;
+		.footer-contactlinks-phone,
+		.footer-contactlinks-fax,
+		.footer-contactlinks-address,
+		.footer-pagelinks-item-link,
+		.footer-webxlink,
+		.footer-copyright,
+		.footer-copyright-tclink,
+		.footer-middlecolumn1-sitemap{
+			color: black;
+		}
+		.footer-copyright{
+			background-color: $estimate-bar;
+		}
+	}
+	footer.footer.invertlogo{
+		.footer-logo-image{
+			@include filter(invert, 100%);
+		}
+	}
+}

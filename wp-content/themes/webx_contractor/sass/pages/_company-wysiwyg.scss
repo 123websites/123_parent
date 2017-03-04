@@ -1,0 +1,17 @@
+@media only screen {
+	.company-wysiwyg{
+		padding: 20px;
+	}
+}
+
+@media only screen and (min-width: $medium){
+
+}
+
+@media only screen and (min-width: $large){
+	.company-wysiwyg{
+		padding: 40px;
+		max-width: 1025px;
+		margin: 0 auto;
+	}
+}

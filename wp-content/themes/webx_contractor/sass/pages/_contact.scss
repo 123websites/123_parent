@@ -1,0 +1,92 @@
+@media only screen {
+	.contact-contact-left{
+		max-width: 720px;
+		margin: 0 auto;
+		text-align: left;
+	}
+	.contact-hero-map{
+		width: 100%;
+		height: 100%;
+	}
+	.contact-hero-tint{
+		z-index: 1;
+	}
+	.contact-hero-text{
+		z-index: 2;
+	}
+	.contact-contact-left-locations-header{
+		font-size: 2.8rem;
+		font-family: $body;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.contact-contact-left-locations-location{
+		margin-bottom: 20px;
+		font-size: 1.6rem;
+	}
+	.contact-contact-left-locations-location-name{
+		font-family: $body;
+		font-size: 2rem;
+		font-weight: bold;
+	}
+	.contact-contact-left-locations-location-address{
+		margin: 5px 0;
+	}
+	.contact-contact-left-locations-location-hours--allday{
+		margin: 5px 0;
+		text-transform: uppercase;
+	}
+	.contact-contact-left-locations-location-hours{
+		text-transform: uppercase;
+		margin: 5px 0;
+	}
+	.contact-contact-left-locations-location-hours-row-daystart,
+	.contact-contact-left-locations-location-hours-row-dayend{
+		font-weight: bold;
+	}
+	.contact-contact-right{
+		input,textarea{
+			font-family: $body;
+		}
+	}
+}
+
+@media only screen and (min-width: $medium){
+	
+}
+
+@media only screen and (min-width: $large){
+	.contact-contact{
+		font-size: 0;
+		margin: 0 auto;
+		max-width: 1010px;
+		padding-top: 40px;
+	}
+	.contact-contact-left,
+	.contact-contact-right{
+		display: inline-block;
+		width: 50%;
+		text-align: left;
+		box-sizing: border-box;
+	}
+	.contact-contact-right{
+		vertical-align: top;
+		margin-top: -9px;
+		padding-left: 10px;
+	}
+	.contact-contact-left{
+		padding-right: 10px;
+	}
+	.contact-contact-left-address,
+	.contact-contact-left-call{
+		font-size: 1.8rem;
+		div{
+			margin-bottom: 10px;
+		}
+	}
+	.contact-contact-left-address-header,
+	.contact-contact-left-call-header{
+		font-size: 2.4rem;
+		margin: 20px 0 10px 0;
+	}
+}

@@ -1,0 +1,101 @@
+@media only screen {
+	.company-employees-grid-item{
+		max-width: 320px;
+		margin: 40px auto;
+		background-color: $light-grey;
+	}
+	.company-employees-grid-item-imagecontainer-image{
+		width: 100%;
+	}
+	.company-employees-grid-item-socialcontainer{
+		padding: 15px 0;
+		margin-top: 15px;
+	}
+	.company-employees-grid-item-socialcontainer-link{
+		display: inline-block;
+	    background-color: $primary;
+	    text-align: center;
+	    width: 20px;
+	    height: 20px;
+	    padding: 8px;
+	    border-radius: 100%;
+	    text-decoration: none;
+	    color: black;
+	    margin: 0 5px;
+	}
+	.company-employees-grid-item-socialcontainer-link-icon{
+		text-align: center;
+		vertical-align: baseline;
+		font-size: 1.8rem;
+		&:before{
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+	.company-employees-grid-item-textcontainer{
+		padding: 20px;
+		margin-top: -20px;
+	}
+	.company-employees-grid-item-textcontainer-name{
+		font-family: $body;
+		font-weight: normal;
+	}
+	.company-employees-grid-item-textcontainer-title{
+		padding: 7px 0;
+	}
+}
+
+@media only screen and (min-width: $medium){
+
+}
+
+@media only screen and (min-width: $large){
+	.company-employees-grid-item{
+		max-width: 1002px;
+		font-size: 0;
+	}
+	.company-employees-grid-item-rightwrap,
+	.company-employees-grid-item-imagecontainer{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.company-employees-grid-item-imagecontainer{
+		width: 25%;
+	}
+	.company-employees-grid-item-rightwrap{
+		width: 75%;
+		text-align: left;
+		padding: 20px 0;
+		box-sizing: border-box;
+	}
+	.company-employees-grid-item-socialcontainer{
+		padding: 0 15px 10px;
+	}
+	.company-employees-grid-item-socialcontainer-link-icon{
+		&.fa-facebook,
+		&.fa-twitter{
+			position: relative;
+			left: 1px;
+			top: 1px;
+		}
+		&.fa-linkedin{
+			position: relative;
+			left: 1px;
+		}
+		&.fa-google-plus{
+			position: relative;
+			top: 1px;
+		}
+	}
+	.company-employees-grid-item-textcontainer{
+		padding: 0 20px;
+		margin-top: 0;
+	}
+	.company-employees-grid-item-textcontainer-name{
+		font-size: 2.2rem;
+	}
+	.company-employees-grid-item-textcontainer-title,
+	.company-employees-grid-item-textcontainer-description{
+		font-size: 1.6rem;
+	}
+}

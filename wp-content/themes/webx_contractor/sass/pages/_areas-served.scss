@@ -1,0 +1,94 @@
+@media only screen {
+	.areas-served-hero-map{
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	.areas-served-areas-grid{
+		margin-top: 40px;
+	}
+	.areas-served-hero-text{
+		z-index: 2;
+	}
+	.areas-served-hero-tint{
+		z-index: 1;
+	}
+	.areas-served-areas-grid-imagecontainer{
+		width: 100%;
+		height: 100vw;
+		position: relative;
+		display: block;
+	}
+	.areas-served-areas-grid-imagecontainer-image{
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+	}
+	.areas-served-areas-grid-imagecontainer-tint{
+		background-color: rgba(0,0,0,0.35);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		position: absolute;
+	}
+	.areas-served-areas-grid-imagecontainer-citystate{
+		position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    @include transform(translate(-50%,-50%));
+	    z-index: 2;
+	    color: white;
+	    font-size: 2.8rem;
+	    text-transform: uppercase;
+	    text-align: center;
+	    pointer-events: none;
+	}
+}
+
+@media only screen and (min-width: $medium){
+	.areas-served-areas-grid{
+		font-size: 0;
+	}
+	.areas-served-areas-grid-imagecontainer{
+		display: inline-block;
+		width: 50%;
+		height: 50vw;
+	}
+	.areas-served-areas-grid-imagecontainer-citystate{
+		font-size: 3.8rem;
+	}
+}
+
+@media only screen and (min-width: $large){
+	.areas-served-areas-grid{
+		max-width: 1000px;
+		position: relative;
+		left: 50%;
+		@include transform(translateX(-50%));
+	}
+	.areas-served-areas-grid-imagecontainer{
+		display: inline-block;
+		width: 25%;
+		height: 250px;
+		overflow: hidden;
+		&:hover{
+			.areas-served-areas-grid-imagecontainer-image{
+				@include transform(scale(1.15));
+			}
+			.areas-served-areas-grid-imagecontainer-tint{
+				background-color: rgba(0,0,0,0.35);
+			}
+		}
+	}
+	.areas-served-areas-grid-imagecontainer-tint{
+		background-color: rgba($primary, 0.35);
+		@include transition(background-color 0.5s ease);
+	}
+	.areas-served-areas-grid-imagecontainer-image{
+		@include transition(transform 0.5s ease);
+	}
+}

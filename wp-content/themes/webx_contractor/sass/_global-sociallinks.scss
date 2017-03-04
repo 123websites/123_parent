@@ -1,0 +1,22 @@
+@media only screen {
+	.sociallink{
+		width: 40px;
+		height: 40px;
+		display: inline-block;
+		border-radius: 100%;
+		background-color: $primary;
+		text-decoration: none;
+		text-align: center;
+		margin-right: 10px;
+		margin-bottom: 10px;
+		margin-top: 10px;
+	}
+	.sociallink-icon{
+		color: black;
+		position: relative;
+		top: 50%;
+		@include transform(translateY(-50%));
+		font-size: 2rem;
+	}
+}
+

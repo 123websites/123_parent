@@ -1,0 +1,105 @@
+@media only screen {
+	.services-services{
+		padding: 20px;
+	}
+	.services-services-grid-item{
+		padding-bottom: 40px;
+		margin: 0 auto;
+		max-width: 320px;
+	}
+	.services-services-grid-item-imagecontainer{
+		max-height: 205px;
+		overflow: hidden;
+		position: relative;
+	}
+	.services-services-grid-item-imagecontainer-image{
+		width: 100%;
+	}
+	.services-services-grid-item-header{
+		background-color: $primary;
+		padding: 5px 10px;
+		font-size: 2rem;
+		font-family: $body;
+	}
+	.services-services-grid-item-descriptioncontainer-description{
+		padding: 10px;
+		font-size: 1.6rem;
+	}
+	.services-services-grid-item-pricecontainer{
+		padding: 0 10px 10px 10px;
+	}
+	.services-services-grid-item-pricecontainer-price{
+		font-size: 3.6rem;
+		text-align: center;
+	}
+}
+
+@media only screen and (min-width: $medium){
+	.services-services-grid{
+		max-width: 720px;
+		margin: 0 -20px;
+		font-size: 0;
+		text-align: center;
+		position: relative;
+		left: calc(50% + 20px);
+		@include transform(translateX(-50%));
+	}
+	.services-services-grid-item{
+		width: calc(50% - 20px);
+		margin: 10px;
+		display: inline-block;
+		box-sizing: border-box;
+	}
+	.services-services-grid-item-textcontainer{
+		text-align: left;
+	}
+}
+
+@media only screen and (min-width: $large){
+	.services-services{
+		margin-top: 40px;
+		padding: 15px;
+	}
+	.services-services-grid{
+		max-width: 1440px;
+		margin: 0 auto;
+		left: 0;
+		@include transform(translateX(0));
+	}
+	.services-services-grid-item{
+		width: 100%;
+		max-width: 1002px;
+		padding: 20px 0;
+		margin: 0;
+	}
+	.services-services-grid-item-wrapper{
+		display: block;
+		border: 1px solid lightgrey;
+	}
+	.services-services-grid-item-header{
+		font-size: 2.6rem;
+	}
+	.services-services-grid-item-imagecontainer,
+	.services-services-grid-item-descriptioncontainer,
+	.services-services-grid-item-pricecontainer{
+		vertical-align: middle;
+		display: inline-block;
+		width: calc(100% / 3);
+		height: calc(1002px / 3);
+		font-size: 0;
+		margin: 0;
+		box-sizing: border-box;
+		position: relative;
+		border: 2px solid lightgrey;
+	}
+	.services-services-grid-item-imagecontainer{
+		max-height: calc(1002px / 3);
+	}
+	.services-services-grid-item-imagecontainer-image,
+	.services-services-grid-item-descriptioncontainer-description,
+	.services-services-grid-item-pricecontainer-price{
+	    position: relative;
+	    top: 50%;
+	    @include transform(translateY(-50%));
+	}
+}

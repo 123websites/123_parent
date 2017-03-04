@@ -1,0 +1,232 @@
+Searching 5107 files for "$yellow"
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1277e250f1e88464f77eeeff10dc16d2801f440e/_footer.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1277e250f1e88464f77eeeff10dc16d2801f440e/_header.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1277e250f1e88464f77eeeff10dc16d2801f440e/_mobilefooter.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1277e250f1e88464f77eeeff10dc16d2801f440e/_mobileheader.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_areas-served.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_blog-blog.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_blog.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_gallery-gallery.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_gallery.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_home-hero.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_home-services.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_home-testimonials.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_home.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_services-services.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/1471e0da893a94c021cfbfede70df3d4a51b074c/_services.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/b6a7e5a06eab713d65245654ebe2aa0551147d5a/_gform.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/b6a7e5a06eab713d65245654ebe2aa0551147d5a/_global-contact.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/b6a7e5a06eab713d65245654ebe2aa0551147d5a/_global-recent_posts.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/b6a7e5a06eab713d65245654ebe2aa0551147d5a/_global.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/b6a7e5a06eab713d65245654ebe2aa0551147d5a/_vars.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/.sass-cache/b6a7e5a06eab713d65245654ebe2aa0551147d5a/login.scssc:
+    <binary>
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/_gform.scss:
+   24  		resize: none;
+   25  		&:focus{
+   26: 			outline-color: $yellow;
+   27  		}
+   28  	}
+   ..
+   30  		input[type='submit']{
+   31  			color: black;
+   32: 			background-color: $yellow;
+   33  			text-transform: uppercase;
+   34  			padding: 10px 20px;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/_global-contact.scss:
+   37  		color: black;
+   38  		text-transform: uppercase;
+   39: 		background-color: $yellow;
+   40  		padding: 15px 20px;
+   41  		margin-top: 20px;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/_global-recent_posts.scss:
+   19  		text-align: left;
+   20  		padding: 5px 10px;
+   21: 		background-color: $yellow;
+   22  		font-family: 'Montserrat', 'Helvetica', sans-serif;
+   23  	}
+   ..
+   38  		color: black;
+   39  		text-transform: uppercase;
+   40: 		background-color: $yellow;
+   41  		padding: 15px 20px;
+   42  		margin-top: 40px;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/_global.scss:
+    6  	.section-header{
+    7  		display: inline-block;
+    8: 		border-left: 2px solid $yellow;
+    9: 		border-right: 2px solid $yellow;
+   10  		padding: 0 10px;
+   11  	}	
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/_vars.scss:
+    6  
+    7  // colors
+    8: $yellow: #fcb315;
+    9  $footer-grey: #424343;
+   10  $medium-grey: #383838;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/login.scss:
+   11  		text-transform: uppercase;
+   12  		color: white;
+   13: 		border-left: 5px solid $yellow;
+   14  	}
+   15  	#loginform{
+   ..
+   24  		background-color: #e0e0e0;
+   25  		&:focus{
+   26: 			border-color: $yellow;
+   27  		}
+   28  	}
+   29  	.wp-core-ui .button-group.button-large .button, .wp-core-ui .button.button-large{
+   30: 		background-color: $yellow;
+   31  		color: black;
+   32  		font-weight: normal;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/pages/_areas-served.scss:
+   70  	}
+   71  	.areas-served-areas-grid-imagecontainer-tint{
+   72: 		background-color: rgba($yellow, 0.35);
+   73  		@include transition(background-color 0.5s ease);
+   74  	}
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/pages/_blog.scss:
+   17  	}
+   18  	.blog-blog-grid-item-textcontainer-header{
+   19: 		background-color: $yellow;
+   20  		padding: 5px 10px;
+   21  		font-size: 2rem;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/pages/_gallery.scss:
+    1  @media only screen {
+    2  	.gallery-galleries-gallery-header{
+    3: 		background-color: $yellow;
+    4  		padding: 10px 20px;
+    5  		font-size: 2.4rem;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/pages/_home-hero.scss:
+    4  		color: black;
+    5  		text-transform: uppercase;
+    6: 		background-color: $yellow;
+    7  		padding: 15px 20px;
+    8  		margin-top: 20px;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/pages/_home-services.scss:
+   19  		text-align: left;
+   20  		padding: 5px 10px;
+   21: 		background-color: $yellow;
+   22  		font-family: 'Montserrat', 'Helvetica', sans-serif;
+   23  	}
+   ..
+   38  		color: black;
+   39  		text-transform: uppercase;
+   40: 		background-color: $yellow;
+   41  		padding: 15px 20px;
+   42  		margin-top: 40px;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/pages/_home-testimonials.scss:
+   32  		color: black;
+   33  		text-transform: uppercase;
+   34: 		background-color: $yellow;
+   35  		padding: 15px 20px;
+   36  		margin-top: 40px;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/pages/_services.scss:
+   17  	}
+   18  	.services-services-grid-item-textcontainer-header{
+   19: 		background-color: $yellow;
+   20  		padding: 5px 10px;
+   21  		font-size: 2rem;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/partials/_footer.scss:
+   43  	.footer-sharebutton{
+   44  		color: black;
+   45: 		background-color: $yellow;
+   46  		padding: 10px 20px;
+   47  		text-transform: uppercase;
+   ..
+   62  	.footer-sociallinks-item{
+   63  		display: inline-block;
+   64: 		background-color: $yellow;
+   65  		width: 45px;
+   66  		height: 45px;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/partials/_header.scss:
+   80  		height: 30px;
+   81  		border-radius: 300px;
+   82: 		background-color: $yellow;
+   83  		position: relative;
+   84  		display: inline-block;
+   ..
+  110  		text-align: center;
+  111  		text-transform: uppercase;
+  112: 		background-color: $yellow;
+  113  		padding: 16px 10px;
+  114  		display: inline-block;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/partials/_mobilefooter.scss:
+   28  	.mobilefooter-sharebutton{
+   29  		color: black;
+   30: 		background-color: $yellow;
+   31  		padding: 10px 20px;
+   32  		text-transform: uppercase;
+   ..
+   42  	.mobilefooter-sociallinks-item{
+   43  		display: inline-block;
+   44: 		background-color: $yellow;
+   45  		width: 45px;
+   46  		height: 45px;
+
+/Users/atlas/Dropbox/_MAMPSITES/avery_construction/wp-content/themes/avery_construction/sass/partials/_mobileheader.scss:
+   96  	.mobileheader-menus-social-menu-item{
+   97  		display: inline-block;
+   98: 		background-color: $yellow;
+   99  		border-radius: 300px;
+  100  		width: 45px;
+
+56 matches across 38 files
