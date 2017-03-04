@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <main class="company">
 	<section class="company-hero hero" style="background-image: url('<?php echo get_field('company-bg', 'option'); ?>');">
 		<div class="company-hero-text hero-text">
@@ -98,5 +96,3 @@
 
 	?>
 </main>
-
-<?php get_footer(); ?>

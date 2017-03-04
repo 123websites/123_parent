@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <main class="contact">
 	<section class="contact-hero hero">
 		<div class="contact-hero-text hero-text">
@@ -93,5 +91,3 @@
 
 	?>
 </main>
-
-<?php get_footer(); ?>

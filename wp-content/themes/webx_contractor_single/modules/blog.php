@@ -1,11 +1,3 @@
-<?php 
-
-if( !get_field('blog-toggle', 'option') ){
-	header( "Location: " . site_url() . "/404.php" );
-}
-
-get_header(); ?>
-
 <main class="blog">
 	<section class="blog-hero hero" style="background-image: url('<?php echo get_field('general-blog-bg', 'option'); ?>');">
 		<div class="blog-hero-text hero-text">
@@ -65,5 +57,3 @@ get_header(); ?>
 	</section>
 	<?php get_template_part('partials/global', 'contact');?>
 </main>
-
-<?php get_footer(); ?>

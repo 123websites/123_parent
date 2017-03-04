@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <main class="menu">
 	<section class="menu-hero hero" style="background-image: url('<?php echo get_field('menu-bg', 'option'); ?>');">
 		<div class="menu-hero-text hero-text">
@@ -86,5 +84,3 @@
 
 	?>
 </main>
-
-<?php get_footer(); ?>

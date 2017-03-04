@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <main class="gallery">
 	<section class="gallery-hero hero" style="background-image: url('<?php echo get_field('gallery-bg', 'option'); ?>');">
 		<div class="gallery-hero-text hero-text">
@@ -39,5 +37,3 @@
 
 	?>
 </main>
-
-<?php get_footer(); ?>

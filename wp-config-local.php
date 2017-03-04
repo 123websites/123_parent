@@ -20,7 +20,7 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'averyconstruction');
+define('DB_NAME', 'webx_contractor_single');
 
 /** MySQL database username */
 define('DB_USER', 'root');

@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <main class="testimonials">
 	<section class="testimonials-hero hero" style="background-image: url('<?php echo get_field('testimonials-bg', 'option'); ?>');">
 		<div class="testimonials-hero-text hero-text">
@@ -39,5 +37,3 @@
 
 	?>
 </main>
-
-<?php get_footer(); ?>

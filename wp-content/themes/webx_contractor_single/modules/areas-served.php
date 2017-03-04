@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <main class="areas-served">
 	<section class="areas-served-hero hero"">
 		<div class="areas-served-hero-text hero-text">
@@ -44,5 +42,3 @@
 
 	?>
 </main>
-
-<?php get_footer(); ?>
