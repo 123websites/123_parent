@@ -1,5 +1,3 @@
-
-
 ;(function ( $, window, document, undefined ) {
 
 	$(document).ready(function(){
@@ -240,7 +238,6 @@
 		}
 
 		AnimateNavScrolling._init();
-
 
 
 		var HomeTestimonialsSlider = {

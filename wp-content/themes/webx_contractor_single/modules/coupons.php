@@ -1,4 +1,4 @@
-<main class="coupons">
+<main class="coupons" id="coupons">
 	<section class="coupons-hero hero" style="background-image: url('<?php echo get_field('general-coupons-bg', 'option'); ?>');">
 		<div class="coupons-hero-text hero-text">
 			<h1 class="coupons-hero-text-header hero-text-header">Coupons</h1>
