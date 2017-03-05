@@ -7,6 +7,7 @@
 	</section>
 	<section class="coupons-coupons section">
 		<?php 
+		
 		$the_query = new WP_Query(array(
 			'post_type' => 'coupon',
 			'posts_per_page' => 6,

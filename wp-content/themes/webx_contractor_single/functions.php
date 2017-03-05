@@ -68,6 +68,7 @@ function localize_contact_address(){
 	}
 	wp_localize_script( 'theme', 'ContactAddresses', $fields );
 }
+add_action('wp_enqueue_scripts', 'localize_contact_address');
 
 // make nav-fadein-toggle available in javascript
 function localize_fadein_toggle(){
@@ -114,32 +115,13 @@ function update_login_styles(){
 add_action('wp_enqueue_scripts', 'add_gmaps_script');
 
 function add_gmaps_script(){
-	$file_name = get_page_template();
-	$returned_matches = [];
-	if(!empty($file_name)){
-		preg_match_all('/[^\/]*$/', $file_name, $returned_matches);
-		$file_name = $returned_matches[0][0];
+	if(get_field('gmaps-api-key', 'option') !== ''){
+		wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=' . get_field('gmaps-api-key', 'option') . '&callback=window._initHomeMap', array(), null, true);	
 	}
-	$strpos = strpos($file_name, '.php');
-
-	if(is_home() || ($strpos && $file_name == 'page-areas-served.php')){
-		if(get_field('gmaps-api-key', 'option') !== ''){
-			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=' . get_field('gmaps-api-key', 'option') . '&callback=window._initHomeMap', array(), null, true);	
-		}
-		else{
-			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=AIzaSyBrRJwJFfNCdVLJwa6yhR8UBZR1m2A018Q&callback=window._initHomeMap', array(), null, true);	
-		}
-		localize_areas_served();
+	else{
+		wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=AIzaSyBrRJwJFfNCdVLJwa6yhR8UBZR1m2A018Q&callback=window._initHomeMap', array(), null, true);	
 	}
-	if($strpos && $file_name == 'page-contact.php'){
-		if(get_field('gmaps-api-key', 'option') !== ''){
-			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=' . get_field('gmaps-api-key', 'option') . '&callback=window._initContactMap', array(), null, true);	
-		}
-		else{
-			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=AIzaSyBrRJwJFfNCdVLJwa6yhR8UBZR1m2A018Q&callback=window._initContactMap', array(), null, true);	
-		}
-		localize_contact_address();
-	}
+	localize_areas_served();
 }
 
 

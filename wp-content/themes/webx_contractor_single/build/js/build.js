@@ -33,9 +33,6 @@ var objectFitImages=function(){"use strict";function t(t){for(var e,r=getCompute
 
 	$(document).ready(function(){
 
-		// object-fit polyfill: https://github.com/bfred-it/object-fit-images/
-		// $(function () { objectFitImages('.services-services-grid-item-imagecontainer-image') });
-
 		var Galleries = {
 			_init : function(){
 				baguetteBox.run('.gallery-galleries-gallery');
@@ -258,13 +255,15 @@ var objectFitImages=function(){"use strict";function t(t){for(var e,r=getCompute
 			_linkClickHandler : function(e){
 				e.preventDefault();
 				var hash = e.target.hash == undefined ? window.location.hash : e.target.hash;
-				setTimeout(function(){
-					$('html, body').animate({
-						scrollTop: $(hash).offset().top - $('.header-tint')[0].clientHeight,
-					}, 500, function(){
-						window.location.hash = hash;
-					});
-				}, 100);
+				if(hash !== undefined && hash !== ""){
+					setTimeout(function(){
+						$('html, body').animate({
+							scrollTop: $(hash).offset().top - $('.header-tint')[0].clientHeight,
+						}, 500, function(){
+							window.location.hash = hash;
+						});
+					}, 100);
+				}
 			},
 		}
 
@@ -607,5 +606,7 @@ window._initHomeMap = function(){
      	}	
 	    map.panToBounds(bounds);
 	}	
+
+	window._initContactMap();
 }
 

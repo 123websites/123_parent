@@ -1,7 +1,7 @@
 ;(function ( $, window, document, undefined ) {
 
 	$(document).ready(function(){
-		// yeah
+
 		var Galleries = {
 			_init : function(){
 				baguetteBox.run('.gallery-galleries-gallery');
@@ -224,13 +224,15 @@
 			_linkClickHandler : function(e){
 				e.preventDefault();
 				var hash = e.target.hash == undefined ? window.location.hash : e.target.hash;
-				setTimeout(function(){
-					$('html, body').animate({
-						scrollTop: $(hash).offset().top - $('.header-tint')[0].clientHeight,
-					}, 500, function(){
-						window.location.hash = hash;
-					});
-				}, 100);
+				if(hash !== undefined && hash !== ""){
+					setTimeout(function(){
+						$('html, body').animate({
+							scrollTop: $(hash).offset().top - $('.header-tint')[0].clientHeight,
+						}, 500, function(){
+							window.location.hash = hash;
+						});
+					}, 100);
+				}
 			},
 		}
 
@@ -573,5 +575,7 @@ window._initHomeMap = function(){
      	}	
 	    map.panToBounds(bounds);
 	}	
+
+	window._initContactMap();
 }
 
