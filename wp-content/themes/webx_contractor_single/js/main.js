@@ -1,7 +1,7 @@
 ;(function ( $, window, document, undefined ) {
 
 	$(document).ready(function(){
-
+		// yeah
 		var Galleries = {
 			_init : function(){
 				baguetteBox.run('.gallery-galleries-gallery');
