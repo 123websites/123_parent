@@ -2,9 +2,6 @@
 
 	$(document).ready(function(){
 
-		// object-fit polyfill: https://github.com/bfred-it/object-fit-images/
-		// $(function () { objectFitImages('.services-services-grid-item-imagecontainer-image') });
-
 		var Galleries = {
 			_init : function(){
 				baguetteBox.run('.gallery-galleries-gallery');
