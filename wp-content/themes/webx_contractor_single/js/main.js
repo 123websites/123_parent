@@ -13,25 +13,18 @@
 		}
 
 		var HeroSlider = {
-			// multiplier of random pan delta
-			panDistance : 10,
-			// fade between slides speed
-			fadeSpeed : 700,
 			// slide on screen time in ms
 			screenTime : 4500,
-			// scale multiplier
-			scaleAmount : 1.15,
 
 			slidesContainer : $('.home-hero-slides'),
 			slides : $('.home-hero-slides-slide'),
 			currentSlide : 0,
 			currentlyAnimating : false,
 			
-			_init : function(pd, fs, st, sr){
-				if(pd !== undefined) HeroSlider.panDistance = pd;
-				if(fs !== undefined) HeroSlider.fadeSpeed = fs;
+			_init : function(st){
+				
 				if(st !== undefined) HeroSlider.screenTime = st;
-				if(sr !== undefined) HeroSlider.scaleAmount = sr;				
+			
 				HeroSlider.slidesContainer.on('NEXT_HEROSLIDE', function(e){
 					HeroSlider._nextSlide();
 				});
@@ -39,38 +32,23 @@
 				HeroSlider._animateCurrentSlide();
 			},	
 			_animateCurrentSlide : function(){
-				var randX = 0;
-				var randY = 0;
 				$(HeroSlider.slides[HeroSlider.currentSlide]).animate(
 					{
-					// top : 50 + ((Math.random() * 2 - 1) * HeroSlider.panDistance) + '%',
-					// left : 50 + ((Math.random() * 2 - 1) * HeroSlider.panDistance) + '%',
-					textIndent : 1,
+						textIndent : 1,
 					}, 
 					{
-					duration : HeroSlider.screenTime,
-					start : function(){
-						randX = (Math.random() * 2) - 1;
-						randY = (Math.random() * 2) - 1;
-					},
-					step : function(fx, now){
-						now = now.now;
-						var valX = -50 + Number((randX * HeroSlider.panDistance)*now) + '%';
-						var valY = -50 /*+ Number((randY * HeroSlider.panDistance)*now)*/ + '%';
-						$(this).css('-webkit-transform', 'translate3d(' + valX + ', ' + valY + ',0)');
-						$(this).css('-moz-transform', 'translate3d(' + valX + ', ' + valY + ',0)');
-						$(this).css('transform', 'translate3d(' + valX + ', ' + valY + ',0)');
-					},
-					progress : function(animation, progress, remaining){
-						if(remaining <= 450 && HeroSlider.currentlyAnimating != true){
-							HeroSlider.slidesContainer.trigger('NEXT_HEROSLIDE');
-							HeroSlider.currentlyAnimating = true;
-						}
-					},
-					complete : function(){
-						HeroSlider.currentlyAnimating = false;
-					},
-				});
+						duration : HeroSlider.screenTime,
+						progress : function(animation, progress, remaining){
+							if(remaining <= 450 && HeroSlider.currentlyAnimating != true){
+								HeroSlider.slidesContainer.trigger('NEXT_HEROSLIDE');
+								HeroSlider.currentlyAnimating = true;
+							}
+						},
+						complete : function(){
+							HeroSlider.currentlyAnimating = false;
+						},
+					}
+				);
 			},
 			_nextSlide : function(){
 				// grab old currentslide
@@ -82,10 +60,8 @@
 				else{
 					HeroSlider.currentSlide++;
 				}
-				// fade slides & reset previous slide's css
-				$(HeroSlider.slides[previousSlide]).fadeOut(HeroSlider.fadeSpeed, function(){
-					$(HeroSlider.slides[previousSlide]).removeAttr('style');
-				});
+				// fade slides
+				$(HeroSlider.slides[previousSlide]).fadeOut(HeroSlider.fadeSpeed);
 				$(HeroSlider.slides[HeroSlider.currentSlide]).fadeIn(HeroSlider.fadeSpeed);
 				// animate next slide
 				HeroSlider._animateCurrentSlide();
@@ -214,7 +190,7 @@
 
 
 		var AnimateNavScrolling = {
-			links : $('.header-content-menus-pages-menu-item-link'),
+			links : $('.header-content-menus-pages-menu-item-link, .home-hero-text-button'),
 			_init : function(){
 				if((window.location.origin + window.location.pathname).slice(0,-1) == Home_URL){
 					AnimateNavScrolling.links.click(AnimateNavScrolling._linkClickHandler);
