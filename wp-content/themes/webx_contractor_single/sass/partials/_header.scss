@@ -7,6 +7,10 @@
 			opacity: 1;
 		}
 	}
+	.header-content-quickquote{
+		color: white;
+		font-weight: 500;
+	}
 }
 
 @media only screen and (min-width: $medium){
@@ -116,15 +120,14 @@
 		display: inline-block;
 		vertical-align: bottom;
 		position: relative;
-		bottom: 4px;
+		bottom: 0px;
 		margin-left: 10px;
 		font-weight: normal;
-		color: black;
 		text-decoration: none;
 	}
 	.header-tint{
 		background-color: $medium-grey;
-		opacity: 0;
+		// opacity: 1;
 		position: absolute;
 		top: 0;
 		left: 0;

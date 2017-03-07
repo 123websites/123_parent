@@ -1,7 +1,8 @@
-<main class="company" id="company">
-	<section class="company-hero hero" style="background-image: url('<?php echo get_field('company-bg', 'option'); ?>');">
+<?php $has_bg = !empty(get_field('company-bg', 'option')); ?>
+<main class="company main" id="company" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('company-bg', 'option'); ?>');" <?php endif; ?>>
+	<section class="company-hero hero">
 		<div class="company-hero-text hero-text">
-			<h1 class="company-hero-text-header hero-text-header"><?php echo get_field('company-header', 'option'); ?></h1>
+			<h1 class="company-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('company-header', 'option'); ?></h1>
 			<?php 
 			$selected_option = get_field('company-page-option-toggle', 'option');
 			if($selected_option == 'option1'):
@@ -11,7 +12,7 @@
 			endif;
 			?>
 		</div>
-		<div class="company-hero-tint hero-tint"></div>
+		<div class="company-hero-tint hero-tint<?php echo !$has_bg ? ' hero-tint--nobg' : ''; ?>"></div>
 	</section>
 	<?php if($selected_option == 'option1'): ?>
 	<section class="company-wysiwyg">
@@ -25,7 +26,10 @@
 			<?php while(have_rows('company-employee-repeater', 'option')): the_row();?>
 				<div class="company-employees-grid-item">
 					<div class="company-employees-grid-item-imagecontainer">
-						<img src="<?php echo get_sub_field('company-employee-image', 'option'); ?>" class="company-employees-grid-item-imagecontainer-image">
+						<img src="<?php echo !empty(get_sub_field('company-employee-image', 'option')) ? get_sub_field('company-employee-image', 'option') : get_template_directory_uri() . '/library/img/blank-profile.png'; ?>" class="company-employees-grid-item-imagecontainer-image">
+					</div>
+					<div class="company-employees-grid-item-imagecontainer--desktop" style="background-image: url('<?php echo !empty(get_sub_field('company-employee-image', 'option')) ? get_sub_field('company-employee-image', 'option') : get_template_directory_uri() . '/library/img/blank-profile.png'; ?>');">
+						<div class="company-employees-grid-item-imagecontainer-tint--desktop"></div>
 					</div>
 					<?php 
 

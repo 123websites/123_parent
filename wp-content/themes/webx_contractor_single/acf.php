@@ -245,6 +245,7 @@ function add_acf_fields() {
 						'name' => 'company-employee-image',
 						'return_format' => 'url',
 						'preview_size' => 'medium',
+						'instructions' => 'Please use as close to a square image as possible',
 					),
 					array(
 						'key' => 'field_38760ff0',

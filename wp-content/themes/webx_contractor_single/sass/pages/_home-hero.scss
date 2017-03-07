@@ -1,7 +1,7 @@
 @media only screen {
 	.home-hero,
 	.home-hero-tint{
-		height: 80vh;
+		height: 90vh;
 	}
 	.home-hero-text-button{
 		text-decoration: none;
@@ -29,13 +29,16 @@
 
 @media only screen and (min-width: $large){
 	.home-hero-text{
-		max-width: 1440px;
-		text-align: left;
-		padding: 0 40px;
-		box-sizing: border-box;
+		text-align: center;
+	}
+	.home-hero-text-header{
+		position: relative;
+		left: 50%;
+		@include transform(translateX(-50%));
+		font-size: 9rem;
 	}
 	.home-hero-text-button{
-		font-size: 2.4rem;
+		font-size: 2rem;
 		font-weight: normal;
 	}
 }
