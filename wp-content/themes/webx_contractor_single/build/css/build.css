@@ -16,7 +16,7 @@
   font-family: 'Gotham';
   src: url("../../library/fonts/GothamHTF-UltraItalic.eot");
   src: url("../../library/fonts/GothamHTF-UltraItalic.eot?#iefix") format("embedded-opentype"), url("../../library/fonts/GothamHTF-UltraItalic.woff") format("woff"), url("../../library/fonts/GothamHTF-UltraItalic.ttf") format("truetype");
-  font-weight: normal;
+  font-weight: 800;
   font-style: italic; }
 @font-face {
   font-family: 'Gotham';
@@ -70,7 +70,7 @@
   font-family: 'Gotham';
   src: url("../../library/fonts/GothamHTF-Ultra.eot");
   src: url("../../library/fonts/GothamHTF-Ultra.eot?#iefix") format("embedded-opentype"), url("../../library/fonts/GothamHTF-Ultra.woff") format("woff"), url("../../library/fonts/GothamHTF-Ultra.ttf") format("truetype");
-  font-weight: normal;
+  font-weight: 800;
   font-style: normal; }
 @font-face {
   font-family: 'Gotham Condensed';
@@ -149,8 +149,8 @@ footer, header, hgroup, menu, nav, section, img {
 
   .section-header {
     display: inline-block;
-    border-left: 2px solid #fcb315;
-    border-right: 2px solid #fcb315;
+    border-left: 2px solid #32A2AE;
+    border-right: 2px solid #32A2AE;
     padding: 0 10px; }
 
   .hero {
@@ -270,7 +270,7 @@ footer, header, hgroup, menu, nav, section, img {
     resize: none; }
     .ginput_container input:focus,
     .ginput_container textarea:focus {
-      outline-color: #fcb315; }
+      outline-color: #32A2AE; }
     .ginput_container input::-webkit-input-placeholder, .ginput_container textarea::-webkit-input-placeholder {
       color: #666; }
     .ginput_container input:-moz-placeholder, .ginput_container textarea:-moz-placeholder {
@@ -285,7 +285,7 @@ footer, header, hgroup, menu, nav, section, img {
 
   .gform_footer input[type='submit'] {
     color: black;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     text-transform: uppercase;
     padding: 10px 20px;
     font-size: 1.8rem;
@@ -756,7 +756,7 @@ footer, header, hgroup, menu, nav, section, img {
   .global-recentposts-grid-item-header {
     text-align: left;
     padding: 5px 10px;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     font-family: 'Montserrat', 'Helvetica', sans-serif; }
 
   .global-recentposts-grid-item-description {
@@ -778,7 +778,7 @@ footer, header, hgroup, menu, nav, section, img {
     text-decoration: none;
     color: black;
     text-transform: uppercase;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 15px 20px;
     margin-top: 40px;
     margin-bottom: 80px;
@@ -850,7 +850,7 @@ footer, header, hgroup, menu, nav, section, img {
     text-decoration: none;
     color: black;
     text-transform: uppercase;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 15px 20px;
     margin-top: 20px;
     display: inline-block; } }
@@ -958,7 +958,7 @@ footer, header, hgroup, menu, nav, section, img {
     height: 40px;
     display: inline-block;
     border-radius: 100%;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     text-decoration: none;
     text-align: center;
     margin-right: 10px;
@@ -1076,7 +1076,7 @@ footer, header, hgroup, menu, nav, section, img {
     font-size: 1.6rem;
     text-align: center;
     text-transform: uppercase;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 16px 10px;
     display: inline-block;
     vertical-align: bottom;
@@ -1188,15 +1188,15 @@ footer, header, hgroup, menu, nav, section, img {
     vertical-align: middle; }
 
   .mobileheader-bar-menutoggle {
-    width: 40%; }
+    width: 40%;
+    text-align: right; }
 
   .mobileheader-bar-menutoggle-icon {
     color: white;
     font-size: 2.4rem; }
 
   .mobileheader-bar-logo {
-    width: 60%;
-    text-align: right; }
+    width: 60%; }
 
   .mobileheader-bar-logo-image {
     width: auto;
@@ -1248,8 +1248,6 @@ footer, header, hgroup, menu, nav, section, img {
 
   .mobileheader-menus-social-menu-item {
     display: inline-block;
-    background-color: #fcb315;
-    border-radius: 300px;
     width: 45px;
     height: 45px;
     position: relative;
@@ -1269,13 +1267,15 @@ footer, header, hgroup, menu, nav, section, img {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
 
-  .mobileheader-menus-social-menu-item-link-icon.fa-instagram {
-    position: relative;
-    top: -2px;
-    left: 0px; }
-  .mobileheader-menus-social-menu-item-link-icon.fa-youtube-play, .mobileheader-menus-social-menu-item-link-icon.fa-twitter {
-    position: relative;
-    top: -1px; }
+  .mobileheader-menus-social-menu-item-link-icon {
+    color: #32A2AE; }
+    .mobileheader-menus-social-menu-item-link-icon.fa-instagram {
+      position: relative;
+      top: -2px;
+      left: 0px; }
+    .mobileheader-menus-social-menu-item-link-icon.fa-youtube-play, .mobileheader-menus-social-menu-item-link-icon.fa-twitter {
+      position: relative;
+      top: -1px; }
 
   header.light .mobileheader-estimate {
     background-color: #f9f9f9; }
@@ -1356,7 +1356,7 @@ footer, header, hgroup, menu, nav, section, img {
 
   .footer-sociallinks-item {
     display: inline-block;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     width: 45px;
     height: 45px;
     border-radius: 330px;
@@ -1560,7 +1560,7 @@ footer, header, hgroup, menu, nav, section, img {
 
   .mobilefooter-sharebutton {
     color: black;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 10px 20px;
     text-transform: uppercase;
     margin: 5px 0 20px 0;
@@ -1575,7 +1575,7 @@ footer, header, hgroup, menu, nav, section, img {
 
   .mobilefooter-sociallinks-item {
     display: inline-block;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     width: 45px;
     height: 45px;
     border-radius: 330px;
@@ -1659,13 +1659,13 @@ footer, header, hgroup, menu, nav, section, img {
 @media only screen {
   .home-hero,
   .home-hero-tint {
-    height: 100vh; }
+    height: 80vh; }
 
   .home-hero-text-button {
     text-decoration: none;
     color: black;
     text-transform: uppercase;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 15px 20px;
     margin-top: 20px;
     display: inline-block; }
@@ -1683,8 +1683,16 @@ footer, header, hgroup, menu, nav, section, img {
     left: 50%; }
 
   .home-hero-text-button {
-    border-radius: 4px; } }
+    border-radius: 4px;
+    font-weight: 400;
+    color: white; } }
 @media only screen and (min-width: 1025px) {
+  .home-hero-text {
+    max-width: 1440px;
+    text-align: left;
+    padding: 0 40px;
+    box-sizing: border-box; }
+
   .home-hero-text-button {
     font-size: 2.4rem;
     font-weight: normal; } }
@@ -1715,7 +1723,7 @@ footer, header, hgroup, menu, nav, section, img {
   .home-services-grid-item-header {
     text-align: left;
     padding: 5px 10px;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     font-family: "Gotham", "Helvetica", sans-serif; }
 
   .home-services-grid-item-description {
@@ -1734,7 +1742,7 @@ footer, header, hgroup, menu, nav, section, img {
     text-decoration: none;
     color: black;
     text-transform: uppercase;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 15px 20px;
     margin-top: 40px;
     margin-bottom: 80px;
@@ -1798,7 +1806,7 @@ footer, header, hgroup, menu, nav, section, img {
     text-decoration: none;
     color: black;
     text-transform: uppercase;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 15px 20px;
     margin-top: 40px;
     margin-bottom: 80px;
@@ -1969,7 +1977,7 @@ footer, header, hgroup, menu, nav, section, img {
 
   .company-employees-grid-item-socialcontainer-link {
     display: inline-block;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     text-align: center;
     width: 20px;
     height: 20px;
@@ -2130,7 +2138,7 @@ footer, header, hgroup, menu, nav, section, img {
       background-color: rgba(0, 0, 0, 0.35); }
 
   .areas-served-areas-grid-imagecontainer-tint {
-    background-color: rgba(252, 179, 21, 0.35);
+    background-color: rgba(50, 162, 174, 0.35);
     -webkit-transition: background-color 0.5s ease;
     -moz-transition: background-color 0.5s ease;
     -ms-transition: background-color 0.5s ease;
@@ -2145,7 +2153,7 @@ footer, header, hgroup, menu, nav, section, img {
     transition: transform 0.5s ease; } }
 @media only screen {
   .gallery-galleries-gallery-header {
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 10px 20px;
     font-size: 2.4rem; }
 
@@ -2162,7 +2170,7 @@ footer, header, hgroup, menu, nav, section, img {
     background-position: 50% 50%; }
 
   #baguetteBox-overlay .full-image figure figcaption {
-    background-color: #fcb315;
+    background-color: #32A2AE;
     color: black;
     font-size: 2.8rem;
     text-transform: uppercase;
@@ -2239,7 +2247,7 @@ footer, header, hgroup, menu, nav, section, img {
     width: 100%; }
 
   .services-services-grid-item-header {
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 5px 10px;
     font-size: 2rem;
     font-family: "Gotham", "Helvetica", sans-serif; }
@@ -2356,7 +2364,7 @@ footer, header, hgroup, menu, nav, section, img {
     max-width: 320px; }
 
   .blog-blog-grid-item-textcontainer-header {
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 5px 10px;
     font-size: 2rem;
     font-family: "Gotham", "Helvetica", sans-serif;
@@ -2501,7 +2509,7 @@ footer, header, hgroup, menu, nav, section, img {
     font-size: 1.6rem;
     text-align: center;
     text-transform: uppercase;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 16px 10px;
     display: inline-block;
     vertical-align: bottom;
@@ -2753,7 +2761,7 @@ footer, header, hgroup, menu, nav, section, img {
 @media only print {
   .coupons-coupons-grid-item {
     padding: 20px;
-    background-color: #fcb315;
+    background-color: #32A2AE;
     border: 4px dashed black;
     display: inline-block;
     width: calc(100% - 40px);
@@ -2840,7 +2848,7 @@ footer, header, hgroup, menu, nav, section, img {
     max-width: 720px; }
 
   .menu-menu-grid-category-header {
-    background-color: #fcb315;
+    background-color: #32A2AE;
     padding: 5px 10px;
     font-size: 2rem;
     font-family: "Gotham", "Helvetica", sans-serif; }

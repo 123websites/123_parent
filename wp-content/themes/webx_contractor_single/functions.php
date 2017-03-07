@@ -604,7 +604,7 @@ function update_logo_text_image(){
 
 		$phpimg->setDimensionsFromImage($bg);
 		$phpimg->setQuality(9);
-		$phpimg->setFont(get_template_directory() . '/library/fonts/Montserrat-Regular.ttf');
+		$phpimg->setFont(get_template_directory() . '/library/fonts/GothamHTF-Book.ttf');
 		$phpimg->setTextColor(array(255, 255, 255));
 
 		$phpimg->text(get_bloginfo('name'), array(

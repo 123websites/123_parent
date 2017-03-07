@@ -9,7 +9,7 @@
     font-size: 16px;
     text-transform: uppercase;
     color: white;
-    border-left: 5px solid #fcb315; }
+    border-left: 5px solid #32A2AE; }
 
   .login #login #login_error a {
     display: block;
@@ -28,10 +28,10 @@
   .login form .input, .login form input[type=checkbox], .login input[type=text] {
     background-color: #e0e0e0; }
     .login form .input:focus, .login form input[type=checkbox]:focus, .login input[type=text]:focus {
-      border-color: #fcb315; }
+      border-color: #32A2AE; }
 
   .wp-core-ui .button-group.button-large .button, .wp-core-ui .button.button-large {
-    background-color: #fcb315;
+    background-color: #32A2AE;
     color: black;
     font-weight: normal;
     text-transform: uppercase;

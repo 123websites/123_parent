@@ -43,6 +43,7 @@
 	}
 	.mobileheader-bar-menutoggle{
 		width: 40%;
+		text-align: right;
 	}
 	.mobileheader-bar-menutoggle-icon{
 		color: white;
@@ -50,7 +51,6 @@
 	}
 	.mobileheader-bar-logo{
 		width: 60%;
-		text-align: right;
 	}
 	.mobileheader-bar-logo-image{
 		width: auto;
@@ -98,8 +98,6 @@
 	}
 	.mobileheader-menus-social-menu-item{
 		display: inline-block;
-		background-color: $primary;
-		border-radius: 300px;
 		width: 45px;
 		height: 45px;
 		position: relative;
@@ -116,6 +114,7 @@
 		@include transform(translate(-50%,-50%));
 	}
 	.mobileheader-menus-social-menu-item-link-icon{
+		color: $primary;
 		&.fa-instagram{
 			position: relative;
 			top: -2px;
