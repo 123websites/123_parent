@@ -1,9 +1,9 @@
-<main class="gallery" id="gallery">
-	<section class="gallery-hero hero" style="background-image: url('<?php echo get_field('gallery-bg', 'option'); ?>');">
+<?php $has_bg = !empty(get_field('gallery-bg', 'option')); ?>
+<main class="gallery main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="gallery" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('gallery-bg', 'option'); ?>');" <?php endif; ?>>
+	<section class="gallery-hero hero">
 		<div class="gallery-hero-text hero-text">
-			<h1 class="gallery-hero-text-header hero-text-header">Gallery</h1>
+			<h1 class="gallery-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>">Gallery</h1>
 		</div>
-		<div class="gallery-hero-tint hero-tint"></div>
 	</section>
 	<section class="gallery-galleries">
 		<?php if(have_rows('gallery-repeater', 'option')) : while(have_rows('gallery-repeater', 'option')) :  the_row();?>
@@ -30,4 +30,5 @@
 		<?php endwhile; ?>
 		<?php endif; ?>
 	</section>
+	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>

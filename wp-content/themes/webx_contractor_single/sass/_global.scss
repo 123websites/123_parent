@@ -3,6 +3,37 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position-x: 50%;
+		box-sizing: border-box;
+		position: relative;
+	}
+	.main-tint{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+	.main--hasbg{
+		.company-wysiwyg,
+		.hero-text-subheader,
+		.services-services-grid-item-wrapper{
+			color: white;
+			position: relative;
+			z-index: 2;
+		}
+		.gallery-galleries,
+		.company-employees-grid,
+		.services-services-grid{
+			position: relative;
+			z-index: 2;
+		}
+		.main-tint{
+			@include gradient-vertical(rgba(0,0,0,0.75), rgba(0,0,0,0));
+			display: block;
+		}
+	}
+	.main-tint{
+		display: none;
 	}
 	.section{
 		text-align: center;
@@ -30,9 +61,8 @@
 		z-index: 1;
 	}
 	section:not(.home-hero):not(.coupons):not(.blog){
-		&.hero,
-		.hero-tint{
-			height: 25vh;
+		&.hero{
+			height: 20vh;
 		}
 		.hero-text{
 			left: 50%;
@@ -42,6 +72,8 @@
 	.hero-text-header{
 		font-size: 4.8rem;
 		color: white;
+		margin: 20px 0;
+		display: inline-block;
 		&.hero-text-header--nobg{
 			color: black;
 			border-bottom: 4px solid $primary;
@@ -50,11 +82,15 @@
 	}
 	.hero-text-subheader{
 		font-size: 1.8rem;
-		color: white;
+		color: black;
+		line-height: 24px;
+		padding: 20px;
 		max-width: 720px;
+		margin: 0 auto;
+		text-align: left;
 	}
 	.hero-tint{
-		@include gradient-vertical(rgba(0,0,0,0.75), rgba(0,0,0,0));
+		background-color: rgba(0,0,0,0.4);
 		position: absolute;
 		width: 100vw;
 		height: 100vh;
@@ -82,6 +118,9 @@
 	.hero-text-header{
 		font-size: 7.2rem;
 	}
+	.hero-text-subheader{
+		text-align: center;
+	}
 }
 @media only screen and (min-width: $large){
 	.section-header{
@@ -97,9 +136,8 @@
 		bottom: 10%;
 	}
 	section:not(.home-hero):not(.coupons):not(.blog){
-		&.hero,
-		.hero-tint{
-			height: 25vh;
+		&.hero{
+			height: 18vh;
 		}
 		.hero-text{
 			bottom: auto;
@@ -108,7 +146,7 @@
 		}
 	}
 	.hero-text-header{
-		font-size: 6.2rem;
+		font-size: 5rem;
 		max-width: 580px;
 	}
 }

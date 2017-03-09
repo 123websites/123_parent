@@ -1,20 +1,24 @@
-<main class="services" id="services">
-	<section class="services-hero hero" style="background-image: url('<?php echo get_field('services-bg', 'option'); ?>');">
+<?php $has_bg = !empty(get_field('services-bg', 'option')); ?>
+<main class="services main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="services" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('services-bg', 'option'); ?>');" <?php endif; ?>>
+	<section class="services-hero hero">
 		<div class="services-hero-text hero-text">
-			<h1 class="services-hero-text-header hero-text-header">services</h1>
+			<h1 class="services-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('services-alt-toggle', 'option') ? get_field('services-alt', 'option') : 'services' ?></h1>
 		</div>
-		<div class="services-hero-tint hero-tint"></div>
 	</section>
 	<section class="services-services">
-		<?php if(have_rows('services-repeater', 'option')) : ?>
+		<?php if(have_rows('services-repeater', 'option')) : 
+			$counter = 0;
+		?>
 		<div class="services-services-grid">
-			<?php while(have_rows('services-repeater', 'option')): the_row();  ?>
-			<div class="services-services-grid-item">
-				<h3 class="services-services-grid-item-header"><?php echo get_sub_field('service-name', 'option'); ?></h3>
+			<?php while(have_rows('services-repeater', 'option')): 
+				$counter++;
+				the_row();  ?>
+			<div class="services-services-grid-item<?php echo $counter % 2 == 0 ? ' services-services-grid-item--invert' : ''; ?>">
+				<div class="services-services-grid-item-imagecontainer">
+					<img src="<?php echo !empty(get_sub_field('service-image', 'option')) ? get_sub_field('service-image', 'option') : get_field('featured-placeholder', 'option'); ?>" class="services-services-grid-item-imagecontainer-image">
+				</div>
 				<div class="services-services-grid-item-wrapper">
-					<div class="services-services-grid-item-imagecontainer">
-						<img src="<?php echo get_sub_field('service-image', 'option'); ?>" class="services-services-grid-item-imagecontainer-image">
-					</div>
+					<h3 class="services-services-grid-item-header"><?php echo get_sub_field('service-name', 'option'); ?></h3>
 					<div class="services-services-grid-item-descriptioncontainer">
 						<div class="services-services-grid-item-descriptioncontainer-description"><?php echo get_sub_field('service-description', 'option'); ?></div>
 					</div>
@@ -27,4 +31,5 @@
 		</div>
 		<?php endif; ?>
 	</section>
+	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>

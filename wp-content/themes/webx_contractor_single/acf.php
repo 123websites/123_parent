@@ -265,6 +265,8 @@ function add_acf_fields() {
 						'type' => 'textarea',
 						'name' => 'company-employee-description',
 						'new_lines' => 'br',
+						'maxlength' => '330',
+						'instructions' => 'Limited to 330 characters',
 					),
 					array(
 						'key' => 'field_972hdsaf',
@@ -448,6 +450,7 @@ function add_acf_fields() {
 				'type' => 'image',
 				'return_format' => 'url',
 				'preview_size' => 'medium',
+				'instructions' => 'Add a picture or else the image placeholder defined in General Settings > Sitewide Misc. will be used.',
 			),
 			array(
 				'key' => 'field_10',

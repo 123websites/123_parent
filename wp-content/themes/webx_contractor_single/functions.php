@@ -660,4 +660,24 @@ function wpse_233129_admin_menu_items() {
 add_action('admin_menu', 'wpse_233129_admin_menu_items');
 
 
+if(!function_exists('rows_empty')){
+	function rows_empty($key, $src = 'option'){
+		try {
+			$rows = get_field($key, $src);
+			$count = [];
+			foreach( $rows as $row ){
+				if(empty($row[0]) || !array_values($row)[0]) array_push($count, false);
+			}
+			if( in_array(true, $count) ){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception $e) {
+			echo $e;
+		}
+	}
+}
+
 ?>

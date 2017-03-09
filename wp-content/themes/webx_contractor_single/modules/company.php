@@ -1,23 +1,27 @@
 <?php $has_bg = !empty(get_field('company-bg', 'option')); ?>
-<main class="company main" id="company" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('company-bg', 'option'); ?>');" <?php endif; ?>>
+<main class="company main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="company" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('company-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="company-hero hero">
 		<div class="company-hero-text hero-text">
 			<h1 class="company-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('company-header', 'option'); ?></h1>
 			<?php 
-			$selected_option = get_field('company-page-option-toggle', 'option');
-			if($selected_option == 'option1'):
-				?>
-				<div class="company-hero-text-subheader hero-text-subheader"><?php echo get_field('company-subheader', 'option') ?></div>					
-				<?php
-			endif;
+				$selected_option = get_field('company-page-option-toggle', 'option');
 			?>
 		</div>
-		<div class="company-hero-tint hero-tint<?php echo !$has_bg ? ' hero-tint--nobg' : ''; ?>"></div>
 	</section>
-	<?php if($selected_option == 'option1'): ?>
-	<section class="company-wysiwyg">
-		<?php echo get_field('company-content', 'option'); ?>
-	</section>
+	<?php if($selected_option == 'option1'): 
+
+		if( !empty(get_field('company-subheader', 'option')) ):
+			?>
+			<div class="company-hero-text-subheader hero-text-subheader"><?php echo get_field('company-subheader', 'option') ?></div>					
+			<?php
+		endif;
+	?>
+
+	
+		<?php
+			echo get_field('company-content', 'option'); 
+		?>
+	
 	<?php endif; ?>
 	<?php if($selected_option == 'option2'): ?>
 	<?php if(have_rows('company-employee-repeater', 'option')): ?>
@@ -93,4 +97,5 @@
 	</section>
 	<?php endif; ?>
 	<?php endif; ?>
+	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>
