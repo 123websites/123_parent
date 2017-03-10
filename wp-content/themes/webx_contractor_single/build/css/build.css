@@ -165,7 +165,8 @@ footer, header, hgroup, menu, nav, section, img {
     z-index: 2; }
   .main--hasbg .gallery-galleries,
   .main--hasbg .company-employees-grid,
-  .main--hasbg .services-services-grid {
+  .main--hasbg .services-services-grid,
+  .main--hasbg .menu-menu {
     position: relative;
     z-index: 2; }
   .main--hasbg .main-tint {
@@ -2433,7 +2434,9 @@ footer, header, hgroup, menu, nav, section, img {
 
   .services-services-grid-item-descriptioncontainer-description {
     padding: 10px;
-    font-size: 1.6rem; }
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: 24px; }
 
   .services-services-grid-item-pricecontainer {
     padding: 0 10px 10px 10px; }
@@ -2494,6 +2497,9 @@ footer, header, hgroup, menu, nav, section, img {
     .services-services-grid-item--invert .services-services-grid-item-descriptioncontainer-description,
     .services-services-grid-item--invert .services-services-grid-item-pricecontainer {
       padding-left: 0px; }
+
+  .services-services-grid-item-descriptioncontainer-description {
+    text-align: left; }
 
   .services-services-grid-item-imagecontainer,
   .services-services-grid-item-wrapper {
@@ -3026,10 +3032,12 @@ footer, header, hgroup, menu, nav, section, img {
     max-width: 720px; }
 
   .menu-menu-grid-category-header {
-    background-color: #32A2AE;
-    padding: 5px 10px;
+    padding: 10px;
     font-size: 2rem;
-    font-family: "Gotham", "Helvetica", sans-serif; }
+    font-family: "Gotham", "Helvetica", sans-serif;
+    color: black;
+    font-weight: 500;
+    text-align: center; }
 
   .menu-menu-grid-category-description {
     margin: 20px 0 40px 0;
@@ -3046,20 +3054,27 @@ footer, header, hgroup, menu, nav, section, img {
       border-bottom: 1px solid lightgrey; }
 
   .menu-menu-grid-category-grid-item-imagecontainer {
-    max-height: 205px;
-    overflow: hidden;
-    position: relative; }
+    height: 205px;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%; }
 
   .menu-menu-grid-category-grid-item-imagecontainer-image {
     width: 100%; }
 
+  .menu-menu-grid-category-grid-item-textcontainer {
+    text-align: center; }
+
   .menu-menu-grid-category-grid-item-textcontainer-header {
     margin-top: 20px;
-    font-size: 2rem; }
+    font-size: 1.8rem;
+    font-family: "Gotham", "Helvetica", sans-serif; }
 
   .menu-menu-grid-category-grid-item-textcontainer-description {
     margin: 20px 0;
-    font-size: 1.6rem; }
+    font-size: 1.4rem;
+    line-height: 21px; }
 
   .menu-menu-grid-category-grid-item-textcontainer-price {
     margin-bottom: 20px;
@@ -3074,14 +3089,18 @@ footer, header, hgroup, menu, nav, section, img {
   .menu-menu-grid-category-listgrid-item {
     margin: 20px 0;
     font-size: 0; }
+    .menu-menu-grid-category-listgrid-item:not(:last-child) {
+      border-bottom: 1px solid lightgrey;
+      padding-bottom: 15px; }
 
   .menu-menu-grid-category-listgrid-item-header,
   .menu-menu-grid-category-listgrid-item-price {
     display: inline-block;
-    vertical-align: bottom;
-    border-bottom: 2px solid black;
-    font-size: 1.8rem;
-    padding-bottom: 5px; }
+    vertical-align: middle;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding-bottom: 5px;
+    font-family: "Gotham", "Helvetica", sans-serif; }
 
   .menu-menu-grid-category-listgrid-item-header {
     text-align: left;
@@ -3090,6 +3109,11 @@ footer, header, hgroup, menu, nav, section, img {
   .menu-menu-grid-category-listgrid-item-price {
     text-align: right;
     width: 30%; }
+    .menu-menu-grid-category-listgrid-item-price:after {
+      content: '';
+      border-bottom: 1px solid black;
+      border-bottom-style: dashed;
+      width: 100%; }
 
   .menu-menu-grid-category-listgrid-item-description {
     font-size: 1.6rem;
@@ -3111,9 +3135,6 @@ footer, header, hgroup, menu, nav, section, img {
     box-sizing: border-box; }
     .menu-menu-grid-category-grid-item:not(:last-child) {
       border-bottom: none; }
-
-  .menu-menu-grid-category-grid-item-textcontainer {
-    text-align: left; }
 
   .menu-menu-grid-category-listgrid {
     font-size: 0; }

@@ -2,7 +2,7 @@
 <main class="gallery main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="gallery" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('gallery-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="gallery-hero hero">
 		<div class="gallery-hero-text hero-text">
-			<h1 class="gallery-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>">Gallery</h1>
+			<h1 class="gallery-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('gallery-alt-toggle', 'option') ? get_field('gallery-alt', 'option') : 'gallery' ?></h1>
 		</div>
 	</section>
 	<section class="gallery-galleries">

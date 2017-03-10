@@ -27,6 +27,8 @@
 	.services-services-grid-item-descriptioncontainer-description{
 		padding: 10px;
 		font-size: 1.6rem;
+		text-align: center;
+		line-height: 24px;
 	}
 	.services-services-grid-item-pricecontainer{
 		padding: 0 10px 10px 10px;
@@ -84,6 +86,9 @@
 		.services-services-grid-item-pricecontainer{
 			padding-left: 0px;
 		}
+	}
+	.services-services-grid-item-descriptioncontainer-description{
+		text-align: left;
 	}
 	.services-services-grid-item-imagecontainer,
 	.services-services-grid-item-wrapper{

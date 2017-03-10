@@ -1,9 +1,9 @@
-<main class="menu" id="menu">
+<?php $has_bg = !empty(get_field('menu-bg', 'option')); ?>
+<main class="menu main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="menu" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('menu-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="menu-hero hero" style="background-image: url('<?php echo get_field('menu-bg', 'option'); ?>');">
 		<div class="menu-hero-text hero-text">
-			<h1 class="menu-hero-text-header hero-text-header">menu</h1>
+			<h1 class="menu-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('menu-alt-toggle', 'option') ? get_field('menu-alt', 'option') : 'menu' ?></h1>
 		</div>
-		<div class="menu-hero-tint hero-tint"></div>
 	</section>
 	<section class="menu-menu">
 		<?php if(have_rows('menu-repeater', 'option')) : ?>
@@ -16,16 +16,14 @@
 						<?php if( !empty( get_sub_field('menu-category-description', 'option') ) ): ?>
 							<div class="menu-menu-grid-category-description"><?php echo get_sub_field('menu-category-description', 'option'); ?></div>
 						<?php endif;
-						if( get_sub_field('menu-category-type', 'option') == 'masonry' ):
+						if( get_field('menu-category-type', 'option') == 'masonry' ):
 							if( have_rows('menu-category-repeater', 'option') ): ?>
 							<div class="menu-menu-grid-category-grid">
 								<?php while( have_rows('menu-category-repeater', 'option') ): the_row(); ?>
 									<?php $has_image = get_sub_field('menu-item-picture-toggle', 'option') ?>
 									<div class="menu-menu-grid-category-grid-item<?php echo get_sub_field('menu-item-picture-toggle', 'option') ? ' hasimage' : '';?>">
 										<?php if($has_image): ?>
-											<div class="menu-menu-grid-category-grid-item-imagecontainer">
-												<img src="<?php echo get_sub_field('menu-item-picture', 'option'); ?>" class="menu-menu-grid-category-grid-item-imagecontainer-image">
-											</div>
+											<div class="menu-menu-grid-category-grid-item-imagecontainer" style="background-image: url('<?php echo !empty(get_sub_field('menu-item-picture', 'option')) ? get_sub_field('menu-item-picture', 'option') : get_field('featured-placeholder', 'option'); ?>');"></div>
 										<?php endif; ?>
 										<?php if( !empty(get_sub_field('menu-item-name', 'option')) || 
 											!empty(get_sub_field('menu-item-description', 'option')) ||
@@ -77,4 +75,5 @@
 			</div>
 		<?php endif; ?>
 	</section>
+	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>
