@@ -7,8 +7,8 @@ $sections = array(
 	'services',
 	'menu',
 	'blog',
-	'areas-served',
 	'testimonials',
+	'areas-served',
 	'coupons',
 	'contact',
 );

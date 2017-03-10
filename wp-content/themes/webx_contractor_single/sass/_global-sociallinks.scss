@@ -3,7 +3,7 @@
 		width: 40px;
 		height: 40px;
 		display: inline-block;
-		border-radius: 100%;
+		border-radius: 4px;
 		background-color: $primary;
 		text-decoration: none;
 		text-align: center;
@@ -12,7 +12,7 @@
 		margin-top: 10px;
 	}
 	.sociallink-icon{
-		color: black;
+		color: white;
 		position: relative;
 		top: 50%;
 		@include transform(translateY(-50%));

@@ -28,14 +28,21 @@
 		max-width: 320px;
 	}
 	.blog-blog-grid-item-textcontainer-header{
-		background-color: $primary;
+		background-color: transparent;
 		padding: 5px 10px;
 		font-size: 2rem;
 		font-family: $body;
 		display: block;
 		text-decoration: none;
+		text-transform: uppercase;
 		color: black;
+		text-align: center;
 		font-weight: normal;
+	}
+	.main--hasbg{
+		.blog-blog-grid-item-textcontainer-header{
+			color: white;
+		}
 	}
 	.blog-blog-grid-item-textcontainer-date{
 		font-size: 1.6rem;
@@ -59,6 +66,7 @@
 	.blog-blog-grid-item-socialcontainer{
 		padding-left: 10px;
 		margin-bottom: -10px;
+		text-align: center;
 	}
 	.blog-blog-sidebar{
 		display: none;
@@ -89,6 +97,9 @@
 	.blog-blog-grid-item-textcontainer{
 		text-align: left;
 	}
+	.blog-blog-grid-item-textcontainer-header{
+		font-size: 3rem;
+	}
 }
 
 @media only screen and (min-width: $large){
@@ -108,7 +119,7 @@
 	}
 	#blog{
 		.blog-blog-grid{
-			width: 100%;
+			// width: 100%;
 		}
 	}
 	.blog-blog-sidebar{
@@ -119,17 +130,20 @@
 		padding: 20px;
 		box-sizing: border-box;
 		margin-left: 20px;
-		background-color: #e1e1e1;
+		background-color: rgba(#e1e1e1, 0.75);
 		margin-top: 20px;
 	}
 	.blog-blog-sidebar-recentposts-header,
 	.blog-blog-sidebar-archive-header,
 	.blog-blog-sidebar-categories-header{
-		font-size: 2.4rem;
-		color: white;
-		background-color: black;
+		font-size: 1.8rem;
+		color: black;
+		border-bottom: 2px solid $primary;
+		background-color: transparent;
 		display: inline-block;
-		padding: 10px 20px;
+		padding: 10px 0px;
+		font-family: $body;
+		font-weight: 500;
 	}
 	.blog-blog-sidebar-recentposts-grid,
 	.blog-blog-sidebar-archive-grid,
@@ -138,7 +152,7 @@
 	}
 	.blog-blog-sidebar-archive-grid-item{	
 		padding: 7px 0;
-		border-bottom: 1px solid grey;
+		border-bottom: 1px solid lightgrey;
 		&:last-of-type{
 			border-bottom: none;
 		}
@@ -180,8 +194,9 @@
 		margin-left: 0px;
 		margin-top: 20px;
 		font-weight: normal;
-		color: black;
+		color: white;
 		text-decoration: none;
+		border-radius: 6px;
 	}
 	.blog-blog-grid-item{
 		width: 100%;
@@ -190,15 +205,12 @@
 		margin: 0;
 	}
 	.blog-blog-grid-item-textcontainer-date{
-		float: left;
-		padding: 20px 0 0 10px;
+		padding: 20px 0 10px 0;
+		text-align: center;
 	}
 	.blog-blog-grid-item-textcontainer{
 		width: 100%;
 		display: inline-block;
 		vertical-align: middle;
-	}
-	.blog-blog-grid-item-socialcontainer{
-		text-align: right;
 	}
 }

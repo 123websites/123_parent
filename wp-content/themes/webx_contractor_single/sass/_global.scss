@@ -16,7 +16,8 @@
 	.main--hasbg{
 		.company-wysiwyg,
 		.hero-text-subheader,
-		.services-services-grid-item-wrapper{
+		.services-services-grid-item-wrapper,
+		.blog-blog{
 			color: white;
 			position: relative;
 			z-index: 2;
@@ -24,12 +25,13 @@
 		.gallery-galleries,
 		.company-employees-grid,
 		.services-services-grid,
-		.menu-menu{
+		.menu-menu,
+		.global-recentposts-viewall{
 			position: relative;
 			z-index: 2;
 		}
 		.main-tint{
-			@include gradient-vertical(rgba(0,0,0,0.75), rgba(0,0,0,0));
+			@include gradient-vertical(rgba(0,0,0,0.75), rgba(0,0,0,0.2));
 			display: block;
 		}
 	}

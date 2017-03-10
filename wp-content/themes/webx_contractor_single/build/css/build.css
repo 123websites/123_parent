@@ -159,22 +159,24 @@ footer, header, hgroup, menu, nav, section, img {
 
   .main--hasbg .company-wysiwyg,
   .main--hasbg .hero-text-subheader,
-  .main--hasbg .services-services-grid-item-wrapper {
+  .main--hasbg .services-services-grid-item-wrapper,
+  .main--hasbg .blog-blog {
     color: white;
     position: relative;
     z-index: 2; }
   .main--hasbg .gallery-galleries,
   .main--hasbg .company-employees-grid,
   .main--hasbg .services-services-grid,
-  .main--hasbg .menu-menu {
+  .main--hasbg .menu-menu,
+  .main--hasbg .global-recentposts-viewall {
     position: relative;
     z-index: 2; }
   .main--hasbg .main-tint {
-    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
-    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 100%);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 100%);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 100%);
     background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#BF000000', endColorstr='#00000000', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#BF000000', endColorstr='#33000000', GradientType=0);
     display: block; }
 
   .main-tint {
@@ -829,12 +831,13 @@ footer, header, hgroup, menu, nav, section, img {
 
   .global-recentposts-viewall {
     text-decoration: none;
-    color: black;
+    color: white;
     text-transform: uppercase;
     background-color: #32A2AE;
     padding: 15px 20px;
     margin-top: 40px;
     margin-bottom: 80px;
+    border-radius: 4px;
     display: inline-block; } }
 @media only screen and (min-width: 1025px) {
   .global-recentposts {
@@ -1010,7 +1013,7 @@ footer, header, hgroup, menu, nav, section, img {
     width: 40px;
     height: 40px;
     display: inline-block;
-    border-radius: 100%;
+    border-radius: 4px;
     background-color: #32A2AE;
     text-decoration: none;
     text-align: center;
@@ -1019,7 +1022,7 @@ footer, header, hgroup, menu, nav, section, img {
     margin-top: 10px; }
 
   .sociallink-icon {
-    color: black;
+    color: white;
     position: relative;
     top: 50%;
     -moz-transform: translateY(-50%);
@@ -2548,14 +2551,19 @@ footer, header, hgroup, menu, nav, section, img {
     max-width: 320px; }
 
   .blog-blog-grid-item-textcontainer-header {
-    background-color: #32A2AE;
+    background-color: transparent;
     padding: 5px 10px;
     font-size: 2rem;
     font-family: "Gotham", "Helvetica", sans-serif;
     display: block;
     text-decoration: none;
+    text-transform: uppercase;
     color: black;
+    text-align: center;
     font-weight: normal; }
+
+  .main--hasbg .blog-blog-grid-item-textcontainer-header {
+    color: white; }
 
   .blog-blog-grid-item-textcontainer-date {
     font-size: 1.6rem;
@@ -2578,7 +2586,8 @@ footer, header, hgroup, menu, nav, section, img {
 
   .blog-blog-grid-item-socialcontainer {
     padding-left: 10px;
-    margin-bottom: -10px; }
+    margin-bottom: -10px;
+    text-align: center; }
 
   .blog-blog-sidebar {
     display: none; }
@@ -2612,7 +2621,10 @@ footer, header, hgroup, menu, nav, section, img {
     box-sizing: border-box; }
 
   .blog-blog-grid-item-textcontainer {
-    text-align: left; } }
+    text-align: left; }
+
+  .blog-blog-grid-item-textcontainer-header {
+    font-size: 3rem; } }
 @media only screen and (min-width: 1025px) {
   .blog-blog {
     max-width: 1002px;
@@ -2632,9 +2644,6 @@ footer, header, hgroup, menu, nav, section, img {
     display: inline-block;
     margin: 0; }
 
-  #blog .blog-blog-grid {
-    width: 100%; }
-
   .blog-blog-sidebar {
     display: inline-block;
     font-size: 1.6rem;
@@ -2643,17 +2652,20 @@ footer, header, hgroup, menu, nav, section, img {
     padding: 20px;
     box-sizing: border-box;
     margin-left: 20px;
-    background-color: #e1e1e1;
+    background-color: rgba(225, 225, 225, 0.75);
     margin-top: 20px; }
 
   .blog-blog-sidebar-recentposts-header,
   .blog-blog-sidebar-archive-header,
   .blog-blog-sidebar-categories-header {
-    font-size: 2.4rem;
-    color: white;
-    background-color: black;
+    font-size: 1.8rem;
+    color: black;
+    border-bottom: 2px solid #32A2AE;
+    background-color: transparent;
     display: inline-block;
-    padding: 10px 20px; }
+    padding: 10px 0px;
+    font-family: "Gotham", "Helvetica", sans-serif;
+    font-weight: 500; }
 
   .blog-blog-sidebar-recentposts-grid,
   .blog-blog-sidebar-archive-grid,
@@ -2662,7 +2674,7 @@ footer, header, hgroup, menu, nav, section, img {
 
   .blog-blog-sidebar-archive-grid-item {
     padding: 7px 0;
-    border-bottom: 1px solid grey; }
+    border-bottom: 1px solid lightgrey; }
     .blog-blog-sidebar-archive-grid-item:last-of-type {
       border-bottom: none; }
     .blog-blog-sidebar-archive-grid-item a {
@@ -2702,8 +2714,9 @@ footer, header, hgroup, menu, nav, section, img {
     margin-left: 0px;
     margin-top: 20px;
     font-weight: normal;
-    color: black;
-    text-decoration: none; }
+    color: white;
+    text-decoration: none;
+    border-radius: 6px; }
 
   .blog-blog-grid-item {
     width: 100%;
@@ -2712,16 +2725,13 @@ footer, header, hgroup, menu, nav, section, img {
     margin: 0; }
 
   .blog-blog-grid-item-textcontainer-date {
-    float: left;
-    padding: 20px 0 0 10px; }
+    padding: 20px 0 10px 0;
+    text-align: center; }
 
   .blog-blog-grid-item-textcontainer {
     width: 100%;
     display: inline-block;
-    vertical-align: middle; }
-
-  .blog-blog-grid-item-socialcontainer {
-    text-align: right; } }
+    vertical-align: middle; } }
 @media only screen {
   .testimonials-testimonials-grid {
     margin-top: 20px; }
@@ -3024,7 +3034,7 @@ footer, header, hgroup, menu, nav, section, img {
 @media only screen {
   .menu-menu {
     padding: 20px;
-    background-color: #dedddd; }
+    background-color: transparent; }
 
   .menu-menu-grid-category {
     padding-bottom: 40px;
