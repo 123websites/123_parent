@@ -64,8 +64,13 @@
 }
 
 @media only screen and (min-width: $large){
+	.company-employees-grid{
+		width: 1020px;
+		margin: 0 auto;
+		font-size: 0;
+	}
 	.company-employees-grid-item{
-		width: 501px;
+		width: calc(50% - 10px);
 		max-width: none;
 		display: inline-block;
 		font-size: 0;
@@ -73,6 +78,10 @@
 		overflow: hidden;
 		border-bottom-right-radius: 0px;
 		border-top-right-radius: 0px;
+		margin: 40px 5px;
+		&:not(:first-child){
+			margin: 40px 5px;
+		}
 		&:hover{
 			.company-employees-grid-item-imagecontainer-tint--desktop{
 				opacity: 1;

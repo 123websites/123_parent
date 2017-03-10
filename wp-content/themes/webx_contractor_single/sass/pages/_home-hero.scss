@@ -20,6 +20,11 @@
 		@include transform(translateX(-50%));
 		left: 50%;
 	}
+	.home-hero-text-header{
+		margin: 0;
+		max-width: none;
+		display: block;
+	}
 	.home-hero-text-button{
 		border-radius: 4px;
 		font-weight: 400;
@@ -27,7 +32,7 @@
 	}
 }
 
-@media only screen and (min-width: $large){
+@media only screen and (min-width: $medium){
 	.home-hero-text{
 		text-align: center;
 	}

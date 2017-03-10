@@ -1735,11 +1735,16 @@ footer, header, hgroup, menu, nav, section, img {
     transform: translateX(-50%);
     left: 50%; }
 
+  .home-hero-text-header {
+    margin: 0;
+    max-width: none;
+    display: block; }
+
   .home-hero-text-button {
     border-radius: 4px;
     font-weight: 400;
     color: white; } }
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 641px) {
   .home-hero-text {
     text-align: center; }
 
@@ -2083,15 +2088,23 @@ footer, header, hgroup, menu, nav, section, img {
     border-bottom-left-radius: 0px;
     border-top-right-radius: 50px; } }
 @media only screen and (min-width: 1025px) {
+  .company-employees-grid {
+    width: 1020px;
+    margin: 0 auto;
+    font-size: 0; }
+
   .company-employees-grid-item {
-    width: 501px;
+    width: calc(50% - 10px);
     max-width: none;
     display: inline-block;
     font-size: 0;
     position: relative;
     overflow: hidden;
     border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px; }
+    border-top-right-radius: 0px;
+    margin: 40px 5px; }
+    .company-employees-grid-item:not(:first-child) {
+      margin: 40px 5px; }
     .company-employees-grid-item:hover .company-employees-grid-item-imagecontainer-tint--desktop {
       opacity: 1; }
     .company-employees-grid-item:hover .company-employees-grid-item-rightwrap {
@@ -2313,7 +2326,7 @@ footer, header, hgroup, menu, nav, section, img {
 
   .gallery-galleries-gallery-header {
     background-color: transparent;
-    padding: 10px 20px;
+    padding: 10px 20px 20px 20px;
     font-size: 2.4rem;
     color: black;
     font-family: "Gotham", "Helvetica", sans-serif;
@@ -2345,8 +2358,9 @@ footer, header, hgroup, menu, nav, section, img {
     font-size: 2.8rem; }
 
   .gallery-galleries-gallery-imagecontainer {
-    width: 50%;
-    height: 50vw; }
+    width: calc(50% - 10px);
+    height: calc(50vw - 10px);
+    margin: 5px; }
 
   .medium-1 {
     width: 100%;
@@ -2354,16 +2368,16 @@ footer, header, hgroup, menu, nav, section, img {
 @media only screen and (min-width: 1025px) {
   .gallery-galleries-gallery {
     position: relative;
-    max-width: 1000px;
+    max-width: 1020px;
     left: 50%;
     transform: translateX(-50%);
-    margin: 40px 0;
+    margin: 40px 0px;
     padding: 0; }
 
   .gallery-galleries-gallery-imagecontainer {
     display: inline-block;
-    width: 25%;
-    height: 250px;
+    width: calc(25% - 10px);
+    height: calc(250px - 10px);
     overflow: hidden; }
     .gallery-galleries-gallery-imagecontainer:hover .gallery-galleries-gallery-imagecontainer-image {
       -moz-transform: scale(1.15);
@@ -2380,17 +2394,17 @@ footer, header, hgroup, menu, nav, section, img {
     transition: transform 0.5s ease; }
 
   .medium-1 {
-    height: 250px;
-    width: 25vw; }
+    height: calc(250px - 10px);
+    width: calc(25vw - 10px); }
 
   .large-1 {
-    width: 100%; }
+    width: calc(100% - 10px); }
 
   .large-2 {
-    width: 50%; }
+    width: calc(50% - 10px); }
 
   .large-3 {
-    width: calc(100% / 3); } }
+    width: calc(calc(100% / 3) - 10px); } }
 @media only screen {
   .services-services {
     padding: 20px; }

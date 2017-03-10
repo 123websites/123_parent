@@ -5,7 +5,7 @@
 	}
 	.gallery-galleries-gallery-header{
 		background-color: transparent;
-		padding: 10px 20px;
+		padding: 10px 20px 20px 20px;
 		font-size: 2.4rem;
 		color: black;
 		font-family: $body;
@@ -40,8 +40,9 @@
 		font-size: 2.8rem;
 	}
 	.gallery-galleries-gallery-imagecontainer{
-		width: 50%;
-		height: 50vw;
+		width: calc(50% - 10px);
+		height: calc(50vw - 10px);
+		margin: 5px;
 	}
 	.medium-1{
 		width: 100%;
@@ -52,16 +53,16 @@
 @media only screen and (min-width: $large){
 	.gallery-galleries-gallery{
 		position: relative;
-	    max-width: 1000px;
+	    max-width: 1020px;
 	    left: 50%;
 	    transform: translateX(-50%);
-	    margin: 40px 0;
+	    margin: 40px 0px;
 	    padding: 0;
 	}
 	.gallery-galleries-gallery-imagecontainer{
 		display: inline-block;
-		width: 25%;
-		height: 250px;
+		width: calc(25% - 10px);
+		height: calc(250px - 10px);
 		overflow: hidden;
 		&:hover{
 			.gallery-galleries-gallery-imagecontainer-image{
@@ -73,16 +74,16 @@
 		@include transition(transform 0.5s ease);
 	}
 	.medium-1{
-		height: 250px;
-		width: 25vw;
+		height: calc(250px - 10px);
+		width: calc(25vw - 10px);
 	}
 	.large-1{
-		width: 100%;
+		width: calc(100% - 10px);
 	}
 	.large-2{
-		width: 50%;
+		width: calc(50% - 10px);
 	}
 	.large-3{
-		width: calc(100% / 3);
+		width: calc(calc(100% / 3) - 10px);
 	}
 }
