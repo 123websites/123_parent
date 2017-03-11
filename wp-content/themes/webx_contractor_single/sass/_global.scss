@@ -47,9 +47,8 @@
 	}
 	.section-header{
 		display: inline-block;
-		border-left: 2px solid $primary;
-		border-right: 2px solid $primary;
-		padding: 0 10px;
+		border-bottom: 2px solid $primary;
+		padding: 10px;
 	}	
 	.hero{
 		background-size: cover;

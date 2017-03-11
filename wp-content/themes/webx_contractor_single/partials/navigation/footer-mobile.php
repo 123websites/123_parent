@@ -58,6 +58,6 @@
 	<?php render_page_links('mobilefooter-pagelinks', 'mobilefooter-pagelinks-item', 'mobilefooter-pagelinks-item-link'); ?>
 	<div class="mobilefooter-copyright"><?php echo !empty(get_field('general-tclink', 'option')) ? '<a class="mobilefooter-copyright-tclink" href="' .get_field('general-tclink', 'option') . '">Terms &amp; Conditions</a> | ' : '' ?>Copyright &copy; <?php echo Date('Y') ?><br/><br/>Created by</div>
 	<a href="http://webxmarketing.com" class="mobilefooter-webxlink">
-		<img src="<?php echo get_template_directory_uri() ?>/library/img/webx-logo.png" class="mobilefooter-webxlink-logo">
+		<img src="<?php echo get_field('webx-logo', 'option'); ?>" class="mobilefooter-webxlink-logo">
 	</a>
 </footer>

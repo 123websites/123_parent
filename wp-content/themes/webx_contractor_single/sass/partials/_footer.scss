@@ -23,7 +23,6 @@
 		}
 	}
 	.footer-wrap{
-		@include flexbox();
 		padding: 40px;
 		font-size: 0;
 		max-width: 1440px;
@@ -50,7 +49,7 @@
 		height: 45px;
 		border-radius: 330px;
 		position: relative;
-		margin-left: 10px;
+		margin-right: 10px;
 	}
 	.footer-sociallinks-item-link{
 		font-size: 2.8rem;
@@ -66,6 +65,9 @@
 	    vertical-align: top;
 	    position: relative;
 	    top: 3px;
+	    &:before{
+			color: white;
+		}
 	}
 	.footer-contactlinks{
 		font-size: 0;
@@ -97,6 +99,27 @@
 	.footer-webxlink-logo{
 		display: inline-block;
 	}
+	.footer-pagelinks{
+		width: 60%;
+		padding: 20px 0;
+		&:before,
+		&:after{
+			content: '';
+			width: 200px;
+			display: block;
+			border-bottom: 1px solid white;
+		}
+		&:before{
+			margin-bottom: 20px;
+		}
+		&:after{
+			margin-top: 15px;
+		}
+	}
+	.footer-pagelinks-item{
+		display: inline-block;
+		padding-right: 20px;
+	}
 	.footer-pagelinks-item-link{
 		color: white;
 		text-transform: uppercase;
@@ -120,48 +143,47 @@
 	.footer-leftcolumn,
 	.footer-middlecolumn1,
 	.footer-rightcolumn{
-		display: inline-block;
-		vertical-align: top;
-		@include align-items(stretch);
+		display: block;
 	}
 	.footer-leftcolumn{
-		width: 25%;
 		padding-right: 20px;
 		box-sizing: border-box;
 	}
 	.footer-middlecolumn1{
-		width: calc(40% - 22px);
-		border-left: 2px solid white;
-	    padding-left: 20px;
+
 	}
 	.footer-pagelinks{
-		@include column-count(2);
+
 	}
 	.footer-middlecolumn1-sitemap,
 	.footer-middlecolumn2-payment{
-		display: inline-block;
 		font-size: 1.8rem;
-		border-bottom: 1px solid white;
+		display: none;
 		color: white;
 		text-transform: uppercase;
 		margin-bottom: 20px;
 		padding-bottom: 4px;
 	}
 	.footer-middlecolumn2{
-		width: calc(17.5% - 4px);
-		border-left: 2px solid white;
-	    padding-left: 15px;
-	    border-right: 2px solid white;
-	    padding-right: 15px;
 	    box-sizing: border-box;
+	    padding-bottom: 20px;
+	    &:after{
+	    	content: '';
+	    	width: 200px;
+	    	display: block;
+	    	border-bottom: 1px solid white;	
+	    	margin-top: 20px;
+	    }
 	}
 	.footer-middlecolumn2-payment-type{
-		width: calc(239px / 5);
 		height: 30px;
 		background-image: url('../../library/img/payment-types.jpg');
 		background-position: 0 0;
 		background-repeat: no-repeat;
-		margin: 10px 0;
+		margin: 5px 0;
+		width: 47.3px;
+	    margin-right: 20px;
+	    display: inline-block;
 		&:nth-child(3){
 			background-position: 25% 0;
 		}
@@ -176,8 +198,7 @@
 		}
 	}
 	.footer-rightcolumn{
-		width: 17.5%;
-		text-align: right;
+		text-align: left;
 		position: relative;
 	}
 	.footer-webxlink{

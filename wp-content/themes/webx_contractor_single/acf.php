@@ -1412,6 +1412,7 @@ function add_acf_fields() {
 						'post_type' => array(
 							0 => 'post',
 						),
+						'allow_null' => 1,
 					),
 				),
 			),

@@ -191,9 +191,8 @@ footer, header, hgroup, menu, nav, section, img {
 
   .section-header {
     display: inline-block;
-    border-left: 2px solid #32A2AE;
-    border-right: 2px solid #32A2AE;
-    padding: 0 10px; }
+    border-bottom: 2px solid #32A2AE;
+    padding: 10px; }
 
   .hero {
     background-size: cover;
@@ -342,7 +341,7 @@ footer, header, hgroup, menu, nav, section, img {
     color: #ff5555; }
 
   .gform_footer input[type='submit'] {
-    color: black;
+    color: white;
     background-color: #32A2AE;
     text-transform: uppercase;
     padding: 10px 20px;
@@ -813,9 +812,15 @@ footer, header, hgroup, menu, nav, section, img {
 
   .global-recentposts-grid-item-header {
     text-align: left;
-    padding: 5px 10px;
-    background-color: #32A2AE;
+    padding: 10px;
+    color: black;
     font-family: 'Montserrat', 'Helvetica', sans-serif; }
+    .global-recentposts-grid-item-header:after {
+      content: '';
+      border-bottom: 3px solid #32A2AE;
+      width: 20%;
+      display: block;
+      padding: 5px; }
 
   .global-recentposts-grid-item-description {
     text-align: left;
@@ -827,10 +832,20 @@ footer, header, hgroup, menu, nav, section, img {
   .global-recentposts-grid-item-link {
     display: inline-block;
     text-transform: uppercase;
-    font-weight: 700;
-    margin-left: 10px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-top: 10px;
     color: black;
-    text-decoration: none; }
+    text-decoration: none;
+    border: 2px solid black;
+    padding: 10px 15px;
+    left: 50%;
+    position: relative;
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
 
   .global-recentposts-viewall {
     text-decoration: none;
@@ -1390,11 +1405,6 @@ footer, header, hgroup, menu, nav, section, img {
       list-style: none; }
 
   .footer-wrap {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
     padding: 40px;
     font-size: 0;
     max-width: 1440px;
@@ -1421,7 +1431,7 @@ footer, header, hgroup, menu, nav, section, img {
     height: 45px;
     border-radius: 330px;
     position: relative;
-    margin-left: 10px; }
+    margin-right: 10px; }
 
   .footer-sociallinks-item-link {
     font-size: 2.8rem;
@@ -1441,6 +1451,8 @@ footer, header, hgroup, menu, nav, section, img {
     vertical-align: top;
     position: relative;
     top: 3px; }
+    .footer-sociallinks-item-link-icon:before {
+      color: white; }
 
   .footer-contactlinks {
     font-size: 0;
@@ -1472,6 +1484,23 @@ footer, header, hgroup, menu, nav, section, img {
   .footer-webxlink-logo {
     display: inline-block; }
 
+  .footer-pagelinks {
+    width: 60%;
+    padding: 20px 0; }
+    .footer-pagelinks:before, .footer-pagelinks:after {
+      content: '';
+      width: 200px;
+      display: block;
+      border-bottom: 1px solid white; }
+    .footer-pagelinks:before {
+      margin-bottom: 20px; }
+    .footer-pagelinks:after {
+      margin-top: 15px; }
+
+  .footer-pagelinks-item {
+    display: inline-block;
+    padding-right: 20px; }
+
   .footer-pagelinks-item-link {
     color: white;
     text-transform: uppercase;
@@ -1495,54 +1524,40 @@ footer, header, hgroup, menu, nav, section, img {
   .footer-leftcolumn,
   .footer-middlecolumn1,
   .footer-rightcolumn {
-    display: inline-block;
-    vertical-align: top;
-    -webkit-box-align: stretch;
-    -ms-flex-align: stretch;
-    -webkit-align-items: stretch;
-    -moz-align-items: stretch;
-    align-items: stretch; }
+    display: block; }
 
   .footer-leftcolumn {
-    width: 25%;
     padding-right: 20px;
     box-sizing: border-box; }
 
-  .footer-middlecolumn1 {
-    width: calc(40% - 22px);
-    border-left: 2px solid white;
-    padding-left: 20px; }
-
-  .footer-pagelinks {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2; }
-
   .footer-middlecolumn1-sitemap,
   .footer-middlecolumn2-payment {
-    display: inline-block;
     font-size: 1.8rem;
-    border-bottom: 1px solid white;
+    display: none;
     color: white;
     text-transform: uppercase;
     margin-bottom: 20px;
     padding-bottom: 4px; }
 
   .footer-middlecolumn2 {
-    width: calc(17.5% - 4px);
-    border-left: 2px solid white;
-    padding-left: 15px;
-    border-right: 2px solid white;
-    padding-right: 15px;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    padding-bottom: 20px; }
+    .footer-middlecolumn2:after {
+      content: '';
+      width: 200px;
+      display: block;
+      border-bottom: 1px solid white;
+      margin-top: 20px; }
 
   .footer-middlecolumn2-payment-type {
-    width: calc(239px / 5);
     height: 30px;
     background-image: url("../../library/img/payment-types.jpg");
     background-position: 0 0;
     background-repeat: no-repeat;
-    margin: 10px 0; }
+    margin: 5px 0;
+    width: 47.3px;
+    margin-right: 20px;
+    display: inline-block; }
     .footer-middlecolumn2-payment-type:nth-child(3) {
       background-position: 25% 0; }
     .footer-middlecolumn2-payment-type:nth-child(4) {
@@ -1553,8 +1568,7 @@ footer, header, hgroup, menu, nav, section, img {
       background-position: 100% 0; }
 
   .footer-rightcolumn {
-    width: 17.5%;
-    text-align: right;
+    text-align: left;
     position: relative; }
 
   .footer-webxlink {
@@ -2854,6 +2868,9 @@ footer, header, hgroup, menu, nav, section, img {
   .contact-hero-text {
     z-index: 2; }
 
+  .contact-contact-left a {
+    color: black; }
+
   .contact-contact-left-locations-header {
     font-size: 2.8rem;
     font-family: "Gotham", "Helvetica", sans-serif;
@@ -2945,13 +2962,14 @@ footer, header, hgroup, menu, nav, section, img {
 
   .coupons-coupons-grid-item {
     padding: 20px;
-    background-color: #f1f1f1;
-    border: 4px dashed black;
+    background-color: #424343;
+    border: 2px solid grey;
     display: inline-block;
     width: calc(100% - 40px);
     max-width: calc(473px - 40px);
     margin-bottom: 40px;
-    text-align: center; }
+    text-align: center;
+    color: white; }
 
   .coupons-coupons-grid-item-textcontainer-sitename {
     font-size: 1.6rem;
@@ -2984,7 +3002,7 @@ footer, header, hgroup, menu, nav, section, img {
         font-weight: normal; }
 
   .coupons-coupons-grid-item-textcontainer-print {
-    border: 2px solid black;
+    border: 2px solid white;
     padding: 15px 30px;
     text-transform: uppercase;
     text-align: center;
@@ -2993,7 +3011,7 @@ footer, header, hgroup, menu, nav, section, img {
     font-size: 1.8rem;
     font-weight: 500;
     text-decoration: none;
-    color: black; } }
+    color: white; } }
 @media only screen and (min-width: 1025px) {
   .coupons-coupons-grid-item {
     margin: 0 20px 40px 20px; } }
