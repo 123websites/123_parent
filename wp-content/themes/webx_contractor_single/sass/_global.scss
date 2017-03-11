@@ -65,13 +65,25 @@
 		@include transform(translateY(-50%));
 		z-index: 1;
 	}
-	section:not(.home-hero):not(.coupons):not(.blog){
+	section:not(.home-hero):not(#coupons):not(#blog){
 		&.hero{
 			height: 20vh;
 		}
 		.hero-text{
 			left: 50%;
 			@include transform(translate(-50%,-50%));
+		}
+	}
+	.coupons-hero,
+	.blog-hero{
+		overflow: hidden;
+		.hero-text{
+			bottom: 3%;
+			left: 50%;
+			@include transform(translateX(-50%));
+		}
+		.hero-text-header{
+			font-size: 6rem;
 		}
 	}
 	.hero-text-header{
@@ -140,7 +152,7 @@
 		top: auto;
 		bottom: 10%;
 	}
-	section:not(.home-hero):not(.coupons):not(.blog){
+	section:not(.home-hero):not(#coupons):not(#blog){
 		&.hero{
 			height: 18vh;
 		}

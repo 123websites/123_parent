@@ -224,7 +224,7 @@
 						}, 500, function(){
 							window.location.hash = hash;
 						});
-					}, 100);
+					}, 1);
 				}
 			},
 		}

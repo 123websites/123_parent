@@ -255,7 +255,7 @@ var objectFitImages=function(){"use strict";function t(t){for(var e,r=getCompute
 						}, 500, function(){
 							window.location.hash = hash;
 						});
-					}, 100);
+					}, 1);
 				}
 			},
 		}
