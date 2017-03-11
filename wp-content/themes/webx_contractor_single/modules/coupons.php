@@ -1,9 +1,9 @@
-<main class="coupons" id="coupons">
-	<section class="coupons-hero hero" style="background-image: url('<?php echo get_field('general-coupons-bg', 'option'); ?>');">
+<?php $has_bg = !empty(get_field('general-coupons-bg', 'option')); ?>
+<main class="coupons main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="coupons" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('general-coupons-bg', 'option'); ?>');" <?php endif; ?>>
+	<section class="coupons-hero hero">
 		<div class="coupons-hero-text hero-text">
-			<h1 class="coupons-hero-text-header hero-text-header">Coupons</h1>
+			<h1 class="coupons-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('coupons-alt-toggle', 'option') ? get_field('coupons-alt', 'option') : 'coupons' ?></h1>
 		</div>
-		<div class="coupons-hero-tint hero-tint"></div>
 	</section>
 	<section class="coupons-coupons section">
 		<?php 
@@ -38,4 +38,5 @@
 		
 		<?php endif; ?>
 	</section>
+	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>

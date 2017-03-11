@@ -1868,8 +1868,8 @@ function add_acf_fields() {
 				'label' => 'Expiration Date',
 				'type' => 'date_time_picker',
 				'name' => 'coupon-expiration-date',
-				'display_format' => 'F j, Y g:i a',
-				'return_format' => 'F j, Y g:i a',
+				'display_format' => 'M jS, Y g:i a',
+				'return_format' => 'M jS, Y g:i a',
 				'first_day' => 0,
 			),
 			array(

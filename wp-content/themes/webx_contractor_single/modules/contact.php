@@ -1,12 +1,15 @@
-<main class="contact" id="contact">
+<main class="contact main">
 	<section class="contact-hero hero">
 		<div class="contact-hero-text hero-text">
-			<h1 class="contact-hero-text-header hero-text-header">contact</h1>
+			<h1 class="contact-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('contact-alt-toggle', 'option') ? get_field('contact-alt', 'option') : 'contact' ?></h1>
 		</div>
 		<div class="contact-hero-tint hero-tint"></div>
 		<div class="contact-hero-map"></div>
 	</section>
 	<section class="contact-contact section">
+		<div class="contact-contact-right">
+			<?php echo do_shortcode('[gravityform id=1 title=false description=false ajax=true]'); ?>
+		</div>
 		<div class="contact-contact-left">
 			<div class="contact-contact-left-locations">
 				<?php 
@@ -34,7 +37,14 @@
 								<div class="contact-contact-left-locations-location-address"><?php echo $address_with_extra != null ? $address_with_extra : get_sub_field('addresses-gmap', 'option')['address']; ?> <a href="http://maps.google.com/?q=<?php echo get_sub_field('addresses-gmap', 'option')['address']; ?>">Get Directions</a></div>
 
 								<div class="contact-contact-left-locations-location-phones">
-									<div class="contact-contact-left-locations-location-phones-office"><strong>Office: </strong><a href="mailto:<?php echo get_tel(get_sub_field('contact-office', 'option')) ?>"><?php echo get_sub_field('contact-office', 'option'); ?></a></div>
+									<?php if( !empty(get_sub_field('contact-office', 'option')) ): ?>
+										<div class="contact-contact-left-locations-location-phones-office">
+											<strong>Office: </strong>
+											<a href="mailto:<?php echo get_tel(get_sub_field('contact-office', 'option')) ?>">
+												<?php echo get_sub_field('contact-office', 'option'); ?>
+											</a>
+										</div>
+									<?php endif; ?>
 									<?php if( !empty(get_sub_field('contact-cell', 'option')) ): ?>
 									<div class="contact-contact-left-locations-location-phones-cell"><strong>Cell: </strong><a href="mailto:<?php echo get_tel(get_sub_field('contact-cell', 'option')) ?>"><?php echo get_sub_field('contact-cell', 'option'); ?></a></div>
 									<?php endif; ?>
@@ -80,9 +90,6 @@
 				?>
 
 			</div>
-		</div>
-		<div class="contact-contact-right">
-			<?php echo do_shortcode('[gravityform id=1 title=false description=false ajax=true]'); ?>
 		</div>
 	</section>
 </main>

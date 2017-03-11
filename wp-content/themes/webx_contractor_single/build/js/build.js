@@ -563,6 +563,7 @@ window._initHomeMap = function(){
           scrollwheel: false,
           draggable: false,
         });
+
 		// add circles
 		for (var i = 0; i < latlangs.length; i++) {
 	         var cityCircle = new google.maps.Circle({
@@ -575,6 +576,11 @@ window._initHomeMap = function(){
 	         	center: {lat: latlangs[i][0], lng: latlangs[i][1]},
 	         	radius: 9000,
 	        });
+	         var marker = new google.maps.Marker({
+	         	position: {lat: latlangs[i][0], lng: latlangs[i][1]},
+	         	map: map,
+
+	         });
 	    }
      	// zoom to bounds
      	if(latlangs.length > 1){
