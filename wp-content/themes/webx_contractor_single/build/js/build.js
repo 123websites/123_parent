@@ -107,12 +107,14 @@ var objectFitImages=function(){"use strict";function t(t){for(var e,r=getCompute
 			menuToggle : $('.mobileheader-bar-menutoggle-icon'),
 			menuTint : $('.mobileheader-tint'),
 			menu : $('.mobileheader-menus'),
+			links : $('.mobileheader-menus-pages-menu-item-link'),
 			_init : function(){
 				$(window).on('resize load', MobileNav._resizeLoadHandler);
 				if(DisableNavTintFadein == 'false'){
 					$(window).on('scroll load', MobileNav._scrollHandler);	
 				}
 				MobileNav.menuToggle.on('click', MobileNav._menuToggleHandler);
+				MobileNav.links.on('click', MobileNav._closeMenu);
 			},
 			_resizeLoadHandler : function(e){
 				if(e.type == 'load'){
@@ -194,7 +196,6 @@ var objectFitImages=function(){"use strict";function t(t){for(var e,r=getCompute
 			estimatePopup : $('.estimate'),
 			estimateClose : $('.estimate.popupcontainer, .estimate-content-times.popupcontainer-times'),
 			_init: function(){
-
 				if(DisableNavTintFadein == 'false'){
 					$(window).on('scroll load', DesktopNav._scrollLoadHandler);		
 				}
@@ -221,7 +222,7 @@ var objectFitImages=function(){"use strict";function t(t){for(var e,r=getCompute
 
 
 		var AnimateNavScrolling = {
-			links : $('.header-content-menus-pages-menu-item-link, .home-hero-text-button'),
+			links : $('.header-content-menus-pages-menu-item-link, .home-hero-text-button, .mobileheader-menus-pages-menu-item-link'),
 			_init : function(){
 				if((window.location.origin + window.location.pathname).slice(0,-1) == Home_URL){
 					AnimateNavScrolling.links.click(AnimateNavScrolling._linkClickHandler);
@@ -234,7 +235,7 @@ var objectFitImages=function(){"use strict";function t(t){for(var e,r=getCompute
 				if(hash !== undefined && hash !== ""){
 					setTimeout(function(){
 						$('html, body').animate({
-							scrollTop: $(hash).offset().top - $('.header-tint')[0].clientHeight,
+							scrollTop: $(hash).offset().top - ( $(window).width() > 1167 ? $('.header-tint')[0].clientHeight : $('.mobileheader')[0].clientHeight ),
 						}, 500, function(){
 							window.location.hash = hash;
 						});
