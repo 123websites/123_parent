@@ -119,29 +119,19 @@ if(get_field('primary_color_toggle', 'option')):
 		}	
 		.gform_footer input[type='submit'],
 		.global-contact-content-button,
-		.global-recentposts-grid-item-header,
 		.global-recentposts-viewall,
 		.sociallink,
 		.wp-core-ui .button-group.button-large .button, .wp-core-ui .button.button-large,
-		.blog-blog-grid-item-textcontainer-header,
 		.company-employees-grid-item-socialcontainer-link,
-		.gallery-galleries-gallery-header,
 		#baguetteBox-overlay .full-image figure figcaption,
 		.home-hero-text-button,
 		.home-services-grid-item-header,
 		.home-services-viewall,
 		.home-testimonials-viewall,
-		.services-services-grid-item-header,
 		.mobilefooter-sharebutton,
 		.mobilefooter-sociallinks-item,
-		.mobileheader-menus-social-menu-item,
-		.header-content-quickquote,
-		.menu-menu-grid-category-header{
+		.header-content-quickquote{
 			background-color: <?php echo $primary_color; ?>;
-		}
-		.section-header{
-			border-left: 2px solid <?php echo $primary_color; ?>;
-			border-right: 2px solid <?php echo $primary_color; ?>;
 		}
 		.login p.message,
 		.login #login #login_error{
@@ -149,14 +139,24 @@ if(get_field('primary_color_toggle', 'option')):
 		}
 		.login form .input:focus, 
 		.login form input[type=checkbox]:focus, 
-		.login input[type=text]:focus{
-			border-color: <?php echo $primary_color; ?>;
+		.login input[type=text]:focus,
+		.hero-text-header--nobg,
+		.blog-blog-sidebar-categories-header,
+		.blog-blog-sidebar-archive-header,
+		.blog-blog-sidebar-recentposts-header,
+		.global-recentposts-grid-item-header:after,
+		.section-header,
+		.contact-contact-left-locations-header:after{
+			border-color: <?php echo $primary_color; ?> !important;
+		}
+		.mobileheader-menus-social-menu-item-link-icon{
+			color: <?php echo $primary_color; ?>;
 		}
 	}
 	@media only screen and (min-width: 1025px){
 		.areas-served-areas-grid-imagecontainer-tint,
 		a.blog-blog-sidebar-quickquote{
-			background-color: <?php echo get_rgba($primary_color, 0.35); ?>;
+			background-color: <?php echo get_rgba($primary_color, 1); ?>;
 		}
 		.footer-sociallinks-item{
 			background-color: <?php echo $primary_color; ?>;	
@@ -180,7 +180,9 @@ if(get_field('variable_color_toggle', 'option')):
 	/* FOOTER-GREY STUFF */
 	@media only screen {
 		.login p.message,
-		.login #login #login_error{
+		.login #login #login_error,
+		.coupons-coupons-grid-item,
+		.mobilefooter{
 			background-color: <?php echo $variable_colors['footer_grey'] ?>;	
 		}	
 		#loginform{
@@ -189,9 +191,6 @@ if(get_field('variable_color_toggle', 'option')):
 		.login #backtoblog,
 		.login #nav{
 			background-color: <?php echo get_rgba($variable_colors['footer_grey'], 0.85); ?>;
-		}
-		.mobilefooter{
-			background-color: <?php echo $variable_colors['footer_grey']; ?>;
 		}
 	}
 
@@ -210,6 +209,11 @@ if(get_field('variable_color_toggle', 'option')):
 		.mobileheader-bar-tint{
 			background-color: <?php echo $variable_colors['medium_grey']; ?>;
 		}
+		.footer-pagelinks:after,
+		.footer-pagelinks:before,
+		.footer-middlecolumn2:after{
+			border-color: <?php echo $variable_colors['medium_grey']; ?>;
+		}
 	}
 	@media only screen and (min-width: 1167px){
 		.header-tint{
@@ -223,7 +227,9 @@ if(get_field('variable_color_toggle', 'option')):
 		.company-employees-grid-item,
 		.home-testimonials-grid-item,
 		.testimonials-testimonials-grid-item,
-		.menu-menu{
+		.menu-menu,
+		.menu-hero,
+		.blog-blog-sidebar{
 			background-color: <?php echo $variable_colors['light_grey']; ?>;	
 		}	
 	}
@@ -274,6 +280,9 @@ if(get_field('variable_color_toggle', 'option')):
 	@media only screen {
 		footer.mobilefooter.light{
 			background-color: <?php echo $variable_colors['footer_bg']; ?>;
+		}
+		.coupons-coupons-grid-item{
+			border-color: <?php echo $variable_colors['footer_bg']; ?>;
 		}
 	}
 	@media only screen and (min-width: 1025px){
