@@ -24,10 +24,20 @@
 		}
 	}
 	.contact-contact-left-locations-header{
-		font-size: 2.8rem;
-		font-family: $body;
+		font-size: 3.2rem;
+		font-family: $header;
 		text-align: center;
 		margin-bottom: 20px;
+		&:after{
+			content: '';
+			display: block;
+			width: 60px;
+			border-bottom: 2px solid $primary;
+			left: 50%;
+			@include transform(translateX(-50%));
+			position: relative;
+			margin-top: 5px;
+		}
 	}
 	.contact-contact-left-locations-location{
 		margin-bottom: 20px;

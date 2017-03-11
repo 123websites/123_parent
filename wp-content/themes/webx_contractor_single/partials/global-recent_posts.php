@@ -23,7 +23,7 @@
 			</div>
 			<h3 class="global-recentposts-grid-item-header"><?php echo $post->post_title; ?></h3>
 			<div class="global-recentposts-grid-item-description"><?php echo wp_trim_words(wp_strip_all_tags($post->post_content), 25); ?></div>
-			<a href="<?php echo get_permalink($post->ID); ?>" class="global-recentposts-grid-item-link">read more </a>
+			<a href="<?php echo get_permalink($post->ID); ?>" class="global-recentposts-grid-item-link">read more</a>
 		</div>
 		<?php else: 
 
