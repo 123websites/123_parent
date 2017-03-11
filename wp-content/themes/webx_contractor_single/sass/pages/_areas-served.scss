@@ -1,52 +1,51 @@
 @media only screen {
+	.areas-served-hero{
+		overflow: hidden;
+		min-height: 320px;
+	}
 	.areas-served-hero-map{
 		width: 100%;
 		height: 100%;
 		position: relative;
 	}
 	.areas-served-areas-grid{
-		margin-top: 40px;
-		margin-bottom: 40px;
+		padding: 20px;
 	}
 	.areas-served-hero-text{
 		z-index: 2;
+		text-align: center;
 	}
 	.areas-served-hero-tint{
 		z-index: 1;
 	}
 	.areas-served-areas-grid-imagecontainer{
 		width: 100%;
-		height: 100vw;
+		height: auto;
 		position: relative;
 		display: block;
+		text-decoration: none;
+		&:not(:last-child){
+			padding-bottom: 20px;
+		}
 	}
 	.areas-served-areas-grid-imagecontainer-image{
 		width: 100%;
-		height: 100%;
+		height: 240px;
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
 	}
-	.areas-served-areas-grid-imagecontainer-tint{
-		background-color: rgba(0,0,0,0.35);
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 1;
-		position: absolute;
-	}
 	.areas-served-areas-grid-imagecontainer-citystate{
-		position: absolute;
-	    top: 50%;
-	    left: 50%;
-	    @include transform(translate(-50%,-50%));
-	    z-index: 2;
-	    color: white;
-	    font-size: 2.8rem;
-	    text-transform: uppercase;
-	    text-align: center;
-	    pointer-events: none;
+		position: relative;
+		z-index: 2;
+		color: black;
+		font-size: 2.8rem;
+		text-transform: uppercase;
+		text-align: center;
+		pointer-events: none;
+		background-color: $light-grey;
+		padding: 40px 20px;
+		line-height: 1.5;
 	}
 }
 
@@ -56,26 +55,35 @@
 	}
 	.areas-served-areas-grid-imagecontainer{
 		display: inline-block;
-		width: 50%;
-		height: 50vw;
+		width: calc(50% - 10px);
+		height: calc(50vw - 10px);
+		margin: 5px;
 	}
 	.areas-served-areas-grid-imagecontainer-citystate{
-		font-size: 3.8rem;
+		font-size: 2.8rem;
 	}
 }
 
 @media only screen and (min-width: $large){
+	.areas-served-hero{
+		min-height: 480px;
+	}
 	.areas-served-areas-grid{
 		max-width: 1000px;
 		position: relative;
 		left: 50%;
 		@include transform(translateX(-50%));
+		text-align: center;
+		padding: 40px 0;
 	}
 	.areas-served-areas-grid-imagecontainer{
 		display: inline-block;
-		width: 25%;
-		height: 250px;
+		width: calc(50% - 10px);
+		height: auto;
 		overflow: hidden;
+		&:not(:last-child){
+			padding-bottom: 0;
+		}
 		&:hover{
 			.areas-served-areas-grid-imagecontainer-image{
 				@include transform(scale(1.15));
@@ -91,5 +99,8 @@
 	}
 	.areas-served-areas-grid-imagecontainer-image{
 		@include transition(transform 0.5s ease);
+	}
+	.areas-served-areas-grid-imagecontainer-citystate{
+		padding: 20px;
 	}
 }

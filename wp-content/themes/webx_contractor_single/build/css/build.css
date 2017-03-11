@@ -169,7 +169,8 @@ footer, header, hgroup, menu, nav, section, img {
   .main--hasbg .services-services-grid,
   .main--hasbg .menu-menu,
   .main--hasbg .testimonials-testimonials,
-  .main--hasbg .global-recentposts-viewall {
+  .main--hasbg .global-recentposts-viewall,
+  .main--hasbg .areas-served-areas {
     position: relative;
     z-index: 2; }
   .main--hasbg .main-tint {
@@ -2222,70 +2223,68 @@ footer, header, hgroup, menu, nav, section, img {
   .company-employees-grid-item-textcontainer-description {
     line-height: 24px; } }
 @media only screen {
+  .areas-served-hero {
+    overflow: hidden;
+    min-height: 320px; }
+
   .areas-served-hero-map {
     width: 100%;
     height: 100%;
     position: relative; }
 
   .areas-served-areas-grid {
-    margin-top: 40px;
-    margin-bottom: 40px; }
+    padding: 20px; }
 
   .areas-served-hero-text {
-    z-index: 2; }
+    z-index: 2;
+    text-align: center; }
 
   .areas-served-hero-tint {
     z-index: 1; }
 
   .areas-served-areas-grid-imagecontainer {
     width: 100%;
-    height: 100vw;
+    height: auto;
     position: relative;
-    display: block; }
+    display: block;
+    text-decoration: none; }
+    .areas-served-areas-grid-imagecontainer:not(:last-child) {
+      padding-bottom: 20px; }
 
   .areas-served-areas-grid-imagecontainer-image {
     width: 100%;
-    height: 100%;
+    height: 240px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%; }
 
-  .areas-served-areas-grid-imagecontainer-tint {
-    background-color: rgba(0, 0, 0, 0.35);
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    position: absolute; }
-
   .areas-served-areas-grid-imagecontainer-citystate {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    position: relative;
     z-index: 2;
-    color: white;
+    color: black;
     font-size: 2.8rem;
     text-transform: uppercase;
     text-align: center;
-    pointer-events: none; } }
+    pointer-events: none;
+    background-color: #dedddd;
+    padding: 40px 20px;
+    line-height: 1.5; } }
 @media only screen and (min-width: 641px) {
   .areas-served-areas-grid {
     font-size: 0; }
 
   .areas-served-areas-grid-imagecontainer {
     display: inline-block;
-    width: 50%;
-    height: 50vw; }
+    width: calc(50% - 10px);
+    height: calc(50vw - 10px);
+    margin: 5px; }
 
   .areas-served-areas-grid-imagecontainer-citystate {
-    font-size: 3.8rem; } }
+    font-size: 2.8rem; } }
 @media only screen and (min-width: 1025px) {
+  .areas-served-hero {
+    min-height: 480px; }
+
   .areas-served-areas-grid {
     max-width: 1000px;
     position: relative;
@@ -2294,13 +2293,17 @@ footer, header, hgroup, menu, nav, section, img {
     -o-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
-    transform: translateX(-50%); }
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 40px 0; }
 
   .areas-served-areas-grid-imagecontainer {
     display: inline-block;
-    width: 25%;
-    height: 250px;
+    width: calc(50% - 10px);
+    height: auto;
     overflow: hidden; }
+    .areas-served-areas-grid-imagecontainer:not(:last-child) {
+      padding-bottom: 0; }
     .areas-served-areas-grid-imagecontainer:hover .areas-served-areas-grid-imagecontainer-image {
       -moz-transform: scale(1.15);
       -o-transform: scale(1.15);
@@ -2323,7 +2326,10 @@ footer, header, hgroup, menu, nav, section, img {
     -moz-transition: transform 0.5s ease;
     -ms-transition: transform 0.5s ease;
     -o-transition: transform 0.5s ease;
-    transition: transform 0.5s ease; } }
+    transition: transform 0.5s ease; }
+
+  .areas-served-areas-grid-imagecontainer-citystate {
+    padding: 20px; } }
 @media only screen {
   .gallery-galleries-gallery {
     font-size: 0;
