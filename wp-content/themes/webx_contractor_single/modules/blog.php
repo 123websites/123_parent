@@ -2,10 +2,10 @@
 <main class="blog main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="blog" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('general-blog-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="blog-hero hero">
 		<div class="blog-hero-text hero-text">
-			<h1 class="blog-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('blog-alt-toggle', 'option') ? get_field('blog-alt', 'option') : 'blog' ?></h1>
+			<h1 class="fade fade-in blog-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('blog-alt-toggle', 'option') ? get_field('blog-alt', 'option') : 'blog' ?></h1>
 		</div>
 	</section>
-	<section class="blog-blog">
+	<section class="fade fade-in blog-blog">
 		<?php 
 		$the_query = new WP_Query(array(
 			'post_type' => 'post',

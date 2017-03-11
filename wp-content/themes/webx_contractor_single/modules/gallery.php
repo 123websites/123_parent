@@ -2,13 +2,13 @@
 <main class="gallery main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="gallery" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('gallery-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="gallery-hero hero">
 		<div class="gallery-hero-text hero-text">
-			<h1 class="gallery-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('gallery-alt-toggle', 'option') ? get_field('gallery-alt', 'option') : 'gallery' ?></h1>
+			<h1 class="fade fade-in gallery-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('gallery-alt-toggle', 'option') ? get_field('gallery-alt', 'option') : 'gallery' ?></h1>
 		</div>
 	</section>
 	<section class="gallery-galleries">
 		<?php if(have_rows('gallery-repeater', 'option')) : while(have_rows('gallery-repeater', 'option')) :  the_row();?>
 			<div class="gallery-galleries-gallery">
-				<h2 class="gallery-galleries-gallery-header"><?php echo get_sub_field('gallery-name','option') ?></h2>
+				<h2 class="fade fade-in gallery-galleries-gallery-header"><?php echo get_sub_field('gallery-name','option') ?></h2>
 				<?php 
 				$images = get_sub_field('gallery-gallery', 'option'); 
 				$medium_remainder = count($images) % 2;
@@ -22,7 +22,7 @@
 						$classes .= 'large-' . (string) $large_remainder . ' ';
 					}
 					?>
-					<a href="<?php echo $image['url']; ?>" class=" gallery-galleries-gallery-imagecontainer<?php echo !empty($classes) ? ' ' . $classes : '';  ?>" data-caption="<?php echo get_sub_field('gallery-name', 'option'); ?>">
+					<a href="<?php echo $image['url']; ?>" class="fade fade-up gallery-galleries-gallery-imagecontainer<?php echo !empty($classes) ? ' ' . $classes : '';  ?>" data-caption="<?php echo get_sub_field('gallery-name', 'option'); ?>">
 						<div style="background-image: url('<?php echo $image['url']; ?>');" class="gallery-galleries-gallery-imagecontainer-image"></div>
 					</a>
 				<?php endforeach; ?>

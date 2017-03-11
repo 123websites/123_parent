@@ -2,7 +2,7 @@
 <main class="services main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="services" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('services-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="services-hero hero">
 		<div class="services-hero-text hero-text">
-			<h1 class="services-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('services-alt-toggle', 'option') ? get_field('services-alt', 'option') : 'services' ?></h1>
+			<h1 class="fade fade-in services-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('services-alt-toggle', 'option') ? get_field('services-alt', 'option') : 'services' ?></h1>
 		</div>
 	</section>
 	<section class="services-services">
@@ -13,7 +13,7 @@
 			<?php while(have_rows('services-repeater', 'option')): 
 				$counter++;
 				the_row();  ?>
-			<div class="services-services-grid-item<?php echo $counter % 2 == 0 ? ' services-services-grid-item--invert' : ''; ?>">
+			<div class="fade fade-in services-services-grid-item<?php echo $counter % 2 == 0 ? ' services-services-grid-item--invert' : ''; ?>">
 				<div class="services-services-grid-item-imagecontainer">
 					<img src="<?php echo !empty(get_sub_field('service-image', 'option')) ? get_sub_field('service-image', 'option') : get_field('featured-placeholder', 'option'); ?>" class="services-services-grid-item-imagecontainer-image">
 				</div>

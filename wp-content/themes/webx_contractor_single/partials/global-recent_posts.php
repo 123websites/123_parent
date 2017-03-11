@@ -1,5 +1,5 @@
 <section class="global-recentposts section">
-	<h2 class="global-recentposts-header section-header">Featured Posts</h2>
+	<h2 class="fade fade-up global-recentposts-header section-header">Featured Posts</h2>
 	<?php 
 
 		$_posts = get_field('featured-posts', 'option');
@@ -17,7 +17,7 @@
 		<?php foreach($posts as $post): 
 		if($post != null):
 		?>
-		<div class="global-recentposts-grid-item">
+		<div class="fade fade-up global-recentposts-grid-item">
 			<div class="global-recentposts-grid-item-imagecontainer">
 				<img src="<?php echo get_blog_image($post->ID); ?>" class="global-recentposts-grid-item-imagecontainer-image">
 			</div>

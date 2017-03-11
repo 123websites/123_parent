@@ -33,6 +33,22 @@ var objectFitImages=function(){"use strict";function t(t){for(var e,r=getCompute
 
 	$(document).ready(function(){
 
+		var FadeEffects = {
+			elements : $('.fade-up, .fade-left, .fade-right, .fade-in'),
+			_init : function(){
+				$(window).on('resize load scroll', FadeEffects._resizeLoadScrollHandler);
+			},
+			_resizeLoadScrollHandler : function(){
+				for(var i = 0; i < FadeEffects.elements.length; i++){
+					if( $(window).scrollTop() + $(window).height() > $(FadeEffects.elements[i]).offset().top )	{
+						$(FadeEffects.elements[i]).removeClass('fade-up fade-left fade-right fade-in');
+					}
+				}
+			},
+		}
+
+		FadeEffects._init();
+
 		var Galleries = {
 			_init : function(){
 				baguetteBox.run('.gallery-galleries-gallery');

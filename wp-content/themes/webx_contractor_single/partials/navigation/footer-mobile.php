@@ -1,8 +1,8 @@
 <footer class="mobilefooter<?php echo get_field('general-theme-select', 'option') == 'light' ? ' light' : ''; echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; ?>">
-	<a href="<?php echo site_url(); ?>" class="mobilefooter-logo">
+	<a href="<?php echo site_url(); ?>" class="fade fade-up mobilefooter-logo">
 		<img src="<?php echo get_logo(); ?>" class="mobilefooter-logo-image">
 	</a>
-	<div class="mobilefooter-contactlinks">
+	<div class="fade fade-up mobilefooter-contactlinks">
 		<a href="tel:<?php echo get_the_phone('tel'); ?>" class="mobilefooter-contactlinks-phone"><?php echo 'p: ' . get_the_phone() ?></a>
 		<a href="tel:<?php echo get_the_fax('tel'); ?>" class="mobilefooter-contactlinks-fax"><?php echo 'f: ' . get_the_fax() ?></a>
 		<div class="mobilefooter-contactlinks-address"><?php echo get_the_address(); ?></div>
@@ -17,7 +17,7 @@
 
 	if( !empty($facebook_link) ||  !empty($twitter_link) || !empty($instagram_link) || !empty($youtube_link || !empty($googleplus_link))):
 	?>
-	<ul class="mobilefooter-sociallinks">
+	<ul class="fade fade-up mobilefooter-sociallinks">
 		<?php if( !empty($facebook_link) ): ?>
 		<li class="mobilefooter-sociallinks-item">
 			<a href="<?php echo $facebook_link ?>" target="_blank" class="mobilefooter-sociallinks-item-link">
@@ -56,8 +56,8 @@
 	</ul>
 	<?php endif; ?>
 	<?php render_page_links('mobilefooter-pagelinks', 'mobilefooter-pagelinks-item', 'mobilefooter-pagelinks-item-link'); ?>
-	<div class="mobilefooter-copyright"><?php echo !empty(get_field('general-tclink', 'option')) ? '<a class="mobilefooter-copyright-tclink" href="' .get_field('general-tclink', 'option') . '">Terms &amp; Conditions</a> | ' : '' ?>Copyright &copy; <?php echo Date('Y') ?><br/><br/>Created by</div>
-	<a href="http://webxmarketing.com" class="mobilefooter-webxlink">
+	<div class="fade fade-up mobilefooter-copyright"><?php echo !empty(get_field('general-tclink', 'option')) ? '<a class="mobilefooter-copyright-tclink" href="' .get_field('general-tclink', 'option') . '">Terms &amp; Conditions</a> | ' : '' ?>Copyright &copy; <?php echo Date('Y') ?><br/><br/>Created by</div>
+	<a href="http://webxmarketing.com" class="fade fade-up mobilefooter-webxlink">
 		<img src="<?php echo get_field('webx-logo', 'option'); ?>" class="mobilefooter-webxlink-logo">
 	</a>
 </footer>

@@ -1,12 +1,12 @@
 <main class="contact main">
 	<section class="contact-hero hero">
 		<div class="contact-hero-text hero-text">
-			<h1 class="contact-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('contact-alt-toggle', 'option') ? get_field('contact-alt', 'option') : 'contact' ?></h1>
+			<h1 class="fade fade-up contact-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('contact-alt-toggle', 'option') ? get_field('contact-alt', 'option') : 'contact' ?></h1>
 		</div>
 		<div class="contact-hero-tint hero-tint"></div>
 		<div class="contact-hero-map"></div>
 	</section>
-	<section class="contact-contact section">
+	<section class="fade fade-up contact-contact section">
 		<div class="contact-contact-right">
 			<?php echo do_shortcode('[gravityform id=1 title=false description=false ajax=true]'); ?>
 		</div>

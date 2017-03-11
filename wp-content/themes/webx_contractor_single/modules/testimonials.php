@@ -2,7 +2,7 @@
 <main class="testimonials main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="testimonials" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('testimonials-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="testimonials-hero hero">
 		<div class="testimonials-hero-text hero-text">
-			<h1 class="testimonials-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('testimonials-alt-toggle', 'option') ? get_field('testimonials-alt', 'option') : 'testimonials' ?></h1>
+			<h1 class="fade fade-in testimonials-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('testimonials-alt-toggle', 'option') ? get_field('testimonials-alt', 'option') : 'testimonials' ?></h1>
 		</div>
 	</section>
 	<section class="testimonials-testimonials">
@@ -16,7 +16,7 @@
 					$grid_item_class .= ' hasimage';
 				}
 				?>
-				<div class="testimonials-testimonials-grid-item<?php echo $grid_item_class; ?>">
+				<div class="fade fade-up testimonials-testimonials-grid-item<?php echo $grid_item_class; ?>">
 					<?php if( get_sub_field('testimonials-repeater-select', 'option') == 'personal' ): ?>
 						<?php if(!empty(get_sub_field('testimonials-repeater-image'))): ?>
 							<div style="background-image: url('<?php echo get_sub_field('testimonials-repeater-image') ?>');" class="testimonials-testimonials-grid-item-image"></div>

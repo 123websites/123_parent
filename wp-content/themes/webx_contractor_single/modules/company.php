@@ -2,7 +2,7 @@
 <main class="company main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="company" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('company-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="company-hero hero">
 		<div class="company-hero-text hero-text">
-			<h1 class="company-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('company-header', 'option'); ?></h1>
+			<h1 class="fade fade-in company-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('company-header', 'option'); ?></h1>
 			<?php 
 				$selected_option = get_field('company-page-option-toggle', 'option');
 			?>
@@ -19,7 +19,7 @@
 
 	
 		<?php
-			echo get_field('company-content', 'option'); 
+			echo '<div class="fade fade-up">' . get_field('company-content', 'option') . '</div>'; 
 		?>
 	
 	<?php endif; ?>
@@ -28,11 +28,11 @@
 	<section class="company-employees section">
 		<div class="company-employees-grid">
 			<?php while(have_rows('company-employee-repeater', 'option')): the_row();?>
-				<div class="company-employees-grid-item">
+				<div class="company-employees-grid-item fade fade-up">
 					<div class="company-employees-grid-item-imagecontainer">
 						<img src="<?php echo !empty(get_sub_field('company-employee-image', 'option')) ? get_sub_field('company-employee-image', 'option') : get_template_directory_uri() . '/library/img/blank-profile.png'; ?>" class="company-employees-grid-item-imagecontainer-image">
 					</div>
-					<div class="company-employees-grid-item-imagecontainer--desktop" style="background-image: url('<?php echo !empty(get_sub_field('company-employee-image', 'option')) ? get_sub_field('company-employee-image', 'option') : get_template_directory_uri() . '/library/img/blank-profile.png'; ?>');">
+					<div class="company-employees-grid-item-imagecontainer--desktop fade fade-up" style="background-image: url('<?php echo !empty(get_sub_field('company-employee-image', 'option')) ? get_sub_field('company-employee-image', 'option') : get_template_directory_uri() . '/library/img/blank-profile.png'; ?>');">
 						<div class="company-employees-grid-item-imagecontainer-tint--desktop"></div>
 					</div>
 					<?php 

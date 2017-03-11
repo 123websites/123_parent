@@ -2,7 +2,7 @@
 <main class="coupons main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="coupons" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('general-coupons-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="coupons-hero hero">
 		<div class="coupons-hero-text hero-text">
-			<h1 class="coupons-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('coupons-alt-toggle', 'option') ? get_field('coupons-alt', 'option') : 'coupons' ?></h1>
+			<h1 class="fade fade-in coupons-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('coupons-alt-toggle', 'option') ? get_field('coupons-alt', 'option') : 'coupons' ?></h1>
 		</div>
 	</section>
 	<section class="coupons-coupons section">
@@ -23,7 +23,7 @@
 		if($the_query->have_posts()) : ?>
 		<div class="coupons-coupons-grid">
 			<?php while($the_query->have_posts()): $the_query->the_post();  ?>
-			<div class="coupons-coupons-grid-item">
+			<div class="fade fade-up coupons-coupons-grid-item">
 				<div class="coupons-coupons-grid-item-textcontainer">
 					<h2 class="coupons-coupons-grid-item-textcontainer-sitename"><?php echo get_bloginfo('name'); ?></h2>
 					<h2 class="coupons-coupons-grid-item-textcontainer-header"><?php echo $post->post_title; ?></h2>

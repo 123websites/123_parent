@@ -65,7 +65,7 @@
 
 @media only screen and (min-width: $large){
 	.company-employees-grid{
-		width: 1020px;
+		max-width: 1020px;
 		margin: 0 auto;
 		font-size: 0;
 	}

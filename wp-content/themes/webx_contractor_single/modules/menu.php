@@ -2,7 +2,7 @@
 <main class="menu main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="menu" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('menu-bg', 'option'); ?>');" <?php endif; ?>>
 	<section class="menu-hero hero" style="background-image: url('<?php echo get_field('menu-bg', 'option'); ?>');">
 		<div class="menu-hero-text hero-text">
-			<h1 class="menu-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('menu-alt-toggle', 'option') ? get_field('menu-alt', 'option') : 'menu' ?></h1>
+			<h1 class="fade fade-in menu-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('menu-alt-toggle', 'option') ? get_field('menu-alt', 'option') : 'menu' ?></h1>
 		</div>
 	</section>
 	<section class="menu-menu">
@@ -11,17 +11,17 @@
 				<?php while(have_rows('menu-repeater', 'option')): the_row();  ?>
 					<div class="menu-menu-grid-category">
 						<?php if( !empty( get_sub_field('menu-category-name', 'option') ) ): ?>
-							<h2 class="menu-menu-grid-category-header"><?php echo get_sub_field('menu-category-name', 'option'); ?></h2>
+							<h2 class="fade fade-in menu-menu-grid-category-header"><?php echo get_sub_field('menu-category-name', 'option'); ?></h2>
 						<?php endif; ?>
 						<?php if( !empty( get_sub_field('menu-category-description', 'option') ) ): ?>
-							<div class="menu-menu-grid-category-description"><?php echo get_sub_field('menu-category-description', 'option'); ?></div>
+							<div class="fade fade-in menu-menu-grid-category-description"><?php echo get_sub_field('menu-category-description', 'option'); ?></div>
 						<?php endif;
 						if( get_field('menu-category-type', 'option') == 'masonry' ):
 							if( have_rows('menu-category-repeater', 'option') ): ?>
 							<div class="menu-menu-grid-category-grid">
 								<?php while( have_rows('menu-category-repeater', 'option') ): the_row(); ?>
 									<?php $has_image = get_sub_field('menu-item-picture-toggle', 'option') ?>
-									<div class="menu-menu-grid-category-grid-item<?php echo get_sub_field('menu-item-picture-toggle', 'option') ? ' hasimage' : '';?>">
+									<div class="fade fade-up menu-menu-grid-category-grid-item<?php echo get_sub_field('menu-item-picture-toggle', 'option') ? ' hasimage' : '';?>">
 										<?php if($has_image): ?>
 											<div class="menu-menu-grid-category-grid-item-imagecontainer" style="background-image: url('<?php echo !empty(get_sub_field('menu-item-picture', 'option')) ? get_sub_field('menu-item-picture', 'option') : get_field('featured-placeholder', 'option'); ?>');"></div>
 										<?php endif; ?>
@@ -53,7 +53,7 @@
 											!empty(get_sub_field('menu-list-item-description', 'option')) ||
 											!empty(get_sub_field('menu-list-item-price', 'option'))
 										 ): ?>
-											<div class="menu-menu-grid-category-listgrid-item">
+											<div class="fade fade-up menu-menu-grid-category-listgrid-item">
 												<?php if( !empty(get_sub_field('menu-list-item-name', 'option')) ): ?>	
 													<h3 class="menu-menu-grid-category-listgrid-item-header"><?php echo get_sub_field('menu-list-item-name', 'option'); ?></h3>
 												<?php endif; ?>

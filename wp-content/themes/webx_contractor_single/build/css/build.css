@@ -304,6 +304,41 @@ footer, header, hgroup, menu, nav, section, img {
   .hero-text {
     left: calc((100vw - 1440px) / 2); } }
 @media only screen {
+  .fade {
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease, transform 0.5s ease;
+    -moz-transition: opacity 0.5s ease, transform 0.5s ease;
+    -ms-transition: opacity 0.5s ease, transform 0.5s ease;
+    -o-transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease; }
+
+  .fade-in,
+  .fade-up,
+  .fade-left,
+  .fade-right {
+    opacity: 0; }
+
+  .fade-left {
+    -moz-transform: translateX(-200px);
+    -o-transform: translateX(-200px);
+    -ms-transform: translateX(-200px);
+    -webkit-transform: translateX(-200px);
+    transform: translateX(-200px); }
+
+  .fade-right {
+    -moz-transform: translateX(100px);
+    -o-transform: translateX(100px);
+    -ms-transform: translateX(100px);
+    -webkit-transform: translateX(100px);
+    transform: translateX(100px); }
+
+  .fade-up {
+    -moz-transform: translateY(100px);
+    -o-transform: translateY(100px);
+    -ms-transform: translateY(100px);
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px); } }
+@media only screen {
   .gform_body ul {
     list-style: none; }
 
@@ -2110,7 +2145,7 @@ footer, header, hgroup, menu, nav, section, img {
     border-top-right-radius: 50px; } }
 @media only screen and (min-width: 1025px) {
   .company-employees-grid {
-    width: 1020px;
+    max-width: 1020px;
     margin: 0 auto;
     font-size: 0; }
 
