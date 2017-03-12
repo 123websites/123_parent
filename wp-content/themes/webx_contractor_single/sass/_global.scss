@@ -87,13 +87,15 @@
 		}
 	}
 	.hero-text-header{
-		font-size: 4.8rem;
+		font-size: 4.2rem;
 		color: white;
 		margin: 20px 0;
 		display: inline-block;
+		font-family: $body;
+		font-weight: 900;
 		&.hero-text-header--nobg{
 			color: black;
-			border-bottom: 4px solid $primary;
+			border-bottom: 6px solid $primary;
 			padding-bottom: 7px;
 		}
 	}
@@ -133,7 +135,7 @@
 }
 @media only screen and (min-width: $medium){
 	.hero-text-header{
-		font-size: 7.2rem;
+		// font-size: 7.2rem;
 	}
 	.hero-text-subheader{
 		text-align: center;
@@ -163,7 +165,7 @@
 		}
 	}
 	.hero-text-header{
-		font-size: 5rem;
+		// font-size: 5rem;
 		max-width: 580px;
 	}
 }
