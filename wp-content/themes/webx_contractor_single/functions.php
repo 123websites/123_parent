@@ -666,7 +666,7 @@ if(!function_exists('rows_empty')){
 			$rows = get_field($key, $src);
 			$count = [];
 			foreach( $rows as $row ){
-				if(empty($row[0]) || !array_values($row)[0]) array_push($count, false);
+				empty($row) || array_values($row)[0] ? array_push($count, false) : array_push($count, true);
 			}
 			if( in_array(true, $count) ){
 				return false;

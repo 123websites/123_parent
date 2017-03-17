@@ -5,11 +5,11 @@
 			<a href="<?php echo site_url(); ?>/#company" class="home-hero-text-button fade fade-in">Learn More</a>	
 		<?php endif; ?>
 	</div>
-	<?php $rows = get_field('general-home-slider', 'option'); ?>
-	<?php if(have_rows('general-home-slider', 'option') && !rows_empty('general-home-slider', 'option')): ?>
+	<?php $rows = get_field('general-home-slider', 'option'); 
+	if(have_rows('general-home-slider', 'option') && !rows_empty('general-home-slider', 'option')): ?>
 	<div class="home-hero-slides">
 		<?php while(have_rows('general-home-slider', 'option')): the_row(); ?>
-			<div style="background-image: url('<?php echo get_sub_field('general-home-slider-image'); ?>');" class="home-hero-slides-slide"></div>
+			<div style="background-image: url('<?php echo !empty(get_sub_field('general-home-slider-image')) ? get_sub_field('general-home-slider-image') : get_field('featured-placeholder', 'option'); ?>');" class="home-hero-slides-slide"></div>
 		<?php endwhile; ?>
 	<?php else: 
 		?>
