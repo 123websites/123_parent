@@ -67,10 +67,11 @@
 				);
 			},
 			_nextSlide : function(){
+				console.log($(HeroSlider.slides));
 				// grab old currentslide
 				var previousSlide = HeroSlider.currentSlide;
 				// update currentslide
-				if(HeroSlider.currentSlide == 3){
+				if(HeroSlider.currentSlide == $(HeroSlider.slides).length - 1){
 					HeroSlider.currentSlide = 0;
 				}
 				else{

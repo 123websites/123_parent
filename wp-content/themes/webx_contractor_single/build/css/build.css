@@ -160,6 +160,9 @@ footer, header, hgroup, menu, nav, section, img {
   .main--hasbg .company-wysiwyg,
   .main--hasbg .hero-text-subheader,
   .main--hasbg .services-services-grid-item-wrapper,
+  .main--hasbg .gallery-galleries-gallery-header,
+  .main--hasbg .menu-menu-grid-category-header,
+  .main--hasbg .menu-menu-grid-category-description,
   .main--hasbg .blog-blog {
     color: white;
     position: relative;
