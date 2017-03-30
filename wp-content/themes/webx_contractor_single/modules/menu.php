@@ -1,8 +1,7 @@
-<?php $has_bg = !empty(get_field('menu-bg', 'option')); ?>
-<main class="menu main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="menu" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('menu-bg', 'option'); ?>');" <?php endif; ?>>
-	<section class="menu-hero hero" style="background-image: url('<?php echo get_field('menu-bg', 'option'); ?>');">
+<main class="menu main" id="menu">
+	<section class="menu-hero hero">
 		<div class="menu-hero-text hero-text">
-			<h1 class="fade fade-in menu-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('menu-alt-toggle', 'option') ? get_field('menu-alt', 'option') : 'menu' ?></h1>
+			<h1 class="fade fade-in menu-hero-text-header hero-text-header"><?php echo get_field('menu-alt-toggle', 'option') ? get_field('menu-alt', 'option') : 'menu' ?></h1>
 		</div>
 	</section>
 	<section class="menu-menu">
@@ -75,5 +74,4 @@
 			</div>
 		<?php endif; ?>
 	</section>
-	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>

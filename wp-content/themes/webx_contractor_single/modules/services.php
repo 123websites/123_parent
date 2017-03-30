@@ -1,8 +1,7 @@
-<?php $has_bg = !empty(get_field('services-bg', 'option')); ?>
-<main class="services main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="services" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('services-bg', 'option'); ?>');" <?php endif; ?>>
+<main class="services main" id="services">
 	<section class="services-hero hero">
 		<div class="services-hero-text hero-text">
-			<h1 class="fade fade-in services-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('services-alt-toggle', 'option') ? get_field('services-alt', 'option') : 'services' ?></h1>
+			<h1 class="fade fade-in services-hero-text-header hero-text-header"><?php echo get_field('services-alt-toggle', 'option') ? get_field('services-alt', 'option') : 'services' ?></h1>
 		</div>
 	</section>
 	<section class="services-services">
@@ -31,5 +30,4 @@
 		</div>
 		<?php endif; ?>
 	</section>
-	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>

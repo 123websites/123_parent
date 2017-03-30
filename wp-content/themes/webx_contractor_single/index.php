@@ -16,6 +16,9 @@ $sections = array(
 foreach($sections as $section){
 	if($section !== 'heroslider'){
 		if(get_field($section . '-toggle', 'option')){
+			if($section !== 'areas-served'){
+				the_bg($section);	
+			}
 			include(locate_template( 'modules/' . $section . '.php' ));
 		}
 	}

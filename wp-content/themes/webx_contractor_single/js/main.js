@@ -67,7 +67,6 @@
 				);
 			},
 			_nextSlide : function(){
-				console.log($(HeroSlider.slides));
 				// grab old currentslide
 				var previousSlide = HeroSlider.currentSlide;
 				// update currentslide
@@ -425,6 +424,28 @@
 		}
 
 		MenuGrid._init();
+
+		var Parallax = {
+			strength : 25,
+			imagesections : $('.parallax-image'),
+			_init : function(){
+				$(window).on('resize scroll load', Parallax._resizeLoadScrollHandler);
+			},
+			_map : function(n,i,o,r,t){return i>o?i>n?(n-i)*(t-r)/(o-i)+r:r:o>i?o>n?(n-i)*(t-r)/(o-i)+r:t:void 0;},
+			_getAmount : function(el, strength){
+				var windowcenter = $(window).scrollTop() + ( $(window).height() / 2 );
+				var sectioncenter = $(el).offset().top + ($(el).height() / 2);
+				var sectiondelta = windowcenter - sectioncenter;
+				var scale = Parallax._map(sectiondelta, 0, $(window).height(), 0, strength);
+				return -50 + scale + '%';
+			},
+			_resizeLoadScrollHandler : function(){
+				for(var i = 0; i < Parallax.imagesections.length; i++){
+					$(Parallax.imagesections[i]).css('transform', 'translate3d(-50%, ' + Parallax._getAmount(Parallax.imagesections[i], Parallax.strength) + ',0)');
+				}
+			}
+		}
+		Parallax._init();
 
 	});
 

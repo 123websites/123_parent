@@ -1,8 +1,7 @@
-<?php $has_bg = !empty(get_field('company-bg', 'option')); ?>
-<main class="company main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="company" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('company-bg', 'option'); ?>');" <?php endif; ?>>
+<main class="company main" id="company">
 	<section class="company-hero hero">
 		<div class="company-hero-text hero-text">
-			<h1 class="fade fade-in company-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('company-header', 'option'); ?></h1>
+			<h1 class="fade fade-in company-hero-text-header hero-text-header"><?php echo get_field('company-header', 'option'); ?></h1>
 			<?php 
 				$selected_option = get_field('company-page-option-toggle', 'option');
 			?>
@@ -97,5 +96,4 @@
 	</section>
 	<?php endif; ?>
 	<?php endif; ?>
-	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>

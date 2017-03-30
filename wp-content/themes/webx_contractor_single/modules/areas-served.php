@@ -1,8 +1,7 @@
-<?php $has_bg = !empty(get_field('areas-served-bg', 'option')); ?>
-<main class="areas-served main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="areas-served" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('areas-served-bg', 'option'); ?>');" <?php endif; ?>>
+<main class="areas-served main" id="areas-served">
 	<section class="areas-served-hero hero"">
 		<div class="areas-served-hero-text hero-text">
-			<h1 class="fade fade-up areas-served-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('areas-served-alt-toggle', 'option') ? get_field('areas-served-alt', 'option') : 'areas served' ?></h1>
+			<h1 class="fade fade-up areas-served-hero-text-header hero-text-header"><?php echo get_field('areas-served-alt-toggle', 'option') ? get_field('areas-served-alt', 'option') : 'areas served' ?></h1>
 		</div>
 		<div class="areas-served-hero-tint hero-tint"></div>
 		<div class="areas-served-hero-map" id="map"></div>

@@ -102,14 +102,14 @@
 	}
 	.header-content-menus-pages-menu-item{
 		display: inline-block;
-		margin: 0 6px;
+		margin: 0 5px;
 	}
 	.header-content-menus-pages-menu-item-link{
-		font-family: $header;
+		font-family: $body;
 		color: white;
 		text-transform: uppercase;
 		text-decoration: none;
-		font-size: 1.8rem;
+		font-size: 1.4rem;
 	}
 	.header-content-quickquote{
 		font-size: 1.6rem;
@@ -172,15 +172,12 @@
 }
 @media only screen and (min-width: 1100px){
 	.header-content-menus-pages-menu-item{
-		margin: 0 10px;
+		// margin: 0 10px;
 	}
 }
 @media only screen and (min-width: $xlarge){
 	.header-content-menus-pages-menu-item{
-		margin: 0 7px 0 18px;
-	}
-	.header-content-menus-pages-menu-item-link{
-		font-size: 2rem;
+		margin: 0 7px 0 10px;
 	}
 	.header-content-menus-social{
 		position: relative;

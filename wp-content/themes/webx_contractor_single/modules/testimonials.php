@@ -1,8 +1,7 @@
-<?php $has_bg = !empty(get_field('testimonials-bg', 'option')); ?>
-<main class="testimonials main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="testimonials" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('testimonials-bg', 'option'); ?>');" <?php endif; ?>>
+<main class="testimonials main" id="testimonials">
 	<section class="testimonials-hero hero">
 		<div class="testimonials-hero-text hero-text">
-			<h1 class="fade fade-in testimonials-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('testimonials-alt-toggle', 'option') ? get_field('testimonials-alt', 'option') : 'testimonials' ?></h1>
+			<h1 class="fade fade-in testimonials-hero-text-header hero-text-header"><?php echo get_field('testimonials-alt-toggle', 'option') ? get_field('testimonials-alt', 'option') : 'testimonials' ?></h1>
 		</div>
 	</section>
 	<section class="testimonials-testimonials">
@@ -36,5 +35,4 @@
 			<?php endwhile; ?>
 		<?php endif; ?>
 	</section>
-	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>

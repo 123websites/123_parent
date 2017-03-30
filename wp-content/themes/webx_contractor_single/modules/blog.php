@@ -1,8 +1,7 @@
-<?php $has_bg = !empty(get_field('general-blog-bg', 'option')); ?>
-<main class="blog main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="blog" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('general-blog-bg', 'option'); ?>');" <?php endif; ?>>
+<main class="blog main" id="blog">
 	<section class="blog-hero hero">
 		<div class="blog-hero-text hero-text">
-			<h1 class="fade fade-in blog-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('blog-alt-toggle', 'option') ? get_field('blog-alt', 'option') : 'blog' ?></h1>
+			<h1 class="fade fade-in blog-hero-text-header hero-text-header"><?php echo get_field('blog-alt-toggle', 'option') ? get_field('blog-alt', 'option') : 'blog' ?></h1>
 		</div>
 	</section>
 	<section class="fade fade-in blog-blog">
@@ -30,5 +29,4 @@
 		<?php endif; ?>
 	</section>
 	<a href="<?php echo site_url('blog'); ?>" class="blog-blog-seemore global-recentposts-viewall">View All</a>
-	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>

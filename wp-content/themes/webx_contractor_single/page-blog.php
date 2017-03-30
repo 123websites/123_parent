@@ -6,7 +6,7 @@ if( !get_field('coupons-toggle', 'option') ){
 
 get_header(); ?>
 
-<main class="blog">
+<main class="blog page">
 	<section class="blog-hero hero" style="background-image: url('<?php echo get_field('general-blog-bg', 'option'); ?>');">
 		<div class="blog-hero-text hero-text">
 			<h1 class="blog-hero-text-header hero-text-header">blog</h1>

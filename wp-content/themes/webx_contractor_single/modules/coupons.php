@@ -1,8 +1,7 @@
-<?php $has_bg = !empty(get_field('general-coupons-bg', 'option')); ?>
-<main class="coupons main<?php echo $has_bg ? ' main--hasbg' : ''; ?>" id="coupons" <?php if($has_bg): ?> style="background-image: url('<?php echo get_field('general-coupons-bg', 'option'); ?>');" <?php endif; ?>>
+<main class="coupons main" id="coupons">
 	<section class="coupons-hero hero">
 		<div class="coupons-hero-text hero-text">
-			<h1 class="fade fade-in coupons-hero-text-header hero-text-header<?php echo !$has_bg ? ' hero-text-header--nobg' : ''; ?>"><?php echo get_field('coupons-alt-toggle', 'option') ? get_field('coupons-alt', 'option') : 'coupons' ?></h1>
+			<h1 class="fade fade-in coupons-hero-text-header hero-text-header"><?php echo get_field('coupons-alt-toggle', 'option') ? get_field('coupons-alt', 'option') : 'coupons' ?></h1>
 		</div>
 	</section>
 	<section class="coupons-coupons section">
@@ -38,5 +37,4 @@
 		
 		<?php endif; ?>
 	</section>
-	<div class="main-tint<?php echo !$has_bg ? ' main-tint--nobg' : ''; ?>"></div>
 </main>

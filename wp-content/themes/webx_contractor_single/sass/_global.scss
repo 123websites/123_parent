@@ -76,14 +76,26 @@
 			left: 50%;
 			@include transform(translate(-50%,-50%));
 		}
+		.hero-text-header{
+			color: black;
+		}
+	}	
+	.page.blog,
+	.page.coupons{
+		section.hero{
+			height: 40vh !important;
+			padding-top: 48px;
+		}
+		section .hero-text-header{
+			color: white !important;
+		}
 	}
 	.coupons-hero,
 	.blog-hero{
 		overflow: hidden;
 		.hero-text{
-			bottom: 3%;
 			left: 50%;
-			@include transform(translateX(-50%));
+			@include transform(translate(-50%, -50%));
 		}
 		.hero-text-header{
 			font-size: 6rem;
@@ -165,6 +177,13 @@
 			bottom: auto;
 			top: 50%;
 			@include transform(translate(-50%, -50%));
+		}
+	}
+	.page.blog,
+	.page.coupons{
+		section.hero{
+			height: 55vh !important;
+			padding-top: 110px;
 		}
 	}
 	.hero-text-header{
