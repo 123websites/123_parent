@@ -1,8 +1,8 @@
 <?php
 
-	if( strpos($_SERVER['REQUEST_URI'], 'blog') === false ){
-		get_template_part('partials/global', 'recent_posts');	
-	}
+	// if( strpos($_SERVER['REQUEST_URI'], 'blog') === false ){
+	// 	get_template_part('partials/global', 'recent_posts');	
+	// }
 	else{
 		get_template_part('partials/global', 'contact');		
 	}
