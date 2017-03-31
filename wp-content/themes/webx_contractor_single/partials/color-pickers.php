@@ -152,6 +152,18 @@ if(get_field('primary_color_toggle', 'option')):
 		.mobileheader-menus-social-menu-item-link-icon{
 			color: <?php echo $primary_color; ?>;
 		}
+		.main .hero-text-header:after {
+		  content: '';
+		  border-bottom: 4px solid <?php echo $primary_color; ?>;
+		  width: 100%;
+		  position: relative;
+		  display: block;
+		}
+		.main .areas-served-hero-text-header:after,
+		.main .contact-hero-text-header:after {
+		  border-bottom: none;
+		}
+
 	}
 	@media only screen and (min-width: 1025px){
 		.areas-served-areas-grid-imagecontainer-tint,
