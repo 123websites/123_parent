@@ -185,6 +185,16 @@ footer, header, hgroup, menu, nav, section, img {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#BF000000', endColorstr='#33000000', GradientType=0);
     display: block; }
 
+  .main .hero-text-header:after {
+    content: '';
+    border-bottom: 4px solid #32A2AE;
+    width: 100%;
+    position: relative;
+    display: block; }
+  .main .areas-served-hero-text-header:after,
+  .main .contact-hero-text-header:after {
+    border-bottom: none; }
+
   .main-tint {
     display: none; }
 
@@ -217,7 +227,8 @@ footer, header, hgroup, menu, nav, section, img {
     z-index: 1; }
 
   section:not(.home-hero):not(#coupons):not(#blog).hero {
-    height: 20vh; }
+    height: 20vh;
+    overflow: hidden; }
   section:not(.home-hero):not(#coupons):not(#blog) .hero-text {
     left: 50%;
     -moz-transform: translate(-50%, -50%);
