@@ -4,7 +4,7 @@
 	// 	get_template_part('partials/global', 'recent_posts');	
 	// }
 	// else{
-		get_template_part('partials/global', 'contact');		
+	// get_template_part('partials/global', 'contact');		
 	// }
 	get_template_part('partials/global', 'popups');
 	get_template_part('partials/navigation/footer', 'mobile');
