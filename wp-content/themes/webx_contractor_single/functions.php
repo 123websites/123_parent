@@ -682,8 +682,13 @@ if(!function_exists('rows_empty')){
 
 
 if(!function_exists('the_bg')){
-	function the_bg($slug){
-		$bg = get_field($slug . '-bg', 'option');
+	function the_bg($slug, $useslug = true){
+		if(!$useslug){
+			$bg = get_field($slug, 'option');
+		}
+		else{
+			$bg = get_field($slug . '-bg', 'option');	
+		}
 		$output = '';
 		if( !empty($bg) ){
 			$output .= '<div class="parallax">';
