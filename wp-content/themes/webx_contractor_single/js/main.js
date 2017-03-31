@@ -429,7 +429,6 @@
 			strength : 25,
 			stronger : 175,
 			imagesections : $('.parallax-image'),
-			headersections : $('.main .hero-text'),
 			_init : function(){
 				$(window).on('resize scroll load', Parallax._resizeLoadScrollHandler);
 			},
@@ -444,9 +443,6 @@
 			_resizeLoadScrollHandler : function(){
 				for(var i = 0; i < Parallax.imagesections.length; i++){
 					$(Parallax.imagesections[i]).css('transform', 'translate3d(-50%, ' + Parallax._getAmount(Parallax.imagesections[i], Parallax.strength) + ',0)');
-				}
-				for(var i = 0; i < Parallax.headersections.length; i++){
-					$(Parallax.headersections[i]).css('transform', 'translate3d(-50%, ' + Parallax._getAmount(Parallax.headersections[i], Parallax.stronger) + ',0)');
 				}
 			}
 		}
