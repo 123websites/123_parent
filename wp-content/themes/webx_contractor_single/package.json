@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "font-awesome": "^4.7.0",
     "grunt": "*",
-    "grunt-contrib-concat": "*",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-sass": "*",
     "grunt-contrib-watch": "*"
   }

@@ -19,9 +19,13 @@ module.exports = function(grunt) {
       options: {
         separator: '\n',
       },
-      dist: {
+      js: {
         src: ['js_vendor/jquery-1.12.4.min.js', '../../../wp-includes/js/masonry.min.js', 'js_vendor/lity.min.js', 'js_vendor/baguetteBox.min.js', 'js_vendor/ofi.browser.js', 'js/**/*.js'],
         dest: 'build/js/build.js',
+      },
+      css: {
+        src: ['node_modules/font-awesome/css/font-awesome.min.css', 'build/css/build.css'],
+        dest: 'build/css/build.css',
       },
     },
     watch: {
