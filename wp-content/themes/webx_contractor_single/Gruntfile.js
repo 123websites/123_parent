@@ -28,6 +28,16 @@ module.exports = function(grunt) {
         dest: 'build/css/build.css',
       },
     },
+    copy : {
+      main: {
+        files: [{
+          expand: true,
+          src: ['node_modules/font-awesome/fonts/*'],
+          dest: 'build/fonts',
+          flatten: true,
+        }],
+      },
+    },
     watch: {
       sass: {
         files: ['sass/**/*.scss'],
@@ -60,8 +70,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('default', ['sass', 'concat', 'watch']);
+  grunt.registerTask('default', ['sass', 'concat', 'copy', 'watch']);
  
 
 };
