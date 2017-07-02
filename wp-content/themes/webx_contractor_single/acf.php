@@ -1468,7 +1468,6 @@ function add_acf_fields() {
 						'type' => 'image',
 						'preview_size' => 'medium',
 						'return_format' => 'url',
-						'required' => true,
 						'conditional_logic' => array(
 							array(
 								array(
