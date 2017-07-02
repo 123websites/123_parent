@@ -155,8 +155,12 @@ class acf_validation {
 	
 	function ajax_validate_save_post() {
 		
-		// validate
-		if( !acf_verify_ajax() ) die();
+		// bail early if _acfnonce is missing
+		if( !isset($_POST['_acfnonce']) ) {
+			
+			wp_send_json_error();
+			
+		}
 		
 		
 		// vars

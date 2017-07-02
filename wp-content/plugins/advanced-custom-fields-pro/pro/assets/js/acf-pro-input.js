@@ -219,8 +219,8 @@
 		
 		initialize: function(){
 			
-			// disable clone
-			acf.disable_form( this.$clone );
+			// disable clone inputs
+			this.$clone.find('input, textarea, select').attr('disabled', 'disabled');
 						
 			
 			// render
@@ -306,8 +306,8 @@
 			$el.removeClass('acf-clone');
 			
 			
-			// enable 
-			acf.enable_form( $el );
+			// enable inputs (ignore inputs disabled for life)
+			$el.find('input, textarea, select').not('.acf-disabled').removeAttr('disabled');
 			
 			
 			// move row
@@ -674,25 +674,16 @@
 			
 		validate_add: function( layout ){
 			
-			// defaults
-			layout = layout || '';
-			
-			
-			// vars
-			var max = this.o.max,
-				count = this.count();
-				
-			
 			// vadiate max
-			if( max && count >= max ) {
+			if( this.o.max > 0 && this.count() >= this.o.max ) {
 				
 				// vars
-				var identifier	= ( max == 1 ) ? 'layout' : 'layouts',
+				var identifier	= ( this.o.max == 1 ) ? 'layout' : 'layouts',
 					s 			= acf._e('flexible_content', 'max');
 				
 				
 				// translate
-				s = s.replace('{max}', max);
+				s = s.replace('{max}', this.o.max);
 				s = s.replace('{identifier}', acf._e('flexible_content', identifier));
 				
 				
@@ -702,41 +693,35 @@
 				
 				// return
 				return false;
-				
 			}
 			
 			
 			// vadiate max layout
-			if( layout ) {
+			var $popup			= $( this.$el.children('.tmpl-popup').html() ),
+				$a				= $popup.find('[data-layout="' + layout + '"]'),
+				layout_max		= parseInt( $a.attr('data-max') ),
+				layout_count	= this.$values.children('.layout[data-layout="' + layout + '"]').length;
+			
+			
+			if( layout_max > 0 && layout_count >= layout_max ) {
 				
 				// vars
-				var $popup			= $( this.$el.children('.tmpl-popup').html() ),
-					$a				= $popup.find('[data-layout="' + layout + '"]'),
-					layout_max		= parseInt( $a.attr('data-max') ),
-					layout_count	= this.$values.children('.layout[data-layout="' + layout + '"]').length;
+				var identifier	= ( layout_max == 1 ) ? 'layout' : 'layouts',
+					s 			= acf._e('flexible_content', 'max_layout');
 				
 				
-				if( layout_max > 0 && layout_count >= layout_max ) {
-					
-					// vars
-					var identifier	= ( layout_max == 1 ) ? 'layout' : 'layouts',
-						s 			= acf._e('flexible_content', 'max_layout');
-					
-					
-					// translate
-					s = s.replace('{max}', layout_count);
-					s = s.replace('{label}', '"' + $a.text() + '"');
-					s = s.replace('{identifier}', acf._e('flexible_content', identifier));
-					
-					
-					// alert
-					alert( s );
-					
-					
-					// return
-					return false;
-				}
+				// translate
+				s = s.replace('{max}', layout_count);
+				s = s.replace('{label}', '"' + $a.text() + '"');
+				s = s.replace('{identifier}', acf._e('flexible_content', identifier));
 				
+				
+				// alert
+				alert( s );
+				
+				
+				// return
+				return false;
 			}
 			
 			
@@ -747,25 +732,16 @@
 		
 		validate_remove: function( layout ){
 			
-			// defaults
-			layout = layout || '';
-			
-			
-			// vars
-			var min = this.o.min,
-				count = this.count();
-				
-				
 			// vadiate min
-			if( min > 0 && count <= min ) {
+			if( this.o.min > 0 && this.count() <= this.o.min ) {
 				
 				// vars
-				var identifier	= ( min == 1 ) ? 'layout' : 'layouts',
+				var identifier	= ( this.o.min == 1 ) ? 'layout' : 'layouts',
 					s 			= acf._e('flexible_content', 'min') + ', ' + acf._e('flexible_content', 'remove');
 				
 				
 				// translate
-				s = s.replace('{min}', min);
+				s = s.replace('{min}', this.o.min);
 				s = s.replace('{identifier}', acf._e('flexible_content', identifier));
 				s = s.replace('{layout}', acf._e('flexible_content', 'layout'));
 				
@@ -776,35 +752,29 @@
 			}
 			
 			
-			// vadiate min layout
-			if( layout ) {
+			// vadiate max layout
+			var $popup			= $( this.$el.children('.tmpl-popup').html() ),
+				$a				= $popup.find('[data-layout="' + layout + '"]'),
+				layout_min		= parseInt( $a.attr('data-min') ),
+				layout_count	= this.$values.children('.layout[data-layout="' + layout + '"]').length;
+			
+			
+			if( layout_min > 0 && layout_count <= layout_min ) {
 				
 				// vars
-				var $popup			= $( this.$el.children('.tmpl-popup').html() ),
-					$a				= $popup.find('[data-layout="' + layout + '"]'),
-					layout_min		= parseInt( $a.attr('data-min') ),
-					layout_count	= this.$values.children('.layout[data-layout="' + layout + '"]').length;
+				var identifier	= ( layout_min == 1 ) ? 'layout' : 'layouts',
+					s 			= acf._e('flexible_content', 'min_layout') + ', ' + acf._e('flexible_content', 'remove');
 				
 				
-				if( layout_min > 0 && layout_count <= layout_min ) {
-					
-					// vars
-					var identifier	= ( layout_min == 1 ) ? 'layout' : 'layouts',
-						s 			= acf._e('flexible_content', 'min_layout') + ', ' + acf._e('flexible_content', 'remove');
-					
-					
-					// translate
-					s = s.replace('{min}', layout_count);
-					s = s.replace('{label}', '"' + $a.text() + '"');
-					s = s.replace('{identifier}', acf._e('flexible_content', identifier));
-					s = s.replace('{layout}', acf._e('flexible_content', 'layout'));
-					
-					
-					// return
-					return confirm( s );
-					
-				}
+				// translate
+				s = s.replace('{min}', layout_count);
+				s = s.replace('{label}', '"' + $a.text() + '"');
+				s = s.replace('{identifier}', acf._e('flexible_content', identifier));
+				s = s.replace('{layout}', acf._e('flexible_content', 'layout'));
 				
+				
+				// return
+				return confirm( s );
 			}
 			
 			
@@ -960,10 +930,6 @@
 		
 		_open: function( e ){ //console.log('_open');
 			
-			// bail early if validation fails
-			if( !this.validate_add() ) return false;
-			
-			
 			// reference
 			var $values = this.$values;
 			
@@ -976,24 +942,44 @@
 			$popup.find('a').each(function(){
 				
 				// vars
-				var $a = $(this),
-					min = $a.data('min') || 0,
-					max = $a.data('max') || 0,
-					name = $a.data('layout'),
-					count = $values.children('.layout[data-layout="' + name + '"]').length;
+				var min		= parseInt( $(this).attr('data-min') ),
+					max		= parseInt( $(this).attr('data-max') ),
+					name	= $(this).attr('data-layout'),
+					label	= $(this).text(),
+					count	= $values.children('.layout[data-layout="' + name + '"]').length,
+					$status = $(this).children('.status');
 				
 				
-				// max
-				if( max && count >= max) {
+				if( max > 0 ) {
 					
-					$a.addClass('disabled');
-					return;
+					// find diff
+					var available	= max - count,
+						s			= acf._e('flexible_content', 'available'),
+						identifier	= ( available == 1 ) ? 'layout' : 'layouts',
+				
+					
+					// translate
+					s = s.replace('{available}', available);
+					s = s.replace('{max}', max);
+					s = s.replace('{label}', '"' + label + '"');
+					s = s.replace('{identifier}', acf._e('flexible_content', identifier));
+					
+					
+					// show status
+					$status.show().text( available ).attr('title', s);
+					
+					
+					// limit reached?
+					if( available == 0 ) {
+					
+						$status.addClass('warning');
+						
+					}
 					
 				}
 				
 				
-				// min
-				if( min ) {
+				if( min > 0 ) {
 					
 					// find diff
 					var required	= min - count,
@@ -1004,15 +990,14 @@
 					// translate
 					s = s.replace('{required}', required);
 					s = s.replace('{min}', min);
-					s = s.replace('{label} ', ''); // remove label since 5.5.0
+					s = s.replace('{label}', '"' + label + '"');
 					s = s.replace('{identifier}', acf._e('flexible_content', identifier));
 					
 					
 					// limit reached?
 					if( required > 0 ) {
-						
-						var $badge = $('<span class="badge"></span>').attr('title', s).text(required);
-						$a.append( $badge );
+					
+						$status.addClass('warning').show().text( required ).attr('title', s);
 						
 					}
 					
@@ -1035,23 +1020,21 @@
 			
 			// vars
 			$popup.css({
-				'margin-top' : 0 - $popup.height() - e.$el.outerHeight() - 15,
+				'margin-top' : 0 - $popup.height() - e.$el.outerHeight() - 14,
 				'margin-left' : ( e.$el.outerWidth() - $popup.width() ) / 2,
 			});
 			
 			
 			// check distance to top
-			var dist_to_top = $popup.offset().top,
-				min = ($('#wpadminbar').height() || 0) + 30; // 30px buffer below 'top'
+			var offset = $popup.offset().top;
 			
-			if( dist_to_top < min ) {
+			if( offset < 30 ) {
 				
 				$popup.css({
 					'margin-top' : 15
 				});
 				
-				$popup.addClass('bottom');
-				
+				$popup.find('.bit').addClass('top');
 			}
 			
 			
@@ -1161,9 +1144,7 @@
 		_collapse: function( e ){ //console.log('_collapse');
 			
 			// vars
-			var $layout	= e.$el.closest('.layout'),
-				collapsed = $layout.hasClass('-collapsed'),
-				action = collapsed ? 'show' : 'hide';
+			var $layout	= e.$el.closest('.layout');
 			
 			
 			// render
@@ -1171,16 +1152,25 @@
 			this.render_layout_title( $layout );
 			
 			
-			// toggle class
-			$layout.toggleClass('-collapsed');
+			// open
+			if( $layout.hasClass('-collapsed') ) {
+			
+				$layout.removeClass('-collapsed');
+				
+				acf.do_action('show', $layout, 'collapse');
+			
+			// close
+			} else {
+				
+				$layout.addClass('-collapsed');
+				
+				acf.do_action('hide', $layout, 'collapse');
+				
+			}
 			
 			
 			// sync collapsed order
 			this.sync();
-			
-			
-			// action
-			acf.do_action(action, $layout, 'collapse');
 			
 		}
 		

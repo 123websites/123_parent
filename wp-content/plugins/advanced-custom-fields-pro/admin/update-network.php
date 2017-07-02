@@ -1,10 +1,18 @@
 <?php
 
-if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+/*
+*  ACF Admin Update Network Class
+*
+*  All the logic for updates
+*
+*  @class 		acf_admin_update
+*  @package		ACF
+*  @subpackage	Admin
+*/
 
-if( ! class_exists('acf_admin_install_network') ) :
+if( ! class_exists('acf_admin_update_network') ) :
 
-class acf_admin_install_network {
+class acf_admin_update_network {
 
 	/*
 	*  __construct
@@ -57,7 +65,7 @@ class acf_admin_install_network {
 				
 				
 				// get site updates
-				$updates = acf_get_db_updates();
+				$updates = acf_get_updates();
 				
 				
 				// restore
@@ -85,7 +93,7 @@ class acf_admin_install_network {
 		
 		
 		// add page
-		$page = add_submenu_page('index.php', __('Upgrade Database','acf'), __('Upgrade Database','acf'), acf_get_setting('capability'), 'acf-upgrade-network', array($this,'network_html'));
+		$page = add_submenu_page('index.php', __('Upgrade Database','acf'), __('Upgrade Database','acf'), acf_get_setting('capability'), 'acf-upgrade', array($this,'network_html'));
 		
 		
 		// actions
@@ -138,13 +146,13 @@ class acf_admin_install_network {
 		// view
 		$view = array(
 			'button_text'	=> __("Review sites & upgrade", 'acf'),
-			'button_url'	=> network_admin_url('index.php?page=acf-upgrade-network'),
+			'button_url'	=> network_admin_url('index.php?page=acf-upgrade'),
 			'confirm'		=> false
 		);
 		
 		
 		// load view
-		acf_get_view('install-notice', $view);
+		acf_get_view('update-notice', $view);
 		
 	}
 	
@@ -185,7 +193,7 @@ class acf_admin_install_network {
 				
 				
 				// get site updates
-				$site['updates'] = acf_get_db_updates();
+				$site['updates'] = acf_get_updates();
 				
 				
 				// get site version
@@ -220,16 +228,16 @@ class acf_admin_install_network {
 		
 		
 		// load view
-		acf_get_view('install-network', $view);
+		acf_get_view('update-network', $view);
 		
 	}
 			
 }
 
 // initialize
-new acf_admin_install_network();
+new acf_admin_update_network();
 
-endif; // class_exists check
+endif;
 
 
 /*
