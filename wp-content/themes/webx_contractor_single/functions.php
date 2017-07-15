@@ -112,7 +112,9 @@ function update_login_styles(){
 }
 
 // add gmap to pages that need it
-add_action('wp_enqueue_scripts', 'add_gmaps_script');
+if( is_home() ){
+	add_action('wp_enqueue_scripts', 'add_gmaps_script');
+}
 
 function add_gmaps_script(){
 	if(get_field('gmaps-api-key', 'option') !== ''){

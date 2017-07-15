@@ -679,6 +679,57 @@ function add_acf_fields() {
 				'mode' => 'css',
 			),
 			array(
+				'key' => 'field_mpoh12hadf',
+				'label' => '<h2 style="font-weight: bold; font-size: 22px;">Payment Types</h2>',
+				'name' => 'payment-types',
+				'type' => 'message',
+			),
+			array(
+				'key' => 'field_12hafhpwae',
+				'label' => 'Mastercard',
+				'name' => 'mastercard',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 20,
+				),
+			),
+			array(
+				'key' => 'field_12hafhzapwae',
+				'label' => 'Visa',
+				'name' => 'visa',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 20,
+				),
+			),
+			array(
+				'key' => 'field_12haf2dafhpwae',
+				'label' => 'American Express',
+				'name' => 'amex',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 20,
+				),
+			),
+			array(
+				'key' => 'field_12ha1212fhpwae',
+				'label' => 'Discover',
+				'name' => 'discover',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 20,
+				),
+			),
+			array(
+				'key' => 'field_12hafhpwazdffde',
+				'label' => 'Paypal',
+				'name' => 'paypal',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 20,
+				),
+			),
+			array(
 				'key' => 'field_128372613bad21',
 				'label' => 'Nav',
 				'type' => 'tab',
