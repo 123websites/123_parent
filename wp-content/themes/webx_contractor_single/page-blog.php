@@ -1,6 +1,6 @@
 <?php
 
-if( !get_field('coupons-toggle', 'option') ){
+if( !get_field('blog-toggle', 'option') ){
 	header( "Location: " . site_url() . "/404.php" );
 }
 
