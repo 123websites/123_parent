@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         dest: 'build/js/build.js',
       },
       css: {
-        src: ['node_modules/font-awesome/css/font-awesome.min.css', 'build/css/build.css'],
+        src: ['node_modules/font-awesome/css/font-awesome.css', 'build/css/build.css'],
         dest: 'build/css/build.css',
       },
     },
@@ -41,14 +41,14 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: ['sass/**/*.scss'],
-        tasks: ['sass'],
+        tasks: ['sass', 'concat:css'],
         options: {
           livereload : 35729
         },
       },
       js: {
         files: ['js/**/*.js'],
-        tasks: ['concat'],
+        tasks: ['concat:js'],
         options: {
           livereload : 35729
         },

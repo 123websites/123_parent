@@ -178,22 +178,25 @@
 	.footer-middlecolumn2-payment-type{
 		height: 30px;
 		background-image: url('../../library/img/payment-types.jpg');
-		background-position: 0 0;
 		background-repeat: no-repeat;
 		margin: 5px 0;
 		width: 47.3px;
 	    margin-right: 20px;
 	    display: inline-block;
-		&:nth-child(3){
+		background-position: 0 0;
+	    &.mastercard{
+	    	background-position: 0% 0;
+	    }
+		&.visa{
 			background-position: 25% 0;
 		}
-		&:nth-child(4){
+		&.amex{
 			background-position: 50% 0;
 		}
-		&:nth-child(5){
+		&.discover{
 			background-position: 75% 0;
 		}
-		&:nth-child(6){
+		&.paypal{
 			background-position: 100% 0;
 		}
 	}
