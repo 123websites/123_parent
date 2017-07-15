@@ -701,7 +701,15 @@ if(!function_exists('the_bg')){
 	}
 }
 
-
+function strpos_r($haystack, $needle){
+	$lastPos = 0;
+	$positions = [];
+	while ( ( $lastPos = strpos($haystack, $needle, $lastPos) ) !== false ) {
+	    $positions[] = $lastPos;
+	    $lastPos = $lastPos + strlen($needle);
+	}
+	return $positions;
+}
 
 
 
