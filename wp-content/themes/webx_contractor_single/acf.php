@@ -571,20 +571,109 @@ function add_acf_fields() {
 				),
 			),
 			array(
-				'key' => 'field_8y3b1az23',
-				'label' => 'Variable Color On/Off',
+				'key' => 'field_mpzdgh12',
+				'label' => 'Footer Grey',
 				'type' => 'true_false',
-				'name' => 'variable_color_toggle',
+				'name' => 'footer_grey',
 				'wrapper' => array(
 					'width' => '10',
 				),
 			),
 			array(
 				'key' => 'field_71b1bdaasf21312',
-				'label' => 'Variable Color',
+				'label' => 'Footer Grey Color',
 				'type' => 'color_picker',
-				'name' => 'variable_color',
-				'instructions' => 'This is used on the greyish colors throughout the theme.',
+				'name' => 'footer_grey_color',
+				'wrapper' => array(
+					'width' => '90',
+				),
+			),
+			array(
+				'key' => 'field_21hfpgh12',
+				'label' => 'Medium Grey',
+				'type' => 'true_false',
+				'name' => 'medium_grey',
+				'wrapper' => array(
+					'width' => '10',
+				),
+			),
+			array(
+				'key' => 'field_71bzceqfssf21312',
+				'label' => 'Medium Grey Color',
+				'type' => 'color_picker',
+				'name' => 'medium_grey_color',
+				'wrapper' => array(
+					'width' => '90',
+				),
+			),
+			array(
+				'key' => 'field_21hpppph12',
+				'label' => 'Light Grey',
+				'type' => 'true_false',
+				'name' => 'light_grey',
+				'wrapper' => array(
+					'width' => '10',
+				),
+			),
+			array(
+				'key' => 'field_713332',
+				'label' => 'Light Grey Color',
+				'type' => 'color_picker',
+				'name' => 'light_grey_color',
+				'wrapper' => array(
+					'width' => '90',
+				),
+			),
+			array(
+				'key' => 'field_21hfp0000gh12',
+				'label' => 'Estimate Bar',
+				'type' => 'true_false',
+				'name' => 'estimate_bar',
+				'wrapper' => array(
+					'width' => '10',
+				),
+			),
+			array(
+				'key' => 'field_71bzc00002',
+				'label' => 'Estimate Bar Color',
+				'type' => 'color_picker',
+				'name' => 'estimate_bar_color',
+				'wrapper' => array(
+					'width' => '90',
+				),
+			),
+			array(
+				'key' => 'field_21hiiiifpgh12',
+				'label' => 'Header Tint',
+				'type' => 'true_false',
+				'name' => 'header_tint',
+				'wrapper' => array(
+					'width' => '10',
+				),
+			),
+			array(
+				'key' => 'field_zpzpzf21312',
+				'label' => 'Header Tint Color',
+				'type' => 'color_picker',
+				'name' => 'header_tint_color',
+				'wrapper' => array(
+					'width' => '90',
+				),
+			),
+			array(
+				'key' => 'field_21hfpllllgh12',
+				'label' => 'Footer BG',
+				'type' => 'true_false',
+				'name' => 'footer_bg',
+				'wrapper' => array(
+					'width' => '10',
+				),
+			),
+			array(
+				'key' => 'field_71bzof312',
+				'label' => 'Footer BG Color',
+				'type' => 'color_picker',
+				'name' => 'footer_bg_color',
 				'wrapper' => array(
 					'width' => '90',
 				),

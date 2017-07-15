@@ -2,27 +2,16 @@
 
 $primary_color = get_field('primary_color', 'option') == '' ? null : '#' . substr(get_field('primary_color', 'option'), 1);
 $background_color = get_field('background_color', 'option') == '' ? null : '#' . substr(get_field('background_color', 'option'), 1);
-$master_variable_color = get_field('variable_color', 'option') == '' ? null : substr(get_field('variable_color', 'option'), 1);
+// $master_variable_color = get_field('variable_color', 'option') == '' ? null : substr(get_field('variable_color', 'option'), 1);
 
-$variable_colors = [];
-$variable_colors_keyvalues = array(
-	'footer_grey' => 0.26,
-	'medium_grey' => 0.22,
-	'light_grey' => 0.88,
-	'estimate_bar' => 0.98,
-	'header_tint' => 0.92,
-	'footer_bg' => 0.74,
+$variable_colors = array(
+	'footer_grey' => get_field('footer_grey_color', 'option'),
+	'medium_grey' => get_field('medium_grey_color', 'option'),
+	'light_grey' => get_field('light_grey_color', 'option'),
+	'estimate_bar' => get_field('estimate_bar_color', 'option'),
+	'header_tint' => get_field('header_tint_color', 'option'),
+	'footer_bg' => get_field('footer_bg_color', 'option'),
 );
-
-if(!empty($master_variable_color)){
-	for($i = 0; $i < 6; $i++){
-		$hsl = hex_to_hsl($master_variable_color);
-		$hsl[2] = array_values( $variable_colors_keyvalues )[$i];
-		$variable_colors[ array_keys( $variable_colors_keyvalues )[$i] ] = '#'.hsl_to_hex($hsl);
-	}	
-}
-
-
 
 function hex_to_hsl($hex) {
     $hex = array($hex[0].$hex[1], $hex[2].$hex[3], $hex[4].$hex[5]);
@@ -186,7 +175,7 @@ if(get_field('primary_color_toggle', 'option')):
 	}
 </style>
 <?php endif; 
-if(get_field('variable_color_toggle', 'option')):
+	if( get_field('footer_grey', 'option') ):
 ?>
 <style type="text/css">
 	/* FOOTER-GREY STUFF */
@@ -214,109 +203,130 @@ if(get_field('variable_color_toggle', 'option')):
 			background-color: <?php echo $variable_colors['footer_grey']; ?>;
 		}
 	}
-	
+	</style>
+<?php 
+	endif; 
+	if( get_field('medium_grey', 'option') ):
+?>
+	<style type="text/css">
 
-	/* MEDIUM-GREY STUFF */
-	@media only screen {
-		.mobileheader-bar-tint{
-			background-color: <?php echo $variable_colors['medium_grey']; ?>;
+		/* MEDIUM-GREY STUFF */
+		@media only screen {
+			.mobileheader-bar-tint{
+				background-color: <?php echo $variable_colors['medium_grey']; ?>;
+			}
+			.footer-pagelinks:after,
+			.footer-pagelinks:before,
+			.footer-middlecolumn2:after{
+				border-color: <?php echo $variable_colors['medium_grey']; ?>;
+			}
 		}
-		.footer-pagelinks:after,
-		.footer-pagelinks:before,
-		.footer-middlecolumn2:after{
-			border-color: <?php echo $variable_colors['medium_grey']; ?>;
+		@media only screen and (min-width: 1167px){
+			.header-tint{
+				background-color: <?php echo $variable_colors['medium_grey']; ?>;	
+			}	
 		}
-	}
-	@media only screen and (min-width: 1167px){
-		.header-tint{
-			background-color: <?php echo $variable_colors['medium_grey']; ?>;	
-		}	
-	}
+	</style>
+<?php 
+	endif;
+	if( get_field('light_grey', 'option') ):
+?>
+	<style type="text/css">
+		/* LIGHT-GREY STUFF */
+		@media only screen {
+			.page404-hero,
+			.company-employees-grid-item,
+			.home-testimonials-grid-item,
+			.testimonials-testimonials-grid-item,
+			.menu-menu,
+			.menu-hero,
+			.blog-blog-sidebar{
+				background-color: <?php echo $variable_colors['light_grey']; ?>;	
+			}	
+		}
 
-	/* LIGHT-GREY STUFF */
-	@media only screen {
-		.page404-hero,
-		.company-employees-grid-item,
-		.home-testimonials-grid-item,
-		.testimonials-testimonials-grid-item,
-		.menu-menu,
-		.menu-hero,
-		.blog-blog-sidebar{
-			background-color: <?php echo $variable_colors['light_grey']; ?>;	
-		}	
-	}
+		@media only screen and (min-width: 1025px){
+			.home-testimonials{
+				background-color: <?php echo $variable_colors['light_grey']; ?>;		
+			}
+			.home-testimonials:after{
+				border-color: <?php echo $variable_colors['light_grey']; ?> transparent transparent transparent;
+			}
+		}
+	</style>
+<?php 
+	endif;
+	if( get_field('estimate_bar', 'option') ):
+?>
+	<style type="text/css">
+		/* ESTIMATE-BAR STUFF */
+		@media only screen {
+			.mobileheader-estimate{
+				background-color: <?php echo $variable_colors['estimate_bar']; ?>;	
+			}
+		}
+		@media only screen and (min-width: 1025px){
+			footer.footer.light.footer-copyright{
+				background-color: <?php echo $variable_colors['estimate_bar']; ?>;
+			}	
+		}
 
-	@media only screen and (min-width: 1025px){
-		.home-testimonials{
-			background-color: <?php echo $variable_colors['light_grey']; ?>;		
+		@media only screen and (min-width: 1167px){
+			.header-estimate{
+				background-color: <?php echo $variable_colors['estimate_bar']; ?>;		
+			}
 		}
-		.home-testimonials:after{
-			border-color: <?php echo $variable_colors['light_grey']; ?> transparent transparent transparent;
+	</style>
+<?php 
+	endif;
+	if( get_field('header_tint', 'option') ): ?>
+	<style type="text/css">
+		/* HEADER-TINT STUFF */
+		@media only screen {
+			header.light.mobileheader-bar-tint,
+			header.light.mobileheader-tint{
+				background-color: <?php echo $variable_colors['header_tint']; ?>;
+			}
 		}
-	}
-
-	/* ESTIMATE-BAR STUFF */
-	@media only screen {
-		header.light.mobileheader-estimate{
-			background-color: <?php echo $variable_colors['estimate_bar']; ?>;	
+		@media only screen and (min-width: 1167px){
+			header.light.header-tint{
+				background-color: <?php echo $variable_colors['header_tint']; ?>;
+			}
 		}
-	}
-	@media only screen and (min-width: 1025px){
-		footer.footer.light.footer-copyright{
-			background-color: <?php echo $variable_colors['estimate_bar']; ?>;
-		}	
-	}
-
-	@media only screen and (min-width: 1167px){
-		header.light.header-estimate{
-			background-color: <?php echo $variable_colors['estimate_bar']; ?>;		
+	</style>
+<?php 
+	endif;
+	if( get_field('footer_bg', 'option') ): ?>
+	<style type="text/css">
+		/* FOOTER-BG STUFF */
+		@media only screen {
+			footer.mobilefooter.light{
+				background-color: <?php echo $variable_colors['footer_bg']; ?>;
+			}
+			.coupons-coupons-grid-item{
+				border-color: <?php echo $variable_colors['footer_bg']; ?>;
+			}
 		}
-	}
-
-	
-
-	/* HEADER-TINT STUFF */
-	@media only screen {
-		header.light.mobileheader-bar-tint,
-		header.light.mobileheader-tint{
-			background-color: <?php echo $variable_colors['header_tint']; ?>;
+		@media only screen and (min-width: 1025px){
+			footer.footer.light{
+				background-color: <?php echo $variable_colors['footer_bg']; ?>;
+			}
 		}
-	}
-	@media only screen and (min-width: 1167px){
-		header.light.header-tint{
-			background-color: <?php echo $variable_colors['header_tint']; ?>;
-		}
-	}
-
-	/* FOOTER-BG STUFF */
-	@media only screen {
-		footer.mobilefooter.light{
-			background-color: <?php echo $variable_colors['footer_bg']; ?>;
-		}
-		.coupons-coupons-grid-item{
-			border-color: <?php echo $variable_colors['footer_bg']; ?>;
-		}
-	}
-	@media only screen and (min-width: 1025px){
-		footer.footer.light{
-			background-color: <?php echo $variable_colors['footer_bg']; ?>;
-		}
-	}
-</style>
+	</style>
 <?php endif;
-if(get_field('background_color_toggle', 'option')): ?>
-<style type="text/css">
-	@media only screen {
-		body{
-			background-color: <?php echo $background_color; ?>;
-		}
-	}	
-	@media only screen and (min-width: 1025px){
-		.home-testimonials:before{
-			border-color: <?php echo $background_color; ?> transparent transparent transparent;
+	if( get_field('background_color_toggle', 'option') ): ?>
+	<style type="text/css">
+		@media only screen {
+			body{
+				background-color: <?php echo $background_color; ?>;
+			}
 		}	
-	}
-</style>
+		@media only screen and (min-width: 1025px){
+			.home-testimonials:before{
+				border-color: <?php echo $background_color; ?> transparent transparent transparent;
+			}	
+		}
+	</style>
 <?php endif; ?>
 
 
