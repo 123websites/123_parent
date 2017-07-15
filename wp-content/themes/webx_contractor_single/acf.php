@@ -523,6 +523,18 @@ function add_acf_fields() {
 				'type' => 'tab',
 			),	
 			array(
+				'key' => 'field_npy320af',
+				'label' => 'Site Title',
+				'name' => 'site_title',
+				'type' => 'text',
+			),
+			array(
+				'key' => 'field_npy320zdfa1212af',
+				'label' => 'Tagline',
+				'name' => 'tagline',
+				'type' => 'text',
+			),
+			array(
 				'key' => 'field_8y3b123',
 				'label' => 'Primary Color On/Off',
 				'type' => 'true_false',
@@ -2095,5 +2107,52 @@ function my_acf_input_admin_footer() {
 }
 
 add_action('acf/input/admin_footer', 'my_acf_input_admin_footer');
+
+
+
+function acf_update_site_title( $value, $post_id, $field ){
+	if( !empty($value) ){
+		update_option( 'blogname', $value );
+	}
+	return $value;
+}
+
+add_action('acf/update_value/key=field_npy320af', 'acf_update_site_title', 10, 3);
+
+
+
+function acf_update_tagline( $value, $post_id, $field ){
+	if( !empty($value) ){
+		update_option( 'blogdescription', $value );
+	}
+	return $value;
+}
+
+add_action('acf/update_value/key=field_npy320zdfa1212af', 'acf_update_tagline', 10, 3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
