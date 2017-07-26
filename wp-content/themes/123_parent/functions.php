@@ -1,7 +1,6 @@
 <?php 
 
 
-// configure style/script registration/enqueing, menu registration, after_setup_theme filter
 show_admin_bar( false );
 
 add_action( 'after_setup_theme', function(){
