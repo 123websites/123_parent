@@ -103,9 +103,17 @@ function update_login_styles(){
 				background-repeat: no-repeat;
 			}
 			#login h1 a, .login h1 a {
-	            background-image: url('<?php echo  get_field('general-logo', 'option'); ?>');
+				<?php if( get_field('logo-type-switch', 'option') == 'text' ): ?>
+					background-image: url('<?php echo get_template_directory_uri(); ?>/library/img/logo-text.png');
+		            background-size: 90%;
+		            background-color: rgba(0,0,0,0.7);
+		            background-position: center center;
+		            width: 100%;
+				<?php else: ?>
+		            background-image: url('<?php echo  get_field('general-logo', 'option'); ?>');
+		            background-size: contain;
+	            <?php endif; ?>
 	            min-width: 300px;
-	            background-size: contain;
 	        }
 		</style>
 	<?php }
