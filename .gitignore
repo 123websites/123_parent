@@ -33,5 +33,5 @@ wp-settings.php
 wp-signup.php
 wp-trackback.php
 xmlrpc.php
-!wp-content/themes/123_one/*
+!wp-content/themes/123_parent/*
     
