@@ -1,4 +1,4 @@
-<main class="gallery main">
+<main class="gallery main" id="gallery">
 	<section class="gallery-hero hero">
 		<div class="gallery-hero-text hero-text">
 			<h1 class="fade fade-in gallery-hero-text-header hero-text-header"><?php echo get_field('gallery-alt-toggle', 'option') ? get_field('gallery-alt', 'option') : 'gallery' ?></h1>
