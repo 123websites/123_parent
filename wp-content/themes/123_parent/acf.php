@@ -1354,7 +1354,7 @@ function add_acf_fields() {
 			),
 			array(
 				'key' => 'field_727161',
-				'message' => '<h2 style="font-size:20px"><strong>Header Button Pop</strong></h2>',
+				'message' => '<h2 style="font-size:20px"><strong>Header Button Pop-Up</strong></h2>',
 				'type' => 'message'
 			),
 			array(
