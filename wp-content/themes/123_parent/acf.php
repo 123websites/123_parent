@@ -1,23 +1,13 @@
 <?php 
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
-		'page_title' 	=> 'General Settings',
-		'menu_title'	=> 'General Settings',
+		'page_title' 	=> ' ',
+		'menu_title'	=> 'Theme Settings',
 		'menu_slug' 	=> 'general-settings',
 		'capability'	=> 'read_private_posts',
 		'icon_url'      => 'dashicons-admin-settings',
 		'redirect'		=> false,
 		'position'      => 7,
-	));
-
-	acf_add_options_page(array(
-		'page_title' 	=> 'Terms & Conditions',
-		'menu_title'	=> 'Terms & Conditions',
-		'menu_slug' 	=> 'terms-settings',
-		'capability'	=> 'activate_plugins',
-		'icon_url'      => 'dashicons-list-view',
-		'redirect'		=> false,
-		'position'      => 88,
 	));
 
 	acf_add_options_page(array(
@@ -143,29 +133,6 @@ function add_acf_fields() {
 	));
 
 
-	// Areas Served Settings
-
-	acf_add_local_field_group(array(
-		'key' => 'group_1032hfd',
-		'title' => ' ',
-		'fields' => array (
-			array (
-				'key' => 'field_89ahzbdjao',
-				'label' => 'Content',
-				'name' => 'terms-content',
-				'type' => 'wysiwyg',
-			)
-		),
-		'location' => array (
-			array (
-				array (
-					'param' => 'options_page',
-					'operator' => '==',
-					'value' => 'terms-settings',
-				),
-			),
-		),
-	));
 
 
 	// Company Settings 
@@ -518,21 +485,75 @@ function add_acf_fields() {
 			),
 			array(
 				'key' => 'field_876646',
-				'label' => 'Sitewide Misc.',
-				'name' => 'sitewide-misc',
+				'label' => '1. Company Info',
+				'name' => 'company-info',
 				'type' => 'tab',
 			),	
 			array(
 				'key' => 'field_npy320af',
-				'label' => 'Site Title',
+				'label' => 'Company Name',
 				'name' => 'site_title',
 				'type' => 'text',
 			),
 			array(
 				'key' => 'field_npy320zdfa1212af',
-				'label' => 'Tagline',
+				'label' => 'Google Description',
 				'name' => 'tagline',
 				'type' => 'text',
+			),
+			
+			array(
+				'key' => 'field_8372zzzn12',
+				'label' => 'Company Logo',
+				'name' => 'logo-type-switch',
+				'type' => 'select',
+				'instructions' => 'This allows you to switch between providing a custom logo or creating one from the site name.<br/><br/><strong style="color:blue;">***IMPORTANT: IF YOU SELECT TEXT YOU MUST CLICK UPDATE TWICE FOR THIS CHANGE TO TAKE AFFECT***</strong><br/>An image will automatically be generated containing the text from Site Title (in Settings > General) which should be short and sweet (under 24 characters).',
+				'choices' => array(
+					'logo' => 'Logo',
+					'text' => 'Text',
+				),
+				'default_value' => array(
+					'logo' => 'Logo',
+				),
+			),
+			array(
+				'key' => 'field_2343135',
+				'label' => 'Site Logo',
+				'name' => 'general-logo',
+				'type' => 'image',
+				'return_format' => 'url',
+				'instructions' => 'Use a light version or else it won\'t show up very well. This field is required. PNG or another web-friendly format with an alpha channel preferred.',
+				'conditional_logic' => array(
+					array(
+						array(
+							'field' => 'field_8372zzzn12',
+							'operator' => '==',
+							'value' => 'logo',
+						),
+					)
+				),
+			),
+			array(
+				'key' => 'field_873262213',
+				'label' => 'Site Contact Slogan',
+				'name' => 'general-contact-slogan',
+				'type' => 'textarea',
+				'instructions' => 'This is the text that appears in the section just above the footer on all pages except the contact page. You can add new lines here.',
+				'new_lines' => 'br',
+			),	
+			array(
+				'key' => 'field_23',
+				'label' => 'Site Contact Background Image',
+				'name' => 'contact-bg',
+				'type' => 'image',
+				'preview_size' => 'medium',
+				'return_format' => 'url',
+			),
+			
+			array(
+				'key' => 'field_padfh123ad',
+				'label' => '2. Colors',
+				'type' => 'tab',
 			),
 			array(
 				'key' => 'field_8y3b123',
@@ -679,148 +700,41 @@ function add_acf_fields() {
 				),
 			),
 			array(
-				'key' => 'field_8372zzzn12',
-				'label' => 'Logo Type Switch',
-				'name' => 'logo-type-switch',
-				'type' => 'select',
-				'instructions' => 'This allows you to switch between providing a custom logo or creating one from the site name.<br/><br/><strong style="color:blue;">***IMPORTANT: IF YOU SELECT TEXT YOU MUST CLICK UPDATE TWICE FOR THIS CHANGE TO TAKE AFFECT***</strong><br/>An image will automatically be generated containing the text from Site Title (in Settings > General) which should be short and sweet (under 24 characters).',
-				'choices' => array(
-					'logo' => 'Logo',
-					'text' => 'Text',
-				),
-				'default_value' => array(
-					'logo' => 'Logo',
-				),
+				'key' => 'field_218372173',
+				'label' => '3. Home',
+				'name' => 'home-settings',
+				'type' => 'tab',
 			),
 			array(
-				'key' => 'field_2343135',
-				'label' => 'Site Logo',
-				'name' => 'general-logo',
-				'type' => 'image',
-				'return_format' => 'url',
-				'instructions' => 'Use a light version or else it won\'t show up very well. This field is required. PNG or another web-friendly format with an alpha channel preferred.',
-				'conditional_logic' => array(
-					array(
-						array(
-							'field' => 'field_8372zzzn12',
-							'operator' => '==',
-							'value' => 'logo',
-						),
-					)
-				),
-			),
-			array(
-				'key' => 'field_abdf7d',
-				'label' => 'Parent Company Logo URL',
-				'name' => 'webx-logo',
-				'type' => 'url',
-			),
-			array(
-				'key' => 'field_nnahahawef',
-				'label' => 'Parent Company URL',
-				'name' => 'webx-url',
-				'type' => 'url',
-			),
-			array(
-				'key' => 'field_873262213',
-				'label' => 'Site Contact Slogan',
-				'name' => 'general-contact-slogan',
-				'type' => 'textarea',
-				'instructions' => 'This is the text that appears in the section just above the footer on all pages except the contact page. You can add new lines here.',
-				'new_lines' => 'br',
-			),	
-			array(
-				'key' => 'field_23',
-				'label' => 'Site Contact Background Image',
-				'name' => 'contact-bg',
-				'type' => 'image',
-				'preview_size' => 'medium',
-				'return_format' => 'url',
-			),	
-			array(
-				'key' => 'field_13366',
-				'label' => 'Login Background Image URL',
-				'name' => 'general-admin-bg',
-				'type' => 'url',
-			),
-			array(
-				'key' => 'field_83nbjd',
-				'label' => 'Image Placeholder',
-				'instructions' => 'This is the image that will pop up if there\'s no featured image provided in a blog post.',
-				'type' => 'image',
-				'return_format' => 'url',
-				'preview_size' => 'medium',
-				'name' => 'featured-placeholder',
-			),
-			array(
-				'key' => 'field_23436',
-				'label' => 'Google Maps API Key',
+				'key' => 'field_2391274',
+				'label' => 'Slider Tagline',
+				'name' => 'home-hero-header-text',
 				'type' => 'text',
-				'name' => 'gmaps-api-key',
-				'instructions' => 'Anything here but a Google API Key won\'t work. Please make sure that on your project on console.developers.google.com has the Google Maps Geocode API and the Google Maps Javascript API enabled and it\'s restrictions are set appropriately.',
+				'instructions' => 'This is the text that appears on the homepage section',
 			),
 			array(
-				'key' => 'field_b8n2qnafhdpz',
-				'label' => 'Custom CSS',
-				'type' => 'acf_code_field',
-				'name' => 'custom-css',
-				'theme' => 'monokai',
-				'mode' => 'css',
-			),
-			array(
-				'key' => 'field_mpoh12hadf',
-				'label' => '<h2 style="font-weight: bold; font-size: 22px;">Payment Types</h2>',
-				'name' => 'payment-types',
-				'type' => 'message',
-			),
-			array(
-				'key' => 'field_12hafhpwae',
-				'label' => 'Mastercard',
-				'name' => 'mastercard',
-				'type' => 'true_false',
-				'wrapper' => array(
-					'width' => 20,
+				'key' => 'field_14',
+				'label' => 'Slider Images',
+				'name' => 'general-home-slider',
+				'type' => 'repeater',
+				'button_label' => 'Add Slide',
+				'min' => 3,
+				'instructions' => 'You need a minimum of 3 slides or else the default images will be used instead.',
+				'sub_fields' => array(
+					array(
+						'key' => 'field_166',
+						'label' => 'Image',
+						'name' => 'general-home-slider-image',
+						'type' => 'image',
+						'preview_size' => 'medium',
+						'return_format' => 'url',
+					),
 				),
 			),
-			array(
-				'key' => 'field_12hafhzapwae',
-				'label' => 'Visa',
-				'name' => 'visa',
-				'type' => 'true_false',
-				'wrapper' => array(
-					'width' => 20,
-				),
-			),
-			array(
-				'key' => 'field_12haf2dafhpwae',
-				'label' => 'American Express',
-				'name' => 'amex',
-				'type' => 'true_false',
-				'wrapper' => array(
-					'width' => 20,
-				),
-			),
-			array(
-				'key' => 'field_12ha1212fhpwae',
-				'label' => 'Discover',
-				'name' => 'discover',
-				'type' => 'true_false',
-				'wrapper' => array(
-					'width' => 20,
-				),
-			),
-			array(
-				'key' => 'field_12hafhpwazdffde',
-				'label' => 'Paypal',
-				'name' => 'paypal',
-				'type' => 'true_false',
-				'wrapper' => array(
-					'width' => 20,
-				),
-			),
+			
 			array(
 				'key' => 'field_128372613bad21',
-				'label' => 'Nav',
+				'label' => '4. Main Menu',
 				'type' => 'tab',
 			),
 			array(
@@ -864,13 +778,7 @@ function add_acf_fields() {
 					'width' => '25',
 				),
 			),	
-			array(
-				'key' => 'field_18216124',
-				'label' => 'Header Bar Text',
-				'type' => 'text',
-				'name' => 'header-bar-text',
-				'default_value' => 'Click here for a free estimate!!!',
-			),
+			
 			array(
 				'key' => 'field_182163124',
 				'label' => 'Quickquote Button Text',
@@ -1211,161 +1119,8 @@ function add_acf_fields() {
 				),
 			),
 			array(
-				'key' => 'field_12837261321',
-				'label' => 'Popup',
-				'type' => 'tab',
-				'name' => 'popup-settings',
-			),
-			array(
-				'key' => 'field_727161',
-				'message' => '<h2 style="font-size:20px"><strong>Estimate Popup Settings</strong></h2>',
-				'type' => 'message'
-			),
-			array(
-				'key' => 'field_87216162',
-				'label' => 'Quickquote/Estimate Popup Image',
-				'name' => 'quickquote-image',
-				'type' => 'image',
-				'preview_size' => 'medium',
-				'return_format' => 'url',
-			),
-			array(
-				'key' => 'field_38276123',
-				'label' => 'Quickquote/Estimate Popup Header',
-				'name' => 'quickquote-header',
-				'type' => 'text',
-				'instructions' => 'This is the text that appears above the form on the quick quote popup.'
-			),
-			array(
-				'key' => 'field_72712261',
-				'message' => '<h2 style="font-size:20px"><strong>E-Book Popup Settings</strong></h2>',
-				'type' => 'message'
-			),
-			array(
-				'key' => 'field_871216162',
-				'label' => 'E-Book Popup Image',
-				'name' => 'ad-image',
-				'type' => 'image',
-				'preview_size' => 'medium',
-				'return_format' => 'url',
-			),
-			array(
-				'key' => 'field_38276235123',
-				'label' => 'E-Book Popup Header',
-				'name' => 'ad-header',
-				'type' => 'text',
-				'instructions' => 'This is the text that appears above the form on the ad popup.'
-			),
-			array(
-				'key' => 'field_218372173',
-				'label' => 'Home',
-				'name' => 'home-settings',
-				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_14',
-				'label' => 'Home Background Slider',
-				'name' => 'general-home-slider',
-				'type' => 'repeater',
-				'button_label' => 'Add Slide',
-				'min' => 3,
-				'instructions' => 'You need a minimum of 3 slides or else the default images will be used instead.',
-				'sub_fields' => array(
-					array(
-						'key' => 'field_166',
-						'label' => 'Image',
-						'name' => 'general-home-slider-image',
-						'type' => 'image',
-						'preview_size' => 'medium',
-						'return_format' => 'url',
-					),
-				),
-			),
-			array(
-				'key' => 'field_2391274',
-				'label' => 'Home Hero Header Text',
-				'name' => 'home-hero-header-text',
-				'type' => 'text',
-				'instructions' => 'This is the text that appears on the homepage section',
-			),
-			array(
-				'key' => 'field_218372012173',
-				'label' => 'Blog',
-				'name' => 'blog-settings',
-				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_15',
-				'label' => 'Blog Background Image',
-				'name' => 'general-blog-bg',
-				'type' => 'image',
-				'return_format' => 'url',
-				'preview_size' => 'medium',
-			),
-			array(
-				'key' => 'field_387126',
-				'label' => 'Number of Posts Per Page',
-				'name' => 'posts-per-page',
-				'type' => 'number',
-				'min' => -1,
-				'default_value' => 10,
-				'instructions' => 'To have unlimited posts per page set this field to -1',
-			),
-			array(
-				'key' => 'field_218372012112173',
-				'label' => '404',
-				'name' => 'general-404-settings',
-				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_16',
-				'label' => '404 Background Image',
-				'name' => 'general-404-bg',
-				'type' => 'image',
-				'return_format' => 'url',
-				'preview_size' => 'medium',
-				'instructions' => '404 is the page that shows up when a page can\'t be found',
-			),
-			array(
-				'key' => 'field_217710',
-				'label' => '404 Header Text',
-				'name' => 'general-404-header',
-				'type' => 'text',
-				'instructions' => 'If left blank this defaults to "404"',
-				'default_value' => '404',
-			),
-			array(
-				'key' => 'field_217752110',
-				'label' => '404 Subheader Text',
-				'name' => 'general-404-subheader',
-				'type' => 'textarea',
-				'new_lines' => 'br',
-				'instructions' => 'If left blank this defaults to "The requested page is not available. Click here to return home."',
-			),
-			array(
-				'key' => 'field_a8d7df',
-				'label' => 'Coupons',
-				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_bdsh8f',
-				'label' => 'Background Image',
-				'name' => 'general-coupons-bg',
-				'type' => 'image',
-				'preview_size' => 'medium',
-				'return_format' => 'url',
-			),
-			array(
-				'key' => 'field_7fbaxhp',
-				'label' => 'Posts Per Page',
-				'name' => 'general-coupons-postsperpage',
-				'min' => -1,
-				'default_value' => 10,
-				'instructions' => 'To have unlimited posts per page set this field to -1',
-			),
-			array(
 				'key' => 'field_8712000',
-				'label' => 'Social',
+				'label' => '5. Footer',
 				'name' => 'social-settings',
 				'type' => 'tab',
 			),
@@ -1435,9 +1190,225 @@ function add_acf_fields() {
 				'instructions' => 'Must be in 555-555-5555 format. Put the fax number you want to show up in the footer and nav. Leaving this field blank will default first to the first fax phone number provided in the contact settings then a placeholder number: 555-555-5555.',
 			),
 			array(
-				'key' => 'field_87237fhdah',
-				'label' => 'Featured Posts',
+				'key' => 'field_mpoh12hadf',
+				'label' => '<h2 style="font-weight: bold; font-size: 22px;">Payment Types</h2><h4 style="margin-top: 0px; padding-left: 10px; font-weight: 400;">(For each payment method checking the box displays the payment method in the footer and uploading an image will override the default)</h4>',
+				'name' => 'payment-types',
+				'type' => 'message',
+			),
+			array(
+				'key' => 'field_12hafhpwae',
+				'label' => 'Mastercard',
+				'name' => 'mastercard',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_mzcpoihhad',
+				'label' => 'Mastercard Image',
+				'name' => 'mastercard-image',
+				'type' => 'image',
+				'return_format' => 'url',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_12hafhzapwae',
+				'label' => 'Visa',
+				'name' => 'visa',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_mzcpaf122oihhad',
+				'label' => 'Visa Image',
+				'name' => 'visa-image',
+				'type' => 'image',
+				'return_format' => 'url',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_12haf2dafhpwae',
+				'label' => 'American Express',
+				'name' => 'amex',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_mzc219z',
+				'label' => 'Amex Image',
+				'name' => 'amex-image',
+				'type' => 'image',
+				'return_format' => 'url',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_12ha1212fhpwae',
+				'label' => 'Discover',
+				'name' => 'discover',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_mooooihhad',
+				'label' => 'Discover Image',
+				'name' => 'discover-image',
+				'type' => 'image',
+				'return_format' => 'url',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_12hafhpwazdffde',
+				'label' => 'Paypal',
+				'name' => 'paypal',
+				'type' => 'true_false',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_mzcpoiz2',
+				'label' => 'Paypal Image',
+				'name' => 'paypal-image',
+				'type' => 'image',
+				'return_format' => 'url',
+				'wrapper' => array(
+					'width' => 40,
+				),
+			),
+			array(
+				'key' => 'field_mp9213adf',
+				'label' => '<h1 style="color: red;">Looking for something?</h1>
+							<div>
+							- Company Phone Number - Please see "1. Company Info" tab.<br/>
+							- Company Fax Number - Please see "1. Company Info" tab.<br/>
+							- Parent Co. Logo - Please see "7. Parent Co." tab.
+							</div>',
+				'type' => 'message',
+			),
+			array(
+				'key' => 'field_12837261321',
+				'label' => '6. Pop-Ups',
 				'type' => 'tab',
+				'name' => 'popup-settings',
+			),
+			array(
+				'key' => 'field_72afasd7161',
+				'message' => '<h2 style="font-size:20px"><strong>Top Bar</strong></h2>',
+				'type' => 'message'
+			),
+			array(
+				'key' => 'field_18216124',
+				'label' => 'Slogan',
+				'type' => 'text',
+				'name' => 'header-bar-text',
+				'default_value' => 'Click here for a free estimate!!!',
+			),
+			array(
+				'key' => 'field_d0981dsfhadf',
+				'label' => 'Disable',
+				'type' => 'true_false',
+				'name' => 'header-bar-disable',
+				'instructions' => 'If checked this will hide the Top Bar',
+			),
+			array(
+				'key' => 'field_72712261',
+				'message' => '<h2 style="font-size:20px"><strong>Timed / E-Book Pop-Up</strong></h2>',
+				'type' => 'message'
+			),
+			array(
+				'key' => 'field_871216162',
+				'label' => 'Image',
+				'name' => 'ad-image',
+				'type' => 'image',
+				'preview_size' => 'medium',
+				'return_format' => 'url',
+			),
+			array(
+				'key' => 'field_38276235123',
+				'label' => 'Slogan',
+				'name' => 'ad-header',
+				'type' => 'text',
+				'instructions' => 'This is the text that appears above the form on the ad popup.'
+			),
+			array(
+				'key' => 'field_m12hdaf7213',
+				'label' => 'Disable',
+				'name' => 'ad-disable',
+				'type' => 'true_false',
+				'instructions' => 'If checked this will disable the Timed / E-Book Pop-Up',
+			),
+			array(
+				'key' => 'field_727161',
+				'message' => '<h2 style="font-size:20px"><strong>Header Button Pop</strong></h2>',
+				'type' => 'message'
+			),
+			array(
+				'key' => 'field_md0d7123ha',
+				'label' => 'Header Button Text',
+				'type' => 'text',
+				'name' => 'quickquote-button-text',
+				'instructions' => 'This is the text that will appear in the button. Keep this under 11 characters.',
+				'default_value' => 'Quick Quote',
+			),
+			array(
+				'key' => 'field_87216162',
+				'label' => 'Image',
+				'name' => 'quickquote-image',
+				'type' => 'image',
+				'preview_size' => 'medium',
+				'return_format' => 'url',
+			),
+			array(
+				'key' => 'field_38276123',
+				'label' => 'Slogan',
+				'name' => 'quickquote-header',
+				'type' => 'text',
+				'instructions' => 'This is the text that appears above the form on the quick quote popup.',
+			),
+			array(
+				'key' => 'field_zfe32123',
+				'label' => 'Disable',
+				'name' => 'quickquote-disable',
+				'type' => 'true_false',
+				'instructions' => 'If checked this will disable the Header Button and it\'s popup', 
+			),
+			array(
+				'key' => 'field_218372012173',
+				'label' => '7. Blog',
+				'name' => 'blog-settings',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_15',
+				'label' => 'Blog Hero Image',
+				'name' => 'general-blog-bg',
+				'type' => 'image',
+				'return_format' => 'url',
+				'preview_size' => 'medium',
+			),
+			array(
+				'key' => 'field_387126',
+				'label' => 'Number of Posts Per Page',
+				'name' => 'posts-per-page',
+				'type' => 'number',
+				'min' => -1,
+				'default_value' => 10,
+				'instructions' => 'To have unlimited posts per page set this field to -1',
 			),
 			array(
 				'key' => 'field_nadnayeyf',
@@ -1460,7 +1431,135 @@ function add_acf_fields() {
 					),
 				),
 			),
-
+			array(
+				'key' => 'field_97zvh21',
+				'type' => 'tab',
+				'label' => '8. Parent Co.',
+			),
+			array(
+				'key' => 'field_902013uz',
+				'type' => 'text',
+				'label' => 'Parent Company Name',
+				'name' => 'webx-name',
+			),
+			array(
+				'key' => 'field_nnahahawef',
+				'label' => 'Parent Company Site URL',
+				'name' => 'webx-url',
+				'type' => 'url',
+			),
+			array(
+				'key' => 'field_abdf7d',
+				'label' => 'Parent Company Logo URL',
+				'name' => 'webx-logo',
+				'type' => 'url',
+			),	
+			array(
+				'key' => 'field_13366',
+				'label' => 'Login Page Background URL',
+				'name' => 'general-admin-bg',
+				'type' => 'url',
+			),
+			array(
+				'key' => 'field_928137z',
+				'label' => 'Parent Company Phone #',
+				'name' => 'webx-phone',
+				'type' => 'text',
+				'instructions' => 'Must be in 555-555-5555 format. Put the phone number you want to show up on the disable site page. Leaving this field blank will not show a phone number.',
+			),
+			array(
+				'key' => 'field_218372012112173',
+				'label' => 'Misc.',
+				'name' => 'general-404-settings',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_83nbjd',
+				'label' => 'Image Placeholder',
+				'instructions' => 'This is the image that will pop up if there\'s no featured image provided in a blog post.',
+				'type' => 'image',
+				'return_format' => 'url',
+				'preview_size' => 'medium',
+				'name' => 'featured-placeholder',
+			),
+			array(
+				'key' => 'field_23436',
+				'label' => 'Google Maps API Key',
+				'type' => 'text',
+				'name' => 'gmaps-api-key',
+				'instructions' => 'Anything here but a Google API Key won\'t work. Please make sure that on your project on console.developers.google.com has the Google Maps Geocode API and the Google Maps Javascript API enabled and it\'s restrictions are set appropriately.',
+			),
+			array(
+				'key' => 'field_16',
+				'label' => '404 Background Image',
+				'name' => 'general-404-bg',
+				'type' => 'image',
+				'return_format' => 'url',
+				'preview_size' => 'medium',
+				'instructions' => '404 is the page that shows up when a page can\'t be found',
+			),
+			array(
+				'key' => 'field_217710',
+				'label' => '404 Header Text',
+				'name' => 'general-404-header',
+				'type' => 'text',
+				'instructions' => 'If left blank this defaults to "404"',
+				'default_value' => '404',
+			),
+			array(
+				'key' => 'field_217752110',
+				'label' => '404 Subheader Text',
+				'name' => 'general-404-subheader',
+				'type' => 'textarea',
+				'new_lines' => 'br',
+				'instructions' => 'If left blank this defaults to "The requested page is not available. Click here to return home."',
+			),
+			array (
+				'key' => 'field_89ahzbdjao',
+				'label' => 'Terms & Conditions',
+				'name' => 'terms-content',
+				'type' => 'wysiwyg',
+			),
+			array(
+				'key' => 'field_b8n2qnafhdpz',
+				'label' => 'Custom CSS',
+				'type' => 'acf_code_field',
+				'name' => 'custom-css',
+				'theme' => 'monokai',
+				'mode' => 'css',
+			),
+			array(
+				'key' => 'field_oohpadf812',
+				'label' => 'Disable Site',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_mz09271yadsd',
+				'label' => 'Check this box to disable the site.',
+				'type' => 'true_false',
+				'name' => 'disable-site',
+			),
+			array(
+				'key' => 'field_a8d7df',
+				'label' => 'Coupons',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_bdsh8f',
+				'label' => 'Background Image',
+				'name' => 'general-coupons-bg',
+				'type' => 'image',
+				'preview_size' => 'medium',
+				'return_format' => 'url',
+			),
+			array(
+				'key' => 'field_7fbaxhp',
+				'label' => 'Posts Per Page',
+				'name' => 'general-coupons-postsperpage',
+				'min' => -1,
+				'default_value' => 10,
+				'instructions' => 'To have unlimited posts per page set this field to -1',
+			),
 		),
 		'location' => array (
 			array (
@@ -2011,6 +2110,7 @@ function acf_validate_values( $valid, $value, $field, $input ){
 		'field_26',
 		'field_25',
 		'field_27',
+		'field_928137z',
 	);
 	if( in_array($field['key'], $fields) ){
 		// bail early if value is already invalid

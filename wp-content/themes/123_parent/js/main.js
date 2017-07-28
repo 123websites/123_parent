@@ -1,22 +1,24 @@
-;(function ( $, window, document, undefined ) {
+var Theme = {};
+
+;(function ( $, Theme, window, document, undefined ) {
 
 	$(document).ready(function(){
 
-		var FadeEffects = {
+		Theme.FadeEffects = {
 			elements : $('.fade-up, .fade-left, .fade-right, .fade-in'),
 			_init : function(){
-				$(window).on('resize load scroll', FadeEffects._resizeLoadScrollHandler);
+				$(window).on('resize load scroll', Theme.FadeEffects._resizeLoadScrollHandler);
 			},
 			_resizeLoadScrollHandler : function(){
-				for(var i = 0; i < FadeEffects.elements.length; i++){
-					if( $(window).scrollTop() + $(window).height() > $(FadeEffects.elements[i]).offset().top )	{
-						$(FadeEffects.elements[i]).removeClass('fade-up fade-left fade-right fade-in');
+				for(var i = 0; i < Theme.FadeEffects.elements.length; i++){
+					if( $(window).scrollTop() + $(window).height() > $(Theme.FadeEffects.elements[i]).offset().top )	{
+						$(Theme.FadeEffects.elements[i]).removeClass('fade-up fade-left fade-right fade-in');
 					}
 				}
 			},
 		}
 
-		FadeEffects._init();
+		Theme.FadeEffects._init();
 
 		var Galleries = {
 			_init : function(){
@@ -450,7 +452,7 @@
 
 	});
 
-})( jQuery, window, document );
+})( jQuery, Theme, window, document );
 
 window._initContactMap = function(){
 	
