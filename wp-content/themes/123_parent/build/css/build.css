@@ -2353,7 +2353,7 @@
   font-family: 'Gotham';
   src: url("../../library/fonts/GothamHTF-UltraItalic.eot");
   src: url("../../library/fonts/GothamHTF-UltraItalic.eot?#iefix") format("embedded-opentype"), url("../../library/fonts/GothamHTF-UltraItalic.woff") format("woff"), url("../../library/fonts/GothamHTF-UltraItalic.ttf") format("truetype");
-  font-weight: 800;
+  font-weight: 900;
   font-style: italic; }
 @font-face {
   font-family: 'Gotham';
@@ -2365,7 +2365,7 @@
   font-family: 'Gotham';
   src: url("../../library/fonts/GothamHTF-Black.eot");
   src: url("../../library/fonts/GothamHTF-Black.eot?#iefix") format("embedded-opentype"), url("../../library/fonts/GothamHTF-Black.woff") format("woff"), url("../../library/fonts/GothamHTF-Black.ttf") format("truetype");
-  font-weight: 900;
+  font-weight: 700;
   font-style: normal; }
 @font-face {
   font-family: 'Gotham Condensed';
@@ -2407,7 +2407,7 @@
   font-family: 'Gotham';
   src: url("../../library/fonts/GothamHTF-Ultra.eot");
   src: url("../../library/fonts/GothamHTF-Ultra.eot?#iefix") format("embedded-opentype"), url("../../library/fonts/GothamHTF-Ultra.woff") format("woff"), url("../../library/fonts/GothamHTF-Ultra.ttf") format("truetype");
-  font-weight: 800;
+  font-weight: 900;
   font-style: normal; }
 @font-face {
   font-family: 'Gotham Condensed';
@@ -2561,7 +2561,9 @@ footer, header, hgroup, menu, nav, section, img {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    z-index: 1; }
+    z-index: 1;
+    width: 100%;
+    text-align: center; }
 
   section:not(.home-hero):not(#coupons):not(#blog).hero {
     height: 20vh;
@@ -2600,7 +2602,7 @@ footer, header, hgroup, menu, nav, section, img {
       font-size: 5rem; }
 
   .hero-text-header {
-    font-size: 5rem;
+    font-size: 3.6rem;
     color: white;
     margin: 20px 0;
     display: inline-block;
@@ -2642,6 +2644,9 @@ footer, header, hgroup, menu, nav, section, img {
     text-align: center;
     margin-top: 20px; } }
 @media only screen and (min-width: 641px) {
+  .hero-text-header {
+    font-size: 5rem; }
+
   .hero-text-subheader {
     text-align: center; } }
 @media only screen and (min-width: 1025px) {
@@ -5017,16 +5022,16 @@ footer, header, hgroup, menu, nav, section, img {
     text-decoration: none;
     text-transform: uppercase;
     color: black;
-    text-align: center;
-    font-weight: normal; }
+    text-align: left;
+    font-weight: 900; }
 
   .main--hasbg .blog-blog-grid-item-textcontainer-header {
     color: white; }
 
   .blog-blog-grid-item-textcontainer-date {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     padding: 10px 0 0 10px;
-    text-align: center; }
+    text-align: left; }
 
   .blog-blog-grid-item-textcontainer-description {
     padding: 10px;
@@ -5046,7 +5051,12 @@ footer, header, hgroup, menu, nav, section, img {
   .blog-blog-grid-item-socialcontainer {
     padding-left: 10px;
     margin-bottom: -10px;
-    text-align: center; }
+    text-align: left; }
+
+  .blog-blog-grid-item-socialcontainer-header {
+    font-family: "Gotham", "Helvetica", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500; }
 
   .blog-blog-sidebar {
     display: none; }

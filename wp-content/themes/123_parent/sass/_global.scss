@@ -84,6 +84,8 @@
 		left: 20px;
 		@include transform(translateY(-50%));
 		z-index: 1;
+		width: 100%;
+		text-align: center;
 	}
 	section:not(.home-hero):not(#coupons):not(#blog){
 		&.hero{
@@ -120,7 +122,7 @@
 		}
 	}
 	.hero-text-header{
-		font-size: 5rem;
+		font-size: 3.6rem;
 		color: white;
 		margin: 20px 0;
 		display: inline-block;
@@ -168,7 +170,7 @@
 }
 @media only screen and (min-width: $medium){
 	.hero-text-header{
-		// font-size: 7.2rem;
+		font-size: 5rem;
 	}
 	.hero-text-subheader{
 		text-align: center;
