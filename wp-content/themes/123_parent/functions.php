@@ -325,29 +325,19 @@ add_filter( 'login_headerurl', 'my_login_logo_url' );
 // get the phone number for headers & footers
 function get_the_phone($phonetel = 'phone'){
 	$social_phone = get_field('social-phone-number', 'option');
-	$contact_office = get_field('contact-office', 'option');
-
-	$the_phone = null;
-	if(!empty($social_phone)){
-		$the_phone = $social_phone;
-	}
-	else{
-		if(!empty($contact_office)){
-			$the_phone = $contact_office;
+	if( !empty( str_replace( ' ', '', $social_phone) ) ){
+		$search_for = array('(',')','-',' ','.');
+		$replace_with = array('','','','','');
+		$tel = str_replace($search_for, $replace_with, $social_phone);
+		if($phonetel == 'tel'){
+			return $tel;
 		}
 		else{
-			$the_phone = '(555) 555-5555';
+			return $social_phone;
 		}
 	}
-
-	$search_for = array('(',')','-',' ','.');
-	$replace_with = array('','','','','');
-	$tel = str_replace($search_for, $replace_with, $the_phone);
-	if($phonetel == 'tel'){
-		return $tel;
-	}
 	else{
-		return $the_phone;
+		return '';
 	}
 }
 function get_tel($the_phone){
