@@ -2175,7 +2175,7 @@ function acf_update_tagline( $value, $post_id, $field ){
 add_action('acf/update_value/key=field_npy320zdfa1212af', 'acf_update_tagline', 10, 3);
 
 
-function acf_validate_values( $valid, $value, $field, $input ){
+function acf_validate_phone_numbers( $valid, $value, $field, $input ){
 	$fields = array(
 		'field_8378888',
 		'field_8378ddf888',
@@ -2201,7 +2201,7 @@ function acf_validate_values( $valid, $value, $field, $input ){
 	return $valid;
 }
 
-add_action( 'acf/validate_value', 'acf_validate_values', 10, 4 );
+add_action( 'acf/validate_value', 'acf_validate_phone_numbers', 10, 4 );
 
 
 

@@ -8,19 +8,17 @@
 
 		var $textarea = $el.find( '.acf-input>textarea' );
 
-		//load needed CSS if doesn't already exist
-		if ( !$( "link[href='" + acf_code_field_obj.plugins_url + "/js/codemirror-5.13/theme/" + $textarea.attr( "theme" ) + ".css']" ).length ) {
-			$( '<link href="'+ acf_code_field_obj.plugins_url +'/js/codemirror-5.13/theme/' + $textarea.attr( "theme" ) + '.css" rel="stylesheet">' ).appendTo( "head" );
-		}
-
 		var editor = CodeMirror.fromTextArea( $textarea[ 0 ], {
 			lineNumbers: true,
 			fixedGutter: false,
 			mode: $textarea.attr( "mode" ),
 			theme: $textarea.attr( "theme" ),
 			extraKeys: { "Ctrl-Space": "autocomplete" },
-			value: document.documentElement.innerHTML
-
+			matchBrackets: true,
+			styleSelectedText: true,
+			autoRefresh: true,
+			value: document.documentElement.innerHTML,
+			viewportMargin: Infinity
 		} );
 
 		editor.refresh();
@@ -48,6 +46,7 @@
 			} );
 
 		} );
+
 		acf.add_action( 'append_field', function( $el ) {
 			if ( $el.attr( 'data-type' ) == "acf_code_field" ) {
 				initialize_code_field( $el );
