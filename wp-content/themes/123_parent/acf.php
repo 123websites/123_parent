@@ -11,27 +11,27 @@ if( function_exists('acf_add_options_page') ) {
 	));
 
 	acf_add_options_page(array(
-		'page_title' 	=> 'Areas Served',
+		'page_title' 	=> ' ',
 		'menu_title'	=> 'Areas Served',
 		'menu_slug' 	=> 'areas-served-settings',
 		'capability'	=> 'read_private_posts',
 		'icon_url'      => 'dashicons-location-alt',
 		'redirect'		=> false,
-		'position'      => 80,
+		'position'      => 81,
 	));
 
 	acf_add_options_page(array(
-		'page_title' 	=> 'Company',
-		'menu_title'	=> 'Company',
+		'page_title' 	=> ' ',
+		'menu_title'	=> 'About',
 		'menu_slug' 	=> 'company-settings',
 		'capability'	=> 'read_private_posts',
 		'icon_url'      => 'dashicons-groups',
 		'redirect'		=> false,
-		'position'      => 82,
+		'position'      => 80,
 	));
 
 	acf_add_options_page(array(
-		'page_title' 	=> 'Gallery',
+		'page_title' 	=> ' ',
 		'menu_title'	=> 'Gallery',
 		'menu_slug' 	=> 'gallery-settings',
 		'capability'	=> 'read_private_posts',
@@ -41,43 +41,43 @@ if( function_exists('acf_add_options_page') ) {
 	));	
 
 	acf_add_options_page(array(
-		'page_title' 	=> 'Services',
+		'page_title' 	=> ' ',
 		'menu_title'	=> 'Services',
 		'menu_slug' 	=> 'services-settings',
 		'capability'	=> 'read_private_posts',
 		'icon_url'      => 'dashicons-admin-tools',
 		'redirect'		=> false,
-		'position'      => 86,
+		'position'      => 89,
 	));	
 
 	acf_add_options_page(array(
-		'page_title' 	=> 'Testimonials',
+		'page_title' 	=> ' ',
 		'menu_title'	=> 'Testimonials',
 		'menu_slug' 	=> 'testimonials-settings',
 		'capability'	=> 'read_private_posts',
 		'icon_url'      => 'dashicons-format-quote',
 		'redirect'		=> false,
-		'position'      => 87,
+		'position'      => 90,
 	));
 
 	acf_add_options_page(array(
-		'page_title' 	=> 'Contact',
-		'menu_title'	=> 'Contact',
-		'menu_slug' 	=> 'contact-settings',
+		'page_title' 	=> ' ',
+		'menu_title'	=> 'Locations',
+		'menu_slug' 	=> 'locations-settings',
 		'capability'	=> 'read_private_posts',
-		'icon_url'      => 'dashicons-email-alt',
+		'icon_url'      => 'dashicons-location-alt',
 		'redirect'		=> false,
-		'position'      => 83,
+		'position'      => 85,
 	));
 
 	acf_add_options_page(array(
-		'page_title' 	=> 'Menu',
+		'page_title' 	=> ' ',
 		'menu_title'	=> 'Menu',
 		'menu_slug' 	=> 'menu-settings',
 		'capability'	=> 'read_private_posts',
 		'icon_url'      => 'dashicons-feedback',
 		'redirect'		=> false,
-		'position'      => 85,
+		'position'      => 86,
 	));
 }
 
@@ -360,12 +360,24 @@ function add_acf_fields() {
 		'title' => ' ',
 		'fields' => array (
 			array(
+				'key' => 'field_21803yaf',
+				'label' => 'Hero/Slogan Settings',
+				'type' => 'tab',
+			),
+			array(
 				'key' => 'field_5',
-				'label' => 'Background Image',
+				'label' => 'Hero Image',
 				'name' => 'gallery-bg',
 				'type' => 'image',
 				'return_format' => 'url',
 				'preview_size' => 'medium',
+			),
+			array(
+				'key' => 'field_12dsahgdafe',
+				'label' => 'Slogan',
+				'type' => 'textarea',
+				'new_lines' => 'br',
+				'name' => 'gallery-slogan',
 			),
 			array (
 				'key' => 'field_6',
@@ -411,13 +423,30 @@ function add_acf_fields() {
 		'title' => ' ',
 		'fields' => array (
 			array(
+				'key' => 'field_m213hadf',
+				'label' => 'Hero/Slogan Settings',
+				'type' => 'tab',
+			),
+			array(
 				'key' => 'field_9',
-				'label' => 'Background Image',
+				'label' => 'Hero Image',
 				'name' => 'services-bg',
 				'type' => 'image',
 				'return_format' => 'url',
 				'preview_size' => 'medium',
 				'instructions' => 'Add a picture or else the image placeholder defined in General Settings > Sitewide Misc. will be used.',
+			),
+			array(
+				'key' => 'field_udfaoh12',
+				'label' => 'Slogan',
+				'name' => 'service-slogan',
+				'type' => 'textarea',
+				'new_lines' => 'br',
+			),
+			array(
+				'key' => 'field_kpfh123',
+				'label' => 'List of Services',
+				'type' => 'tab',
 			),
 			array(
 				'key' => 'field_10',
@@ -532,24 +561,7 @@ function add_acf_fields() {
 						),
 					)
 				),
-			),
-			array(
-				'key' => 'field_873262213',
-				'label' => 'Site Contact Slogan',
-				'name' => 'general-contact-slogan',
-				'type' => 'textarea',
-				'instructions' => 'This is the text that appears in the section just above the footer on all pages except the contact page. You can add new lines here.',
-				'new_lines' => 'br',
-			),	
-			array(
-				'key' => 'field_23',
-				'label' => 'Site Contact Background Image',
-				'name' => 'contact-bg',
-				'type' => 'image',
-				'preview_size' => 'medium',
-				'return_format' => 'url',
-			),
-			
+			),			
 			array(
 				'key' => 'field_padfh123ad',
 				'label' => '2. Colors',
@@ -1180,14 +1192,14 @@ function add_acf_fields() {
 				'label' => 'Social Phone Number',
 				'name' => 'social-phone-number',
 				'type' => 'text',
-				'instructions' => 'Must be in 555-555-5555 format. Put the phone number you want to show up in the footer and nav. Leaving this field blank will default first to the first office phone number provided in the contact settings then a placeholder number: 555-555-5555.',
+				'instructions' => 'Must be in 555-555-5555 format. Put the phone number you want to show up in the footer and nav. Leaving this field blank will default first to the first office phone number provided in the locations settings then a placeholder number: 555-555-5555.',
 			),
 			array(
 				'key' => 'field_8378ddf888',
 				'label' => 'Social Fax Number',
 				'name' => 'social-fax-number',
 				'type' => 'text',
-				'instructions' => 'Must be in 555-555-5555 format. Put the fax number you want to show up in the footer and nav. Leaving this field blank will default first to the first fax phone number provided in the contact settings then a placeholder number: 555-555-5555.',
+				'instructions' => 'Must be in 555-555-5555 format. Put the fax number you want to show up in the footer and nav. Leaving this field blank will default first to the first fax phone number provided in the locations settings then a placeholder number: 555-555-5555.',
 			),
 			array(
 				'key' => 'field_mpoh12hadf',
@@ -1580,13 +1592,30 @@ function add_acf_fields() {
 		'title' => ' ',
 		'fields' => array (
 			array(
+				'key' => 'field_2387dsf12',
+				'label' => 'Hero/Slogan Settings',
+				'type' => 'tab',
+			),
+			array(
 				'key' => 'field_19',
-				'label' => 'Background Image',
+				'label' => 'Hero Image',
 				'name' => 'testimonials-bg',
 				'type' => 'image',
 				'preview_size' => 'medium',
 				'return_format' => 'url',
 			),	
+			array(
+				'key' => 'field_021hadfha',
+				'label' => 'Slogan',
+				'name' => 'testimonials-slogan',
+				'type' => 'textarea',
+				'new_lines' => 'br',
+			),
+			array(
+				'key' => 'field_213adhfa',
+				'label' => 'List of Testimonials',
+				'type' => 'tab',
+			),
 			array(
 				'key' => 'field_17',
 				'label' => 'Testimonials',
@@ -1656,10 +1685,10 @@ function add_acf_fields() {
 					),
 					array(
 						'key' => 'field_a9d7bh',
-						'label' => 'YouTube Embed',
-						'type' => 'text',
+						'label' => 'Video Embed',
+						'type' => 'oembed',
 						'name' => 'testimonials-repeater-youtube',
-						'instructions' => 'Click on "Share" on the YouTube video page and you\'ll find a link like this: https://youtu.be/QPFGfr664og then select & copy the part after the last "/" (in this case: QPFGfr664og) and paste it here.',
+						'instructions' => 'Just paste the url to the video here and it should show up automatically. For a full list of supported services please go <a href="https://codex.wordpress.org/Embeds#Okay.2C_So_What_Sites_Can_I_Embed_From.3F">here</a>',
 						'conditional_logic' => array(
 							array(
 								array(
@@ -1686,12 +1715,38 @@ function add_acf_fields() {
 	));
 
 
-	// Contact Settings 
+	// Location Settings
 
 	acf_add_local_field_group(array(
 		'key' => 'group_7',
 		'title' => ' ',
 		'fields' => array (
+			array(
+				'key' => 'field_12387adsf',
+				'label' => 'Hero/Slogan Settings',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_23',
+				'label' => 'Hero Image',
+				'name' => 'contact-bg',
+				'type' => 'image',
+				'preview_size' => 'medium',
+				'return_format' => 'url',
+			),
+			array(
+				'key' => 'field_873262213',
+				'label' => 'Slogan',
+				'name' => 'general-contact-slogan',
+				'type' => 'textarea',
+				'instructions' => 'This is the text that appears in the section just above the footer on all pages except the contact page. You can add new lines here.',
+				'new_lines' => 'br',
+			),	
+			array(
+				'key' => 'field_2137dsafh',
+				'label' => 'List of Locations',
+				'type' => 'tab',
+			),
 			array(
 				'key' => 'field_392716161',
 				'label' => 'Addresses',
@@ -1836,7 +1891,7 @@ function add_acf_fields() {
 				array (
 					'param' => 'options_page',
 					'operator' => '==',
-					'value' => 'contact-settings',
+					'value' => 'locations-settings',
 				),
 			),
 		),
@@ -1880,11 +1935,28 @@ function add_acf_fields() {
 		'title' => ' ',
 		'fields' => array (
 			array(
+				'key' => 'field_tyeq02137',
+				'label' => 'Hero/Slogan Settings',
+				'type' => 'tab',
+			),
+			array(
 				'key' => 'field_71b12312',
-				'label' => 'Menu Hero BG',
+				'label' => 'Hero Image',
 				'name' => 'menu-bg',
 				'type' => 'image',
 				'return_format' => 'url',
+			),
+			array(
+				'key' => 'field_t92173af',
+				'label' => 'Slogan',
+				'name' => 'menu-slogan',
+				'type' => 'textarea',
+				'new_lines' => 'br',
+			),
+			array(
+				'key' => 'field_weqr123h',
+				'label' => 'Menu Categories/Items',
+				'type' => 'tab',
 			),
 			array(
 				'key' => 'field_nnnffff',
