@@ -28,7 +28,10 @@
 						</div>
 					<?php endif; ?>
 					<?php if( get_sub_field('testimonials-repeater-select', 'option') == 'youtube' ): ?>
-						<div class="testimonials-testimonials-grid-item-youtubecontainer"><iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo get_sub_field('testimonials-repeater-youtube', 'option'); ?>" frameborder="0" allowfullscreen></iframe></div>
+						<div class="testimonials-testimonials-grid-item-youtubecontainer">
+							<?php the_sub_field('testimonials-repeater-youtube', 'option'); ?>
+							<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo get_sub_field('testimonials-repeater-youtube', 'option'); ?>" frameborder="0" allowfullscreen></iframe> -->
+						</div>
 					<?php endif; ?>
 
 				</div>
