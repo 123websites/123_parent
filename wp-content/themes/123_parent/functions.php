@@ -654,13 +654,17 @@ add_action('init', 'myprefix_unregister_tags');
 function wpse_233129_admin_menu_items() {
     global $menu;
 
+    $menu[5][0] = 'Blog Posts';
+
     foreach ( $menu as $key => $value ) {
         if ( 'edit.php' == $value[2] ) {
             $oldkey = $key;
         }
     }
+    
+    // change Posts menu position in the backend
 
-    $newkey = 86; // use whatever index gets you the position you want
+    $newkey = 83; // use whatever index gets you the position you want
     // if this key is in use you will write over a menu item!
     $menu[$newkey]=$menu[$oldkey];
     $menu[$oldkey]=array();
