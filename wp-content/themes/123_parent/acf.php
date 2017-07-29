@@ -1568,9 +1568,10 @@ function add_acf_fields() {
 			),
 			array(
 				'key' => 'field_mz09271yadsd',
-				'label' => 'Check this box to disable the site.',
+				'label' => '<h3 style="color: red; margin-bottom: 6px;">Do you want to disable the site?</h3> (the text that\'s shown is the answer to that question)',
 				'type' => 'true_false',
 				'name' => 'disable-site',
+				'ui' => true,
 			),
 		),
 		'location' => array (
