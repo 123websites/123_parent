@@ -101,17 +101,9 @@ function update_login_styles(){
 				background-size: cover;
 				background-repeat: no-repeat;
 			}
-			#login h1 a, .login h1 a {
-				<?php if( get_field('logo-type-switch', 'option') == 'text' ): ?>
-					background-image: url('<?php echo get_template_directory_uri(); ?>/library/img/logo-text.png');
-		            background-size: 90%;
-		            background-color: rgba(0,0,0,0.7);
-		            background-position: center center;
-		            width: 100%;
-				<?php else: ?>
-		            background-image: url('<?php echo  get_field('general-logo', 'option'); ?>');
-		            background-size: contain;
-	            <?php endif; ?>
+			#login h1 a, .login h1 a {	
+	            background-image: url('<?php echo get_field('webx-logo', 'option'); ?>');
+	            background-size: contain;
 	            min-width: 300px;
 	        }
 		</style>
@@ -133,7 +125,16 @@ function add_gmaps_script(){
 	localize_areas_served();
 }
 
+// modify login form bottom
+function action_login_footer(){
+	?>
+		<script type="text/javascript">
+			document.querySelector('#backtoblog a').innerHTML = '&larr; Back to Theme';
+		</script>
+	<?php
+}
 
+add_action('login_footer', 'action_login_footer');
 
 // programatically add pages
 function the_slug_exists($post_name) {
