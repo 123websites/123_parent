@@ -362,32 +362,20 @@ function get_the_email(){
 // get the fax number for footers
 function get_the_fax($phonetel = 'phone'){
 	$social_fax = get_field('social-fax-number', 'option');
-	$the_fax = null;
 
 	if(!empty($social_fax)){
-		$the_fax = $social_fax;
-	}
-
-	$rows = get_field('addresses-repeater', 'option');
-
-	foreach($rows as $row){
-		if( !empty($row['contact-fax']) && empty($social_fax) ){
-			$the_fax = $row['contact-fax'];
+		$search_for = array('(',')','-',' ','.');
+		$replace_with = array('','','','','');
+		$tel = str_replace($search_for, $replace_with, $social_fax);
+		if($phonetel == 'tel'){
+			return $tel;
+		}
+		else{
+			return $social_fax;
 		}
 	}
-
-	if($the_fax == null){
-		$the_fax = '555-555-5555';
-	}
-
-	$search_for = array('(',')','-',' ','.');
-	$replace_with = array('','','','','');
-	$tel = str_replace($search_for, $replace_with, $the_fax);
-	if($phonetel == 'tel'){
-		return $tel;
-	}
 	else{
-		return $the_fax;
+		return '';
 	}
 }
 

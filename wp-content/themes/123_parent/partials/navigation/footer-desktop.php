@@ -5,8 +5,12 @@
 				<img src="<?php echo get_logo(); ?>" class="footer-logo-image">
 			</a>
 			<div class="footer-contactlinks">
-				<a href="tel:<?php echo get_the_phone('tel'); ?>" class="footer-contactlinks-phone"><?php echo 'p: ' . get_the_phone() ?></a>
-				<a href="tel:<?php echo get_the_fax('tel'); ?>" class="footer-contactlinks-fax"><?php echo 'f: ' . get_the_fax() ?></a>
+				<?php if( !empty(get_the_phone()) ): ?>
+					<a href="tel:<?php echo get_the_phone('tel'); ?>" class="footer-contactlinks-phone"><?php echo 'p: ' . get_the_phone() ?></a>
+				<?php endif; ?>
+				<?php if( !empty(get_the_fax()) ): ?>
+					<a href="tel:<?php echo get_the_fax('tel'); ?>" class="footer-contactlinks-fax"><?php echo 'f: ' . get_the_fax() ?></a>
+				<?php endif; ?>
 				<div class="footer-contactlinks-address"><?php echo get_the_address(); ?></div>
 			</div>
 		</div>
