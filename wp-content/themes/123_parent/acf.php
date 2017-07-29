@@ -530,7 +530,6 @@ function add_acf_fields() {
 				'name' => 'tagline',
 				'type' => 'text',
 			),
-			
 			array(
 				'key' => 'field_8372zzzn12',
 				'label' => 'Company Logo',
@@ -561,7 +560,21 @@ function add_acf_fields() {
 						),
 					)
 				),
-			),			
+			),		
+			array(
+				'key' => 'field_8378888',
+				'label' => 'Company Phone Number',
+				'name' => 'social-phone-number',
+				'type' => 'text',
+				'instructions' => 'Must be in 555-555-5555 format. Leave it blank if you don\'t want your company phone number to show up in the footer.',
+			),
+			array(
+				'key' => 'field_8378ddf888',
+				'label' => 'Company Fax Number',
+				'name' => 'social-fax-number',
+				'type' => 'text',
+				'instructions' => 'Must be in 555-555-5555 format. Leave it blank if you don\'t want your company phone number to show up in the footer.',
+			),	
 			array(
 				'key' => 'field_padfh123ad',
 				'label' => '2. Colors',
@@ -1173,7 +1186,7 @@ function add_acf_fields() {
 			),
 			array(
 				'key' => 'field_bdaa98',
-				'label' => 'Social Address',
+				'label' => 'Company Address',
 				'name' => 'social-address',
 				'type' => 'google_map',
 				'center_lat' => '40.141256',	
@@ -1182,25 +1195,12 @@ function add_acf_fields() {
 			),
 			array(
 				'key' => 'field_zifhef',
-				'label' => 'Social Address Line 2',
+				'label' => 'Company Address Line 2',
 				'name' => 'social-address-line2',
 				'type' => 'text',
 				'instructions' => 'This is the second line of the address provided above which will be inserted before the first comma. Useful for suite number, apartment number, floor number etc.',
 			),
-			array(
-				'key' => 'field_8378888',
-				'label' => 'Social Phone Number',
-				'name' => 'social-phone-number',
-				'type' => 'text',
-				'instructions' => 'Must be in 555-555-5555 format. Put the phone number you want to show up in the footer and nav. Leaving this field blank will default first to the first office phone number provided in the locations settings then a placeholder number: 555-555-5555.',
-			),
-			array(
-				'key' => 'field_8378ddf888',
-				'label' => 'Social Fax Number',
-				'name' => 'social-fax-number',
-				'type' => 'text',
-				'instructions' => 'Must be in 555-555-5555 format. Put the fax number you want to show up in the footer and nav. Leaving this field blank will default first to the first fax phone number provided in the locations settings then a placeholder number: 555-555-5555.',
-			),
+			
 			array(
 				'key' => 'field_mpoh12hadf',
 				'label' => '<h2 style="font-weight: bold; font-size: 22px;">Payment Types</h2><h4 style="margin-top: 0px; padding-left: 10px; font-weight: 400;">(For each payment method checking the box displays the payment method in the footer and uploading an image will override the default)</h4>',
@@ -1407,7 +1407,7 @@ function add_acf_fields() {
 			),
 			array(
 				'key' => 'field_15',
-				'label' => 'Blog Hero Image',
+				'label' => 'Hero Image',
 				'name' => 'general-blog-bg',
 				'type' => 'image',
 				'return_format' => 'url',
@@ -1450,7 +1450,7 @@ function add_acf_fields() {
 			),
 			array(
 				'key' => 'field_bdsh8f',
-				'label' => 'Background Image',
+				'label' => 'Hero Image',
 				'name' => 'general-coupons-bg',
 				'type' => 'image',
 				'preview_size' => 'medium',
@@ -1458,7 +1458,7 @@ function add_acf_fields() {
 			),
 			array(
 				'key' => 'field_7fbaxhp',
-				'label' => 'Posts Per Page',
+				'label' => 'Number of Posts Per Page',
 				'name' => 'general-coupons-postsperpage',
 				'min' => -1,
 				'default_value' => 10,
