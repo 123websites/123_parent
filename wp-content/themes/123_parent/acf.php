@@ -90,6 +90,11 @@ function add_acf_fields() {
 		'key' => 'group_1',
 		'title' => ' ',
 		'fields' => array (
+			array(
+				'key' => 'field_2137dsa12',
+				'label' => 'Areas Served',
+				'type' => 'tab',
+			),
 			array (
 				'key' => 'field_1',
 				'label' => 'Locations',
@@ -119,7 +124,26 @@ function add_acf_fields() {
 						'required' => true,
 					),
 				),
-			)
+			),
+			array(
+				'key' => 'field_217hdagad',
+				'label' => 'Header Settings',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_afd9zx7',
+				'label' => 'Hero Image',
+				'type' => 'image',
+				'return_format' => 'url',
+				'name' => 'areas-served-hero-image',
+			),	
+			array(
+				'key' => 'field_1098123ydf',
+				'label' => 'Slogan',
+				'type' => 'textarea',
+				'new_lines' => 'br',
+				'name' => 'areas-served-slogan',
+			),
 		),
 		'location' => array (
 			array (
@@ -371,24 +395,9 @@ function add_acf_fields() {
 		'title' => ' ',
 		'fields' => array (
 			array(
-				'key' => 'field_21803yaf',
-				'label' => 'Header Details',
+				'key' => 'field_1237adhfuh',
+				'label' => 'Galleries',
 				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_5',
-				'label' => 'Hero Image',
-				'name' => 'gallery-bg',
-				'type' => 'image',
-				'return_format' => 'url',
-				'preview_size' => 'medium',
-			),
-			array(
-				'key' => 'field_12dsahgdafe',
-				'label' => 'Slogan',
-				'type' => 'textarea',
-				'new_lines' => 'br',
-				'name' => 'gallery-slogan',
 			),
 			array (
 				'key' => 'field_6',
@@ -413,7 +422,27 @@ function add_acf_fields() {
 						'required' => true,
 					),
 				),
-			)
+			),
+			array(
+				'key' => 'field_21803yaf',
+				'label' => 'Header Details',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_5',
+				'label' => 'Hero Image',
+				'name' => 'gallery-bg',
+				'type' => 'image',
+				'return_format' => 'url',
+				'preview_size' => 'medium',
+			),
+			array(
+				'key' => 'field_12dsahgdafe',
+				'label' => 'Slogan',
+				'type' => 'textarea',
+				'new_lines' => 'br',
+				'name' => 'gallery-slogan',
+			),
 		),
 		'location' => array (
 			array (
@@ -433,27 +462,7 @@ function add_acf_fields() {
 		'key' => 'group_4',
 		'title' => ' ',
 		'fields' => array (
-			array(
-				'key' => 'field_m213hadf',
-				'label' => 'Header Details',
-				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_9',
-				'label' => 'Hero Image',
-				'name' => 'services-bg',
-				'type' => 'image',
-				'return_format' => 'url',
-				'preview_size' => 'medium',
-				'instructions' => 'Add a picture or else the image placeholder defined in General Settings > Sitewide Misc. will be used.',
-			),
-			array(
-				'key' => 'field_udfaoh12',
-				'label' => 'Slogan',
-				'name' => 'service-slogan',
-				'type' => 'textarea',
-				'new_lines' => 'br',
-			),
+			
 			array(
 				'key' => 'field_kpfh123',
 				'label' => 'List of Services',
@@ -498,6 +507,27 @@ function add_acf_fields() {
 						'type' => 'text',
 					),
 				),
+			),
+			array(
+				'key' => 'field_m213hadf',
+				'label' => 'Header Details',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_9',
+				'label' => 'Hero Image',
+				'name' => 'services-bg',
+				'type' => 'image',
+				'return_format' => 'url',
+				'preview_size' => 'medium',
+				'instructions' => 'Add a picture or else the image placeholder defined in General Settings > Sitewide Misc. will be used.',
+			),
+			array(
+				'key' => 'field_udfaoh12',
+				'label' => 'Slogan',
+				'name' => 'service-slogan',
+				'type' => 'textarea',
+				'new_lines' => 'br',
 			),
 		),
 		'location' => array (
@@ -1605,26 +1635,7 @@ function add_acf_fields() {
 		'key' => 'group_6',
 		'title' => ' ',
 		'fields' => array (
-			array(
-				'key' => 'field_2387dsf12',
-				'label' => 'Header Details',
-				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_19',
-				'label' => 'Hero Image',
-				'name' => 'testimonials-bg',
-				'type' => 'image',
-				'preview_size' => 'medium',
-				'return_format' => 'url',
-			),	
-			array(
-				'key' => 'field_021hadfha',
-				'label' => 'Slogan',
-				'name' => 'testimonials-slogan',
-				'type' => 'textarea',
-				'new_lines' => 'br',
-			),
+			
 			array(
 				'key' => 'field_213adhfa',
 				'label' => 'List of Testimonials',
@@ -1716,6 +1727,26 @@ function add_acf_fields() {
 				),
 				'layout' => 'row',
 			),
+			array(
+				'key' => 'field_2387dsf12',
+				'label' => 'Header Details',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_19',
+				'label' => 'Hero Image',
+				'name' => 'testimonials-bg',
+				'type' => 'image',
+				'preview_size' => 'medium',
+				'return_format' => 'url',
+			),	
+			array(
+				'key' => 'field_021hadfha',
+				'label' => 'Slogan',
+				'name' => 'testimonials-slogan',
+				'type' => 'textarea',
+				'new_lines' => 'br',
+			),
 		),
 		'location' => array (
 			array (
@@ -1735,27 +1766,7 @@ function add_acf_fields() {
 		'key' => 'group_7',
 		'title' => ' ',
 		'fields' => array (
-			array(
-				'key' => 'field_12387adsf',
-				'label' => 'Header Details',
-				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_23',
-				'label' => 'Hero Image',
-				'name' => 'contact-bg',
-				'type' => 'image',
-				'preview_size' => 'medium',
-				'return_format' => 'url',
-			),
-			array(
-				'key' => 'field_873262213',
-				'label' => 'Slogan',
-				'name' => 'general-contact-slogan',
-				'type' => 'textarea',
-				'instructions' => 'This is the text that appears in the section just above the footer on all pages except the contact page. You can add new lines here.',
-				'new_lines' => 'br',
-			),	
+			
 			array(
 				'key' => 'field_2137dsafh',
 				'label' => 'List of Locations',
@@ -1898,7 +1909,27 @@ function add_acf_fields() {
 				),
 				'layout' => 'row',
 			),
-			
+			array(
+				'key' => 'field_12387adsf',
+				'label' => 'Header Details',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_23',
+				'label' => 'Hero Image',
+				'name' => 'contact-bg',
+				'type' => 'image',
+				'preview_size' => 'medium',
+				'return_format' => 'url',
+			),
+			array(
+				'key' => 'field_873262213',
+				'label' => 'Slogan',
+				'name' => 'general-contact-slogan',
+				'type' => 'textarea',
+				'instructions' => 'This is the text that appears in the section just above the footer on all pages except the contact page. You can add new lines here.',
+				'new_lines' => 'br',
+			),	
 		),
 		'location' => array (
 			array (
@@ -1948,25 +1979,7 @@ function add_acf_fields() {
 		'key' => 'group_9',
 		'title' => ' ',
 		'fields' => array (
-			array(
-				'key' => 'field_tyeq02137',
-				'label' => 'Header Details',
-				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_71b12312',
-				'label' => 'Hero Image',
-				'name' => 'menu-bg',
-				'type' => 'image',
-				'return_format' => 'url',
-			),
-			array(
-				'key' => 'field_t92173af',
-				'label' => 'Slogan',
-				'name' => 'menu-slogan',
-				'type' => 'textarea',
-				'new_lines' => 'br',
-			),
+			
 			array(
 				'key' => 'field_weqr123h',
 				'label' => 'Menu Categories/Items',
@@ -2098,6 +2111,25 @@ function add_acf_fields() {
 						),
 					),
 				),
+			),
+			array(
+				'key' => 'field_tyeq02137',
+				'label' => 'Header Details',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_71b12312',
+				'label' => 'Hero Image',
+				'name' => 'menu-bg',
+				'type' => 'image',
+				'return_format' => 'url',
+			),
+			array(
+				'key' => 'field_t92173af',
+				'label' => 'Slogan',
+				'name' => 'menu-slogan',
+				'type' => 'textarea',
+				'new_lines' => 'br',
 			),
 		),
 		'location' => array (
