@@ -1,6 +1,6 @@
 <?php 
 
-wp_head();
+get_header();
 
 echo '<h1 class="terms-header">Terms &amp; Conditions</h1>';
 

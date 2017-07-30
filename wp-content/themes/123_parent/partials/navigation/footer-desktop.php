@@ -98,6 +98,6 @@
 		</div>	
 	</div>
 </footer>
-<div class="footer-copyright">Powered by <a class="footer-copyright-tclink" href="<?php the_field('webx-url', 'option') ?>"><?php the_field('webx-name', 'option'); ?></a> | <a target="_blank" class="footer-copyright-tclink" href="<?php echo site_url() ?>/terms">Terms &amp; Conditions</a> | Copyright &copy; <?php echo Date('Y') ?></div>
+<div class="footer-copyright">Powered by <a target="_blank" class="footer-copyright-tclink" href="<?php the_field('webx-url', 'option') ?>"><?php the_field('webx-name', 'option'); ?></a> | <a class="footer-copyright-tclink" href="<?php echo site_url() ?>/terms">Terms &amp; Conditions</a> | Copyright &copy; <?php echo Date('Y') ?></div>
 
 

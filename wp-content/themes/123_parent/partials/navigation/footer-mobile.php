@@ -60,7 +60,7 @@
 	</ul>
 	<?php endif; ?>
 	<?php render_page_links('mobilefooter-pagelinks', 'mobilefooter-pagelinks-item', 'mobilefooter-pagelinks-item-link'); ?>
-	<div class="fade fade-up mobilefooter-copyright">Powered by <a class="mobilefooter-copyright-tclink" href="<?php the_field('webx-url', 'option') ?>"><?php the_field('webx-name', 'option'); ?></a> <br/><br/> <a target="_blank" class="mobilefooter-copyright-tclink" href="<?php echo site_url() ?>/terms">Terms &amp; Conditions</a> <br/><br/> Copyright &copy; <?php echo Date('Y') ?><br/><br/>Created by</div>
+	<div class="fade fade-up mobilefooter-copyright">Powered by <a target="_blank" class="mobilefooter-copyright-tclink" href="<?php the_field('webx-url', 'option') ?>"><?php the_field('webx-name', 'option'); ?></a> <br/><br/> <a class="mobilefooter-copyright-tclink" href="<?php echo site_url() ?>/terms">Terms &amp; Conditions</a> <br/><br/> Copyright &copy; <?php echo Date('Y') ?><br/><br/>Created by</div>
 	<a href="http://webxmarketing.com" class="fade fade-up mobilefooter-webxlink">
 		<img src="<?php echo get_field('webx-logo', 'option'); ?>" class="mobilefooter-webxlink-logo">
 	</a>
