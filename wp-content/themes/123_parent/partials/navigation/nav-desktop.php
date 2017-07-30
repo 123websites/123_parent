@@ -6,7 +6,7 @@
 	<?php endif; ?>
 	<div class="header-content">
 		<a href="<?php echo site_url(); ?>" class="header-content-logo">
-			<img src="<?php echo get_logo(); ?>" class="header-content-logo-image">
+			<img alt="<?php echo bloginfo('sitename') ?>" src="<?php echo get_logo(); ?>" class="header-content-logo-image">
 		</a>
 		<div class="header-content-rightwrap">
 			<div class="header-content-menus">
