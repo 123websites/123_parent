@@ -1318,7 +1318,6 @@ function add_acf_fields() {
 				'label' => '<h1 style="color: red;">Looking for something?</h1>
 							<div>
 							- Company Address - Please see "1. Company Info" tab.<br/>
-							- Company Address Line 2 - Please see "1. Company Info" tab.<br/>
 							- Company Phone Number - Please see "1. Company Info" tab.<br/>
 							- Company Fax Number - Please see "1. Company Info" tab.<br/>
 							- Parent Co. Logo - Please see "7. Parent Co." tab.
