@@ -336,7 +336,9 @@ var Theme = {};
 		Theme.Estimate = {
 			link : $('.header-estimate-link'),
 			_init : function(){
-				Theme.Estimate.link.on('click', Theme.Estimate._clickHandler);
+				if( Theme.Estimate.link.length > 0 ){	
+					Theme.Estimate.link.on('click', Theme.Estimate._clickHandler);
+				}
 			},
 			_clickHandler : function(e){
 				e.preventDefault();
@@ -355,7 +357,9 @@ var Theme = {};
 			container : $('.pa.popupcontainer'),
 			submit : $('.pa.popupcontainer input[type="submit"]'),
 			_init : function(){
-				Theme.PA.container.click(Theme.PA._clickHandler);
+				if( Theme.PA.container.length > 0 ){
+					Theme.PA.container.click(Theme.PA._clickHandler);
+				}
 			},
 			_clickHandler : function(e){
 				if($(e.target).hasClass('pa') || $(e.target).hasClass('popupcontainer-times')){
@@ -376,8 +380,10 @@ var Theme = {};
 				}
 			},
 			_showPA : function(){
-				if(Theme.PA.container.css('display') == 'none'){
-					Theme.PA.container.fadeIn(250);	
+				if( Theme.PA.container.length > 0 ){
+					if(Theme.PA.container.css('display') == 'none'){
+						Theme.PA.container.fadeIn(250);	
+					}
 				}
 			}
 		}
