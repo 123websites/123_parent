@@ -26,7 +26,8 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	</head>
 	<body>
-		
-		<?php get_template_part('partials/navigation/nav', 'desktop'); ?>
-		<?php get_template_part('partials/navigation/nav', 'mobile'); ?>
+		<?php if( $post->post_name !== 'disabled' ): ?>
+			<?php get_template_part('partials/navigation/nav', 'desktop'); ?>
+			<?php get_template_part('partials/navigation/nav', 'mobile'); ?>
+		<?php endif; ?>
 		

@@ -188,6 +188,10 @@ $pages = array(
 		'title' => 'Blog',
 		'slug' => 'blog',
 	),
+	array(
+		'title' => 'Disabled',
+		'slug' => 'disabled',
+	),
 );
 
 foreach ($pages as $page){
@@ -679,8 +683,55 @@ function strpos_r($haystack, $needle){
 }
 
 
+function admin_notify_disabled_site() {
+    ?>
+    <div class="notice notice-error" style="background-color: #ffdadf;">
+        <p style="text-transform: uppercase; font-size: 24px; color: red; margin-bottom: 0px;">This site has been disabled!</p>
+        <p style="margin-top: 0px;">To enable it go to the Disable Site tab in Theme Settings</p>
+    </div>
+    <?php
+}
 
+function handle_disabled_site(){
+	if( get_field('disable-site', 'option') == true ){
+		global $post;
+		$slug = $post->post_name;
+		add_action( 'admin_notices', 'admin_notify_disabled_site' );
+		if( $slug == 'disabled' || is_admin() ){
+			if( is_admin() && !current_user_can('activate_plugins') ){
+				wp_logout();
+				wp_redirect( home_url( '/disabled/' ), 301 );
+			    exit;	
+			}
+		}
+		else{
+			wp_redirect( home_url( '/disabled/' ), 301 );
+		    exit;	
+		}
+	}
+}
 
+add_action('get_header', 'handle_disabled_site');
+add_action('admin_head', 'handle_disabled_site');
+
+// CUSTOM LOGIN MESSAGES
+function disable_site_login_message() {
+	if( get_field('disable-site', 'option') ){
+        $message = '<p class="message"><b>Site has been disabled</b><br/>Call ' . get_field("webx-phone", "option") . ' for help.</p>';
+        return $message;
+	}
+}
+add_filter('login_message', 'disable_site_login_message');
+
+function login_during_disable_site($user_login, $user){
+	if( !$user->has_cap('activate_plugins') ){
+		wp_logout();
+		wp_redirect( home_url( '/disabled/' ), 301 );
+	    exit;	
+	}
+}
+
+add_action('wp_login', 'login_during_disable_site', 10, 2);
 
 
 

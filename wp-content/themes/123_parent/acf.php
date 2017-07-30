@@ -1585,6 +1585,7 @@ function add_acf_fields() {
 				'type' => 'true_false',
 				'name' => 'disable-site',
 				'ui' => true,
+				'instructions' => 'When you re-enable the site be sure to clear your browser\'s cache to avoid the redirect.',
 			),
 		),
 		'location' => array (
