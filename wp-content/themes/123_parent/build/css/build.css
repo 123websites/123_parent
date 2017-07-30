@@ -3948,7 +3948,8 @@ footer, header, hgroup, menu, nav, section, img {
     display: block; }
 
   .footer-copyright-tclink {
-    color: white; }
+    color: white;
+    text-decoration: none; }
 
   .footer-leftcolumn,
   .footer-middlecolumn1,
