@@ -23,7 +23,7 @@ if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
 		'page_title' 	=> ' ',
 		'menu_title'	=> 'About',
-		'menu_slug' 	=> 'company-settings',
+		'menu_slug' 	=> 'about-settings',
 		'capability'	=> 'read_private_posts',
 		'icon_url'      => 'dashicons-groups',
 		'redirect'		=> false,
@@ -142,8 +142,13 @@ function add_acf_fields() {
 		'title' => ' ',
 		'fields' => array (
 			array(
+				'key' => 'field_217dafy',
+				'label' => 'Hero/Slogan Settings',
+				'type' => 'tab',
+			),
+			array(
 				'key' => 'field_3',
-				'label' => 'Background Image',
+				'label' => 'Hero Image',
 				'name' => 'company-bg',
 				'type' => 'image',
 				'return_format' => 'url',
@@ -151,10 +156,16 @@ function add_acf_fields() {
 			),
 			array(
 				'key' => 'field_83712616',
-				'label' => 'Page Header',
-				'type' => 'text',
+				'label' => 'Slogan',
+				'type' => 'textarea',
 				'name' => 'company-header',
 				'default_value' => 'About Us',
+				'new_lines' => 'br',
+			),
+			array(
+				'key' => 'field_e8173asf',
+				'label' => 'About Us Info',
+				'type' => 'tab',
 			),
 			array(
 				'key' => 'field_082117',
@@ -346,7 +357,7 @@ function add_acf_fields() {
 				array (
 					'param' => 'options_page',
 					'operator' => '==',
-					'value' => 'company-settings',
+					'value' => 'about-settings',
 				),
 			),
 		),
