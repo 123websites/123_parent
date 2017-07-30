@@ -135,36 +135,15 @@ function add_acf_fields() {
 
 
 
-	// Company Settings 
+	// About Settings 
 
 	acf_add_local_field_group(array(
 		'key' => 'group_2',
 		'title' => ' ',
 		'fields' => array (
 			array(
-				'key' => 'field_217dafy',
-				'label' => 'Hero/Slogan Settings',
-				'type' => 'tab',
-			),
-			array(
-				'key' => 'field_3',
-				'label' => 'Hero Image',
-				'name' => 'company-bg',
-				'type' => 'image',
-				'return_format' => 'url',
-				'preview_size' => 'medium',
-			),
-			array(
-				'key' => 'field_83712616',
-				'label' => 'Slogan',
-				'type' => 'textarea',
-				'name' => 'company-header',
-				'default_value' => 'About Us',
-				'new_lines' => 'br',
-			),
-			array(
 				'key' => 'field_e8173asf',
-				'label' => 'About Us Info',
+				'label' => 'About Us',
 				'type' => 'tab',
 			),
 			array(
@@ -350,7 +329,28 @@ function add_acf_fields() {
 						),
 					),
 				),
-			)
+			),
+			array(
+				'key' => 'field_217dafy',
+				'label' => 'Header Details',
+				'type' => 'tab',
+			),
+			array(
+				'key' => 'field_3',
+				'label' => 'Hero Image',
+				'name' => 'company-bg',
+				'type' => 'image',
+				'return_format' => 'url',
+				'preview_size' => 'medium',
+			),
+			array(
+				'key' => 'field_83712616',
+				'label' => 'Slogan',
+				'type' => 'textarea',
+				'name' => 'company-header',
+				'default_value' => 'About Us',
+				'new_lines' => 'br',
+			),
 		),
 		'location' => array (
 			array (
@@ -372,7 +372,7 @@ function add_acf_fields() {
 		'fields' => array (
 			array(
 				'key' => 'field_21803yaf',
-				'label' => 'Hero/Slogan Settings',
+				'label' => 'Header Details',
 				'type' => 'tab',
 			),
 			array(
@@ -435,7 +435,7 @@ function add_acf_fields() {
 		'fields' => array (
 			array(
 				'key' => 'field_m213hadf',
-				'label' => 'Hero/Slogan Settings',
+				'label' => 'Header Details',
 				'type' => 'tab',
 			),
 			array(
@@ -1607,7 +1607,7 @@ function add_acf_fields() {
 		'fields' => array (
 			array(
 				'key' => 'field_2387dsf12',
-				'label' => 'Hero/Slogan Settings',
+				'label' => 'Header Details',
 				'type' => 'tab',
 			),
 			array(
@@ -1737,7 +1737,7 @@ function add_acf_fields() {
 		'fields' => array (
 			array(
 				'key' => 'field_12387adsf',
-				'label' => 'Hero/Slogan Settings',
+				'label' => 'Header Details',
 				'type' => 'tab',
 			),
 			array(
@@ -1950,7 +1950,7 @@ function add_acf_fields() {
 		'fields' => array (
 			array(
 				'key' => 'field_tyeq02137',
-				'label' => 'Hero/Slogan Settings',
+				'label' => 'Header Details',
 				'type' => 'tab',
 			),
 			array(

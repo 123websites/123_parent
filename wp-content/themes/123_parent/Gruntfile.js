@@ -38,6 +38,24 @@ module.exports = function(grunt) {
         }],
       },
     },
+    uglify : {
+      build : {
+        files: {
+          'build/js/build.js' : ['build/js/build.js']
+        }
+      }
+    },
+    cssmin : {
+      build: {
+        files: [{
+          expand: true,
+          cwd: 'build/css',
+          src: ['*.css', '!*.min.css'],
+          dest: 'build/css',
+          ext: '.css'
+        }]
+      }
+    },
     watch: {
       sass: {
         files: ['sass/**/*.scss'],
@@ -71,8 +89,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('default', ['sass', 'concat', 'copy', 'watch']);
- 
+  grunt.registerTask('slim', ['sass', 'concat', 'copy', 'cssmin', 'uglify']);
 
 };
