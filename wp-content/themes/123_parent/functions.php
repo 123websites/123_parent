@@ -381,45 +381,18 @@ function get_the_fax($phonetel = 'phone'){
 
 // get the address for footers
 function get_the_address(){
-	$address_with_extra = null;
-
+	
 	if( !empty(get_field('social-address-line2', 'option')) && !empty(get_field('social-address', 'option')) ){
 		$address_line2 = get_field('social-address-line2', 'option');
-		$address_with_extra = strstr(get_field('social-address', 'option')['address'],',', true) . ' ' . $address_line2 . strstr(get_field('social-address', 'option')['address'],',');
+		return strstr(get_field('social-address', 'option')['address'],',', true) . ' ' . $address_line2 . strstr(get_field('social-address', 'option')['address'],',');
 	}
-
-	if($address_with_extra == null){
-		if( !empty(get_field('social-address', 'option')['address']) ){
-			return get_field('social-address', 'option')['address'];
-		}
-		else{
-			$rows = get_field('addresses-repeater', 'option');
-
-			foreach($rows as $row){
-				$row_address_with_line2 = null;
-
-				if( !empty($row['addresses-gmap']) && !empty($row['addresses-extra']) ){
-					$row_address_line2 = $row['addresses-extra'];
-					$row_address_with_line2 = strstr($row['addresses-gmap']['address'],',', true) . ' ' . $row_address_line2 . strstr($row['addresses-gmap']['address'],',');
-				}
-
-				if($row_address_with_line2 == null){
-					if( !empty($row['addresses-gmap']) ){
-						return $row['addresses-gmap'];
-					}
-					else{
-						return '123 fake st, anywhere anystate 01234 USA';
-					}
-				}
-				else{
-					return $row_address_with_line2;
-				}
-			}
-		}
+	else if( !empty( get_field('social-address', 'option') ) ){
+		return get_field( 'social-address', 'option' )['address'];
 	}
 	else{
-		return $address_with_extra;
+		return '';
 	}
+	
 }
 
 

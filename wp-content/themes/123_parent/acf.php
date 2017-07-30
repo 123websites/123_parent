@@ -562,6 +562,22 @@ function add_acf_fields() {
 				),
 			),		
 			array(
+				'key' => 'field_bdaa98',
+				'label' => 'Company Address',
+				'name' => 'social-address',
+				'type' => 'google_map',
+				'center_lat' => '40.141256',	
+				'center_lng' => '-97.681034',
+				'instructions' => 'This is the address that appears in the footer. If left blank it will not show up.',
+			),
+			array(
+				'key' => 'field_zifhef',
+				'label' => 'Company Address Line 2',
+				'name' => 'social-address-line2',
+				'type' => 'text',
+				'instructions' => 'This is the second line of the address provided above which will be inserted before the first comma. Useful for suite number, apartment number, floor number etc.',
+			),
+			array(
 				'key' => 'field_8378888',
 				'label' => 'Company Phone Number',
 				'name' => 'social-phone-number',
@@ -1184,22 +1200,6 @@ function add_acf_fields() {
 				'type' => 'url',
 				'instructions' => 'Put the link to your google plus page here. Leave this field blank if you don\'t want this social link to show up.',
 			),
-			array(
-				'key' => 'field_bdaa98',
-				'label' => 'Company Address',
-				'name' => 'social-address',
-				'type' => 'google_map',
-				'center_lat' => '40.141256',	
-				'center_lng' => '-97.681034',
-				'instructions' => 'This is the address that appears in the footer. If left blank it will default to the first address in the contact page then a fake address.',
-			),
-			array(
-				'key' => 'field_zifhef',
-				'label' => 'Company Address Line 2',
-				'name' => 'social-address-line2',
-				'type' => 'text',
-				'instructions' => 'This is the second line of the address provided above which will be inserted before the first comma. Useful for suite number, apartment number, floor number etc.',
-			),
 			
 			array(
 				'key' => 'field_mpoh12hadf',
@@ -1306,6 +1306,8 @@ function add_acf_fields() {
 				'key' => 'field_mp9213adf',
 				'label' => '<h1 style="color: red;">Looking for something?</h1>
 							<div>
+							- Company Address - Please see "1. Company Info" tab.<br/>
+							- Company Address Line 2 - Please see "1. Company Info" tab.<br/>
 							- Company Phone Number - Please see "1. Company Info" tab.<br/>
 							- Company Fax Number - Please see "1. Company Info" tab.<br/>
 							- Parent Co. Logo - Please see "7. Parent Co." tab.

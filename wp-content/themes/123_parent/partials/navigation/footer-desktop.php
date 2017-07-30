@@ -11,7 +11,9 @@
 				<?php if( !empty(get_the_fax()) ): ?>
 					<a href="tel:<?php echo get_the_fax('tel'); ?>" class="footer-contactlinks-fax"><?php echo 'f: ' . get_the_fax() ?></a>
 				<?php endif; ?>
-				<div class="footer-contactlinks-address"><?php echo get_the_address(); ?></div>
+				<?php if( !empty(get_the_address()) ): ?>
+					<div class="footer-contactlinks-address"><?php echo get_the_address(); ?></div>
+				<?php endif; ?>
 			</div>
 		</div>
 		<div class="footer-middlecolumn1">
