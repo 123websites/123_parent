@@ -1077,6 +1077,69 @@ class PHPImage {
 		}
 		return $this;
 	}
+	// Trims an image then optionally adds padding around it.
+	// $pad = Amount of padding to add to the trimmed image
+	//        (acts simlar to the "padding" CSS property: "top [right [bottom [left]]]")
+	public function imagetrim($pad=null){
+		$im = $this->img;
+		$bg = 2130706432;
+	    // Calculate padding for each side.
+	    if (isset($pad)){
+	        $pp = explode(' ', $pad);
+	        if (isset($pp[3])){
+	            $p = array((int) $pp[0], (int) $pp[1], (int) $pp[2], (int) $pp[3]);
+	        }else if (isset($pp[2])){
+	            $p = array((int) $pp[0], (int) $pp[1], (int) $pp[2], (int) $pp[1]);
+	        }else if (isset($pp[1])){
+	            $p = array((int) $pp[0], (int) $pp[1], (int) $pp[0], (int) $pp[1]);
+	        }else{
+	            $p = array_fill(0, 4, (int) $pp[0]);
+	        }
+	    }else{
+	        $p = array_fill(0, 4, 0);
+	    }
+
+	    // Get the image width and height.
+	    $imw = imagesx($im);
+	    $imh = imagesy($im);
+
+	    // Set the X variables.
+	    $xmin = $imw;
+	    $xmax = 0;
+
+	    // Start scanning for the edges.
+	    for ($iy=0; $iy<$imh; $iy++){
+	        $first = true;
+	        for ($ix=0; $ix<$imw; $ix++){
+	            $ndx = imagecolorat($im, $ix, $iy);
+	            if ($ndx != $bg){
+	                if ($xmin > $ix){ $xmin = $ix; }
+	                if ($xmax < $ix){ $xmax = $ix; }
+	                if (!isset($ymin)){ $ymin = $iy; }
+	                $ymax = $iy;
+	                if ($first){ $ix = $xmax; $first = false; }
+	            }
+	        }
+	    }
+
+	    // The new width and height of the image. (not including padding)
+	    $imw = 1+$xmax-$xmin; // Image width in pixels
+	    $imh = 1+$ymax-$ymin; // Image height in pixels
+
+	    // Make another image to place the trimmed version in.
+	    $im2 = imagecreatetruecolor($imw+$p[1]+$p[3], $imh+$p[0]+$p[2]);
+
+	    // Make the background of the new image the same as the background of the old one.
+	    $bg2 = imagecolorallocatealpha($im2, ($bg >> 16) & 0xFF, ($bg >> 8) & 0xFF, $bg & 0xFF, 127);
+	    imagefill($im2, 0, 0, $bg2);
+	    // really needa save alpha
+	    imagesavealpha($im2, TRUE);
+	    // Copy it over to the new image.
+	    imagecopy($im2, $im, $p[3], $p[0], $xmin, $ymin, $imw, $imh);
+
+	    // To finish up, we replace the old image which is referenced.
+	    $this->img = $im2;
+	}
 
 	/**
 	 * Set's global folder mode if folder structure needs to be created

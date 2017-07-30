@@ -3547,6 +3547,10 @@ footer, header, hgroup, menu, nav, section, img {
     max-width: 320px;
     max-height: 50px; }
 
+  .header-content-logo,
+  .header-content-rightwrap {
+    vertical-align: middle; }
+
   .header-content-menus-social-menu {
     font-size: 0;
     text-align: right; }
@@ -3612,7 +3616,7 @@ footer, header, hgroup, menu, nav, section, img {
     top: 0;
     left: 0;
     width: 100%;
-    height: 110px;
+    height: 98px;
     z-index: -1; }
 
   .topbar-removed {

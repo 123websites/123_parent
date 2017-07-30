@@ -535,7 +535,7 @@ function add_acf_fields() {
 				'label' => 'Company Logo',
 				'name' => 'logo-type-switch',
 				'type' => 'select',
-				'instructions' => 'This allows you to switch between providing a custom logo or creating one from the site name.<br/><br/><strong style="color:blue;">***IMPORTANT: IF YOU SELECT TEXT YOU MUST CLICK UPDATE TWICE FOR THIS CHANGE TO TAKE AFFECT***</strong><br/>An image will automatically be generated containing the text from Site Title (in Settings > General) which should be short and sweet (under 24 characters).',
+				'instructions' => 'This allows you to switch between providing a custom logo or creating one from the site name.<br/><br/><strong style="color:blue;">***IMPORTANT: IF YOU SELECT TEXT YOU MUST CLICK UPDATE TWICE FOR THIS CHANGE TO TAKE AFFECT***</strong><br/>An image will automatically be generated containing the text from Company Name which should be short and sweet (under 24 characters).',
 				'choices' => array(
 					'logo' => 'Logo',
 					'text' => 'Text',

@@ -583,6 +583,8 @@ function get_blog_image($post_id){
 
 include('PHPImage.php');
 
+
+
 function update_logo_text_image(){
 	if( basename($_SERVER['REQUEST_URI']) == 'admin.php?page=general-settings' && get_field('logo-type-switch', 'option') == 'text' ){
 
@@ -592,18 +594,20 @@ function update_logo_text_image(){
 
 		$phpimg->setDimensionsFromImage($bg);
 		$phpimg->setQuality(9);
-		$phpimg->setFont(get_template_directory() . '/library/fonts/GothamHTF-Book.ttf');
+		$phpimg->setFont(get_template_directory() . '/library/fonts/GothamHTF-Medium.ttf');
 		$phpimg->setTextColor(array(255, 255, 255));
 
 		$phpimg->text(get_bloginfo('name'), array(
-		        'fontSize' => 60, 
-		        'x' => 0,
-		        'y' => 0,
-		        'width' => 280,
-		        'height' => 64,
-		        'alignHorizontal' => 'center',
-		        'alignVertical' => 'center',
-		    ));
+	        'fontSize' => 60, 
+	        'x' => 0,
+	        'y' => 0,
+	        'width' => 560,
+	        'height' => 128,
+	        'alignHorizontal' => 'center',
+	        'alignVertical' => 'center',
+	    ));
+
+		$phpimg->imagetrim();
 
 		$phpimg->setOutput('png');
 
