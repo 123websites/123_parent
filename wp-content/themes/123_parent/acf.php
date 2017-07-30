@@ -135,7 +135,7 @@ function add_acf_fields() {
 				'label' => 'Hero Image',
 				'type' => 'image',
 				'return_format' => 'url',
-				'name' => 'areas-served-hero-image',
+				'name' => 'areas-served-bg',
 			),	
 			array(
 				'key' => 'field_1098123ydf',

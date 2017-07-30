@@ -111,18 +111,19 @@ function update_login_styles(){
 }
 
 // add gmap to pages that need it
-if( is_home() ){
-	add_action('wp_enqueue_scripts', 'add_gmaps_script');
-}
 
-function add_gmaps_script(){
-	if(get_field('gmaps-api-key', 'option') !== ''){
-		wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=' . get_field('gmaps-api-key', 'option') . '&callback=window._initHomeMap', array(), null, true);	
+add_action('wp_enqueue_scripts', 'add_gmaps_script');
+
+if( !function_exists('add_gmaps_script') ){
+	function add_gmaps_script(){
+		if(get_field('gmaps-api-key', 'option') !== '' && is_home()){
+			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=' . get_field('gmaps-api-key', 'option') . '&callback=window._initHomeMap', array(), null, true);	
+		}
+		else{
+			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=AIzaSyBrRJwJFfNCdVLJwa6yhR8UBZR1m2A018Q&callback=window._initHomeMap', array(), null, true);	
+		}
+		localize_areas_served();
 	}
-	else{
-		wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=AIzaSyBrRJwJFfNCdVLJwa6yhR8UBZR1m2A018Q&callback=window._initHomeMap', array(), null, true);	
-	}
-	localize_areas_served();
 }
 
 // modify login form bottom
