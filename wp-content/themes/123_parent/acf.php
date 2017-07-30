@@ -833,15 +833,6 @@ function add_acf_fields() {
 				),
 			),
 			array(
-				'key' => 'field_b78h32msda',
-				'label' => 'Remove Top Bar On Desktop Nav?',
-				'type' => 'true_false',
-				'name' => 'remove-topbar',
-				'wrapper' => array(
-					'width' => '25',
-				),
-			),
-			array(
 				'key' => 'field_b78h32asdfmsda',
 				'label' => 'Don\'t Fade-In Nav Background Tint?',
 				'type' => 'true_false',
@@ -1373,10 +1364,10 @@ function add_acf_fields() {
 				'default_value' => 'Click here for a free estimate!!!',
 			),
 			array(
-				'key' => 'field_d0981dsfhadf',
+				'key' => 'field_b78h32msda',
 				'label' => 'Disable',
 				'type' => 'true_false',
-				'name' => 'header-bar-disable',
+				'name' => 'remove-topbar',
 				'instructions' => 'If checked this will hide the Top Bar',
 			),
 			array(
