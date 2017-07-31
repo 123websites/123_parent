@@ -200,6 +200,14 @@
 		&.paypal{
 			background-position: 100% 0;
 		}
+		&.hasimage{
+			background-image: none;
+		}
+	}
+	.footer-middlecolumn2-payment-type-image{
+		display: inline-block;
+		height: 100%;
+		width: auto;
 	}
 	.footer-rightcolumn{
 		text-align: left;

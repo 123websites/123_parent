@@ -23,21 +23,21 @@
 		<?php if( !empty(get_field('mastercard', 'option')) || !empty(get_field('visa', 'option')) || !empty(get_field('amex', 'option')) || !empty(get_field('discover', 'option')) || !empty(get_field('paypal', 'option')) ): ?>
 			<div class="footer-middlecolumn2">
 				<div class="footer-middlecolumn2-payment">payment</div>
-				<?php if( get_field('mastercard', 'option') == true ): ?>
-					<div class="footer-middlecolumn2-payment-type mastercard"></div>
-				<?php endif; ?>
-				<?php if( get_field('visa', 'option') == true ): ?>
-				<div class="footer-middlecolumn2-payment-type visa"></div>
-				<?php endif; ?>
-				<?php if( get_field('amex', 'option') == true ): ?>
-					<div class="footer-middlecolumn2-payment-type amex"></div>
-				<?php endif; ?>
-				<?php if( get_field('discover', 'option') == true ): ?>
-					<div class="footer-middlecolumn2-payment-type discover"></div>
-				<?php endif; ?>
-				<?php if( get_field('paypal', 'option') == true ): ?>
-					<div class="footer-middlecolumn2-payment-type paypal"></div>
-				<?php endif; ?>
+				<?php 
+					$payment_types = array('mastercard', 'visa', 'amex', 'discover', 'paypal');
+
+					foreach($payment_types as $payment_type){
+						if( get_field($payment_type, 'option') == true ){
+							?>
+								<div class="footer-middlecolumn2-payment-type <?php echo $payment_type ?><?php echo !empty(get_field($payment_type . '-image', 'option')) ? ' hasimage' : ''; ?>">
+									<?php if( !empty(get_field($payment_type . '-image', 'option')) ): ?>
+										<img class="footer-middlecolumn2-payment-type-image" src="<?php the_field($payment_type . '-image', 'option'); ?>">
+									<?php endif; ?>
+								</div>
+							<?php
+						}
+					}
+				?>
 			</div>
 		<?php endif; ?>
 		<div class="footer-rightcolumn">

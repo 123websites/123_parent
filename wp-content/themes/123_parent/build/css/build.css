@@ -3998,6 +3998,13 @@ footer, header, hgroup, menu, nav, section, img {
       background-position: 75% 0; }
     .footer-middlecolumn2-payment-type.paypal {
       background-position: 100% 0; }
+    .footer-middlecolumn2-payment-type.hasimage {
+      background-image: none; }
+
+  .footer-middlecolumn2-payment-type-image {
+    display: inline-block;
+    height: 100%;
+    width: auto; }
 
   .footer-rightcolumn {
     text-align: left;
