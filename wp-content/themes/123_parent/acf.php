@@ -852,16 +852,6 @@ if( !function_exists('add_acf_fields') ){
 						'width' => '25',
 					),
 				),	
-				
-				array(
-					'key' => 'field_182163124',
-					'label' => 'Quickquote Button Text',
-					'type' => 'text',
-					'name' => 'quickquote-button-text',
-					'default_value' => 'Quick Quote',
-					'maxlength' => '11',
-					'instructions' => 'Max length of 11 otherwise the button would break',
-				),
 				array(
 					'key' => 'field_171261261',
 					'message' => '<h1>Disable/Enable Pages</h1>',
@@ -1404,12 +1394,13 @@ if( !function_exists('add_acf_fields') ){
 					'type' => 'message'
 				),
 				array(
-					'key' => 'field_md0d7123ha',
+					'key' => 'field_182163124',
 					'label' => 'Header Button Text',
 					'type' => 'text',
 					'name' => 'quickquote-button-text',
-					'instructions' => 'This is the text that will appear in the button. Keep this under 11 characters.',
 					'default_value' => 'Quick Quote',
+					'maxlength' => '11',
+					'instructions' => 'This is the text that will appear in the button. Keep this under 11 characters.',
 				),
 				array(
 					'key' => 'field_87216162',
