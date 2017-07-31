@@ -124,6 +124,35 @@ if( !function_exists('enqueue_login_scripts') ){
 	}
 }
 
+// load the custom admin scripts
+add_action( 'admin_enqueue_scripts', 'enqueue_admin_scripts' );
+
+if( !function_exists('enqueue_admin_scripts') ){
+	function enqueue_admin_scripts(){
+		wp_enqueue_script( 'custom-login', get_template_directory_uri() . '/build/js/admin.js' );
+	}
+}
+
+// adds the training ad dashboard widget
+add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
+
+if( !function_exists('add_dashboard_widgets') ){
+	function add_dashboard_widgets() {
+		wp_add_dashboard_widget('dashboard_widget', 'Questions, Comments, Concerns ?', 'dashboard_widget_function');
+	}
+}
+
+// Function that outputs the contents of the dashboard widget
+if( !function_exists('dashboard_widget_function') ){
+	function dashboard_widget_function( $post, $callback_args ) {
+		?>
+			<a href="http://www.123websites.com/training">
+				<img style="width: 100%;" src="http://www.123websites.com/images/training-ad-dashboard.png">
+			</a>
+		<?php
+	}
+}
+
 // make nav-fadein-toggle available in javascript
 add_action('wp_enqueue_scripts', 'localize_home_dir');
 
@@ -140,6 +169,7 @@ if( !function_exists('is_login_page') ){
 	}
 }
 
+// add some styles to the login page
 if( !function_exists('update_login_styles') ){
 	function update_login_styles(){
 		if(is_login_page()){?>

@@ -19,9 +19,13 @@ module.exports = function(grunt) {
       options: {
         separator: '\n',
       },
-      js: {
-        src: ['js_vendor/jquery-1.12.4.min.js', '../../../wp-includes/js/masonry.min.js', 'js_vendor/lity.min.js', 'js_vendor/baguetteBox.min.js', 'js_vendor/ofi.browser.js', 'js/**/*.js'],
+      buildjs: {
+        src: ['js_vendor/jquery-1.12.4.min.js', '../../../wp-includes/js/masonry.min.js', 'js_vendor/lity.min.js', 'js_vendor/baguetteBox.min.js', 'js_vendor/ofi.browser.js', 'js/main.js'],
         dest: 'build/js/build.js',
+      },
+      adminjs: {
+        src: ['js/admin.js'],
+        dest: 'build/js/admin.js'
       },
       css: {
         src: ['node_modules/font-awesome/css/font-awesome.css', 'build/css/build.css'],
@@ -41,7 +45,8 @@ module.exports = function(grunt) {
     uglify : {
       build : {
         files: {
-          'build/js/build.js' : ['build/js/build.js']
+          'build/js/build.js' : ['build/js/build.js'],
+          'build/js/admin.js' : ['build/js/admin.js']
         }
       }
     },
@@ -66,7 +71,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['js/**/*.js'],
-        tasks: ['concat:js'],
+        tasks: ['concat:buildjs', 'concat:adminjs'],
         options: {
           livereload : 35729
         },
