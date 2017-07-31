@@ -21,7 +21,9 @@
 					<?php render_page_links('header-content-menus-pages-menu', 'header-content-menus-pages-menu-item', 'header-content-menus-pages-menu-item-link'); ?>
 				</nav>
 			</div>
-			<a href="#" class="header-content-quickquote"><?php echo get_field('quickquote-button-text', 'option'); ?></a>
+			<?php if( !get_field('quickquote-disable', 'option') ): ?>
+				<a href="#" class="header-content-quickquote"><?php echo get_field('quickquote-button-text', 'option'); ?></a>
+			<?php endif; ?>
 		</div>
 	</div>
 	<div class="header-tint<?php echo get_field('remove-topbar', 'option') ? ' topbar-removed' : ''; ?>"></div>

@@ -1,17 +1,19 @@
-<section class="estimate popupcontainer">
-	<i class="estimate-content-times fa fa-times popupcontainer-times"></i>
-	<div class="estimate-content popup">
-		<?php if(!empty(get_field('quickquote-image', 'option'))): ?>
-		<div class="estimate-content-imagecontainer popup-imagecontainer">
-			<img src="<?php echo get_field('quickquote-image', 'option'); ?>" class="estimate-content-imagecontainer-image popup-imagecontainer-image">
+<?php if( !get_field('quickquote-disable', 'option') ): ?>
+	<section class="estimate popupcontainer">
+		<i class="estimate-content-times fa fa-times popupcontainer-times"></i>
+		<div class="estimate-content popup">
+			<?php if(!empty(get_field('quickquote-image', 'option'))): ?>
+			<div class="estimate-content-imagecontainer popup-imagecontainer">
+				<img src="<?php echo get_field('quickquote-image', 'option'); ?>" class="estimate-content-imagecontainer-image popup-imagecontainer-image">
+			</div>
+			<?php endif; ?>
+			<h1 class="estimate-content-header popup-header"><?php echo get_field('quickquote-header', 'option'); ?></h1>
+			<div class="estimate-content-form">
+				<?php echo do_shortcode('[gravityform id=2 title=false description=false ajax=true]'); ?>
+			</div>
 		</div>
-		<?php endif; ?>
-		<h1 class="estimate-content-header popup-header"><?php echo get_field('quickquote-header', 'option'); ?></h1>
-		<div class="estimate-content-form">
-			<?php echo do_shortcode('[gravityform id=2 title=false description=false ajax=true]'); ?>
-		</div>
-	</div>
-</section>
+	</section>
+<?php endif; ?>
 <?php if( !get_field('ad-disable', 'option') ): ?>
 	<section class="pa popupcontainer">
 		<i class="pa-content-times fa fa-times popupcontainer-times"></i>
