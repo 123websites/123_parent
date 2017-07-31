@@ -5323,13 +5323,13 @@ footer, header, hgroup, menu, nav, section, img {
 
   .contact-contact-left-locations-header {
     font-size: 3.2rem;
-    font-family: "Gotham Condensed", "Impact", sans-serif;
+    font-family: "Gotham", "Helvetica", sans-serif;
     text-align: center;
-    margin-bottom: 20px; }
+    margin: 20px 0; }
     .contact-contact-left-locations-header:after {
       content: '';
       display: block;
-      width: 60px;
+      width: 100%;
       border-bottom: 2px solid #32A2AE;
       left: 50%;
       -moz-transform: translateX(-50%);
@@ -5365,7 +5365,20 @@ footer, header, hgroup, menu, nav, section, img {
     font-weight: 500; }
 
   .contact-contact-right input, .contact-contact-right textarea {
-    font-family: "Gotham", "Helvetica", sans-serif; } }
+    font-family: "Gotham", "Helvetica", sans-serif; }
+
+  a.contact-contact-left-locations-location-getdirections {
+    background-color: #9f9f9f;
+    color: white;
+    padding: 10px;
+    font-size: 1.8rem;
+    display: inline-block;
+    width: auto;
+    text-decoration: none;
+    margin-bottom: 10px; }
+    a.contact-contact-left-locations-location-getdirections:before {
+      content: '';
+      display: block; } }
 @media only screen and (min-width: 1025px) {
   .contact-contact {
     font-size: 0;
@@ -5398,7 +5411,10 @@ footer, header, hgroup, menu, nav, section, img {
   .contact-contact-left-address-header,
   .contact-contact-left-call-header {
     font-size: 2.4rem;
-    margin: 20px 0 10px 0; } }
+    margin: 20px 0 10px 0; }
+
+  .contact-contact-left-locations-header {
+    margin-top: 0px; } }
 @media only screen {
   .coupons-coupons-pagination * {
     color: black;

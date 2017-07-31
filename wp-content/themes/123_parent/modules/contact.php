@@ -30,11 +30,14 @@
 
 								if( !empty(get_sub_field('addresses-extra', 'option')) ){
 									$address_line2 = get_sub_field('addresses-extra', 'option');
-									$address_with_extra = strstr(get_sub_field('addresses-gmap')['address'],',', true) . ' ' . $address_line2 . strstr(get_sub_field('addresses-gmap')['address'],',');
+									$address_with_extra = strstr(get_sub_field('addresses-gmap')['address'],',', true) . ' ' . $address_line2 . '<br/>' . str_replace(',', '', strstr(get_sub_field('addresses-gmap')['address'],','));
 								}
 
 								?>
-								<div class="contact-contact-left-locations-location-address"><?php echo $address_with_extra != null ? $address_with_extra : get_sub_field('addresses-gmap', 'option')['address']; ?> <a href="http://maps.google.com/?q=<?php echo get_sub_field('addresses-gmap', 'option')['address']; ?>">Get Directions</a></div>
+								<div class="contact-contact-left-locations-location-address">
+									<?php echo $address_with_extra != null ? $address_with_extra : strstr(get_sub_field('addresses-gmap')['address'],',', true) . '<br/>' . str_replace(',', '', strstr(get_sub_field('addresses-gmap')['address'],',')); ?> 
+								</div>
+								<a class="contact-contact-left-locations-location-getdirections" href="http://maps.google.com/?q=<?php echo get_sub_field('addresses-gmap', 'option')['address']; ?>">Get Directions</a>
 
 								<div class="contact-contact-left-locations-location-phones">
 									<?php if( !empty(get_sub_field('contact-office', 'option')) ): ?>
