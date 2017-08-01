@@ -3705,7 +3705,8 @@ footer, header, hgroup, menu, nav, section, img {
   .mobileheader-bar-logo-image {
     width: auto;
     max-height: 28px;
-    display: inline-block; }
+    display: inline-block;
+    max-width: 240px; }
 
   .mobileheader-menus {
     text-align: center;
