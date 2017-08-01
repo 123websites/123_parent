@@ -26,6 +26,7 @@ var Admin = {};
 						'</div>'
 					);
 				}
+				$('html').css('overflow-y', 'scroll');
 			},
 		};
 
