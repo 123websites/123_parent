@@ -5325,7 +5325,8 @@ footer, header, hgroup, menu, nav, section, img {
     font-size: 3.2rem;
     font-family: "Gotham", "Helvetica", sans-serif;
     text-align: center;
-    margin: 20px 0; }
+    margin: 20px 0;
+    font-weight: 600; }
     .contact-contact-left-locations-header:after {
       content: '';
       display: block;
