@@ -146,7 +146,7 @@ if( !function_exists('add_dashboard_widgets') ){
 if( !function_exists('dashboard_widget_function') ){
 	function dashboard_widget_function( $post, $callback_args ) {
 		?>
-			<a href="http://www.123websites.com/training">
+			<a target="_blank" href="http://www.123websites.com/training">
 				<img style="width: 100%;" src="http://www.123websites.com/images/training-ad-dashboard.png">
 			</a>
 		<?php
