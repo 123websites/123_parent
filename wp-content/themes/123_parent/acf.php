@@ -639,147 +639,192 @@ if( !function_exists('add_acf_fields') ){
 					'type' => 'tab',
 				),
 				array(
-					'key' => 'field_8y3b123',
-					'label' => 'Primary Color On/Off',
-					'type' => 'true_false',
-					'name' => 'primary_color_toggle',
-					'wrapper' => array(
-						'width' => '10',
-					),
-				),
-				array(
-					'key' => 'field_71b1b21312',
-					'label' => 'Primary Color',
+					'key' => 'field_8123afaasfdaef',
+					'label' => 'Main / Footer Nav BG',
 					'type' => 'color_picker',
-					'name' => 'primary_color',
+					'name' => 'navs-bg',
 					'wrapper' => array(
-						'width' => '90',
+						'width' => 25
 					),
 				),
 				array(
-					'key' => 'field_8y3ab123',
-					'label' => 'Background Color On/Off',
+					'key' => 'field_2137dfhash12',
+					'label' => 'On / Off',
 					'type' => 'true_false',
-					'name' => 'background_color_toggle',
+					'name' => 'navs-bg-toggle',
+					'ui' => true,
+					'ui_on_text' => 'On',
+					'ui_off_text' => 'Off',
 					'wrapper' => array(
-						'width' => '10',
+						'width' => 75
 					),
 				),
 				array(
-					'key' => 'field_71b1bdasf21312',
-					'label' => 'Background Color',
+					'key' => 'field_21387fzadsf',
+					'label' => 'Main / Footer Nav Text',
 					'type' => 'color_picker',
-					'name' => 'background_color',
+					'name' => 'navs-text',
 					'wrapper' => array(
-						'width' => '90',
+						'width' => 25
 					),
 				),
 				array(
-					'key' => 'field_mpzdgh12',
-					'label' => 'Footer Grey',
+					'key' => 'field_2137dfhaafwsh12',
+					'label' => 'On / Off',
 					'type' => 'true_false',
-					'name' => 'footer_grey',
+					'name' => 'navs-text-toggle',
+					'ui' => true,
+					'ui_on_text' => 'On',
+					'ui_off_text' => 'Off',
 					'wrapper' => array(
-						'width' => '10',
+						'width' => 75
 					),
 				),
 				array(
-					'key' => 'field_71b1bdaasf21312',
-					'label' => 'Footer Grey Color',
+					'key' => 'field_27fzzzzadsf',
+					'label' => 'Buttons / Underlines',
 					'type' => 'color_picker',
-					'name' => 'footer_grey_color',
+					'name' => 'buttons-underlines',
 					'wrapper' => array(
-						'width' => '90',
+						'width' => 25
 					),
 				),
 				array(
-					'key' => 'field_21hfpgh12',
-					'label' => 'Medium Grey',
+					'key' => 'field_21123zzzwsh12',
+					'label' => 'On / Off',
 					'type' => 'true_false',
-					'name' => 'medium_grey',
+					'name' => 'buttons-underlines-toggle',
+					'ui' => true,
+					'ui_on_text' => 'On',
+					'ui_off_text' => 'Off',
 					'wrapper' => array(
-						'width' => '10',
+						'width' => 75
 					),
 				),
 				array(
-					'key' => 'field_71bzceqfssf21312',
-					'label' => 'Medium Grey Color',
+					'key' => 'field_2zcvvvczsf',
+					'label' => 'Bold Title Text',
 					'type' => 'color_picker',
-					'name' => 'medium_grey_color',
+					'name' => 'bold-title-text',
 					'wrapper' => array(
-						'width' => '90',
+						'width' => 25
 					),
 				),
 				array(
-					'key' => 'field_21hpppph12',
-					'label' => 'Light Grey',
+					'key' => 'field_21htjhwrew12',
+					'label' => 'On / Off',
 					'type' => 'true_false',
-					'name' => 'light_grey',
+					'name' => 'bold-title-text-toggle',
+					'ui' => true,
+					'ui_on_text' => 'On',
+					'ui_off_text' => 'Off',
 					'wrapper' => array(
-						'width' => '10',
+						'width' => 75
 					),
 				),
 				array(
-					'key' => 'field_713332',
-					'label' => 'Light Grey Color',
+					'key' => 'field_2123asaf',
+					'label' => 'Sidebar BG / Coupon BG / Areas Served BG',
 					'type' => 'color_picker',
-					'name' => 'light_grey_color',
+					'name' => 'sidebar-coupon-areasserved-bg',
 					'wrapper' => array(
-						'width' => '90',
+						'width' => 25
 					),
 				),
 				array(
-					'key' => 'field_21hfp0000gh12',
-					'label' => 'Estimate Bar',
+					'key' => 'field_2czvdasfgsd',
+					'label' => 'On / Off',
 					'type' => 'true_false',
-					'name' => 'estimate_bar',
+					'name' => 'sidebar-coupon-areasserved-bg-toggle',
+					'ui' => true,
+					'ui_on_text' => 'On',
+					'ui_off_text' => 'Off',
 					'wrapper' => array(
-						'width' => '10',
+						'width' => 75
 					),
 				),
 				array(
-					'key' => 'field_71bzc00002',
-					'label' => 'Estimate Bar Color',
+					'key' => 'field_29wfeauajhadfsk',
+					'label' => 'Top "Free Estimate" Bar / Footer Copyright Bar',
 					'type' => 'color_picker',
-					'name' => 'estimate_bar_color',
+					'name' => 'top-bottom-bg',
 					'wrapper' => array(
-						'width' => '90',
+						'width' => 25
 					),
 				),
 				array(
-					'key' => 'field_21hiiiifpgh12',
-					'label' => 'Header Tint',
+					'key' => 'field_faauoiegwuf23',
+					'label' => 'On / Off',
 					'type' => 'true_false',
-					'name' => 'header_tint',
+					'name' => 'top-bottom-bg-toggle',
+					'ui' => true,
+					'ui_on_text' => 'On',
+					'ui_off_text' => 'Off',
 					'wrapper' => array(
-						'width' => '10',
+						'width' => 75
 					),
 				),
 				array(
-					'key' => 'field_zpzpzf21312',
-					'label' => 'Header Tint Color',
+					'key' => 'field_29wfeauajhadfsk',
+					'label' => 'Top "Free Estimate" Bar / Footer Copyright Bar',
 					'type' => 'color_picker',
-					'name' => 'header_tint_color',
+					'name' => 'top-bottom-bg',
 					'wrapper' => array(
-						'width' => '90',
+						'width' => 25
 					),
 				),
 				array(
-					'key' => 'field_21hfpllllgh12',
-					'label' => 'Footer BG',
+					'key' => 'field_faauoiegwuf23',
+					'label' => 'On / Off',
 					'type' => 'true_false',
-					'name' => 'footer_bg',
+					'name' => 'top-bottom-bg-toggle',
+					'ui' => true,
+					'ui_on_text' => 'On',
+					'ui_off_text' => 'Off',
 					'wrapper' => array(
-						'width' => '10',
+						'width' => 75
 					),
 				),
 				array(
-					'key' => 'field_71bzof312',
-					'label' => 'Footer BG Color',
+					'key' => 'field_2oiufweajk',
+					'label' => 'Accent Color 2',
 					'type' => 'color_picker',
-					'name' => 'footer_bg_color',
+					'name' => 'accent-color-2',
 					'wrapper' => array(
-						'width' => '90',
+						'width' => 25
+					),
+				),
+				array(
+					'key' => 'field_23u8rhoewfajnds',
+					'label' => 'On / Off',
+					'type' => 'true_false',
+					'name' => 'accent-color-2-toggle',
+					'ui' => true,
+					'ui_on_text' => 'On',
+					'ui_off_text' => 'Off',
+					'wrapper' => array(
+						'width' => 75
+					),
+				),
+				array(
+					'key' => 'field_98213horafsdn',
+					'label' => 'Accent Color 3',
+					'type' => 'color_picker',
+					'name' => 'accent-color-3',
+					'wrapper' => array(
+						'width' => 25
+					),
+				),
+				array(
+					'key' => 'field_ui1oenlfdsajb',
+					'label' => 'On / Off',
+					'type' => 'true_false',
+					'name' => 'accent-color-3-toggle',
+					'ui' => true,
+					'ui_on_text' => 'On',
+					'ui_off_text' => 'Off',
+					'wrapper' => array(
+						'width' => 75
 					),
 				),
 				array(
