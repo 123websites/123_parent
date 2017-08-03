@@ -1,4 +1,4 @@
-<footer class="mobilefooter<?php echo get_field('general-theme-select', 'option') == 'light' ? ' light' : ''; echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; ?>">
+<footer class="mobilefooter<?phpecho get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; ?>">
 	<a href="<?php echo site_url(); ?>" class="fade fade-up mobilefooter-logo">
 		<img src="<?php echo get_logo(); ?>" class="mobilefooter-logo-image">
 	</a>

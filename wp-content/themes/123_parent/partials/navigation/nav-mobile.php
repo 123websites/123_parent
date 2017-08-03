@@ -1,4 +1,4 @@
-<header class="mobileheader<?php echo get_field('general-theme-select', 'option') == 'light' ? ' light' : ''; echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; ?>">
+<header class="mobileheader<?php echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; ?>">
 	<div class="mobileheader-bar">
 		<a href="<?php echo site_url(); ?>" class="mobileheader-bar-logo">
 			<img src="<?php echo get_logo(); ?>" class="mobileheader-bar-logo-image">

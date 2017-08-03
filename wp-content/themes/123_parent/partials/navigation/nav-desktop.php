@@ -1,4 +1,4 @@
-<header class="header<?php echo get_field('general-theme-select', 'option') == 'light' ? ' light' : ''; echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; echo get_field('nav-fadein-toggle', 'option') ? ' removefadein' : '';?>">
+<header class="header<?php echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; echo get_field('nav-fadein-toggle', 'option') ? ' removefadein' : '';?>">
 	<?php if(!get_field('remove-topbar', 'option')): ?>
 	<div class="header-estimate">
 		<a href="#" class="header-estimate-link"><?php echo get_field('header-bar-text', 'option'); ?></a>

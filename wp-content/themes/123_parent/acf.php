@@ -866,19 +866,6 @@ if( !function_exists('add_acf_fields') ){
 					'type' => 'tab',
 				),
 				array(
-					'key' => 'field_abdh3hd',
-					'label' => 'Dark or Light Header/Footer?',
-					'type' => 'select',
-					'name' => 'general-theme-select',
-					'choices' => array(
-						'dark' => 'Dark',
-						'light' => 'Light',
-					),
-					'default_value' => array(
-						'dark' => 'Dark',
-					),
-				),
-				array(
 					'key' => 'field_b78h32asdfmsda',
 					'label' => 'Don\'t Fade-In Nav Background Tint?',
 					'type' => 'true_false',

@@ -1,4 +1,4 @@
-<footer class="footer<?php echo get_field('general-theme-select', 'option') == 'light' ? ' light' : ''; echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; ?>">
+<footer class="footer<?php echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; ?>">
 	<div class="fade fade-in footer-wrap">
 		<div class="footer-leftcolumn">
 			<a href="<?php echo site_url(); ?>" class="footer-logo">
