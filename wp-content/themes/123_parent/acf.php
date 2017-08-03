@@ -640,7 +640,7 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_8123afaasfdaef',
-					'label' => 'Main / Footer Nav BG',
+					'label' => 'Main / Footer Navigation Bar BG',
 					'type' => 'color_picker',
 					'name' => 'navs-bg',
 					'wrapper' => array(
@@ -661,7 +661,7 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_21387fzadsf',
-					'label' => 'Main / Footer Nav Text',
+					'label' => 'Main / Footer Navigation Bar Text',
 					'type' => 'color_picker',
 					'name' => 'navs-text',
 					'wrapper' => array(
@@ -703,7 +703,7 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_2zcvvvczsf',
-					'label' => 'Bold Title Text',
+					'label' => 'Section Header',
 					'type' => 'color_picker',
 					'name' => 'bold-title-text',
 					'wrapper' => array(

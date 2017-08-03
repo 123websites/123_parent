@@ -69,7 +69,8 @@ if( get_field('buttons-underlines-toggle', 'option') ):
 			.contact-contact-left-locations-header:after,
 			.gform_footer input[type='submit'],
 			.footer-sociallinks-item,
-			.company-employees-grid-item-socialcontainer-link
+			.company-employees-grid-item-socialcontainer-link,
+			.home-hero-text-button
 			{
 				border-color: <?php echo $color; ?>;
 				background-color: <?php echo $color; ?>;
@@ -82,6 +83,16 @@ if( get_field('buttons-underlines-toggle', 'option') ):
 			}
 		</style>
 	<?php
+endif;
+
+if( get_field('bold-title-text-toggle', 'option') ):
+	$color = get_field('bold-title-text', 'option');?>
+	<style type="text/css">
+		section:not(.home-hero):not(#coupons):not(#blog) .hero-text-header{
+			color: <?php echo $color ?>;
+		}
+	</style>
+<?php
 endif;
 
 if( get_field('sidebar-coupon-areasserved-bg-toggle', 'option') ):
