@@ -1,17 +1,5 @@
 <?php 
 
-$primary_color = get_field('primary_color', 'option') == '' ? null : '#' . substr(get_field('primary_color', 'option'), 1);
-$background_color = get_field('background_color', 'option') == '' ? null : '#' . substr(get_field('background_color', 'option'), 1);
-// $master_variable_color = get_field('variable_color', 'option') == '' ? null : substr(get_field('variable_color', 'option'), 1);
-
-$variable_colors = array(
-	'footer_grey' => get_field('footer_grey_color', 'option'),
-	'medium_grey' => get_field('medium_grey_color', 'option'),
-	'light_grey' => get_field('light_grey_color', 'option'),
-	'estimate_bar' => get_field('estimate_bar_color', 'option'),
-	'header_tint' => get_field('header_tint_color', 'option'),
-	'footer_bg' => get_field('footer_bg_color', 'option'),
-);
 
 function hex_to_hsl($hex) {
     $hex = array($hex[0].$hex[1], $hex[2].$hex[3], $hex[4].$hex[5]);
@@ -98,241 +86,109 @@ function get_rgba($hex, $alpha){
 	return 'rgba(' . implode(', ', hex_to_rgb($hex)) . ', ' . $alpha . ');';
 }
 
-if(get_field('primary_color_toggle', 'option')):
-?>
-<style type="text/css">
-	/* PRIMARY-COLOR STUFF */
-	@media only screen {
-		.ginput_container textarea:focus{
-			outline-color: <?php echo $primary_color; ?>;
-		}	
-		.gform_footer input[type='submit'],
-		.global-contact-content-button,
-		.global-recentposts-viewall,
-		.sociallink,
-		.wp-core-ui .button-group.button-large .button, .wp-core-ui .button.button-large,
-		.company-employees-grid-item-socialcontainer-link,
-		#baguetteBox-overlay .full-image figure figcaption,
-		.home-hero-text-button,
-		.home-services-grid-item-header,
-		.home-services-viewall,
-		.home-testimonials-viewall,
-		.mobilefooter-sharebutton,
-		.mobilefooter-sociallinks-item,
-		.header-content-quickquote{
-			background-color: <?php echo $primary_color; ?>;
-		}
-		.login p.message,
-		.login #login #login_error{
-			border-left: 5px solid <?php echo $primary_color; ?>;
-		}
-		.login form .input:focus, 
-		.login form input[type=checkbox]:focus, 
-		.login input[type=text]:focus,
-		.hero-text-header--nobg,
-		.blog-blog-sidebar-categories-header,
-		.blog-blog-sidebar-archive-header,
-		.blog-blog-sidebar-recentposts-header,
-		.global-recentposts-grid-item-header:after,
-		.section-header,
-		.contact-contact-left-locations-header:after{
-			border-color: <?php echo $primary_color; ?> !important;
-		}
-		.mobileheader-menus-social-menu-item-link-icon{
-			color: <?php echo $primary_color; ?>;
-		}
-		.main .hero-text-header:after {
-		  content: '';
-		  border-bottom: 4px solid <?php echo $primary_color; ?>;
-		  width: 100%;
-		  position: relative;
-		  display: block;
-		}
-		.main .areas-served-hero-text-header:after,
-		.main .contact-hero-text-header:after {
-		  border-bottom: none;
-		}
 
-	}
-	@media only screen and (min-width: 1025px){
-		.areas-served-areas-grid-imagecontainer-tint,
-		a.blog-blog-sidebar-quickquote{
-			background-color: <?php echo get_rgba($primary_color, 1); ?>;
-		}
-		.footer-sociallinks-item{
-			background-color: <?php echo $primary_color; ?>;	
-		}
-	}
-	@media only screen and (min-width: 1167px){
-		.header-content-quickquote{
-			border-color: <?php echo $primary_color; ?>;	
-		}
-	}
-	@media only print{
-		.coupons-coupons-grid-item{
-			background-color: <?php echo $primary_color; ?>;
-		}
-	}
-</style>
-<?php endif; 
-	if( get_field('footer_grey', 'option') ):
-?>
-<style type="text/css">
-	/* FOOTER-GREY STUFF */
-	@media only screen {
-		.login p.message,
-		.login #login #login_error,
-		.coupons-coupons-grid-item,
-		.mobilefooter{
-			background-color: <?php echo $variable_colors['footer_grey'] ?>;	
-		}	
-		#loginform{
-			background-color: <?php echo get_rgba($variable_colors['footer_grey'], 0.85); ?>;
-		}
-		.login #backtoblog,
-		.login #nav{
-			background-color: <?php echo get_rgba($variable_colors['footer_grey'], 0.85); ?>;
-		}
-	}
-
-	@media only screen and (min-width: 1025px){
-		.popup{
-			background-color: <?php echo $variable_colors['footer_grey'] ?>;
-		}	
-		.footer{
-			background-color: <?php echo $variable_colors['footer_grey']; ?>;
-		}
-	}
-	</style>
-<?php 
-	endif; 
-	if( get_field('medium_grey', 'option') ):
-?>
+if( get_field('navs-bg-toggle', 'option') ):
+	$color = get_field('navs-bg', 'option');
+	?>
 	<style type="text/css">
-
-		/* MEDIUM-GREY STUFF */
-		@media only screen {
-			.mobileheader-bar-tint{
-				background-color: <?php echo $variable_colors['medium_grey']; ?>;
-			}
-			.footer-pagelinks:after,
-			.footer-pagelinks:before,
-			.footer-middlecolumn2:after{
-				border-color: <?php echo $variable_colors['medium_grey']; ?>;
-			}
-		}
-		@media only screen and (min-width: 1167px){
-			.header-tint{
-				background-color: <?php echo $variable_colors['medium_grey']; ?>;	
-			}	
+		header.light .header-tint,
+		header .header-tint,
+		header.light .mobileheader-bar-tint, 
+		header.light .mobileheader-tint,
+		header .mobileheader-bar-tint, 
+		header .mobileheader-tint,
+		footer.mobilefooter.light,
+		footer.mobilefooter,
+		footer.footer.light,
+		footer.footer{
+			background-color: <?php echo $color ?>;
 		}
 	</style>
-<?php 
-	endif;
-	if( get_field('light_grey', 'option') ):
-?>
+	<?php
+endif;
+
+if( get_field('navs-text-toggle', 'option') ):
+	$color = get_field('navs-text', 'option');
+	?>
 	<style type="text/css">
-		/* LIGHT-GREY STUFF */
-		@media only screen {
-			.page404-hero,
-			.company-employees-grid-item,
-			.home-testimonials-grid-item,
-			.testimonials-testimonials-grid-item,
-			.menu-menu,
-			.menu-hero,
-			.blog-blog-sidebar{
-				background-color: <?php echo $variable_colors['light_grey']; ?>;	
-			}	
-		}
-
-		@media only screen and (min-width: 1025px){
-			.home-testimonials{
-				background-color: <?php echo $variable_colors['light_grey']; ?>;		
-			}
-			.home-testimonials:after{
-				border-color: <?php echo $variable_colors['light_grey']; ?> transparent transparent transparent;
-			}
-		}
-	</style>
-<?php 
-	endif;
-	if( get_field('estimate_bar', 'option') ):
-?>
-	<style type="text/css">
-		/* ESTIMATE-BAR STUFF */
-		@media only screen {
-			.mobileheader-estimate{
-				background-color: <?php echo $variable_colors['estimate_bar']; ?>;	
-			}
-		}
-		@media only screen and (min-width: 1025px){
-			footer.footer.light.footer-copyright{
-				background-color: <?php echo $variable_colors['estimate_bar']; ?>;
-			}	
-		}
-
-		@media only screen and (min-width: 1167px){
-			.header-estimate{
-				background-color: <?php echo $variable_colors['estimate_bar']; ?>;		
-			}
+		.footer-contactlinks-email, 
+		.footer-contactlinks-address,
+		.footer-contactlinks-fax, 
+		.footer-contactlinks-phone,
+		.footer-pagelinks-item-link,
+		.footer-pagelinks:before, 
+		.footer-pagelinks:after,
+		.footer-webxlink div,
+		.header-content-menus-pages-menu-item-link,
+		.header-content-menus-social-menu-item-link,
+		.header-content-menus-social-menu-item:last-of-type .header-content-menus-social-menu-item-link,
+		.mobilefooter-contactlinks-address,
+		.mobilefooter-contactlinks-email, 
+		.mobilefooter-contactlinks-fax, 
+		.mobilefooter-contactlinks-phone,
+		.mobilefooter-pagelinks-item-link,
+		.mobilefooter-copyright,
+		.mobilefooter-copyright a,
+		.mobileheader-menus-pages-menu-item-link,
+		.mobileheader-menus-contact-email, 
+		.mobileheader-menus-contact-phone,
+		.mobileheader-menus-social-menu-item-link-icon
+		{ 
+			border-color: <?php echo $color; ?>;
+			color: <?php echo $color; ?>;
 		}
 	</style>
-<?php 
-	endif;
-	if( get_field('header_tint', 'option') ): ?>
-	<style type="text/css">
-		/* HEADER-TINT STUFF */
-		@media only screen {
-			header.light.mobileheader-bar-tint,
-			header.light.mobileheader-tint{
-				background-color: <?php echo $variable_colors['header_tint']; ?>;
-			}
-		}
-		@media only screen and (min-width: 1167px){
-			header.light.header-tint{
-				background-color: <?php echo $variable_colors['header_tint']; ?>;
-			}
-		}
-	</style>
-<?php 
-	endif;
-	if( get_field('footer_bg', 'option') ): ?>
-	<style type="text/css">
-		/* FOOTER-BG STUFF */
-		@media only screen {
-			footer.mobilefooter.light{
-				background-color: <?php echo $variable_colors['footer_bg']; ?>;
-			}
-			.coupons-coupons-grid-item{
-				border-color: <?php echo $variable_colors['footer_bg']; ?>;
-			}
-		}
-		@media only screen and (min-width: 1025px){
-			footer.footer.light{
-				background-color: <?php echo $variable_colors['footer_bg']; ?>;
-			}
-		}
-	</style>
-<?php endif;
-	if( get_field('background_color_toggle', 'option') ): ?>
-	<style type="text/css">
-		@media only screen {
-			body{
-				background-color: <?php echo $background_color; ?>;
-			}
-		}	
-		@media only screen and (min-width: 1025px){
-			.home-testimonials:before{
-				border-color: <?php echo $background_color; ?> transparent transparent transparent;
-			}	
-		}
-	</style>
-<?php endif; ?>
+	<?php
+endif;
 
+if( get_field('buttons-underlines-toggle', 'option') ):
+	$color = get_field('buttons-underlines', 'option');
+	?>	
+		<style type="text/css">
+			.main .hero-text-header:after,
+			.header-content-quickquote,
+			a.blog-blog-sidebar-quickquote,
+			.global-recentposts-viewall,
+			.sociallink,
+			.contact-contact-left-locations-header:after,
+			.gform_footer input[type='submit'],
+			.footer-sociallinks-item,
+			.company-employees-grid-item-socialcontainer-link
+			{
+				border-color: <?php echo $color; ?>;
+				background-color: <?php echo $color; ?>;
+			}
 
+			.blog-blog-sidebar-recentposts-header, 
+			.blog-blog-sidebar-archive-header, 
+			.blog-blog-sidebar-categories-header{
+				border-color: <?php echo $color; ?>;	
+			}
+		</style>
+	<?php
+endif;
 
+if( get_field('sidebar-coupon-areasserved-bg-toggle', 'option') ):
+	$color = get_field('sidebar-coupon-areasserved-bg', 'option'); ?>
+		<style type="text/css">
+			.blog-blog-sidebar,
+			.coupons-coupons-grid-item,
+			.areas-served-areas-grid-imagecontainer-citystate{
+				background-color: <?php echo $color; ?>;
+			}
+		</style>
+	<?php
+endif;
 
-
-
+if( get_field('top-bottom-bg-toggle', 'option') ):
+	$color = get_field('top-bottom-bg', 'option');?>
+		<style type="text/css">
+			.header-estimate,
+			.footer-copyright{
+				background-color: <?php echo $color ?>;
+			}
+		</style>
+	<?php
+endif;
 
 
