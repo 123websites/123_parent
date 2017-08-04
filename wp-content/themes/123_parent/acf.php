@@ -1517,6 +1517,7 @@ if( !function_exists('add_acf_fields') ){
 					'key' => 'field_7fbaxhp',
 					'label' => 'Number of Posts Per Page',
 					'name' => 'general-coupons-postsperpage',
+					'type' => 'number',
 					'min' => -1,
 					'default_value' => 10,
 					'instructions' => 'To have unlimited posts per page set this field to -1',
