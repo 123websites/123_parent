@@ -1,6 +1,6 @@
 <?php 
 
-// register ACF fields & PHPImage Library
+/// register ACF fields & PHPImage Library
 require('acf.php');
 require('PHPImage.php');
 
