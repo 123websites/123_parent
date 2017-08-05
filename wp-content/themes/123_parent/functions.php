@@ -1021,7 +1021,7 @@ add_action( 'init', 'set_disabled_page_status' );
 if( !function_exists('set_disabled_page_status') ){
 	function set_disabled_page_status(){
 		if( get_field('disable-site', 'option') == true ){
-			change_post_status(get_page_by_path('disabled')->ID, 'public');
+			change_post_status(get_page_by_path('disabled')->ID, 'publish');
 		}
 		else{
 			change_post_status(get_page_by_path('disabled')->ID, 'private');
