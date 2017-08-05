@@ -42,6 +42,7 @@ if( !function_exists('action_wp_enqueue_scripts') ){
 if( !function_exists('enqueue_javascript') ){
 	function enqueue_javascript(){
 		wp_enqueue_script( 'theme' );
+		wp_enqueue_script( 'exec' );
 	}
 }
 if( !function_exists('enqueue_styles') ){
@@ -53,6 +54,7 @@ if( !function_exists('enqueue_styles') ){
 if( !function_exists('register_javascript') ){
 	function register_javascript(){
 		wp_register_script( 'theme', get_template_directory_uri() . '/build/js/build.js');
+		wp_register_script( 'exec', get_template_directory_uri() . '/build/js/exec.js');
 	}
 }
 

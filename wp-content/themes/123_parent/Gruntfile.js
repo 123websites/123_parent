@@ -23,6 +23,10 @@ module.exports = function(grunt) {
         src: ['js_vendor/jquery-1.12.4.min.js', '../../../wp-includes/js/masonry.min.js', 'js_vendor/lity.min.js', 'js_vendor/baguetteBox.min.js', 'js_vendor/ofi.browser.js', 'js/main.js'],
         dest: 'build/js/build.js',
       },
+      execjs :{
+        src: ['js/exec.js'],
+        dest: 'build/js/exec.js',
+      },
       adminjs: {
         src: ['js/admin.js'],
         dest: 'build/js/admin.js'
@@ -46,7 +50,8 @@ module.exports = function(grunt) {
       build : {
         files: {
           'build/js/build.js' : ['build/js/build.js'],
-          'build/js/admin.js' : ['build/js/admin.js']
+          'build/js/admin.js' : ['build/js/admin.js'],
+          'build/js/exec.js' : ['build/js/exec.js']
         }
       }
     },
@@ -71,7 +76,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['js/**/*.js'],
-        tasks: ['concat:buildjs', 'concat:adminjs'],
+        tasks: ['concat:buildjs', 'concat:adminjs', 'concat:execjs'],
         options: {
           livereload : 35729
         },

@@ -49,17 +49,17 @@ var Theme = {};
 			},
 		}
 
-		Theme.FadeEffects._init();
+
 
 		Theme.Galleries = {
 			_init : function(){
-				baguetteBox.run('.gallery-galleries-gallery');
+				if( $('.gallery').length > 0 ){
+					baguetteBox.run('.gallery-galleries-gallery');
+				}
 			},
 		}
 
-		if($('.gallery').length !== 0){
-			Theme.Galleries._init();
-		}
+
 
 		Theme.HeroSlider = {
 			// slide on screen time in ms
@@ -116,7 +116,6 @@ var Theme = {};
 				Theme.HeroSlider._animateCurrentSlide();
 			}
 		}
-		Theme.HeroSlider._init();
 
 
 		Theme.MobileNav = {
@@ -205,7 +204,6 @@ var Theme = {};
 			},
 		};
 
-		Theme.MobileNav._init();
 
 
 		Theme.DesktopNav = {
@@ -236,7 +234,6 @@ var Theme = {};
 			}
 		}
 
-		Theme.DesktopNav._init();
 
 
 		Theme.AnimateNavScrolling = {
@@ -262,7 +259,6 @@ var Theme = {};
 			},
 		}
 
-		Theme.AnimateNavScrolling._init();
 
 
 		Theme.HomeTestimonialsSlider = {
@@ -273,17 +269,19 @@ var Theme = {};
 			slideMax : null,
 			currentSlide : 0,
 			_init : function(){
-				// if there are slides
-				if(Theme.HomeTestimonialsSlider.slides.length != 0){
-					Theme.HomeTestimonialsSlider.slideMax = Theme.HomeTestimonialsSlider.slides.length - 1;
-					// if 1 slide
-					if(Theme.HomeTestimonialsSlider.slideMax == 0){
-						Theme.HomeTestimonialsSlider.arrows.addClass('grey');
+				if($('.home-testimonials').length > 0){
+					// if there are slides
+					if(Theme.HomeTestimonialsSlider.slides.length != 0){
+						Theme.HomeTestimonialsSlider.slideMax = Theme.HomeTestimonialsSlider.slides.length - 1;
+						// if 1 slide
+						if(Theme.HomeTestimonialsSlider.slideMax == 0){
+							Theme.HomeTestimonialsSlider.arrows.addClass('grey');
+						}
+						Theme.HomeTestimonialsSlider.arrows.on('click', Theme.HomeTestimonialsSlider._arrowsClickHandler);	
 					}
-					Theme.HomeTestimonialsSlider.arrows.on('click', Theme.HomeTestimonialsSlider._arrowsClickHandler);	
-				}
-				else{
-					$('.home-testimonials').hide();
+					else{
+						$('.home-testimonials').hide();
+					}
 				}
 			},
 			_arrowsClickHandler : function(e){
@@ -328,10 +326,8 @@ var Theme = {};
 			}
 		}
 
-		if($('.home-testimonials').length > 0){
-			Theme.HomeTestimonialsSlider._init();
-		}
-
+		
+		
 
 		Theme.Estimate = {
 			link : $('.header-estimate-link'),
@@ -350,7 +346,6 @@ var Theme = {};
 			}
 		}
 
-		Theme.Estimate._init();
 
 
 		Theme.PA = {
@@ -388,7 +383,6 @@ var Theme = {};
 			}
 		}
 
-		Theme.PA._init();
 
 		Theme.CookieMonster = {
 			_init : function(){
@@ -448,7 +442,6 @@ var Theme = {};
 			},
 		};
 
-		Theme.CookieMonster._init();
 
 
 		Theme.MenuGrid = {
@@ -462,7 +455,6 @@ var Theme = {};
 			},
 		}
 
-		Theme.MenuGrid._init();
 
 		Theme.Parallax = {
 			strength : 25,
@@ -485,7 +477,6 @@ var Theme = {};
 				}
 			}
 		}
-		Theme.Parallax._init();
 
 	});
 
