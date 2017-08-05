@@ -529,75 +529,79 @@ window._initContactMap = function(){
 }
 
 window._initHomeMap = function(){
-	// build latlangs
-	var geocoder = new google.maps.Geocoder();
-	var latlangs = [];
-	
-	for(var i = 0; i < AreasServed.length; i++){
-		geocoder.geocode({address: AreasServed[i]}, build_latlangs);
-	}
-	function build_latlangs(results, status){
-		var temparr = [];
-		temparr.push(results[0].geometry.location.lat());
-		temparr.push(results[0].geometry.location.lng());
-		latlangs.push(temparr);
-	}
-	// setTimeout(build_map, 1000);
-	jQuery(window).on('load', build_map);
-	function build_map(){
-		// build map center
-		var map_center = [];
-		var x = 0;
-		var y = 0;
+	if( document.getElementById('map') !== null ){
 
-		// build bounds & make center of map coords
-		bounds  = new google.maps.LatLngBounds();
 
-		for(var i = 0; i < latlangs.length; i++){
-			x += latlangs[i][0];
-			y += latlangs[i][1];
-			bounds.extend({lat: latlangs[i][0], lng: latlangs[i][1]});
-		}
+		// build latlangs
+		var geocoder = new google.maps.Geocoder();
+		var latlangs = [];
 		
-		map_center[0] = x / latlangs.length;
-		map_center[1] = y / latlangs.length;
+		for(var i = 0; i < AreasServed.length; i++){
+			geocoder.geocode({address: AreasServed[i]}, build_latlangs);
+		}
+		function build_latlangs(results, status){
+			var temparr = [];
+			temparr.push(results[0].geometry.location.lat());
+			temparr.push(results[0].geometry.location.lng());
+			latlangs.push(temparr);
+		}
+		// setTimeout(build_map, 1000);
+		jQuery(window).on('load', build_map);
+		function build_map(){
+			// build map center
+			var map_center = [];
+			var x = 0;
+			var y = 0;
 
-		// build map
-		var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 11,
-          center: {lat: map_center[0], lng: map_center[1]},
-          mapTypeId: 'terrain',
-          disableDefaultUI: true,
-          scrollwheel: false,
-          draggable: false,
-        });
+			// build bounds & make center of map coords
+			bounds  = new google.maps.LatLngBounds();
 
-		// add circles
-		for (var i = 0; i < latlangs.length; i++) {
-	         var cityCircle = new google.maps.Circle({
-	         	strokeColor: '#FF0000',
-	         	strokeOpacity: 0.8,
-	         	strokeWeight: 2,
-	         	fillColor: '#FF0000',
-	         	fillOpacity: 0.35,
-	         	map: map,
-	         	center: {lat: latlangs[i][0], lng: latlangs[i][1]},
-	         	radius: 9000,
+			for(var i = 0; i < latlangs.length; i++){
+				x += latlangs[i][0];
+				y += latlangs[i][1];
+				bounds.extend({lat: latlangs[i][0], lng: latlangs[i][1]});
+			}
+			
+			map_center[0] = x / latlangs.length;
+			map_center[1] = y / latlangs.length;
+
+			// build map
+			var map = new google.maps.Map(document.getElementById('map'), {
+	          zoom: 11,
+	          center: {lat: map_center[0], lng: map_center[1]},
+	          mapTypeId: 'terrain',
+	          disableDefaultUI: true,
+	          scrollwheel: false,
+	          draggable: false,
 	        });
-	         var marker = new google.maps.Marker({
-	         	position: {lat: latlangs[i][0], lng: latlangs[i][1]},
-	         	map: map,
 
-	         });
-	    }
-     	// zoom to bounds
-     	if(latlangs.length > 1){
-     		map.fitBounds(bounds);	
-     	}	
-	    map.panToBounds(bounds);
-	}	
+			// add circles
+			for (var i = 0; i < latlangs.length; i++) {
+		         var cityCircle = new google.maps.Circle({
+		         	strokeColor: '#FF0000',
+		         	strokeOpacity: 0.8,
+		         	strokeWeight: 2,
+		         	fillColor: '#FF0000',
+		         	fillOpacity: 0.35,
+		         	map: map,
+		         	center: {lat: latlangs[i][0], lng: latlangs[i][1]},
+		         	radius: 9000,
+		        });
+		         var marker = new google.maps.Marker({
+		         	position: {lat: latlangs[i][0], lng: latlangs[i][1]},
+		         	map: map,
 
-	window._initContactMap();
+		         });
+		    }
+	     	// zoom to bounds
+	     	if(latlangs.length > 1){
+	     		map.fitBounds(bounds);	
+	     	}	
+		    map.panToBounds(bounds);
+		}	
+
+		window._initContactMap();
+	}
 }
 
 window.Theme = Theme;
