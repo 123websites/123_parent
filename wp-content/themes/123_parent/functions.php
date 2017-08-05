@@ -970,8 +970,7 @@ add_action('admin_head', 'handle_disabled_site');
 if( !function_exists('handle_disabled_site') ){
 	function handle_disabled_site(){
 		if( get_field('disable-site', 'option') == true ){
-			global $post;
-			$slug = $post->post_name;
+			$slug = get_post_field( 'post_name', get_post() );
 			add_action( 'admin_notices', 'admin_notify_disabled_site' );
 			if( $slug == 'disabled' || is_admin() ){
 				if( is_admin() && !current_user_can('activate_plugins') ){
