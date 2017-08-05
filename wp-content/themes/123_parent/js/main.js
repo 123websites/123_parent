@@ -600,3 +600,4 @@ window._initHomeMap = function(){
 	window._initContactMap();
 }
 
+window.Theme = Theme;
