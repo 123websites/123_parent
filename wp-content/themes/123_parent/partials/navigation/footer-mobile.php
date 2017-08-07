@@ -4,10 +4,10 @@
 	</a>
 	<div class="fade fade-up mobilefooter-contactlinks">
 		<?php if( !empty( get_the_phone() ) ): ?>
-			<a href="tel:<?php echo get_the_phone('tel'); ?>" class="mobilefooter-contactlinks-phone"><?php echo 'p: ' . get_the_phone() ?></a>
+			<a href="tel:<?php echo get_the_phone('tel'); ?>" class="mobilefooter-contactlinks-phone"><?php echo 'P: ' . get_the_phone() ?></a>
 		<?php endif; ?>
 		<?php if( !empty( get_the_fax() ) ): ?>
-			<a href="tel:<?php echo get_the_fax('tel'); ?>" class="mobilefooter-contactlinks-fax"><?php echo 'f: ' . get_the_fax() ?></a>
+			<a href="tel:<?php echo get_the_fax('tel'); ?>" class="mobilefooter-contactlinks-fax"><?php echo 'F: ' . get_the_fax() ?></a>
 		<?php endif; ?>
 		<div class="mobilefooter-contactlinks-address"><?php echo get_the_address(); ?></div>
 	</div>
