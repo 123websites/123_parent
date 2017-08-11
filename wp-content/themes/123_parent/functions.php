@@ -485,7 +485,7 @@ if( !function_exists('setup_editor_admin') ){
 			add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
 	    }
 	    if ( array_intersect( array('author'), $user->roles ) ) {
-	    	remove_menu_page( 'edit.php?post_type=coupon' );
+	    	// remove_menu_page( 'edit.php?post_type=coupon' );
 	    	$user->remove_cap('gform_full_access');
 	    }
 	}
@@ -511,23 +511,23 @@ if( !function_exists('remove_dashboard_widgets') ){
 	}
 }
 
-// prevent redirect after login to user.php
-add_filter( 'login_redirect', 'handle_user_login_redirect', 10, 3 );
+// // prevent redirect after login to user.php
+// add_filter( 'login_redirect', 'handle_user_login_redirect', 10, 3 );
 
-if( !function_exists('handle_user_login_redirect') ){
-	function handle_user_login_redirect($url, $query, $user){
-		return site_url("wp-admin");
-	}
-}
+// if( !function_exists('handle_user_login_redirect') ){
+// 	function handle_user_login_redirect($url, $query, $user){
+// 		return site_url("wp-admin");
+// 	}
+// }
 
-// change login screen logo url
-add_filter( 'login_headerurl', 'custom_login_logo_url' );
+// // change login screen logo url
+// add_filter( 'login_headerurl', 'custom_login_logo_url' );
 
-if( !function_exists('custom_login_logo_url') ){
-	function custom_login_logo_url() {
-	    return home_url();
-	}
-}
+// if( !function_exists('custom_login_logo_url') ){
+// 	function custom_login_logo_url() {
+// 	    return home_url();
+// 	}
+// }
 
 
 // get the phone number for headers & footers
@@ -1005,7 +1005,9 @@ add_action('wp_login', 'login_during_disable_site', 10, 2);
 // stop user from logging in during site disabled if they're not admin
 if( !function_exists('login_during_disable_site') ){
 	function login_during_disable_site($user_login, $user){
-		if( !$user->has_cap('activate_plugins') ){
+		error_log(print_r(!in_array('delete_others_pages', $user->allcaps ), true));
+
+		if( !in_array('delete_others_pages', $user->allcaps ) ){
 			wp_logout();
 			wp_redirect( home_url( '/disabled/' ), 301 );
 		    exit;	
