@@ -879,7 +879,6 @@ add_action('admin_menu', 'wpse_233129_admin_menu_items');
 if( !function_exists('wpse_233129_admin_menu_items') ){
 	function wpse_233129_admin_menu_items() {
 	    global $menu;
-
 	    $menu[5][0] = 'Blog Posts';
 
 	    foreach ( $menu as $key => $value ) {
@@ -893,7 +892,7 @@ if( !function_exists('wpse_233129_admin_menu_items') ){
 	    $newkey = 83; // use whatever index gets you the position you want
 	    // if this key is in use you will write over a menu item!
 	    $menu[$newkey]=$menu[$oldkey];
-	    $menu[$oldkey]=array();
+	    unset($menu[$oldkey]);
 
 	}
 }
