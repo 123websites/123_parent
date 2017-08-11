@@ -469,12 +469,11 @@ add_action( 'init', 'register_coupon_cpt' );
 
 
 // setup editor and author admin backend
-if( !function_exists('setup_editor_admin') ){
-	function setup_editor_admin(){
+if( !function_exists('setup_admin_menus_all_roles') ){
+	function setup_admin_menus_all_roles(){
 	    $user = wp_get_current_user();
 	    $allowed_roles = array('editor', 'author');
 	    global $menu;
-	    error_log(print_r($menu, true));
 
 	    if ( array_intersect($allowed_roles, $user->roles ) ) {
 			$user->add_cap('gform_full_access');
@@ -492,7 +491,7 @@ if( !function_exists('setup_editor_admin') ){
 			remove_menu_page( 'upload.php' );
 
 
-			add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
+			add_action('wp_dashboard_setup', 'remove_editor_dashboard_widgets' );
 	    }
 	    if ( array_intersect( array('author'), $user->roles ) ) {
 	    	// remove_menu_page( 'edit.php?post_type=coupon' );
@@ -508,11 +507,11 @@ if( !function_exists('update_gform_menu_position') ){
 	}
 }
 
-add_action('admin_menu','setup_editor_admin');
+add_action('admin_menu','setup_admin_menus_all_roles');
 
 // cleans out the dashboard widgets
-if( !function_exists('remove_dashboard_widgets') ){
-	function remove_dashboard_widgets() {
+if( !function_exists('remove_editor_dashboard_widgets') ){
+	function remove_editor_dashboard_widgets() {
 		global $wp_meta_boxes;
 
 		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
