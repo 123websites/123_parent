@@ -473,14 +473,24 @@ if( !function_exists('setup_editor_admin') ){
 	function setup_editor_admin(){
 	    $user = wp_get_current_user();
 	    $allowed_roles = array('editor', 'author');
+	    global $menu;
+	    error_log(print_r($menu, true));
 
 	    if ( array_intersect($allowed_roles, $user->roles ) ) {
 			$user->add_cap('gform_full_access');
 			remove_menu_page( 'edit.php?post_type=page' );
+			remove_menu_page( 'edit.php?post_type=acf-field-group' );
 			remove_menu_page( 'tools.php' );
 			remove_menu_page( 'profile.php' );
 			remove_menu_page( 'edit-comments.php' );
-			// remove_menu_page( 'edit.php' );
+			$user->add_cap('ga_activate');
+			$user->add_cap('manage_options');
+			$user->add_cap('ga_reset');
+			$user->add_cap('activate_plugins');
+			remove_menu_page( 'options-general.php' );
+			remove_menu_page( 'plugins.php' );
+			remove_menu_page( 'upload.php' );
+
 
 			add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
 	    }
@@ -490,8 +500,15 @@ if( !function_exists('setup_editor_admin') ){
 	    }
 	}
 }
+// update gravity forms menu position
+add_filter( 'gform_menu_position', 'update_gform_menu_position' );
+if( !function_exists('update_gform_menu_position') ){
+	function update_gform_menu_position( $position ) {
+	    return 99;
+	}
+}
 
-add_action('admin_init','setup_editor_admin');
+add_action('admin_menu','setup_editor_admin');
 
 // cleans out the dashboard widgets
 if( !function_exists('remove_dashboard_widgets') ){
@@ -956,7 +973,7 @@ if( !function_exists('admin_notify_disabled_site') ){
 	    ?>
 	    <div class="notice notice-error" style="background-color: #ffdadf;">
 	        <p style="text-transform: uppercase; font-size: 24px; color: red; margin-bottom: 0px;">This site has been disabled!</p>
-	        <p style="margin-top: 0px;">To enable it go to the Disable Site tab in Theme Settings</p>
+	        <p style="margin-top: 0px;">To enable it go to the Disable Site tab in <a href="<?php echo admin_url('?page=general-settings') ?>">Theme Settings</a></p>
 	    </div>
 	    <?php
 	}
@@ -972,7 +989,7 @@ if( !function_exists('handle_disabled_site') ){
 			$slug = get_post_field( 'post_name', get_post() );
 			add_action( 'admin_notices', 'admin_notify_disabled_site' );
 			if( $slug == 'disabled' || is_admin() ){
-				if( is_admin() && !current_user_can('activate_plugins') ){
+				if( is_admin() && !current_user_can('delete_others_pages') ){
 					wp_logout();
 					wp_redirect( home_url( '/disabled/' ), 301 );
 				    exit;	
