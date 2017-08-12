@@ -140,13 +140,13 @@ add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
 
 if( !function_exists('add_dashboard_widgets') ){
 	function add_dashboard_widgets() {
-		wp_add_dashboard_widget('dashboard_widget', 'Questions, Comments, Concerns ?', 'dashboard_widget_function');
+		wp_add_dashboard_widget('dashboard_questions_comments_widget', 'Questions, Comments, Concerns ?', 'dashboard_questions_comments_widget_function');
 	}
 }
 
 // Function that outputs the contents of the dashboard widget
-if( !function_exists('dashboard_widget_function') ){
-	function dashboard_widget_function( $post, $callback_args ) {
+if( !function_exists('dashboard_questions_comments_widget_function') ){
+	function dashboard_questions_comments_widget_function( $post, $callback_args ) {
 		?>
 			<a target="_blank" href="http://www.123websites.com/training">
 				<img style="width: 100%;" src="http://www.123websites.com/images/training-ad-dashboard.png">
@@ -466,16 +466,27 @@ if( !function_exists('register_coupon_cpt') ){
 add_action( 'init', 'register_coupon_cpt' );
 
 
+// update gravity forms menu position
+add_filter( 'gform_menu_position', 'update_gform_menu_position' );
+
+if( !function_exists('update_gform_menu_position') ){
+	function update_gform_menu_position( $position ) {
+	    return 99;
+	}
+}
 
 
 // setup editor and author admin backend
+add_action('admin_menu','setup_admin_menus_all_roles');
+
 if( !function_exists('setup_admin_menus_all_roles') ){
 	function setup_admin_menus_all_roles(){
 	    $user = wp_get_current_user();
 	    $allowed_roles = array('editor', 'author');
 	    global $menu;
 
-	    if ( array_intersect($allowed_roles, $user->roles ) ) {
+	    // editor
+	    if ( array_intersect( array('editor'), $user->roles ) ) {
 			$user->add_cap('gform_full_access');
 			remove_menu_page( 'edit.php?post_type=page' );
 			remove_menu_page( 'edit.php?post_type=acf-field-group' );
@@ -489,43 +500,61 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 			remove_menu_page( 'options-general.php' );
 			remove_menu_page( 'plugins.php' );
 			remove_menu_page( 'upload.php' );
-
-
-			add_action('wp_dashboard_setup', 'remove_editor_dashboard_widgets' );
 	    }
-	    if ( array_intersect( array('author'), $user->roles ) ) {
+	    // author
+	    elseif ( array_intersect( array('author'), $user->roles ) ) {
 	    	// remove_menu_page( 'edit.php?post_type=coupon' );
 	    	$user->remove_cap('gform_full_access');
+	    	$user->remove_cap('ga_activate');
+			$user->remove_cap('manage_options');
+			$user->remove_cap('ga_reset');
+			$user->remove_cap('activate_plugins');
+	    	remove_menu_page( 'edit.php?post_type=page' );
+	    	remove_menu_page( 'edit.php?post_type=acf-field-group' );
+	    	remove_menu_page( 'tools.php' );
+	    	remove_menu_page( 'profile.php' );
+	    	remove_menu_page( 'edit-comments.php' );
+	    	remove_menu_page( 'options-general.php' );
+	    	remove_menu_page( 'plugins.php' );
+	    	remove_menu_page( 'upload.php' );
 	    }
-	}
-}
-// update gravity forms menu position
-add_filter( 'gform_menu_position', 'update_gform_menu_position' );
-if( !function_exists('update_gform_menu_position') ){
-	function update_gform_menu_position( $position ) {
-	    return 99;
-	}
-}
-
-add_action('admin_menu','setup_admin_menus_all_roles');
-
-// cleans out the dashboard widgets
-if( !function_exists('remove_editor_dashboard_widgets') ){
-	function remove_editor_dashboard_widgets() {
-		global $wp_meta_boxes;
-
-		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
-		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
-		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
-		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
-		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
-		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_drafts']);
-		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
-		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
-		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
 
 	}
 }
+
+add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets' );
+
+// cleans out admin dashboard widgets
+if( !function_exists('remove_admin_dashboard_widgets') ){
+	function remove_dashboard_widgets(){
+		$user = wp_get_current_user();
+		// editor
+		if ( array_intersect( array('editor'), $user->roles ) ) {
+			remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+			remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+			remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
+		}
+		// author
+		elseif ( array_intersect( array('author'), $user->roles ) ){
+			remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+			remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+			remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
+			remove_meta_box( 'dashboard_questions_comments_widget', 'dashboard', 'normal' );
+			remove_meta_box( 'wordfence_activity_report_widget', 'dashboard', 'advanced' );
+			// remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
+		}
+		// admin
+		else{
+			remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+			remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+			remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
+		}
+	}
+}
+
 
 // // prevent redirect after login to user.php
 // add_filter( 'login_redirect', 'handle_user_login_redirect', 10, 3 );
