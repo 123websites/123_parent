@@ -543,7 +543,6 @@ if( !function_exists('remove_admin_dashboard_widgets') ){
 			remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
 			remove_meta_box( 'dashboard_questions_comments_widget', 'dashboard', 'normal' );
 			remove_meta_box( 'wordfence_activity_report_widget', 'dashboard', 'advanced' );
-			// remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
 		}
 		// admin
 		else{
@@ -556,23 +555,6 @@ if( !function_exists('remove_admin_dashboard_widgets') ){
 }
 
 
-// // prevent redirect after login to user.php
-// add_filter( 'login_redirect', 'handle_user_login_redirect', 10, 3 );
-
-// if( !function_exists('handle_user_login_redirect') ){
-// 	function handle_user_login_redirect($url, $query, $user){
-// 		return site_url("wp-admin");
-// 	}
-// }
-
-// // change login screen logo url
-// add_filter( 'login_headerurl', 'custom_login_logo_url' );
-
-// if( !function_exists('custom_login_logo_url') ){
-// 	function custom_login_logo_url() {
-// 	    return home_url();
-// 	}
-// }
 
 
 // get the phone number for headers & footers
@@ -1072,6 +1054,25 @@ if( !function_exists('set_disabled_page_status') ){
 		else{
 			change_post_status(get_page_by_path('disabled')->ID, 'private');
 		}
+	}
+}
+
+add_action('init', 'action_change_role_names');
+
+// changes author names
+if( !function_exists('action_change_role_names') ){
+	function action_change_role_names(){
+		global $wp_roles;
+
+		if( !isset($wp_roles) ){
+			$wp_roles = new WP_Roles();
+		}
+
+		$wp_roles->roles['editor']['name'] = 'Agent';
+	    $wp_roles->role_names['editor'] = 'Agent';
+
+	    $wp_roles->roles['author']['name'] = 'Client';
+	    $wp_roles->role_names['author'] = 'Client';
 	}
 }
 
