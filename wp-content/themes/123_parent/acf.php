@@ -634,6 +634,13 @@ if( !function_exists('add_acf_fields') ){
 					'instructions' => 'Must be in 555-555-5555 format. Leave it blank if you don\'t want your company phone number to show up in the footer.',
 				),	
 				array(
+					'key' => 'field_212o8afdh',
+					'label' => 'Company Email',
+					'name' => 'company-email',
+					'type' => 'email',
+					'instructions' => 'This is the email that the contact form will be sent to.'
+				),
+				array(
 					'key' => 'field_padfh123ad',
 					'label' => '2. Colors',
 					'type' => 'tab',
@@ -1387,6 +1394,13 @@ if( !function_exists('add_acf_fields') ){
 					'default_value' => 'Click here for a free estimate!!!',
 				),
 				array(
+					'key' => 'field_89zv213gd',
+					'label' => 'Client Email',
+					'type' => 'email',
+					'name' => 'topbar-email',
+					'instructions' => 'This is the email that the timed popup and topbar popup forms will send to.'
+				),
+				array(
 					'key' => 'field_b78h32msda',
 					'label' => 'Disable',
 					'type' => 'true_false',
@@ -1448,6 +1462,13 @@ if( !function_exists('add_acf_fields') ){
 					'name' => 'quickquote-header',
 					'type' => 'text',
 					'instructions' => 'This is the text that appears above the form on the quick quote popup.',
+				),
+				array(
+					'key' => 'field_2hdaf89ads',
+					'label' => 'Client Email',
+					'type' => 'email',
+					'name' => 'quickquote-email',
+					'instructions' => 'This is the email that the timed popup and topbar popup forms will send to.'
 				),
 				array(
 					'key' => 'field_zfe32123',
@@ -2274,9 +2295,33 @@ add_action( 'acf/validate_value', 'acf_validate_phone_numbers', 10, 4 );
 
 
 
+if( !function_exists('acf_update_popup_emails') ){
+	function acf_update_popup_emails( $value, $post_id, $field ){
+		$fields = array(
+			'field_212o8afdh',
+			'field_89zv213gd',
+			'field_2hdaf89ads',
+		);
 
+		if( in_array($field['key'], $fields) && !empty($value) ){
+			global $wpdb;
+			// get form id
+			$id = array_search($field['key'], $fields) + 1;
+			// get row data
+			$row = $wpdb->get_results('SELECT notifications FROM wp_rg_form_meta WHERE form_id = ' . $id . ';');
+			// json decode row data
+			$json = json_decode($row[0]->notifications, JSON_OBJECT_AS_ARRAY);
+			// saves at 'to' key in last array in $json
+			$json[array_keys($json)[count($json)-1]]['to'] = $value;
+			// set updated json
+			$wpdb->query('UPDATE wp_rg_form_meta SET notifications = \'' . json_encode($json) . '\' WHERE form_id = ' . $id . ';');
+		}
 
+		return $value;
+	}
+}
 
+add_action( 'acf/update_value', 'acf_update_popup_emails', 10, 3 );
 
 
 
