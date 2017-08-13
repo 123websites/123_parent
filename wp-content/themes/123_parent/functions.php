@@ -484,7 +484,7 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 	    $user = wp_get_current_user();
 	    $allowed_roles = array('editor', 'author');
 	    global $menu;
-
+	    // error_log(print_r($menu, true));
 	    // editor
 	    if ( array_intersect( array('editor'), $user->roles ) ) {
 			$user->add_cap('gform_full_access');
@@ -500,6 +500,12 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 			remove_menu_page( 'options-general.php' );
 			remove_menu_page( 'plugins.php' );
 			remove_menu_page( 'upload.php' );
+			// remove wordfence from menu
+			$menu = array_filter($menu, function($value, $key){
+				if( strpos(implode(' ', $value), 'wordfence') === false ){
+					return $value;
+				}
+			}, ARRAY_FILTER_USE_BOTH);
 	    }
 	    // author
 	    elseif ( array_intersect( array('author'), $user->roles ) ) {
@@ -522,7 +528,7 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 	}
 }
 
-add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets' );
+add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets', 20 );
 
 // cleans out admin dashboard widgets
 if( !function_exists('remove_admin_dashboard_widgets') ){
@@ -534,6 +540,7 @@ if( !function_exists('remove_admin_dashboard_widgets') ){
 			remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
 			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
 			remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
+			remove_meta_box( 'wordfence_activity_report_widget', 'dashboard', 'normal' );
 		}
 		// author
 		elseif ( array_intersect( array('author'), $user->roles ) ){
@@ -542,7 +549,7 @@ if( !function_exists('remove_admin_dashboard_widgets') ){
 			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
 			remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
 			remove_meta_box( 'dashboard_questions_comments_widget', 'dashboard', 'normal' );
-			remove_meta_box( 'wordfence_activity_report_widget', 'dashboard', 'advanced' );
+			remove_meta_box( 'wordfence_activity_report_widget', 'dashboard', 'normal' );
 		}
 		// admin
 		else{
