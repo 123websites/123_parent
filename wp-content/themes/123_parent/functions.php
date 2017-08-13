@@ -483,9 +483,10 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 	function setup_admin_menus_all_roles(){
 	    $user = wp_get_current_user();
 	    $allowed_roles = array('editor', 'author');
+
 	    global $menu;
-	    // error_log(print_r($menu, true));
-	    // editor
+
+	    // agent
 	    if ( array_intersect( array('editor'), $user->roles ) ) {
 			$user->add_cap('gform_full_access');
 			remove_menu_page( 'edit.php?post_type=page' );
@@ -507,7 +508,7 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 				}
 			}, ARRAY_FILTER_USE_BOTH);
 	    }
-	    // author
+	    // client
 	    elseif ( array_intersect( array('author'), $user->roles ) ) {
 	    	// remove_menu_page( 'edit.php?post_type=coupon' );
 	    	$user->remove_cap('gform_full_access');
@@ -534,15 +535,16 @@ add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets', 20 );
 if( !function_exists('remove_admin_dashboard_widgets') ){
 	function remove_dashboard_widgets(){
 		$user = wp_get_current_user();
-		// editor
+		// agent
 		if ( array_intersect( array('editor'), $user->roles ) ) {
 			remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
 			remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
 			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
 			remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
 			remove_meta_box( 'wordfence_activity_report_widget', 'dashboard', 'normal' );
+			remove_meta_box( 'blc_dashboard_widget', 'dashboard', 'normal' );
 		}
-		// author
+		// client
 		elseif ( array_intersect( array('author'), $user->roles ) ){
 			remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
 			remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
@@ -1083,5 +1085,19 @@ if( !function_exists('action_change_role_names') ){
 	}
 }
 
+// remove wordpress footer text
+if( !function_exists('action_change_footer') ){
+	function action_change_footer() {
+	    add_filter( 'admin_footer_text', 'action_change_footer_text', 11 );
+	}
+}
+
+if( !function_exists('action_change_footer_text') ){
+	function action_change_footer_text($content) {
+	    return "";
+	}
+}
+
+add_action( 'admin_init', 'action_change_footer' );
 
 ?>
