@@ -522,6 +522,13 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 			$user->add_cap( 'edit_published_coupon' );
 			$user->add_cap( 'edit_coupon' );
 			$user->add_cap( 'publish_coupon' );
+			$user->add_cap( 'delete_published_post' );
+			$user->add_cap( 'delete_others_post' );
+			$user->add_cap( 'delete_post' );
+			$user->add_cap( 'edit_others_post' );
+			$user->add_cap( 'edit_published_post' );
+			$user->add_cap( 'edit_post' );
+			$user->add_cap( 'publish_post' );
 	    	remove_menu_page( 'edit.php?post_type=page' );
 	    	remove_menu_page( 'edit.php?post_type=acf-field-group' );
 	    	remove_menu_page( 'tools.php' );
