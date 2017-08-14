@@ -579,6 +579,7 @@ if( !function_exists('remove_admin_dashboard_widgets') ){
 			remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
 			remove_meta_box( 'dashboard_questions_comments_widget', 'dashboard', 'normal' );
 			remove_meta_box( 'wordfence_activity_report_widget', 'dashboard', 'normal' );
+			remove_meta_box( 'blc_dashboard_widget', 'dashboard', 'normal' );
 		}
 		// admin
 		else{
