@@ -177,13 +177,14 @@ var Theme = {};
 
 		Theme.DesktopNav = {
 			tint : $('.header-tint'),
-			estimate : $('.header-content-quickquote'),
+			estimate : $('.estimate-toggle'),
 			estimatePopup : $('.estimate'),
 			estimateClose : $('.estimate.popupcontainer, .estimate-content-times.popupcontainer-times'),
 			_init: function(){
 				if(DisableNavTintFadein == 'false'){
 					$(window).on('scroll load', Theme.DesktopNav._scrollLoadHandler);		
 				}
+				console.log('hey');
 				Theme.DesktopNav.estimate.click(Theme.DesktopNav._estimateClickHandler);
 				Theme.DesktopNav.estimateClose.click(Theme.DesktopNav._estimateCloseClickHandler);
 			},

@@ -22,7 +22,7 @@
 				</nav>
 			</div>
 			<?php if( !get_field('quickquote-disable', 'option') ): ?>
-				<a href="#" class="header-content-quickquote"><?php echo get_field('quickquote-button-text', 'option'); ?></a>
+				<a href="#" class="header-content-quickquote estimate-toggle"><?php echo get_field('quickquote-button-text', 'option'); ?></a>
 			<?php endif; ?>
 		</div>
 	</div>
