@@ -43,16 +43,16 @@
 									<?php if( !empty(get_sub_field('contact-office', 'option')) ): ?>
 										<div class="contact-contact-left-locations-location-phones-office">
 											<strong>Office: </strong>
-											<a href="mailto:<?php echo get_tel(get_sub_field('contact-office', 'option')) ?>">
+											<a href="tel:<?php echo get_tel(get_sub_field('contact-office', 'option')) ?>">
 												<?php echo get_sub_field('contact-office', 'option'); ?>
 											</a>
 										</div>
 									<?php endif; ?>
 									<?php if( !empty(get_sub_field('contact-cell', 'option')) ): ?>
-									<div class="contact-contact-left-locations-location-phones-cell"><strong>Cell: </strong><a href="mailto:<?php echo get_tel(get_sub_field('contact-cell', 'option')) ?>"><?php echo get_sub_field('contact-cell', 'option'); ?></a></div>
+									<div class="contact-contact-left-locations-location-phones-cell"><strong>Cell: </strong><a href="tel:<?php echo get_tel(get_sub_field('contact-cell', 'option')) ?>"><?php echo get_sub_field('contact-cell', 'option'); ?></a></div>
 									<?php endif; ?>
 									<?php if( !empty(get_sub_field('contact-fax', 'option')) ): ?>
-									<div class="contact-contact-left-locations-location-phones-fax"><strong>Fax: </strong><a href="mailto:<?php echo get_tel(get_sub_field('contact-fax', 'option')) ?>"><?php echo get_sub_field('contact-fax', 'option'); ?></a></div>
+									<div class="contact-contact-left-locations-location-phones-fax"><strong>Fax: </strong><a href="tel:<?php echo get_tel(get_sub_field('contact-fax', 'option')) ?>"><?php echo get_sub_field('contact-fax', 'option'); ?></a></div>
 									<?php endif; ?>
 								</div>
 
