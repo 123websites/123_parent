@@ -1127,4 +1127,13 @@ if( !function_exists('action_change_footer_text') ){
 
 add_action( 'admin_init', 'action_change_footer' );
 
+
+add_action( 'admin_bar_menu', 'remove_wp_logo', 999 );
+
+if( !function_exists('remove_wp_logo') ){
+	function remove_wp_logo( $wp_admin_bar ) {
+		$wp_admin_bar->remove_node( 'wp-logo' );
+	}
+}
+
 ?>
