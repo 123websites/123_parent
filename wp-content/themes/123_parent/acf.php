@@ -624,14 +624,14 @@ if( !function_exists('add_acf_fields') ){
 					'label' => 'Company Phone Number',
 					'name' => 'social-phone-number',
 					'type' => 'text',
-					'instructions' => 'Must be in 555-555-5555 format. Leave it blank if you don\'t want your company phone number to show up in the footer.',
+					'instructions' => 'Must be in (555) 555-5555 format. Leave it blank if you don\'t want your company phone number to show up in the footer.',
 				),
 				array(
 					'key' => 'field_8378ddf888',
 					'label' => 'Company Fax Number',
 					'name' => 'social-fax-number',
 					'type' => 'text',
-					'instructions' => 'Must be in 555-555-5555 format. Leave it blank if you don\'t want your company phone number to show up in the footer.',
+					'instructions' => 'Must be in (555) 555-5555 format. Leave it blank if you don\'t want your company phone number to show up in the footer.',
 				),	
 				array(
 					'key' => 'field_212o8afdh',
@@ -1577,7 +1577,7 @@ if( !function_exists('add_acf_fields') ){
 					'label' => 'Parent Company Phone #',
 					'name' => 'webx-phone',
 					'type' => 'text',
-					'instructions' => 'Must be in 555-555-5555 format. Put the phone number you want to show up on the disable site page. Leaving this field blank will not show a phone number.',
+					'instructions' => 'Must be in (555) 555-5555 format. Put the phone number you want to show up on the disable site page. Leaving this field blank will not show a phone number.',
 				),
 				array(
 					'key' => 'field_218372012112173',
@@ -1927,21 +1927,21 @@ if( !function_exists('add_acf_fields') ){
 							'type' => 'text',
 							'name' => 'contact-office',
 							'required' => true,
-							'instructions' => 'Must be in 555-555-5555 format.',
+							'instructions' => 'Must be in (555) 555-5555 format.',
 						),
 						array(
 							'key' => 'field_25',
 							'label' => 'Cell Phone Number',
 							'type' => 'text',
 							'name' => 'contact-cell',
-							'instructions' => 'Must be in 555-555-5555 format.',
+							'instructions' => 'Must be in (555) 555-5555 format.',
 						),
 						array(
 							'key' => 'field_27',
 							'label' => 'Fax Number',
 							'type' => 'text',
 							'name' => 'contact-fax',
-							'instructions' => 'Must be in 555-555-5555 format.',
+							'instructions' => 'Must be in (555) 555-5555 format.',
 						),
 					),
 					'layout' => 'row',
@@ -2277,14 +2277,13 @@ if( !function_exists('acf_validate_phone_numbers') ){
 			// bail early if value is already invalid
 			if( !$valid ) return $valid;
 			// is formatted phone number or empty?
-			if( is_int( (int) str_replace('-', '', $value) ) && 
-				strpos_r($value, '-') === array(3,7) &&
-				strlen(str_replace('-', '', $value)) == 10 ||
-				empty($value) ){
+			preg_match("/^[(]\d{3}[)][\ ]\d{3}[-]\d{4}$/", $value, $matches, PREG_OFFSET_CAPTURE, 0);
+			// allow the return of an empty field for conditionals on the view
+			if( !empty($matches) || empty($value) ){
 				return $valid;
 			}
 			else{
-				return $valid = 'Phone number must be formated to 555-555-5555';
+				return $valid = 'Phone number must be formated to (555) 555-5555';
 			}
 		}
 		return $valid;
