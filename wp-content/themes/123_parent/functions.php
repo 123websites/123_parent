@@ -477,14 +477,14 @@ if( !function_exists('update_gform_menu_position') ){
 
 
 // setup editor and author admin backend
-add_action('admin_menu','setup_admin_menus_all_roles');
+add_action('admin_init','setup_admin_menus_all_roles', 40);
 
 if( !function_exists('setup_admin_menus_all_roles') ){
 	function setup_admin_menus_all_roles(){
+	    global $menu;
+
 	    $user = wp_get_current_user();
 	    $allowed_roles = array('editor', 'author');
-
-	    global $menu;
 
 	    // agent
 	    if ( array_intersect( array('editor'), $user->roles ) ) {
@@ -528,6 +528,20 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 			$user->add_cap( 'edit_others_post' );
 			$user->add_cap( 'edit_published_post' );
 			$user->add_cap( 'edit_post' );
+			$user->add_cap( 'publish_post' );
+			$user->add_cap( 'delete_published_coupons' );
+			$user->add_cap( 'delete_others_coupons' );
+			$user->add_cap( 'delete_coupons' );
+			$user->add_cap( 'edit_others_coupons' );
+			$user->add_cap( 'edit_published_coupons' );
+			$user->add_cap( 'edit_coupons' );
+			$user->add_cap( 'publish_coupons' );
+			$user->add_cap( 'delete_published_posts' );
+			$user->add_cap( 'delete_others_posts' );
+			$user->add_cap( 'delete_posts' );
+			$user->add_cap( 'edit_others_posts' );
+			$user->add_cap( 'edit_published_posts' );
+			$user->add_cap( 'edit_posts' );
 			$user->add_cap( 'publish_post' );
 	    	remove_menu_page( 'edit.php?post_type=page' );
 	    	remove_menu_page( 'edit.php?post_type=acf-field-group' );
