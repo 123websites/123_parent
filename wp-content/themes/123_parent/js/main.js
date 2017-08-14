@@ -344,7 +344,7 @@ var Theme = {};
 				}
 			},
 			_showPA : function(){
-				if( Theme.PA.container.length > 0 ){
+				if( Theme.PA.container.length > 0 && $(window).width() >= 1025 ){
 					if(Theme.PA.container.css('display') == 'none'){
 						Theme.PA.container.fadeIn(250);	
 					}
