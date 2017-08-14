@@ -510,12 +510,18 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 	    }
 	    // client
 	    elseif ( array_intersect( array('author'), $user->roles ) ) {
-	    	// remove_menu_page( 'edit.php?post_type=coupon' );
 	    	$user->remove_cap('gform_full_access');
 	    	$user->remove_cap('ga_activate');
 			$user->remove_cap('manage_options');
 			$user->remove_cap('ga_reset');
 			$user->remove_cap('activate_plugins');
+			$user->add_cap( 'delete_published_coupon' );
+			$user->add_cap( 'delete_others_coupon' );
+			$user->add_cap( 'delete_coupon' );
+			$user->add_cap( 'edit_others_coupon' );
+			$user->add_cap( 'edit_published_coupon' );
+			$user->add_cap( 'edit_coupon' );
+			$user->add_cap( 'publish_coupon' );
 	    	remove_menu_page( 'edit.php?post_type=page' );
 	    	remove_menu_page( 'edit.php?post_type=acf-field-group' );
 	    	remove_menu_page( 'tools.php' );
