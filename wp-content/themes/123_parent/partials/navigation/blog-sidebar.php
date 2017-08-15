@@ -16,29 +16,31 @@
 			?>
 		</div>
 	</div>
-	<div class="blog-blog-sidebar-categories">
-		<h3 class="blog-blog-sidebar-categories-header">Categories</h3>
-		<div class="blog-blog-sidebar-categories-grid">
-			<?php 
-			// terms with highest count returned first
-			$terms = get_terms(array(
-				'taxonomy' => 'category',
-				'orderby' => 'count',
-				'number' => 5,
-				'order' => 'DESC',
-			));
+	<?php if( !get_field('disable-categories', 'option') ): ?>
+		<div class="blog-blog-sidebar-categories">
+			<h3 class="blog-blog-sidebar-categories-header">Categories</h3>
+			<div class="blog-blog-sidebar-categories-grid">
+				<?php 
+				// terms with highest count returned first
+				$terms = get_terms(array(
+					'taxonomy' => 'category',
+					'orderby' => 'count',
+					'number' => 5,
+					'order' => 'DESC',
+				));
 
-			foreach($terms as $term):
+				foreach($terms as $term):
+					?>
+						<div class="blog-blog-sidebar-categories-grid-item">
+							<a href="<?php echo get_term_link($term, 'category'); ?>" class="blog-blog-sidebar-categories-grid-item-header"><?php echo $term->name ?></a>
+						</div>								
+					<?php
+				endforeach;
+
 				?>
-					<div class="blog-blog-sidebar-categories-grid-item">
-						<a href="<?php echo get_term_link($term, 'category'); ?>" class="blog-blog-sidebar-categories-grid-item-header"><?php echo $term->name ?></a>
-					</div>								
-				<?php
-			endforeach;
-
-			?>
+			</div>
 		</div>
-	</div>
+	<?php endif; ?>
 	<div class="blog-blog-sidebar-recentposts">
 		<h3 class="blog-blog-sidebar-recentposts-header">Recent Posts</h3>
 		<div class="blog-blog-sidebar-recentposts-grid">

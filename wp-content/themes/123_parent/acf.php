@@ -1531,6 +1531,13 @@ if( !function_exists('add_acf_fields') ){
 					'instructions' => 'To have unlimited posts per page set this field to -1',
 				),
 				array(
+					'key' => 'field_zcv08123',
+					'label' => 'Disable Categories?',
+					'type' => 'true_false',
+					'name' => 'disable-categories',
+					'instructions' => 'Tick this box to remove and disable categories from being accessed from the front-end.',
+				),
+				array(
 					'key' => 'field_nadnayeyf',
 					'label' => 'Select Your Featured Posts',
 					'name' => 'featured-posts',

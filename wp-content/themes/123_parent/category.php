@@ -1,6 +1,6 @@
 <?php 
 
-if( !get_field('blog-toggle', 'option') ){
+if( !get_field('blog-toggle', 'option') || !get_field('disable-categories', 'option') ){
 	header( "Location: " . site_url() . "/404.php" );
 }
 
