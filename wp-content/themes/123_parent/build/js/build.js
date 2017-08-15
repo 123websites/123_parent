@@ -215,7 +215,6 @@ var Theme = {};
 				if(DisableNavTintFadein == 'false'){
 					$(window).on('scroll load', Theme.DesktopNav._scrollLoadHandler);		
 				}
-				console.log('hey');
 				Theme.DesktopNav.estimate.click(Theme.DesktopNav._estimateClickHandler);
 				Theme.DesktopNav.estimateClose.click(Theme.DesktopNav._estimateCloseClickHandler);
 			},
@@ -330,18 +329,27 @@ var Theme = {};
 		
 		
 
-		Theme.Estimate = {
-			link : $('.header-estimate-link'),
+		Theme.Topbar = {
+			link : $('.header-topbar-link'),
+			container : $('.topbar.popupcontainer'),
 			_init : function(){
-				if( Theme.Estimate.link.length > 0 ){	
-					Theme.Estimate.link.on('click', Theme.Estimate._clickHandler);
+				if( Theme.Topbar.link.length > 0 ){	
+					Theme.Topbar.link.on('click', Theme.Topbar._clickHandler);
+				}
+				if( Theme.Topbar.container.length > 0 ){
+					Theme.Topbar.container.on('click', Theme.Topbar._containerClickHandler);
+				}
+			},
+			_containerClickHandler : function(e){
+				if($(e.target).hasClass('pa') || $(e.target).hasClass('popupcontainer') || $(e.target).hasClass('popupcontainer-times')){
+					Theme.Topbar.container.fadeOut(250);
 				}
 			},
 			_clickHandler : function(e){
 				e.preventDefault();
 				if(Theme.PA.container.css('display') == 'none'){
 					if( $(window).width() >= 1025 ){
-						Theme.PA._showPA();	
+						Theme.Topbar.container.fadeIn(250);	
 					}
 				}
 			}

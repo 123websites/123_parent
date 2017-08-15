@@ -1383,22 +1383,37 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_72afasd7161',
-					'message' => '<h2 style="font-size:20px"><strong>Top Bar</strong></h2>',
+					'message' => '<h2 style="font-size:20px"><strong>Top Bar Pop-Up</strong></h2>',
 					'type' => 'message'
 				),
 				array(
+					'key' => 'field_987czvyh12',
+					'label' => 'Image',
+					'type' => 'image',
+					'name' => 'topbar-image',
+					'return_format' => 'url',
+				),
+				array(
 					'key' => 'field_18216124',
-					'label' => 'Slogan',
+					'label' => 'Header Bar Text',
 					'type' => 'text',
 					'name' => 'header-bar-text',
 					'default_value' => 'Click here for a free estimate!!!',
+					'instructions' => 'This is the text that appears in the topbar',
+				),
+				array(
+					'key' => 'field_12938udsafgh',
+					'label' => 'Slogan',
+					'type' => 'text',
+					'name' => 'topbar-slogan',
+					'instructions' => 'This is the text that appears in the topbar popup',
 				),
 				array(
 					'key' => 'field_89zv213gd',
 					'label' => 'Client Email',
 					'type' => 'email',
 					'name' => 'topbar-email',
-					'instructions' => 'This is the email that the timed popup and topbar popup forms will send to.'
+					'instructions' => 'This is the email that the topbar popup forms will send to.'
 				),
 				array(
 					'key' => 'field_b78h32msda',
@@ -1409,7 +1424,7 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_72712261',
-					'message' => '<h2 style="font-size:20px"><strong>Timed / E-Book Pop-Up</strong></h2>',
+					'message' => '<h2 style="font-size:20px"><strong>Timed Pop-Up</strong></h2>',
 					'type' => 'message'
 				),
 				array(
@@ -1428,15 +1443,22 @@ if( !function_exists('add_acf_fields') ){
 					'instructions' => 'This is the text that appears above the form on the ad popup.'
 				),
 				array(
+					'key' => 'field_89zv09876gd',
+					'label' => 'Client Email',
+					'type' => 'email',
+					'name' => 'ad-email',
+					'instructions' => 'This is the email that the timed popup forms will send to.'
+				),
+				array(
 					'key' => 'field_m12hdaf7213',
 					'label' => 'Disable',
 					'name' => 'ad-disable',
 					'type' => 'true_false',
-					'instructions' => 'If checked this will disable the Timed / E-Book Pop-Up',
+					'instructions' => 'If checked this will disable the Timed Pop-Up',
 				),
 				array(
 					'key' => 'field_727161',
-					'message' => '<h2 style="font-size:20px"><strong>Header Button Pop-Up</strong></h2>',
+					'message' => '<h2 style="font-size:20px"><strong>Estimate Pop-Up</strong></h2>',
 					'type' => 'message'
 				),
 				array(
@@ -1461,14 +1483,14 @@ if( !function_exists('add_acf_fields') ){
 					'label' => 'Slogan',
 					'name' => 'quickquote-header',
 					'type' => 'text',
-					'instructions' => 'This is the text that appears above the form on the quick quote popup.',
+					'instructions' => 'This is the text that appears above the form on the estimate popup.',
 				),
 				array(
 					'key' => 'field_2hdaf89ads',
 					'label' => 'Client Email',
 					'type' => 'email',
 					'name' => 'quickquote-email',
-					'instructions' => 'This is the email that the timed popup and topbar popup forms will send to.'
+					'instructions' => 'This is the email that the estimate popup forms will send to.'
 				),
 				array(
 					'key' => 'field_zfe32123',
@@ -1476,6 +1498,14 @@ if( !function_exists('add_acf_fields') ){
 					'name' => 'quickquote-disable',
 					'type' => 'true_false',
 					'instructions' => 'If checked this will disable the Header Button and it\'s popup', 
+				),
+				array(
+					'key' => 'field_mp92adf13123wsf',
+					'label' => '<h1 style="color: red;">Looking for something?</h1>
+								<div>
+								- Company Email - Please see "1. Company info" tab.
+								</div>',
+					'type' => 'message',
 				),
 				array(
 					'key' => 'field_218372012173',
@@ -2297,9 +2327,10 @@ add_action( 'acf/validate_value', 'acf_validate_phone_numbers', 10, 4 );
 if( !function_exists('acf_update_popup_emails') ){
 	function acf_update_popup_emails( $value, $post_id, $field ){
 		$fields = array(
-			'field_212o8afdh',
-			'field_89zv213gd',
-			'field_2hdaf89ads',
+			'field_212o8afdh', // contact us form : id = 1
+			'field_89zv213gd', // topbar popup : id = 2
+			'field_89zv09876gd', // timed popup : id = 3
+			'field_2hdaf89ads', // estimate popup : id = 4
 		);
 
 		if( in_array($field['key'], $fields) && !empty($value) ){
@@ -2321,21 +2352,5 @@ if( !function_exists('acf_update_popup_emails') ){
 }
 
 add_action( 'acf/update_value', 'acf_update_popup_emails', 10, 3 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

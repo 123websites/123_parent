@@ -16,7 +16,7 @@
 		
 		Theme.HomeTestimonialsSlider._init();
 		
-		Theme.Estimate._init();
+		Theme.Topbar._init();
 
 		Theme.PA._init();
 

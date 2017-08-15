@@ -25,12 +25,12 @@
 		z-index: 10;
 		width: 100%;
 	}
-	.header-estimate{
+	.header-topbar{
 		background-color: black;
 		text-align: center;
 		padding: 5px 0;
 	}
-	.header-estimate-link{
+	.header-topbar-link{
 		color: white;
 		text-decoration: none;
 		text-transform: uppercase;
@@ -144,10 +144,10 @@
 		height: 70px;
 	}
 	header.light{
-		.header-estimate{
+		.header-topbar{
 			background-color: $estimate-bar;
 		}
-		.header-estimate-link{
+		.header-topbar-link{
 			color: black;
 		}
 		.header-content-menus-social-menu-item:last-of-type .header-content-menus-social-menu-item-link{

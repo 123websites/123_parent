@@ -1,7 +1,7 @@
 <header class="header<?php echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; echo get_field('nav-fadein-toggle', 'option') ? ' removefadein' : '';?>">
 	<?php if(!get_field('remove-topbar', 'option')): ?>
-	<div class="header-estimate">
-		<a href="#" class="header-estimate-link"><?php echo get_field('header-bar-text', 'option'); ?></a>
+	<div class="header-topbar">
+		<a href="#" class="header-topbar-link"><?php echo get_field('header-bar-text', 'option'); ?></a>
 	</div>
 	<?php endif; ?>
 	<div class="header-content">

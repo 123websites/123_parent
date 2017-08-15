@@ -3497,12 +3497,12 @@ footer, header, hgroup, menu, nav, section, img {
     z-index: 10;
     width: 100%; }
 
-  .header-estimate {
+  .header-topbar {
     background-color: black;
     text-align: center;
     padding: 5px 0; }
 
-  .header-estimate-link {
+  .header-topbar-link {
     color: white;
     text-decoration: none;
     text-transform: uppercase;
@@ -3611,9 +3611,9 @@ footer, header, hgroup, menu, nav, section, img {
   .topbar-removed {
     height: 70px; }
 
-  header.light .header-estimate {
+  header.light .header-topbar {
     background-color: #f9f9f9; }
-  header.light .header-estimate-link {
+  header.light .header-topbar-link {
     color: black; }
   header.light .header-content-menus-social-menu-item:last-of-type .header-content-menus-social-menu-item-link {
     color: black; }
