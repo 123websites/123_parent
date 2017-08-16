@@ -19,15 +19,14 @@ var gfieldmap = function( options ) {
 		
 		self.UI.on( 'change', 'select[name="_gaddon_setting_'+ self.options.keyFieldName +'"]', function() {
 
-			var $select    = jQuery( this ),
-				$selectElm = $select.data( 'chosen' ) ? $select.siblings( '.chosen-container' ) : ( $select.data( 'select2' ) ? $select.siblings( '.select2-container' ) : $select ),
-				$input     = $select.siblings( '.custom-key-container' );
+			var $select = jQuery( this ),
+				$input  = $select.next( '.custom-key-container' );
 
 			if( $select.val() != 'gf_custom' ) {
 				return;
 			}
 
-			$selectElm.fadeOut( function() {
+			$select.fadeOut( function() {
 				$input.fadeIn().focus();
 			} );
 
@@ -37,15 +36,13 @@ var gfieldmap = function( options ) {
 
 			event.preventDefault();
 
-			var $reset     = jQuery( this ),
-				$input     = $reset.parents( '.custom-key-container' ),
-				$select    = $input.siblings( 'select.key' ),
-				$selectElm = $select.data( 'chosen' ) ? $select.siblings( '.chosen-container' ) : ( $select.data( 'select2' ) ? $select.siblings( '.select2-container' ) : $select );
+			var $reset  = jQuery( this ),
+				$input  = $reset.parents( '.custom-key-container' ),
+				$select = $input.prev( 'select.key' );
 
 			$input.fadeOut( function() {
 				$input.find( 'input' ).val( '' ).change();
-				$select.val( '' ).trigger( 'change' );
-				$selectElm.fadeIn().focus();
+				$select.fadeIn().focus().val( '' );
 			} );
 
 		} );
@@ -90,8 +87,8 @@ var gfieldmap = function( options ) {
 			
 			limit:              limit,
 			items:              self.data,
-			addButtonMarkup:    '<span>+</span>',
-			removeButtonMarkup: '<span>-</span>',
+			addButtonMarkup:    '<img src="'+ self.options.baseURL +'/images/add.png" style="cursor:pointer;" />',
+			removeButtonMarkup: '<img src="'+ self.options.baseURL +'/images/remove.png" style="cursor:pointer;" />',
 			callbacks:          {
 				add:  function( obj, $elem, item ) {
 					
@@ -102,8 +99,6 @@ var gfieldmap = function( options ) {
 					} else {
 						$elem.find( '.key' ).hide();
 					}
-					
-					gform.doAction( 'gform_fieldmap_add_row', obj, $elem, item );
 					
 				},
 				save: function( obj, data ) {

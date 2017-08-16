@@ -38,8 +38,6 @@ class GF_Installation_Wizard {
 
 	public function display(){
 
-		update_option( 'gform_pending_installation', true );
-
 		$name = rgpost( '_step_name' );
 
 		$current_step = $this->get_step( $name );
@@ -84,8 +82,13 @@ class GF_Installation_Wizard {
 
 		}
 
-		// Print admin styles
+		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || isset( $_GET['gform_debug'] ) ? '' : '.min';
+
+		// register admin styles
+		wp_register_style( 'gform_admin', GFCommon::get_base_url() . "/css/admin{$min}.css" );
 		wp_print_styles( array( 'jquery-ui-styles', 'gform_admin' ) );
+
+
 
 		?>
 
@@ -208,13 +211,13 @@ class GF_Installation_Wizard {
 		return $this->get_step( $next_step_name );
 	}
 
-	public function complete_installation() {
+	public function complete_installation(){
 		foreach ( array_keys( $this->_step_class_names ) as $step_name ) {
 			$step = $this->get_step( $step_name );
 			$step->install();
 			$step->flush_values();
 		}
-		update_option( 'gform_pending_installation', false );
+		delete_option( 'gform_pending_installation' );
 	}
 
 

@@ -32,10 +32,7 @@ class GF_Field_HTML extends GF_Field {
 															'</span><span>' . esc_html__( 'This is a content placeholder. HTML content is not displayed in the form admin. Preview this form to view the content.', 'gravityforms' ) . '</span></div>'
 														: $this->content;
 		$content = GFCommon::replace_variables_prepopulate( $content ); // adding support for merge tags
-
-		// adding support for shortcodes
-		$content = $this->do_shortcode( $content );
-
+		$content = do_shortcode( $content ); // adding support for shortcodes
 		return $content;
 	}
 
@@ -54,19 +51,10 @@ class GF_Field_HTML extends GF_Field {
 
 	public function sanitize_settings() {
 		parent::sanitize_settings();
-		$this->content = GFCommon::maybe_wp_kses( $this->content );
-	}
-
-	public function do_shortcode( $content ){
-
-		if( isset($GLOBALS['wp_embed']) ) {
-			// adds support for the [embed] shortcode
-			$content = $GLOBALS['wp_embed']->run_shortcode( $content );
+		if ( is_multisite() || ! current_user_can( 'manage_options' ) ) {
+			$allowed_tags  = wp_kses_allowed_html( 'post' );
+			$this->content = wp_kses( $this->content, $allowed_tags );
 		}
-		// executes all other shortcodes
-		$content = do_shortcode( $content );
-
-		return $content;
 	}
 }
 
