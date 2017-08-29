@@ -24,7 +24,7 @@
 			<div class="footer-middlecolumn2">
 				<div class="footer-middlecolumn2-payment">payment</div>
 				<?php 
-					$payment_types = array('mastercard', 'visa', 'amex', 'discover', 'paypal');
+					$payment_types = array('mastercard', 'visa', 'amex', 'discover', 'paypal', 'cash', 'check');
 
 					foreach($payment_types as $payment_type){
 						if( get_field($payment_type, 'option') == true ){

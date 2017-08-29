@@ -189,15 +189,21 @@
 	    	background-position: 0% 0;
 	    }
 		&.visa{
-			background-position: 25% 0;
+			background-position: calc(100% / 6) 0;
 		}
 		&.amex{
-			background-position: 50% 0;
+			background-position: calc(calc(2 / 6) * 100%) 0;
 		}
 		&.discover{
-			background-position: 75% 0;
+			background-position: 50% 0;
 		}
 		&.paypal{
+			background-position: calc(calc(4 / 6) * 100%) 0;
+		}
+		&.cash{
+			background-position: calc(calc(5 / 6) * 100%) 0;
+		}
+		&.check{
 			background-position: 100% 0;
 		}
 		&.hasimage{

@@ -3992,12 +3992,16 @@ footer, header, hgroup, menu, nav, section, img {
     .footer-middlecolumn2-payment-type.mastercard {
       background-position: 0% 0; }
     .footer-middlecolumn2-payment-type.visa {
-      background-position: 25% 0; }
+      background-position: calc(100% / 6) 0; }
     .footer-middlecolumn2-payment-type.amex {
-      background-position: 50% 0; }
+      background-position: calc(calc(2 / 6) * 100%) 0; }
     .footer-middlecolumn2-payment-type.discover {
-      background-position: 75% 0; }
+      background-position: 50% 0; }
     .footer-middlecolumn2-payment-type.paypal {
+      background-position: calc(calc(4 / 6) * 100%) 0; }
+    .footer-middlecolumn2-payment-type.cash {
+      background-position: calc(calc(5 / 6) * 100%) 0; }
+    .footer-middlecolumn2-payment-type.check {
       background-position: 100% 0; }
     .footer-middlecolumn2-payment-type.hasimage {
       background-image: none; }

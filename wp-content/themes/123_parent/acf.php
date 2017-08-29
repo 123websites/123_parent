@@ -1365,6 +1365,44 @@ if( !function_exists('add_acf_fields') ){
 					),
 				),
 				array(
+					'key' => 'field_12hafhp12398e',
+					'label' => 'Cash',
+					'name' => 'cash',
+					'type' => 'true_false',
+					'wrapper' => array(
+						'width' => 40,
+					),
+				),
+				array(
+					'key' => 'field_zcvadf123dsaf',
+					'label' => 'Cash Image',
+					'name' => 'cash-image',
+					'type' => 'image',
+					'return_format' => 'url',
+					'wrapper' => array(
+						'width' => 40,
+					),
+				),
+				array(
+					'key' => 'field_odasf129873e',
+					'label' => 'Check',
+					'name' => 'check',
+					'type' => 'true_false',
+					'wrapper' => array(
+						'width' => 40,
+					),
+				),
+				array(
+					'key' => 'field_lafdhd123',
+					'label' => 'Check Image',
+					'name' => 'check-image',
+					'type' => 'image',
+					'return_format' => 'url',
+					'wrapper' => array(
+						'width' => 40,
+					),
+				),
+				array(
 					'key' => 'field_mp9213adf',
 					'label' => '<h1 style="color: red;">Looking for something?</h1>
 								<div>
