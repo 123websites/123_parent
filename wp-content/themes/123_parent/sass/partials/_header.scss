@@ -62,7 +62,7 @@
 		padding-right: 10px;
 	}
 	.header-content-logo-image{
-		max-width: 320px;
+		max-width: 220px;
 		max-height: 50px;
 	}
 	.header-content-logo,
@@ -180,6 +180,9 @@
 	}
 }
 @media only screen and (min-width: $xlarge){
+	.header-content-logo-image{
+		max-width: 320px;
+	}
 	.header-content-menus-pages-menu-item{
 		margin: 0 7px 0 10px;
 	}

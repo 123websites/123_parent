@@ -3533,7 +3533,7 @@ footer, header, hgroup, menu, nav, section, img {
     padding-right: 10px; }
 
   .header-content-logo-image {
-    max-width: 320px;
+    max-width: 220px;
     max-height: 50px; }
 
   .header-content-logo,
@@ -3633,6 +3633,9 @@ footer, header, hgroup, menu, nav, section, img {
     -o-filter: invert(100%);
     filter: invert(100%); } }
 @media only screen and (min-width: 1440px) {
+  .header-content-logo-image {
+    max-width: 320px; }
+
   .header-content-menus-pages-menu-item {
     margin: 0 7px 0 10px; }
 
@@ -4224,11 +4227,14 @@ footer, header, hgroup, menu, nav, section, img {
     -ms-transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    font-size: 9rem; }
+    font-size: 7rem; }
 
   .home-hero-text-button {
     font-size: 2rem;
     font-weight: normal; } }
+@media only screen and (min-width: 1025px) {
+  .home-hero-text-header {
+    font-size: 8rem; } }
 @media only screen {
   .home-services-header {
     position: relative;

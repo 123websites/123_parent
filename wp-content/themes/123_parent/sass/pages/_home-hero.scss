@@ -40,10 +40,15 @@
 		position: relative;
 		left: 50%;
 		@include transform(translateX(-50%));
-		font-size: 9rem;
+		font-size: 7rem;
 	}
 	.home-hero-text-button{
 		font-size: 2rem;
 		font-weight: normal;
+	}
+}
+@media only screen and (min-width: $large){
+	.home-hero-text-header{
+		font-size: 8rem;
 	}
 }
