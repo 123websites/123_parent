@@ -647,7 +647,7 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_8123afaasfdaef',
-					'label' => 'Main / Footer Navigation Bar BG',
+					'label' => 'Header / Footer Navigation Bar BG',
 					'type' => 'color_picker',
 					'name' => 'navs-bg',
 					'wrapper' => array(
@@ -668,7 +668,7 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_21387fzadsf',
-					'label' => 'Main / Footer Navigation Bar Text',
+					'label' => 'Header / Footer Navigation Bar Text',
 					'type' => 'color_picker',
 					'name' => 'navs-text',
 					'wrapper' => array(
