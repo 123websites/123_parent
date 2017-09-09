@@ -893,7 +893,7 @@ if( !function_exists('update_logo_text_image') ){
 			}
 
 			$phpimg->setTextColor($text_color);
-			// grab the text from the options page
+
 			$phpimg->text(get_field('site_title', 'option'), array(
 		        'fontSize' => 60, 
 		        'x' => 0,
