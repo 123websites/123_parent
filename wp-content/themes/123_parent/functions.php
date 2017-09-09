@@ -964,6 +964,7 @@ if( !function_exists('wpse_233129_admin_menu_items') ){
 // determines if an acf repeater is empty
 if(!function_exists('rows_empty')){
 	function rows_empty($key, $src = 'option'){
+		
 		try {
 			$rows = get_field($key, $src);
 			$count = [];
