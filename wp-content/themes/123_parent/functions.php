@@ -501,12 +501,15 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 			remove_menu_page( 'options-general.php' );
 			remove_menu_page( 'plugins.php' );
 			remove_menu_page( 'upload.php' );
+			remove_menu_page( 'wppusher' );
 			// remove wordfence from menu
-			$menu = array_filter($menu, function($value, $key){
-				if( strpos(implode(' ', $value), 'wordfence') === false ){
-					return $value;
-				}
-			}, ARRAY_FILTER_USE_BOTH);
+			if( !is_null($menu) ){
+				$menu = array_filter($menu, function($value, $key){
+					if( strpos(implode(' ', $value), 'wordfence') === false ){
+						return $value;
+					}
+				}, ARRAY_FILTER_USE_BOTH);
+			}
 	    }
 	    // client
 	    elseif ( array_intersect( array('author'), $user->roles ) ) {
@@ -551,6 +554,7 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 	    	remove_menu_page( 'options-general.php' );
 	    	remove_menu_page( 'plugins.php' );
 	    	remove_menu_page( 'upload.php' );
+	    	remove_menu_page( 'wppusher' );
 	    }
 
 	}
@@ -1134,6 +1138,27 @@ add_action( 'admin_bar_menu', 'remove_wp_logo', 999 );
 if( !function_exists('remove_wp_logo') ){
 	function remove_wp_logo( $wp_admin_bar ) {
 		$wp_admin_bar->remove_node( 'wp-logo' );
+		$wp_admin_bar->remove_node( 'comments' );
+	}
+}
+
+// remove toolbar new post from agent & client
+add_action('admin_init', 'remove_admin_toolbar_items' );
+
+if( !function_exists('remove_admin_toolbar_items') ){
+	function remove_admin_toolbar_items(){
+		$user = wp_get_current_user();
+
+		if( !array_intersect(array('administrator'), $user->roles) ){
+			add_action('admin_bar_menu', 'remove_topbar_new_content', 999);
+		}
+
+	}
+}
+
+if( !function_exists('remove_topbar_new_content') ){
+	function remove_topbar_new_content($wp_admin_bar){
+		$wp_admin_bar->remove_node( 'new-content' );
 	}
 }
 
