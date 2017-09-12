@@ -1,6 +1,5 @@
 <?php 
-// compensate for server config on 123websites
-ini_set('allow_url_fopen', 1);
+
 // register ACF fields & PHPImage Library
 require('acf.php');
 require('PHPImage.php');
