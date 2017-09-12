@@ -12,7 +12,12 @@
 				<?php 
 				$rows = get_field('locations', 'option'); 
 				foreach($rows as $index => $row): 
-					$contents = simplexml_load_string(file_get_contents('http://maps.googleapis.com/maps/api/geocode/xml?address='.$row['zip'].'@&sensor=true'));
+					// $contents = simplexml_load_string(file_get_contents('http://maps.googleapis.com/maps/api/geocode/xml?address='.$row['zip'].'@&sensor=true'));
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?address=' . $row['zip'] . '@&sensor=true');
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+					$curl_return = curl_exec($ch);
+					$contents = simplexml_load_string($curl_return);
 				?>
 					<a href="https://www.google.com/maps/@<?php echo $contents->result->geometry->location->lat . ',' . $contents->result->geometry->location->lng . ',14z'; ?>" class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
 						<div style="background-image: url('<?php echo $row['area-image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
