@@ -12,7 +12,8 @@
 				<?php 
 				$rows = get_field('locations', 'option'); 
 				foreach($rows as $index => $row): 
-					$contents = simplexml_load_file('http://maps.googleapis.com/maps/api/geocode/xml?address='.$row['zip'].'@&sensor=true'); ?>
+					$contents = simplexml_load_string(file_get_contents('http://maps.googleapis.com/maps/api/geocode/xml?address='.$row['zip'].'@&sensor=true'));
+				?>
 					<a href="https://www.google.com/maps/@<?php echo $contents->result->geometry->location->lat . ',' . $contents->result->geometry->location->lng . ',14z'; ?>" class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
 						<div style="background-image: url('<?php echo $row['area-image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
 						<div class="areas-served-areas-grid-imagecontainer-citystate"><?php 
