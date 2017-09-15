@@ -12,6 +12,7 @@
 				<?php 
 				$rows = get_field('locations', 'option'); 
 				foreach($rows as $index => $row): 
+					
 					$ch = curl_init();
 					curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?address=' . $row['zip'] . '@&sensor=true');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
