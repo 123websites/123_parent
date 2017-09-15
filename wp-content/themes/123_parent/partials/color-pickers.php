@@ -70,7 +70,8 @@ if( get_field('buttons-underlines-toggle', 'option') ):
 			.gform_footer input[type='submit'],
 			.footer-sociallinks-item,
 			.company-employees-grid-item-socialcontainer-link,
-			.home-hero-text-button
+			.home-hero-text-button,
+			.services-services-grid-item-header
 			{
 				border-color: <?php echo $color; ?>;
 				background-color: <?php echo $color; ?>;
