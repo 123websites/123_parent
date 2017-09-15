@@ -60,7 +60,28 @@
 	</ul>
 	<?php endif; ?>
 	<?php render_page_links('mobilefooter-pagelinks', 'mobilefooter-pagelinks-item', 'mobilefooter-pagelinks-item-link'); ?>
-	<div class="fade fade-up mobilefooter-copyright">Powered by <a target="_blank" class="mobilefooter-copyright-tclink" href="<?php the_field('webx-url', 'option') ?>"><?php the_field('webx-name', 'option'); ?></a> <br/><br/> <a class="mobilefooter-copyright-tclink" href="<?php echo site_url() ?>/terms">Terms &amp; Conditions</a> <br/><br/> Copyright &copy; <?php echo Date('Y') ?><br/><br/>Powered by</div>
+	<div class="fade fade-up mobilefooter-copyright">
+		Powered by <a target="_blank" class="mobilefooter-copyright-tclink" href="<?php the_field('webx-url', 'option') ?>"><?php the_field('webx-name', 'option'); ?></a> 
+		<div class="mobilefooter-payment"><?php 
+			$payment_types = array('mastercard', 'visa', 'amex', 'discover', 'paypal', 'cash', 'check');
+
+			foreach($payment_types as $payment_type){
+				if( get_field($payment_type, 'option') == true ){
+					?>
+						<div class="footer-middlecolumn2-payment-type <?php echo $payment_type ?><?php echo !empty(get_field($payment_type . '-image', 'option')) ? ' hasimage' : ''; ?>">
+							<?php if( !empty(get_field($payment_type . '-image', 'option')) ): ?>
+								<img class="footer-middlecolumn2-payment-type-image" src="<?php the_field($payment_type . '-image', 'option'); ?>">
+							<?php endif; ?>
+						</div>
+					<?php
+				}
+			}
+		?>
+		</div>
+		<br/><br/> <a class="mobilefooter-copyright-tclink" href="<?php echo site_url() ?>/terms">Terms &amp; Conditions</a> 
+		<br/><br/> Copyright &copy; <?php echo Date('Y') ?>
+		<br/><br/>
+	</div>
 	<a href="http://webxmarketing.com" class="fade fade-up mobilefooter-webxlink">
 		<img src="<?php echo get_field('webx-logo', 'option'); ?>" class="mobilefooter-webxlink-logo">
 	</a>
