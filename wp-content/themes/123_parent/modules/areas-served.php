@@ -10,23 +10,40 @@
 		<?php if(have_rows('locations', 'option')) : ?>
 			<div class="areas-served-areas-grid">
 				<?php 
-				$rows = get_field('locations', 'option'); 
-				foreach($rows as $index => $row): 
-					
-					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?address=' . $row['zip'] . '@&sensor=true');
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-					$curl_return = curl_exec($ch);
-					$contents = simplexml_load_string($curl_return);
+				$rows = [];
+				if( get_field('zips_or_countries', 'option') == 'zips' ){
+					$rows = get_field('locations', 'option'); 
+					foreach($rows as $index => $row): 
+						
+						$ch = curl_init();
+						curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?address=' . $row['zip'] . '@&sensor=true');
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+						$curl_return = curl_exec($ch);
+						$contents = simplexml_load_string($curl_return);
+					?>
+						<a href="https://www.google.com/maps/@<?php echo $contents->result->geometry->location->lat . ',' . $contents->result->geometry->location->lng . ',14z'; ?>" class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
+							<div style="background-image: url('<?php echo $row['area-image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
+							<div class="areas-served-areas-grid-imagecontainer-citystate"><?php 
+								preg_match_all('/^.*?(?=(\d))/', $contents->result->formatted_address, $preg_match_all_matches);
+								echo $preg_match_all_matches[0][0];
+							?></div>
+						</a>
+				<?php 
+					endforeach;
+				}
+				else{
+					$rows = get_field('countries', 'option');
+						foreach($rows as $index => $row): 
+							
+						?>
+							<a href="<?php echo 'https://www.google.com/maps/search/' . rawurlencode($row['country']['label']) . '?hl=en&source=opensearch' ?>" class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
+								<div style="background-image: url('<?php echo $row['country_image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
+								<div class="areas-served-areas-grid-imagecontainer-citystate"><?php echo $row['country']['label'] ?></div>
+							</a>
+					<?php 
+						endforeach;	
+				}
 				?>
-					<a href="https://www.google.com/maps/@<?php echo $contents->result->geometry->location->lat . ',' . $contents->result->geometry->location->lng . ',14z'; ?>" class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
-						<div style="background-image: url('<?php echo $row['area-image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
-						<div class="areas-served-areas-grid-imagecontainer-citystate"><?php 
-							preg_match_all('/^.*?(?=(\d))/', $contents->result->formatted_address, $preg_match_all_matches);
-							echo $preg_match_all_matches[0][0];
-						?></div>
-					</a>
-			<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
 	</section>

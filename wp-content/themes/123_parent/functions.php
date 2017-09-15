@@ -80,14 +80,26 @@ if( !function_exists('clean_head') ){
 // make areas served zips available to javascript
 if( !function_exists('localize_areas_served') ){
 	function localize_areas_served(){
-		$fields = get_field('locations', 'option');
-		$fields_array = [];
-		if(!empty($fields)){
-			foreach($fields as $field) {
-				array_push($fields_array, $field['zip']);
-			}	
+		if( get_field('zips_or_countries', 'option') == 'zips' ){
+			$fields = get_field('locations', 'option');
+			$fields_array = [];
+			if(!empty($fields)){
+				foreach($fields as $field) {
+					array_push($fields_array, $field['zip']);
+				}	
+			}
+			wp_localize_script( 'theme', 'AreasServed', $fields_array );
 		}
-		wp_localize_script( 'theme', 'AreasServed', $fields_array );
+		else{
+			$fields = get_field('countries', 'option');
+			$fields_array = [];
+			if( !empty($fields) ){
+				foreach($fields as $field){
+					array_push($fields_array, $field['country']['value']);
+				}
+			}
+			wp_localize_script( 'theme', 'CountriesServed', $fields_array );
+		}
 	}
 }
 

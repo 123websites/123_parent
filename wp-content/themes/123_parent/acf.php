@@ -1,5 +1,17 @@
 <?php 
 
+if( !function_exists('get_countries') ){
+	function get_countries(){
+		$json = json_decode(file_get_contents("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT%20Name,%20ISO_2DIGIT%20FROM%201N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk&key=AIzaSyCrc4UkG5XPkC_W6AVLeO_udtkM5tgoskQ", ARRAY_A));
+		$arr = [];
+		foreach($json->rows as $row){
+			$arr[$row[1]] = $row[0];
+		}
+		asort($arr);
+		return $arr;
+	}
+}
+
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
 		'page_title' 	=> ' ',
@@ -96,6 +108,16 @@ if( !function_exists('add_acf_fields') ){
 					'label' => 'Areas Served',
 					'type' => 'tab',
 				),
+				array(
+					'key' => 'field_89dsuahf',
+					'label' => 'Zip Codes or Countries?',
+					'type' => 'select',
+					'name' => 'zips_or_countries',
+					'choices' => array(
+						'zips' => 'Zip Codes',
+						'countries' => 'Countries',
+					),
+				),
 				array (
 					'key' => 'field_1',
 					'label' => 'Locations',
@@ -125,6 +147,58 @@ if( !function_exists('add_acf_fields') ){
 							'required' => true,
 						),
 					),
+					'conditional_logic' => array(
+						array(
+							array(
+								'field' => 'field_89dsuahf',
+								'operator' => '==',
+								'value' => 'zips',
+							),
+						),
+					),
+				),
+				array(
+					'key' => 'field_70zcxovrghreafz',
+					'label' => 'Locations',
+					'name' => 'countries',
+					'type' => 'repeater',
+					'button_label' => 'Add Country',
+					'sub_fields' => array(
+						array(
+							'key' => 'field_89zuvxchh',
+							'label' => 'Country',
+							'name' => 'country',
+							'type' => 'select',
+							'ui' => true,
+							'return_format' => 'array',
+							'required' => true,
+							'choices' => get_countries(),
+							'wrapper' => array(
+								'width' => 20,
+							),
+						),
+						array(
+							'key' => 'field_8fuoghfdiuaf',
+							'label' => 'Image',
+							'name' => 'country_image',
+							'type' => 'image',
+							'return_format' => 'url',
+							'preview_size' => 'medium',
+							'required' => true,
+							'wrapper' => array(
+								'width' => 70,
+							),
+						),
+					),
+					'conditional_logic' => array(
+						array(
+							array(
+								'field' => 'field_89dsuahf',
+								'operator' => '==',
+								'value' => 'countries',
+							),
+						),
+					),	
 				),
 				array(
 					'key' => 'field_217hdagad',
