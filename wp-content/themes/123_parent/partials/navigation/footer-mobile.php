@@ -64,7 +64,6 @@
 		Powered by <a target="_blank" class="mobilefooter-copyright-tclink" href="<?php the_field('webx-url', 'option') ?>"><?php the_field('webx-name', 'option'); ?></a> 
 		<div class="mobilefooter-payment"><?php 
 			$payment_types = array('mastercard', 'visa', 'amex', 'discover', 'paypal', 'cash', 'check');
-
 			foreach($payment_types as $payment_type){
 				if( get_field($payment_type, 'option') == true ){
 					?>
