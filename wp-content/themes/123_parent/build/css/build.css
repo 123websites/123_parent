@@ -3945,7 +3945,9 @@ footer, header, hgroup, menu, nav, section, img {
     text-align: right; }
 
   .footer-webxlink-logo {
-    display: inline-block; }
+    display: inline-block;
+    height: 65px;
+    margin: 10px 0px 0px 0px; }
 
   .footer-pagelinks {
     width: 60%;
