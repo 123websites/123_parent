@@ -710,7 +710,7 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_2zcvvvczsf',
-					'label' => 'Section Header',
+					'label' => 'Section Header Text',
 					'type' => 'color_picker',
 					'name' => 'bold-title-text',
 					'wrapper' => array(
