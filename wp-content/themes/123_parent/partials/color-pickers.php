@@ -91,6 +91,9 @@ if( get_field('bold-title-text-toggle', 'option') ):
 		section:not(.home-hero):not(#coupons):not(#blog) .hero-text-header{
 			color: <?php echo $color ?>;
 		}
+		.section-header{
+			border-color: <?php echo $color ?>;
+		}
 	</style>
 <?php
 endif;
