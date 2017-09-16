@@ -641,43 +641,49 @@ window._initHomeMap = function(){
 			}	
 		}
 		else{
-			jQuery(window).on('load', build_countries_map);
 
-			function build_countries_map(){
-				var map = new google.maps.Map(document.getElementById('map'), {
-					center: new google.maps.LatLng(30,0),
-					zoom: 2,
-					mapTypeId: 'terrain',
-					// disableDefaultUI: true,
-					// scrollwheel: false,
-					// draggable: false,
-				});
-				var jointCountriesArray = CountriesServed.map(function(val, index){
-					if( index < CountriesServed.length - 1 ){
-						return '"' + val + '", ';
+			var map = new google.maps.Map(document.getElementById('map'), {
+				center: new google.maps.LatLng(30,0),
+				zoom: 2,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				disableDefaultUI: true,
+				scrollwheel: false,
+				draggable: false,
+			});
+			var jointCountriesArray = CountriesServed.map(function(val, index){
+				if( index < CountriesServed.length - 1 ){
+					return '"' + val + '", ';
+				}
+				else{
+					return '"' + val + '"';
+				}
+			});
+			jointCountriesArray = jointCountriesArray.join('');
+
+			var world_geometry = new google.maps.FusionTablesLayer({
+				query: {
+					select: 'geometry',
+					from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
+					where: 'ISO_2DIGIT IN (' + jointCountriesArray + ')',
+				},
+				heatmap: {
+			      enabled: false
+			    },
+				suppressInfoWindows: true,
+				map: map,
+				options: {
+			      styleId: 2,
+			      templateId: 2
+			    },
+				styles: [{
+					where: 'ISO_2DIGIT IN (' + jointCountriesArray + ')',
+					polygonOptions: {
+						fillColor: '#FF0000',
+						fillOpacity: 0.4
 					}
-					else{
-						return '"' + val + '"';
-					}
-				});
-				jointCountriesArray = jointCountriesArray.join('');
-				console.log('ISO_2DIGIT IN (' + jointCountriesArray + ')');
-				var world_geometry = new google.maps.FusionTablesLayer({
-					query: {
-						select: 'geometry',
-						from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
-					},
-					// suppressInfoWindows: true,
-					map: map,
-					styles: [{
-						where: 'ISO_2DIGIT IN ("US", "CA", "AF")',
-						polygonOptions: {
-							fillColor: '#FF0000',
-							fillOpacity: 0.4
-						}
-				    }],
-				});
-			}
+			    }],
+			});
+
 		}
 
 		window._initContactMap();

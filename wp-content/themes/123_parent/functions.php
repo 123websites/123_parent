@@ -84,8 +84,14 @@ if( !function_exists('localize_areas_served') ){
 			$fields = get_field('locations', 'option');
 			$fields_array = [];
 			if(!empty($fields)){
-				foreach($fields as $field) {
-					array_push($fields_array, $field['zip']);
+				foreach($fields as $row) {
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true');
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+					$curl_return = curl_exec($ch);
+					$contents = simplexml_load_string($curl_return);
+					preg_match_all('/\d{5}/', $contents->result->formatted_address, $preg_match_all_matches);
+					array_push($fields_array, $preg_match_all_matches[0][0]);
 				}	
 			}
 			wp_localize_script( 'theme', 'AreasServed', $fields_array );
@@ -314,6 +320,7 @@ if( !function_exists('add_gmaps_script') ){
 		else{
 			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=AIzaSyBrRJwJFfNCdVLJwa6yhR8UBZR1m2A018Q&callback=window._initHomeMap', array(), null, true);	
 		}
+
 		localize_areas_served();
 	}
 }

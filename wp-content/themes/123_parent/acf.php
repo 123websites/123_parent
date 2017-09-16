@@ -130,11 +130,12 @@ if( !function_exists('add_acf_fields') ){
 							'key' => 'field_2',
 							'label' => 'Zip Code',
 							'name' => 'zip',
-							'type' => 'text',
-							'maxlength' => '5',
+							'type' => 'google_map',
+							'center_lat' => '40.141256',	
+							'center_lng' => '-97.681034',
 							'required' => true,
 							'wrapper' => array(
-								'width' => '12',
+								'width' => '70',
 							),
 						),
 						array(
