@@ -38,8 +38,8 @@
 					endif;
 				}
 				else{
-					$rows = get_field('countries', 'option');
-					if( have_rows('countries', 'optoin') ):
+					if( have_rows('countries', 'option') ):
+						$rows = get_field('countries', 'option');
 						foreach($rows as $index => $row): 
 							
 						?>
