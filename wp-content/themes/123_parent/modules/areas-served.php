@@ -7,37 +7,39 @@
 		<div class="areas-served-hero-map" id="map"></div>
 	</section>
 	<section class="areas-served-areas">
-		<?php if(have_rows('locations', 'option')) : ?>
 			<div class="areas-served-areas-grid">
 				<?php 
 				$rows = [];
 				if( get_field('zips_or_countries', 'option') == 'zips' ){
-					$rows = get_field('locations', 'option'); 
-					foreach($rows as $index => $row): 
-						$ch = curl_init();
-						curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true');
-						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-						$curl_return = curl_exec($ch);
-						$contents = simplexml_load_string($curl_return);
-					?>
-						<a href="https://www.google.com/maps/@<?php echo $contents->result->geometry->location->lat . ',' . $contents->result->geometry->location->lng . ',14z'; ?>" class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
-							<div style="background-image: url('<?php echo $row['area-image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
-							<div class="areas-served-areas-grid-imagecontainer-citystate"><?php 
-								preg_match_all('/\d{5}/', $contents->result->formatted_address, $preg_match_all_matches);
-								$ch = curl_init();
-								curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?address=' . $preg_match_all_matches[0][0] . '&sensor=true');
-								curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-								$curl_return = curl_exec($ch);
-								$contents = simplexml_load_string($curl_return);
-								preg_match_all('/^.*?(?=(\d))/', $contents->result->formatted_address, $preg_match_all_matches);
-								echo $preg_match_all_matches[0][0];
-							?></div>
-						</a>
-				<?php 
-					endforeach;
+					if(have_rows('locations', 'option')) :
+						$rows = get_field('locations', 'option'); 
+						foreach($rows as $index => $row): 
+							$ch = curl_init();
+							curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true');
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+							$curl_return = curl_exec($ch);
+							$contents = simplexml_load_string($curl_return);
+						?>
+							<a href="https://www.google.com/maps/@<?php echo $contents->result->geometry->location->lat . ',' . $contents->result->geometry->location->lng . ',14z'; ?>" class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
+								<div style="background-image: url('<?php echo $row['area-image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
+								<div class="areas-served-areas-grid-imagecontainer-citystate"><?php 
+									preg_match_all('/\d{5}/', $contents->result->formatted_address, $preg_match_all_matches);
+									$ch = curl_init();
+									curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?address=' . $preg_match_all_matches[0][0] . '&sensor=true');
+									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+									$curl_return = curl_exec($ch);
+									$contents = simplexml_load_string($curl_return);
+									preg_match_all('/^.*?(?=(\d))/', $contents->result->formatted_address, $preg_match_all_matches);
+									echo $preg_match_all_matches[0][0];
+								?></div>
+							</a>
+					<?php 
+						endforeach;
+					endif;
 				}
 				else{
 					$rows = get_field('countries', 'option');
+					if( have_rows('countries', 'optoin') ):
 						foreach($rows as $index => $row): 
 							
 						?>
@@ -47,9 +49,9 @@
 							</a>
 					<?php 
 						endforeach;	
+					endif;
 				}
 				?>
 			</div>
-		<?php endif; ?>
 	</section>
 </main>
