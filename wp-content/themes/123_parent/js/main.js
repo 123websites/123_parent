@@ -463,7 +463,7 @@ var Theme = {};
 
 window._initMaps = function() {
 	// areas served map
-	if (document.querySelectorAll('.areas-served-hero-map')[0] !== null) {
+	if (document.querySelector('.areas-served-hero-map') !== null) {
 		if( typeof(AreasServed) !== 'undefined' ){
 			// build latlangs
 			var geocoder = new google.maps.Geocoder();
