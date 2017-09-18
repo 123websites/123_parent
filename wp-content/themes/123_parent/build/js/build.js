@@ -686,8 +686,194 @@ window._initHomeMap = function(){
 
 		}
 
-		window._initContactMap();
+		// window._initContactMap();
 	}
 }
+window._initMaps = function() {
+	// areas served map
+	if (document.querySelectorAll('.areas-served-hero-map')[0] !== null) {
+		if( typeof(AreasServed) !== 'undefined' ){
+			// build latlangs
+			var geocoder = new google.maps.Geocoder();
+			var latlangs = [];
+			
+			for(var i = 0; i < AreasServed.length; i++){
+				geocoder.geocode({address: AreasServed[i]}, build_latlangs);
+			}
+			function build_latlangs(results, status){
+				var temparr = [];
+				temparr.push(results[0].geometry.location.lat());
+				temparr.push(results[0].geometry.location.lng());
+				latlangs.push(temparr);
+			}
+			// setTimeout(build_map, 1000);
+			jQuery(window).on('load', build_map);
+			function build_map(){
+				// build map center
+				var map_center = [];
+				var x = 0;
+				var y = 0;
+
+				// build bounds & make center of map coords
+				bounds  = new google.maps.LatLngBounds();
+
+				for(var i = 0; i < latlangs.length; i++){
+					x += latlangs[i][0];
+					y += latlangs[i][1];
+					bounds.extend({lat: latlangs[i][0], lng: latlangs[i][1]});
+				}
+				
+				map_center[0] = x / latlangs.length;
+				map_center[1] = y / latlangs.length;
+
+				// build map
+				var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
+		          zoom: 11,
+		          center: {lat: map_center[0], lng: map_center[1]},
+		          mapTypeId: 'terrain',
+		          disableDefaultUI: true,
+		          scrollwheel: false,
+		          draggable: false,
+		        });
+
+				// add circles
+				for (var i = 0; i < latlangs.length; i++) {
+			         var cityCircle = new google.maps.Circle({
+			         	strokeColor: '#FF0000',
+			         	strokeOpacity: 0.8,
+			         	strokeWeight: 2,
+			         	fillColor: '#FF0000',
+			         	fillOpacity: 0.35,
+			         	map: map,
+			         	center: {lat: latlangs[i][0], lng: latlangs[i][1]},
+			         	radius: 9000,
+			        });
+			         var marker = new google.maps.Marker({
+			         	position: {lat: latlangs[i][0], lng: latlangs[i][1]},
+			         	map: map,
+
+			         });
+			    }
+		     	// zoom to bounds
+		     	if(latlangs.length > 1){
+		     		map.fitBounds(bounds);	
+		     	}	
+			    map.panToBounds(bounds);
+			}	
+		}
+		else if( typeof(CountriesServed) !== 'undefined' ){
+			var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
+				center: new google.maps.LatLng(30, 0),
+				zoom: 2,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				disableDefaultUI: true,
+				scrollwheel: false,
+				draggable: false,
+			});
+			var jointCountriesArray = CountriesServed.map(function(val, index){
+				if( index < CountriesServed.length - 1 ){
+					return '\'' + val + '\', ';
+				}
+				else{
+					return '\'' + val + '\'';
+				}
+			});
+			jointCountriesArray = jointCountriesArray.join('');
+
+			var world_geometry = new google.maps.FusionTablesLayer({
+				query: {
+					select: 'geometry',
+					from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
+					where: "ISO_2DIGIT IN (" + jointCountriesArray + ")",
+				},
+				heatmap: {
+					enabled: false
+				},
+				suppressInfoWindows: true,
+				map: map,
+				options: {
+					styleId: 2,
+					templateId: 2
+				},
+		    });
+		}
+	}
+
+	// contact map
+
+
+	var element = document.querySelector('.contact-hero-map');
+	if(element != null && typeof(ContactAddresses) !== 'undefined'){
+
+		var latlangs = [];
+
+		ContactAddresses.forEach(function(el, index, parent){
+			latlangs.push({lat: Number(el.lat), lng: Number(el.lng)});
+		});
+
+		// build bounds & make center of map coords
+		var bounds  = new google.maps.LatLngBounds();
+		var map_center = [];
+		var x = 0;
+		var y = 0;
+
+
+		var map = new google.maps.Map(element, {
+	      zoom: 28,
+	      mapTypeId: 'terrain',
+	      disableDefaultUI: true,
+	      scrollwheel: false,
+	      draggable: false,
+	    });
+
+		latlangs.forEach(function(el){
+
+			x += Number(el.lat);
+			y += Number(el.lng);
+
+			var marker = new google.maps.Marker({
+			  position: el,
+			  map: map,
+			});	
+
+			bounds.extend(el);
+
+		});
+
+		map_center[0] = x / latlangs.length;
+		map_center[1] = y / latlangs.length;
+
+		map.setCenter({lat: map_center[0], lng: map_center[1]});
+
+
+		google.maps.event.addListener(map, 'zoom_changed', function() {
+		    zoomChangeBoundsListener = 
+		        google.maps.event.addListener(map, 'bounds_changed', function(event) {
+		            if (this.getZoom() > 15 && this.initialZoom == true) {
+		                // Change max/min zoom here
+		                this.setZoom(15);
+		                this.initialZoom = false;
+		            }
+		        google.maps.event.removeListener(zoomChangeBoundsListener);
+		    });
+		});
+		map.initialZoom = true;
+
+
+	 	// zoom to bounds
+	 	if(latlangs.length > 1){
+	 		map.fitBounds(bounds);
+	 		var listener = google.maps.event.addListener(map, "idle", function() { 
+	 		  map.setZoom(map.getZoom() - 1); 
+	 		  google.maps.event.removeListener(listener); 
+	 		});
+	 		
+	 	}	
+	    map.panToBounds(bounds);
+		
+	}
+}
+
+google.maps.event.addDomListener(window, "load", window._initMaps);
 
 window.Theme = Theme;
