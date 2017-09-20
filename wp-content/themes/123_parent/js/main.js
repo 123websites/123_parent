@@ -468,19 +468,25 @@ window._initMaps = function() {
 			// build latlangs
 			var geocoder = new google.maps.Geocoder();
 			var latlangs = [];
-			
+
 			for(var i = 0; i < AreasServed.length; i++){
-				geocoder.geocode({address: AreasServed[i]}, build_latlangs);
+				geocoder.geocode({address: AreasServed[i]}, setup_latlangs(i, latlangs));
 			}
-			function build_latlangs(results, status){
-				var temparr = [];
-				temparr.push(results[0].geometry.location.lat());
-				temparr.push(results[0].geometry.location.lng());
-				latlangs.push(temparr);
+			function setup_latlangs(index, latlangs){
+				var build_latlangs = function(results, status){
+					var i = index;
+					var temparr = [];
+					temparr.push(results[0].geometry.location.lat());
+					temparr.push(results[0].geometry.location.lng());
+					latlangs.push(temparr);
+					if( i === AreasServed.length - 1 ){
+						build_map(latlangs);
+					}
+				}
+				return build_latlangs;
 			}
-			// setTimeout(build_map, 1000);
-			jQuery(window).on('load', build_map);
-			function build_map(){
+			
+			function build_map(latlangs){
 				// build map center
 				var map_center = [];
 				var x = 0;
@@ -523,7 +529,6 @@ window._initMaps = function() {
 			         var marker = new google.maps.Marker({
 			         	position: {lat: latlangs[i][0], lng: latlangs[i][1]},
 			         	map: map,
-
 			         });
 			    }
 		     	// zoom to bounds
