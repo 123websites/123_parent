@@ -2,13 +2,29 @@
 
 if( !function_exists('get_countries') ){
 	function get_countries(){
-		$json = json_decode(file_get_contents("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT%20Name,%20ISO_2DIGIT%20FROM%201N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk&key=AIzaSyCrc4UkG5XPkC_W6AVLeO_udtkM5tgoskQ", ARRAY_A));
+		$json = json_decode(file_get_contents_curl("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT%20Name,%20ISO_2DIGIT%20FROM%201N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk&key=AIzaSyCrc4UkG5XPkC_W6AVLeO_udtkM5tgoskQ"));
 		$arr = [];
 		foreach($json->rows as $row){
 			$arr[$row[1]] = $row[0];
 		}
 		asort($arr);
 		return $arr;
+	}
+}
+if( !function_exists('file_get_contents_curl') ){
+	function file_get_contents_curl($url) {
+	    $ch = curl_init();
+
+	    curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+	    curl_setopt($ch, CURLOPT_HEADER, 0);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($ch, CURLOPT_URL, $url);
+	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);       
+
+	    $data = curl_exec($ch);
+	    curl_close($ch);
+
+	    return $data;
 	}
 }
 
