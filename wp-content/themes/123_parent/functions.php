@@ -303,7 +303,7 @@ if( !function_exists('update_login_styles') ){
 		if(is_login_page()){?>
 			<style type="text/css">
 				.login{
-					background-image: url('<?php echo get_field('general-admin-bg', 'option'); ?>');
+					background-image: url('http://123websites.com/images/theme-login-bg.jpg');
 					background-size: cover;
 					background-repeat: no-repeat;
 				}

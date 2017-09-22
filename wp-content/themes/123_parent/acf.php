@@ -1731,12 +1731,6 @@ if( !function_exists('add_acf_fields') ){
 					'label' => 'Parent Company Logo URL',
 					'name' => 'webx-logo',
 					'type' => 'url',
-				),	
-				array(
-					'key' => 'field_13366',
-					'label' => 'Login Page Background URL',
-					'name' => 'general-admin-bg',
-					'type' => 'url',
 				),
 				array(
 					'key' => 'field_928137z',
