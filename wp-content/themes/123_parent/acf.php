@@ -31,7 +31,7 @@ if( !function_exists('file_get_contents_curl') ){
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
 		'page_title' 	=> ' ',
-		'menu_title'	=> 'All Theme Settings',
+		'menu_title'	=> 'Theme Settings',
 		'menu_slug' 	=> 'general-settings',
 		'capability'	=> 'read_private_posts',
 		'icon_url'      => 'dashicons-admin-settings',
