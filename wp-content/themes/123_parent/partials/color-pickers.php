@@ -69,6 +69,7 @@ if( get_field('buttons-underlines-toggle', 'option') ):
 			.contact-contact-left-locations-header:after,
 			.gform_footer input[type='submit'],
 			.footer-sociallinks-item,
+			.mobilefooter-sociallinks-item,
 			.company-employees-grid-item-socialcontainer-link,
 			.home-hero-text-button
 			{

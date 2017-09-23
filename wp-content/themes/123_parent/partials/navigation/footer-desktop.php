@@ -48,8 +48,9 @@
 			$instagram_link = get_field('social-instagram-link', 'option');
 			$youtube_link = get_field('social-youtube-link', 'option');
 			$googleplus_link = get_field('social-googleplus-link', 'option');
+			$yelp_link = get_field('social-yelp-link', 'option');
 
-			if( !empty($facebook_link) ||  !empty($twitter_link) || !empty($instagram_link) || !empty($youtube_link) || !empty($googleplus_link)):
+			if( !empty($facebook_link) ||  !empty($twitter_link) || !empty($instagram_link) || !empty($youtube_link) || !empty($googleplus_link)|| !empty($yelp_link)):
 			?>
 			<ul class="footer-sociallinks">
 				<?php if( !empty($facebook_link) ): ?>
@@ -84,6 +85,13 @@
 				<li class="footer-sociallinks-item">
 					<a href="<?php echo $googleplus_link ?>" target="_blank" class="footer-sociallinks-item-link">
 						<i class="footer-sociallinks-item-link-icon fa fa-google-plus"></i>
+					</a>
+				</li>
+				<?php endif; ?>
+				<?php if( !empty($yelp_link) ): ?>
+				<li class="footer-sociallinks-item">
+					<a href="<?php echo $yelp_link ?>" target="_blank" class="footer-sociallinks-item-link">
+						<i class="footer-sociallinks-item-link-icon fa fa-yelp"></i>
 					</a>
 				</li>
 				<?php endif; ?>

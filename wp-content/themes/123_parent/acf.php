@@ -1353,7 +1353,13 @@ if( !function_exists('add_acf_fields') ){
 					'type' => 'url',
 					'instructions' => 'Put the link to your google plus page here. Leave this field blank if you don\'t want this social link to show up.',
 				),
-				
+				array(
+					'key' => 'field_982q3iufaeadf',
+					'label' => 'Yelp Page Link',
+					'name' => 'social-yelp-link',
+					'type' => 'url',
+					'instructions' => 'Put the link to your yelp page here. Leave this field blank if you don\'t want this social link to show up.',
+				),
 				array(
 					'key' => 'field_mpoh12hadf',
 					'label' => '<h2 style="font-weight: bold; font-size: 22px;">Payment Types</h2><h4 style="margin-top: 0px; padding-left: 10px; font-weight: 400;">(For each payment method checking the box displays the payment method in the footer and uploading an image will override the default)</h4>',
