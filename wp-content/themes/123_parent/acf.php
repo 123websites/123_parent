@@ -1326,6 +1326,14 @@ if( !function_exists('add_acf_fields') ){
 					),
 				),
 				array(
+					'key' => 'field_zcvoiknclzxv342ewdf',
+					'label' => '<h1 style="color: red;">Looking for something?</h1>
+								<div>
+								- Customize Estimate Pop-Up Button - Please see at the bottom of "Theme Settings > 6. Pop-Ups.<br/>
+								</div>',
+					'type' => 'message',
+				),
+				array(
 					'key' => 'field_8712000',
 					'label' => '5. Footer',
 					'name' => 'social-settings',
