@@ -113,7 +113,7 @@ endif;
 if( get_field('top-bottom-bg-toggle', 'option') ):
 	$color = get_field('top-bottom-bg', 'option');?>
 		<style type="text/css">
-			.header-estimate,
+			.header-topbar,
 			.footer-copyright{
 				background-color: <?php echo $color ?>;
 			}
