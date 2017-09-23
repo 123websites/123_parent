@@ -47,7 +47,7 @@ if( !function_exists('enqueue_javascript') ){
 		else{
 			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=AIzaSyBrRJwJFfNCdVLJwa6yhR8UBZR1m2A018Q', array(), null, false);	
 		}
-
+		wp_enqueue_script('gstatic', 'https://www.gstatic.com/charts/loader.js');
 		localize_areas_served();
 
 		wp_enqueue_script( 'theme' );

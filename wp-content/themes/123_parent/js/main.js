@@ -539,6 +539,10 @@ window._initMaps = function() {
 			}	
 		}
 		else if( typeof(CountriesServed) !== 'undefined' ){
+			google.charts.load('current', {
+		       'packages': ['table']
+		    });
+			google.charts.setOnLoadCallback(zoomMap);
 			var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
 				center: new google.maps.LatLng(30, 0),
 				zoom: 2,
@@ -547,6 +551,7 @@ window._initMaps = function() {
 				scrollwheel: false,
 				draggable: false,
 			});
+			
 			var jointCountriesArray = CountriesServed.map(function(val, index){
 				if( index < CountriesServed.length - 1 ){
 					return '\'' + val + '\', ';
@@ -573,7 +578,33 @@ window._initMaps = function() {
 					templateId: 2
 				},
 		    });
-		    
+		    function zoomMap(){
+		    	var queryCountriesServed = '';
+
+		    	CountriesServed.forEach(function(val, index){
+		    		if( index < CountriesServed.length - 1 ){
+			    		queryCountriesServed += 'ISO_2DIGIT = ' + val + ' OR ';
+		    		}
+		    		else{
+		    			queryCountriesServed +=  'ISO_2DIGIT = ' + val;
+		    		}
+		    	});
+			    var queryText = encodeURIComponent("SELECT geometry FROM 1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk WHERE " + queryCountriesServed);
+			    // does _not_ work  var queryText = encodeURIComponent("SELECT 'Latitude' FROM "+FT_TableID+" WHERE District = "+term);
+			    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+			    console.log("SELECT geometry FROM 1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk WHERE " + queryCountriesServed);
+			    query.send(handleQuery);
+			    function handleQuery(response){
+			    	if (!response) {
+			    	  console.log('no response');
+			    	  return;
+			    	}
+			    	if (response.isError()) {
+			    	  console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+			    	  return;
+			    	} 
+			    }
+		    }
 		}
 	}
 
