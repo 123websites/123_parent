@@ -1,7 +1,9 @@
 <section class="home-hero hero">
 	<div class="home-hero-text hero-text">
 		<h1 class="home-hero-text-header hero-text-header fade fade-in"><?php echo get_field('home-hero-header-text', 'option'); ?></h1>	
-		<a href="#" class="home-hero-text-button estimate-toggle fade fade-in">Learn More</a>	
+		<?php if( !get_field('disable-slider-button', 'option') ): ?>
+			<a href="#" class="home-hero-text-button estimate-toggle fade fade-in"><?php echo !empty(get_field('slider-button-text', 'option')) ? get_field('slider-button-text', 'option') : 'Learn More'; ?></a>	
+		<?php endif; ?>
 	</div>
 	<?php $rows = get_field('general-home-slider', 'option'); 
 	if(have_rows('general-home-slider', 'option') && !rows_empty('general-home-slider', 'option')): ?>

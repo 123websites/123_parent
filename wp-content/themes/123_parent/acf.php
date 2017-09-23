@@ -957,7 +957,20 @@ if( !function_exists('add_acf_fields') ){
 						),
 					),
 				),
-				
+				array(
+					'key' => 'field_98viozckg123',
+					'label' => 'Disable Slider Button?',
+					'type' => 'true_false',
+					'name' => 'disable-slider-button',
+					'ui' => true,
+				),
+				array(
+					'key' => 'field_oicvzzcvjbh123',
+					'label' => 'Slider Button Text',
+					'type' => 'text',
+					'name' => 'slider-button-text',
+					'instructions' => 'This is the text that appears in the botton on the slider. Keep it short & sweet: No more than a dozen characters or so. If left blank "Learn More" will be used as the default.'
+				),
 				array(
 					'key' => 'field_128372613bad21',
 					'label' => '4. Main Menu',
