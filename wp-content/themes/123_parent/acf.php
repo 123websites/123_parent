@@ -130,7 +130,7 @@ if( !function_exists('add_acf_fields') ){
 					'type' => 'select',
 					'name' => 'zips_or_countries',
 					'choices' => array(
-						'zips' => 'Zip Codes',
+						'zips' => 'Cities',
 						'countries' => 'Countries',
 					),
 				),

@@ -99,7 +99,7 @@
 			<?php endif; ?>
 			
 			
-			<a href="<?php echo !empty( get_field( 'webx-url' ) ) ? get_field( 'webx-url' ) : 'http://webxmarketing.com'; ?>" class="footer-webxlink">
+			<a href="<?php echo !empty( get_field( 'webx-url', 'option' ) ) ? get_field( 'webx-url', 'option' ) : 'http://webxmarketing.com'; ?>" class="footer-webxlink">
 				<div>Powered by: </div>
 				<img src="<?php echo get_field('webx-logo', 'option'); ?>" class="footer-webxlink-logo">
 			</a>

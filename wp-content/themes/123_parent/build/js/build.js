@@ -604,6 +604,7 @@ window._initMaps = function() {
 					templateId: 2
 				},
 		    });
+		    
 		}
 	}
 
