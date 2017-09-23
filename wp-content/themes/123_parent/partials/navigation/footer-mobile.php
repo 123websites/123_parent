@@ -85,7 +85,9 @@
 			}
 		?>
 		</div>
-		<br/><br/> <a class="mobilefooter-copyright-tclink" href="<?php echo site_url() ?>/terms">Terms &amp; Conditions</a> 
+		<?php if( !get_field('terms-disable', 'option') ): ?>
+			<br/><br/> <a class="mobilefooter-copyright-tclink" href="<?php echo site_url() ?>/terms">Terms &amp; Conditions</a> 
+		<?php endif; ?>
 		<br/><br/> Copyright &copy; <?php echo Date('Y') ?>
 		<br/><br/>
 	</div>

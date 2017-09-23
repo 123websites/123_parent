@@ -668,7 +668,7 @@ if( !function_exists('add_acf_fields') ){
 					'label' => 'Company Logo',
 					'name' => 'logo-type-switch',
 					'type' => 'select',
-					'instructions' => 'This allows you to switch between providing a custom logo or creating one from the site name.<br/><br/><strong style="color:blue;">***IMPORTANT: IF YOU SELECT TEXT YOU MUST CLICK UPDATE TWICE FOR THIS CHANGE TO TAKE AFFECT***</strong><br/>An image will automatically be generated containing the text from Company Name which should be short and sweet (under 24 characters).',
+					'instructions' => 'This allows you to switch between providing a custom logo or creating one from the site name.<br/><br/><strong style="color:blue;">***IMPORTANT: IF YOU SELECT TEXT YOU MUST CLICK UPDATE TWICE FOR THIS CHANGE TO TAKE AFFECT. ALSO IF YOU CHANGE THE COMPANY NAME AND ARE USING THE TEXT OPTION YOU NEED TO CHANGE IT TO LOGO, HIT SAVE, THEN CHANGE IT BACK TO TEXT AND HIT SAVE TO THE CHANGES TO TAKE EFFECT.***</strong><br/>An image will automatically be generated containing the text from Company Name which should be short and sweet (under 24 characters).',
 					'choices' => array(
 						'logo' => 'Logo',
 						'text' => 'Text',
@@ -1500,6 +1500,20 @@ if( !function_exists('add_acf_fields') ){
 					),
 				),
 				array(
+					'key' => 'field_ocozvzcvh213',
+					'label' => 'Disable Terms & Conditions?',
+					'name' => 'terms-disable',
+					'type' => 'true_false',
+					'ui' => true,
+					'instructions' => 'if disabled the terms & conditions page will be disabled and the link to it in the footer will disappear.',
+				),
+				array (
+					'key' => 'field_89ahzbdjao',
+					'label' => 'Terms & Conditions',
+					'name' => 'terms-content',
+					'type' => 'wysiwyg',
+				),
+				array(
 					'key' => 'field_mp9213adf',
 					'label' => '<h1 style="color: red;">Looking for something?</h1>
 								<div>
@@ -1792,12 +1806,7 @@ if( !function_exists('add_acf_fields') ){
 					'new_lines' => 'br',
 					'instructions' => 'If left blank this defaults to "The requested page is not available. Click here to return home."',
 				),
-				array (
-					'key' => 'field_89ahzbdjao',
-					'label' => 'Terms & Conditions',
-					'name' => 'terms-content',
-					'type' => 'wysiwyg',
-				),
+				
 				array(
 					'key' => 'field_b8n2qnafhdpz',
 					'label' => 'Custom CSS',
@@ -2488,5 +2497,26 @@ if( !function_exists('acf_update_popup_emails') ){
 }
 
 add_action( 'acf/update_value', 'acf_update_popup_emails', 10, 3 );
+
+if( !function_exists('acf_disable_terms_page') ){
+	function acf_disable_terms_page( $value, $post_id, $field ){
+		$page = get_page_by_title( 'terms' );
+		if( $value == true ){
+			wp_update_post( array(
+				'ID' => $page->ID,
+				'post_status' => 'private',
+			) );
+		}
+		else{
+			wp_update_post( array(
+				'ID' => $page->ID,
+				'post_status' => 'publish',
+			) );	
+		}
+		return $value;
+	}
+}
+
+add_action( 'acf/update_value/key=field_ocozvzcvh213', 'acf_disable_terms_page', 10, 3 );
 
 ?>
