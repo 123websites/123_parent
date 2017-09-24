@@ -14,6 +14,2082 @@ padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){va
 
 !function(a){function b(){}function c(a){function c(b){b.prototype.option||(b.prototype.option=function(b){a.isPlainObject(b)&&(this.options=a.extend(!0,this.options,b))})}function e(b,c){a.fn[b]=function(e){if("string"==typeof e){for(var g=d.call(arguments,1),h=0,i=this.length;i>h;h++){var j=this[h],k=a.data(j,b);if(k)if(a.isFunction(k[e])&&"_"!==e.charAt(0)){var l=k[e].apply(k,g);if(void 0!==l)return l}else f("no such method '"+e+"' for "+b+" instance");else f("cannot call methods on "+b+" prior to initialization; attempted to call '"+e+"'")}return this}return this.each(function(){var d=a.data(this,b);d?(d.option(e),d._init()):(d=new c(this,e),a.data(this,b,d))})}}if(a){var f="undefined"==typeof console?b:function(a){console.error(a)};return a.bridget=function(a,b){c(b),e(a,b)},a.bridget}}var d=Array.prototype.slice;"function"==typeof define&&define.amd?define("jquery-bridget/jquery.bridget",["jquery"],c):c("object"==typeof exports?require("jquery"):a.jQuery)}(window),function(a){function b(b){var c=a.event;return c.target=c.target||c.srcElement||b,c}var c=document.documentElement,d=function(){};c.addEventListener?d=function(a,b,c){a.addEventListener(b,c,!1)}:c.attachEvent&&(d=function(a,c,d){a[c+d]=d.handleEvent?function(){var c=b(a);d.handleEvent.call(d,c)}:function(){var c=b(a);d.call(a,c)},a.attachEvent("on"+c,a[c+d])});var e=function(){};c.removeEventListener?e=function(a,b,c){a.removeEventListener(b,c,!1)}:c.detachEvent&&(e=function(a,b,c){a.detachEvent("on"+b,a[b+c]);try{delete a[b+c]}catch(d){a[b+c]=void 0}});var f={bind:d,unbind:e};"function"==typeof define&&define.amd?define("eventie/eventie",f):"object"==typeof exports?module.exports=f:a.eventie=f}(window),function(){function a(){}function b(a,b){for(var c=a.length;c--;)if(a[c].listener===b)return c;return-1}function c(a){return function(){return this[a].apply(this,arguments)}}var d=a.prototype,e=this,f=e.EventEmitter;d.getListeners=function(a){var b,c,d=this._getEvents();if(a instanceof RegExp){b={};for(c in d)d.hasOwnProperty(c)&&a.test(c)&&(b[c]=d[c])}else b=d[a]||(d[a]=[]);return b},d.flattenListeners=function(a){var b,c=[];for(b=0;b<a.length;b+=1)c.push(a[b].listener);return c},d.getListenersAsObject=function(a){var b,c=this.getListeners(a);return c instanceof Array&&(b={},b[a]=c),b||c},d.addListener=function(a,c){var d,e=this.getListenersAsObject(a),f="object"==typeof c;for(d in e)e.hasOwnProperty(d)&&-1===b(e[d],c)&&e[d].push(f?c:{listener:c,once:!1});return this},d.on=c("addListener"),d.addOnceListener=function(a,b){return this.addListener(a,{listener:b,once:!0})},d.once=c("addOnceListener"),d.defineEvent=function(a){return this.getListeners(a),this},d.defineEvents=function(a){for(var b=0;b<a.length;b+=1)this.defineEvent(a[b]);return this},d.removeListener=function(a,c){var d,e,f=this.getListenersAsObject(a);for(e in f)f.hasOwnProperty(e)&&(d=b(f[e],c),-1!==d&&f[e].splice(d,1));return this},d.off=c("removeListener"),d.addListeners=function(a,b){return this.manipulateListeners(!1,a,b)},d.removeListeners=function(a,b){return this.manipulateListeners(!0,a,b)},d.manipulateListeners=function(a,b,c){var d,e,f=a?this.removeListener:this.addListener,g=a?this.removeListeners:this.addListeners;if("object"!=typeof b||b instanceof RegExp)for(d=c.length;d--;)f.call(this,b,c[d]);else for(d in b)b.hasOwnProperty(d)&&(e=b[d])&&("function"==typeof e?f.call(this,d,e):g.call(this,d,e));return this},d.removeEvent=function(a){var b,c=typeof a,d=this._getEvents();if("string"===c)delete d[a];else if(a instanceof RegExp)for(b in d)d.hasOwnProperty(b)&&a.test(b)&&delete d[b];else delete this._events;return this},d.removeAllListeners=c("removeEvent"),d.emitEvent=function(a,b){var c,d,e,f,g=this.getListenersAsObject(a);for(e in g)if(g.hasOwnProperty(e))for(d=g[e].length;d--;)c=g[e][d],c.once===!0&&this.removeListener(a,c.listener),f=c.listener.apply(this,b||[]),f===this._getOnceReturnValue()&&this.removeListener(a,c.listener);return this},d.trigger=c("emitEvent"),d.emit=function(a){var b=Array.prototype.slice.call(arguments,1);return this.emitEvent(a,b)},d.setOnceReturnValue=function(a){return this._onceReturnValue=a,this},d._getOnceReturnValue=function(){return this.hasOwnProperty("_onceReturnValue")?this._onceReturnValue:!0},d._getEvents=function(){return this._events||(this._events={})},a.noConflict=function(){return e.EventEmitter=f,a},"function"==typeof define&&define.amd?define("eventEmitter/EventEmitter",[],function(){return a}):"object"==typeof module&&module.exports?module.exports=a:e.EventEmitter=a}.call(this),function(a){function b(a){if(a){if("string"==typeof d[a])return a;a=a.charAt(0).toUpperCase()+a.slice(1);for(var b,e=0,f=c.length;f>e;e++)if(b=c[e]+a,"string"==typeof d[b])return b}}var c="Webkit Moz ms Ms O".split(" "),d=document.documentElement.style;"function"==typeof define&&define.amd?define("get-style-property/get-style-property",[],function(){return b}):"object"==typeof exports?module.exports=b:a.getStyleProperty=b}(window),function(a){function b(a){var b=parseFloat(a),c=-1===a.indexOf("%")&&!isNaN(b);return c&&b}function c(){}function d(){for(var a={width:0,height:0,innerWidth:0,innerHeight:0,outerWidth:0,outerHeight:0},b=0,c=g.length;c>b;b++){var d=g[b];a[d]=0}return a}function e(c){function e(){if(!m){m=!0;var d=a.getComputedStyle;if(j=function(){var a=d?function(a){return d(a,null)}:function(a){return a.currentStyle};return function(b){var c=a(b);return c||f("Style returned "+c+". Are you running this code in a hidden iframe on Firefox? See http://bit.ly/getsizebug1"),c}}(),k=c("boxSizing")){var e=document.createElement("div");e.style.width="200px",e.style.padding="1px 2px 3px 4px",e.style.borderStyle="solid",e.style.borderWidth="1px 2px 3px 4px",e.style[k]="border-box";var g=document.body||document.documentElement;g.appendChild(e);var h=j(e);l=200===b(h.width),g.removeChild(e)}}}function h(a){if(e(),"string"==typeof a&&(a=document.querySelector(a)),a&&"object"==typeof a&&a.nodeType){var c=j(a);if("none"===c.display)return d();var f={};f.width=a.offsetWidth,f.height=a.offsetHeight;for(var h=f.isBorderBox=!(!k||!c[k]||"border-box"!==c[k]),m=0,n=g.length;n>m;m++){var o=g[m],p=c[o];p=i(a,p);var q=parseFloat(p);f[o]=isNaN(q)?0:q}var r=f.paddingLeft+f.paddingRight,s=f.paddingTop+f.paddingBottom,t=f.marginLeft+f.marginRight,u=f.marginTop+f.marginBottom,v=f.borderLeftWidth+f.borderRightWidth,w=f.borderTopWidth+f.borderBottomWidth,x=h&&l,y=b(c.width);y!==!1&&(f.width=y+(x?0:r+v));var z=b(c.height);return z!==!1&&(f.height=z+(x?0:s+w)),f.innerWidth=f.width-(r+v),f.innerHeight=f.height-(s+w),f.outerWidth=f.width+t,f.outerHeight=f.height+u,f}}function i(b,c){if(a.getComputedStyle||-1===c.indexOf("%"))return c;var d=b.style,e=d.left,f=b.runtimeStyle,g=f&&f.left;return g&&(f.left=b.currentStyle.left),d.left=c,c=d.pixelLeft,d.left=e,g&&(f.left=g),c}var j,k,l,m=!1;return h}var f="undefined"==typeof console?c:function(a){console.error(a)},g=["paddingLeft","paddingRight","paddingTop","paddingBottom","marginLeft","marginRight","marginTop","marginBottom","borderLeftWidth","borderRightWidth","borderTopWidth","borderBottomWidth"];"function"==typeof define&&define.amd?define("get-size/get-size",["get-style-property/get-style-property"],e):"object"==typeof exports?module.exports=e(require("desandro-get-style-property")):a.getSize=e(a.getStyleProperty)}(window),function(a){function b(a){"function"==typeof a&&(b.isReady?a():g.push(a))}function c(a){var c="readystatechange"===a.type&&"complete"!==f.readyState;b.isReady||c||d()}function d(){b.isReady=!0;for(var a=0,c=g.length;c>a;a++){var d=g[a];d()}}function e(e){return"complete"===f.readyState?d():(e.bind(f,"DOMContentLoaded",c),e.bind(f,"readystatechange",c),e.bind(a,"load",c)),b}var f=a.document,g=[];b.isReady=!1,"function"==typeof define&&define.amd?define("doc-ready/doc-ready",["eventie/eventie"],e):"object"==typeof exports?module.exports=e(require("eventie")):a.docReady=e(a.eventie)}(window),function(a){function b(a,b){return a[g](b)}function c(a){if(!a.parentNode){var b=document.createDocumentFragment();b.appendChild(a)}}function d(a,b){c(a);for(var d=a.parentNode.querySelectorAll(b),e=0,f=d.length;f>e;e++)if(d[e]===a)return!0;return!1}function e(a,d){return c(a),b(a,d)}var f,g=function(){if(a.matches)return"matches";if(a.matchesSelector)return"matchesSelector";for(var b=["webkit","moz","ms","o"],c=0,d=b.length;d>c;c++){var e=b[c],f=e+"MatchesSelector";if(a[f])return f}}();if(g){var h=document.createElement("div"),i=b(h,"div");f=i?b:e}else f=d;"function"==typeof define&&define.amd?define("matches-selector/matches-selector",[],function(){return f}):"object"==typeof exports?module.exports=f:window.matchesSelector=f}(Element.prototype),function(a,b){"function"==typeof define&&define.amd?define("fizzy-ui-utils/utils",["doc-ready/doc-ready","matches-selector/matches-selector"],function(c,d){return b(a,c,d)}):"object"==typeof exports?module.exports=b(a,require("doc-ready"),require("desandro-matches-selector")):a.fizzyUIUtils=b(a,a.docReady,a.matchesSelector)}(window,function(a,b,c){var d={};d.extend=function(a,b){for(var c in b)a[c]=b[c];return a},d.modulo=function(a,b){return(a%b+b)%b};var e=Object.prototype.toString;d.isArray=function(a){return"[object Array]"==e.call(a)},d.makeArray=function(a){var b=[];if(d.isArray(a))b=a;else if(a&&"number"==typeof a.length)for(var c=0,e=a.length;e>c;c++)b.push(a[c]);else b.push(a);return b},d.indexOf=Array.prototype.indexOf?function(a,b){return a.indexOf(b)}:function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},d.removeFrom=function(a,b){var c=d.indexOf(a,b);-1!=c&&a.splice(c,1)},d.isElement="function"==typeof HTMLElement||"object"==typeof HTMLElement?function(a){return a instanceof HTMLElement}:function(a){return a&&"object"==typeof a&&1==a.nodeType&&"string"==typeof a.nodeName},d.setText=function(){function a(a,c){b=b||(void 0!==document.documentElement.textContent?"textContent":"innerText"),a[b]=c}var b;return a}(),d.getParent=function(a,b){for(;a!=document.body;)if(a=a.parentNode,c(a,b))return a},d.getQueryElement=function(a){return"string"==typeof a?document.querySelector(a):a},d.handleEvent=function(a){var b="on"+a.type;this[b]&&this[b](a)},d.filterFindElements=function(a,b){a=d.makeArray(a);for(var e=[],f=0,g=a.length;g>f;f++){var h=a[f];if(d.isElement(h))if(b){c(h,b)&&e.push(h);for(var i=h.querySelectorAll(b),j=0,k=i.length;k>j;j++)e.push(i[j])}else e.push(h)}return e},d.debounceMethod=function(a,b,c){var d=a.prototype[b],e=b+"Timeout";a.prototype[b]=function(){var a=this[e];a&&clearTimeout(a);var b=arguments,f=this;this[e]=setTimeout(function(){d.apply(f,b),delete f[e]},c||100)}},d.toDashed=function(a){return a.replace(/(.)([A-Z])/g,function(a,b,c){return b+"-"+c}).toLowerCase()};var f=a.console;return d.htmlInit=function(c,e){b(function(){for(var b=d.toDashed(e),g=document.querySelectorAll(".js-"+b),h="data-"+b+"-options",i=0,j=g.length;j>i;i++){var k,l=g[i],m=l.getAttribute(h);try{k=m&&JSON.parse(m)}catch(n){f&&f.error("Error parsing "+h+" on "+l.nodeName.toLowerCase()+(l.id?"#"+l.id:"")+": "+n);continue}var o=new c(l,k),p=a.jQuery;p&&p.data(l,e,o)}})},d}),function(a,b){"function"==typeof define&&define.amd?define("outlayer/item",["eventEmitter/EventEmitter","get-size/get-size","get-style-property/get-style-property","fizzy-ui-utils/utils"],function(c,d,e,f){return b(a,c,d,e,f)}):"object"==typeof exports?module.exports=b(a,require("wolfy87-eventemitter"),require("get-size"),require("desandro-get-style-property"),require("fizzy-ui-utils")):(a.Outlayer={},a.Outlayer.Item=b(a,a.EventEmitter,a.getSize,a.getStyleProperty,a.fizzyUIUtils))}(window,function(a,b,c,d,e){function f(a){for(var b in a)return!1;return b=null,!0}function g(a,b){a&&(this.element=a,this.layout=b,this.position={x:0,y:0},this._create())}function h(a){return a.replace(/([A-Z])/g,function(a){return"-"+a.toLowerCase()})}var i=a.getComputedStyle,j=i?function(a){return i(a,null)}:function(a){return a.currentStyle},k=d("transition"),l=d("transform"),m=k&&l,n=!!d("perspective"),o={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"otransitionend",transition:"transitionend"}[k],p=["transform","transition","transitionDuration","transitionProperty"],q=function(){for(var a={},b=0,c=p.length;c>b;b++){var e=p[b],f=d(e);f&&f!==e&&(a[e]=f)}return a}();e.extend(g.prototype,b.prototype),g.prototype._create=function(){this._transn={ingProperties:{},clean:{},onEnd:{}},this.css({position:"absolute"})},g.prototype.handleEvent=function(a){var b="on"+a.type;this[b]&&this[b](a)},g.prototype.getSize=function(){this.size=c(this.element)},g.prototype.css=function(a){var b=this.element.style;for(var c in a){var d=q[c]||c;b[d]=a[c]}},g.prototype.getPosition=function(){var a=j(this.element),b=this.layout.options,c=b.isOriginLeft,d=b.isOriginTop,e=a[c?"left":"right"],f=a[d?"top":"bottom"],g=this.layout.size,h=-1!=e.indexOf("%")?parseFloat(e)/100*g.width:parseInt(e,10),i=-1!=f.indexOf("%")?parseFloat(f)/100*g.height:parseInt(f,10);h=isNaN(h)?0:h,i=isNaN(i)?0:i,h-=c?g.paddingLeft:g.paddingRight,i-=d?g.paddingTop:g.paddingBottom,this.position.x=h,this.position.y=i},g.prototype.layoutPosition=function(){var a=this.layout.size,b=this.layout.options,c={},d=b.isOriginLeft?"paddingLeft":"paddingRight",e=b.isOriginLeft?"left":"right",f=b.isOriginLeft?"right":"left",g=this.position.x+a[d];c[e]=this.getXValue(g),c[f]="";var h=b.isOriginTop?"paddingTop":"paddingBottom",i=b.isOriginTop?"top":"bottom",j=b.isOriginTop?"bottom":"top",k=this.position.y+a[h];c[i]=this.getYValue(k),c[j]="",this.css(c),this.emitEvent("layout",[this])},g.prototype.getXValue=function(a){var b=this.layout.options;return b.percentPosition&&!b.isHorizontal?a/this.layout.size.width*100+"%":a+"px"},g.prototype.getYValue=function(a){var b=this.layout.options;return b.percentPosition&&b.isHorizontal?a/this.layout.size.height*100+"%":a+"px"},g.prototype._transitionTo=function(a,b){this.getPosition();var c=this.position.x,d=this.position.y,e=parseInt(a,10),f=parseInt(b,10),g=e===this.position.x&&f===this.position.y;if(this.setPosition(a,b),g&&!this.isTransitioning)return void this.layoutPosition();var h=a-c,i=b-d,j={};j.transform=this.getTranslate(h,i),this.transition({to:j,onTransitionEnd:{transform:this.layoutPosition},isCleaning:!0})},g.prototype.getTranslate=function(a,b){var c=this.layout.options;return a=c.isOriginLeft?a:-a,b=c.isOriginTop?b:-b,n?"translate3d("+a+"px, "+b+"px, 0)":"translate("+a+"px, "+b+"px)"},g.prototype.goTo=function(a,b){this.setPosition(a,b),this.layoutPosition()},g.prototype.moveTo=m?g.prototype._transitionTo:g.prototype.goTo,g.prototype.setPosition=function(a,b){this.position.x=parseInt(a,10),this.position.y=parseInt(b,10)},g.prototype._nonTransition=function(a){this.css(a.to),a.isCleaning&&this._removeStyles(a.to);for(var b in a.onTransitionEnd)a.onTransitionEnd[b].call(this)},g.prototype._transition=function(a){if(!parseFloat(this.layout.options.transitionDuration))return void this._nonTransition(a);var b=this._transn;for(var c in a.onTransitionEnd)b.onEnd[c]=a.onTransitionEnd[c];for(c in a.to)b.ingProperties[c]=!0,a.isCleaning&&(b.clean[c]=!0);if(a.from){this.css(a.from);var d=this.element.offsetHeight;d=null}this.enableTransition(a.to),this.css(a.to),this.isTransitioning=!0};var r="opacity,"+h(q.transform||"transform");g.prototype.enableTransition=function(){this.isTransitioning||(this.css({transitionProperty:r,transitionDuration:this.layout.options.transitionDuration}),this.element.addEventListener(o,this,!1))},g.prototype.transition=g.prototype[k?"_transition":"_nonTransition"],g.prototype.onwebkitTransitionEnd=function(a){this.ontransitionend(a)},g.prototype.onotransitionend=function(a){this.ontransitionend(a)};var s={"-webkit-transform":"transform","-moz-transform":"transform","-o-transform":"transform"};g.prototype.ontransitionend=function(a){if(a.target===this.element){var b=this._transn,c=s[a.propertyName]||a.propertyName;if(delete b.ingProperties[c],f(b.ingProperties)&&this.disableTransition(),c in b.clean&&(this.element.style[a.propertyName]="",delete b.clean[c]),c in b.onEnd){var d=b.onEnd[c];d.call(this),delete b.onEnd[c]}this.emitEvent("transitionEnd",[this])}},g.prototype.disableTransition=function(){this.removeTransitionStyles(),this.element.removeEventListener(o,this,!1),this.isTransitioning=!1},g.prototype._removeStyles=function(a){var b={};for(var c in a)b[c]="";this.css(b)};var t={transitionProperty:"",transitionDuration:""};return g.prototype.removeTransitionStyles=function(){this.css(t)},g.prototype.removeElem=function(){this.element.parentNode.removeChild(this.element),this.css({display:""}),this.emitEvent("remove",[this])},g.prototype.remove=function(){if(!k||!parseFloat(this.layout.options.transitionDuration))return void this.removeElem();var a=this;this.once("transitionEnd",function(){a.removeElem()}),this.hide()},g.prototype.reveal=function(){delete this.isHidden,this.css({display:""});var a=this.layout.options,b={},c=this.getHideRevealTransitionEndProperty("visibleStyle");b[c]=this.onRevealTransitionEnd,this.transition({from:a.hiddenStyle,to:a.visibleStyle,isCleaning:!0,onTransitionEnd:b})},g.prototype.onRevealTransitionEnd=function(){this.isHidden||this.emitEvent("reveal")},g.prototype.getHideRevealTransitionEndProperty=function(a){var b=this.layout.options[a];if(b.opacity)return"opacity";for(var c in b)return c},g.prototype.hide=function(){this.isHidden=!0,this.css({display:""});var a=this.layout.options,b={},c=this.getHideRevealTransitionEndProperty("hiddenStyle");b[c]=this.onHideTransitionEnd,this.transition({from:a.visibleStyle,to:a.hiddenStyle,isCleaning:!0,onTransitionEnd:b})},g.prototype.onHideTransitionEnd=function(){this.isHidden&&(this.css({display:"none"}),this.emitEvent("hide"))},g.prototype.destroy=function(){this.css({position:"",left:"",right:"",top:"",bottom:"",transition:"",transform:""})},g}),function(a,b){"function"==typeof define&&define.amd?define("outlayer/outlayer",["eventie/eventie","eventEmitter/EventEmitter","get-size/get-size","fizzy-ui-utils/utils","./item"],function(c,d,e,f,g){return b(a,c,d,e,f,g)}):"object"==typeof exports?module.exports=b(a,require("eventie"),require("wolfy87-eventemitter"),require("get-size"),require("fizzy-ui-utils"),require("./item")):a.Outlayer=b(a,a.eventie,a.EventEmitter,a.getSize,a.fizzyUIUtils,a.Outlayer.Item)}(window,function(a,b,c,d,e,f){function g(a,b){var c=e.getQueryElement(a);if(!c)return void(h&&h.error("Bad element for "+this.constructor.namespace+": "+(c||a)));this.element=c,i&&(this.$element=i(this.element)),this.options=e.extend({},this.constructor.defaults),this.option(b);var d=++k;this.element.outlayerGUID=d,l[d]=this,this._create(),this.options.isInitLayout&&this.layout()}var h=a.console,i=a.jQuery,j=function(){},k=0,l={};return g.namespace="outlayer",g.Item=f,g.defaults={containerStyle:{position:"relative"},isInitLayout:!0,isOriginLeft:!0,isOriginTop:!0,isResizeBound:!0,isResizingContainer:!0,transitionDuration:"0.4s",hiddenStyle:{opacity:0,transform:"scale(0.001)"},visibleStyle:{opacity:1,transform:"scale(1)"}},e.extend(g.prototype,c.prototype),g.prototype.option=function(a){e.extend(this.options,a)},g.prototype._create=function(){this.reloadItems(),this.stamps=[],this.stamp(this.options.stamp),e.extend(this.element.style,this.options.containerStyle),this.options.isResizeBound&&this.bindResize()},g.prototype.reloadItems=function(){this.items=this._itemize(this.element.children)},g.prototype._itemize=function(a){for(var b=this._filterFindItemElements(a),c=this.constructor.Item,d=[],e=0,f=b.length;f>e;e++){var g=b[e],h=new c(g,this);d.push(h)}return d},g.prototype._filterFindItemElements=function(a){return e.filterFindElements(a,this.options.itemSelector)},g.prototype.getItemElements=function(){for(var a=[],b=0,c=this.items.length;c>b;b++)a.push(this.items[b].element);return a},g.prototype.layout=function(){this._resetLayout(),this._manageStamps();var a=void 0!==this.options.isLayoutInstant?this.options.isLayoutInstant:!this._isLayoutInited;this.layoutItems(this.items,a),this._isLayoutInited=!0},g.prototype._init=g.prototype.layout,g.prototype._resetLayout=function(){this.getSize()},g.prototype.getSize=function(){this.size=d(this.element)},g.prototype._getMeasurement=function(a,b){var c,f=this.options[a];f?("string"==typeof f?c=this.element.querySelector(f):e.isElement(f)&&(c=f),this[a]=c?d(c)[b]:f):this[a]=0},g.prototype.layoutItems=function(a,b){a=this._getItemsForLayout(a),this._layoutItems(a,b),this._postLayout()},g.prototype._getItemsForLayout=function(a){for(var b=[],c=0,d=a.length;d>c;c++){var e=a[c];e.isIgnored||b.push(e)}return b},g.prototype._layoutItems=function(a,b){if(this._emitCompleteOnItems("layout",a),a&&a.length){for(var c=[],d=0,e=a.length;e>d;d++){var f=a[d],g=this._getItemLayoutPosition(f);g.item=f,g.isInstant=b||f.isLayoutInstant,c.push(g)}this._processLayoutQueue(c)}},g.prototype._getItemLayoutPosition=function(){return{x:0,y:0}},g.prototype._processLayoutQueue=function(a){for(var b=0,c=a.length;c>b;b++){var d=a[b];this._positionItem(d.item,d.x,d.y,d.isInstant)}},g.prototype._positionItem=function(a,b,c,d){d?a.goTo(b,c):a.moveTo(b,c)},g.prototype._postLayout=function(){this.resizeContainer()},g.prototype.resizeContainer=function(){if(this.options.isResizingContainer){var a=this._getContainerSize();a&&(this._setContainerMeasure(a.width,!0),this._setContainerMeasure(a.height,!1))}},g.prototype._getContainerSize=j,g.prototype._setContainerMeasure=function(a,b){if(void 0!==a){var c=this.size;c.isBorderBox&&(a+=b?c.paddingLeft+c.paddingRight+c.borderLeftWidth+c.borderRightWidth:c.paddingBottom+c.paddingTop+c.borderTopWidth+c.borderBottomWidth),a=Math.max(a,0),this.element.style[b?"width":"height"]=a+"px"}},g.prototype._emitCompleteOnItems=function(a,b){function c(){e.dispatchEvent(a+"Complete",null,[b])}function d(){g++,g===f&&c()}var e=this,f=b.length;if(!b||!f)return void c();for(var g=0,h=0,i=b.length;i>h;h++){var j=b[h];j.once(a,d)}},g.prototype.dispatchEvent=function(a,b,c){var d=b?[b].concat(c):c;if(this.emitEvent(a,d),i)if(this.$element=this.$element||i(this.element),b){var e=i.Event(b);e.type=a,this.$element.trigger(e,c)}else this.$element.trigger(a,c)},g.prototype.ignore=function(a){var b=this.getItem(a);b&&(b.isIgnored=!0)},g.prototype.unignore=function(a){var b=this.getItem(a);b&&delete b.isIgnored},g.prototype.stamp=function(a){if(a=this._find(a)){this.stamps=this.stamps.concat(a);for(var b=0,c=a.length;c>b;b++){var d=a[b];this.ignore(d)}}},g.prototype.unstamp=function(a){if(a=this._find(a))for(var b=0,c=a.length;c>b;b++){var d=a[b];e.removeFrom(this.stamps,d),this.unignore(d)}},g.prototype._find=function(a){return a?("string"==typeof a&&(a=this.element.querySelectorAll(a)),a=e.makeArray(a)):void 0},g.prototype._manageStamps=function(){if(this.stamps&&this.stamps.length){this._getBoundingRect();for(var a=0,b=this.stamps.length;b>a;a++){var c=this.stamps[a];this._manageStamp(c)}}},g.prototype._getBoundingRect=function(){var a=this.element.getBoundingClientRect(),b=this.size;this._boundingRect={left:a.left+b.paddingLeft+b.borderLeftWidth,top:a.top+b.paddingTop+b.borderTopWidth,right:a.right-(b.paddingRight+b.borderRightWidth),bottom:a.bottom-(b.paddingBottom+b.borderBottomWidth)}},g.prototype._manageStamp=j,g.prototype._getElementOffset=function(a){var b=a.getBoundingClientRect(),c=this._boundingRect,e=d(a),f={left:b.left-c.left-e.marginLeft,top:b.top-c.top-e.marginTop,right:c.right-b.right-e.marginRight,bottom:c.bottom-b.bottom-e.marginBottom};return f},g.prototype.handleEvent=function(a){var b="on"+a.type;this[b]&&this[b](a)},g.prototype.bindResize=function(){this.isResizeBound||(b.bind(a,"resize",this),this.isResizeBound=!0)},g.prototype.unbindResize=function(){this.isResizeBound&&b.unbind(a,"resize",this),this.isResizeBound=!1},g.prototype.onresize=function(){function a(){b.resize(),delete b.resizeTimeout}this.resizeTimeout&&clearTimeout(this.resizeTimeout);var b=this;this.resizeTimeout=setTimeout(a,100)},g.prototype.resize=function(){this.isResizeBound&&this.needsResizeLayout()&&this.layout()},g.prototype.needsResizeLayout=function(){var a=d(this.element),b=this.size&&a;return b&&a.innerWidth!==this.size.innerWidth},g.prototype.addItems=function(a){var b=this._itemize(a);return b.length&&(this.items=this.items.concat(b)),b},g.prototype.appended=function(a){var b=this.addItems(a);b.length&&(this.layoutItems(b,!0),this.reveal(b))},g.prototype.prepended=function(a){var b=this._itemize(a);if(b.length){var c=this.items.slice(0);this.items=b.concat(c),this._resetLayout(),this._manageStamps(),this.layoutItems(b,!0),this.reveal(b),this.layoutItems(c)}},g.prototype.reveal=function(a){this._emitCompleteOnItems("reveal",a);for(var b=a&&a.length,c=0;b&&b>c;c++){var d=a[c];d.reveal()}},g.prototype.hide=function(a){this._emitCompleteOnItems("hide",a);for(var b=a&&a.length,c=0;b&&b>c;c++){var d=a[c];d.hide()}},g.prototype.revealItemElements=function(a){var b=this.getItems(a);this.reveal(b)},g.prototype.hideItemElements=function(a){var b=this.getItems(a);this.hide(b)},g.prototype.getItem=function(a){for(var b=0,c=this.items.length;c>b;b++){var d=this.items[b];if(d.element===a)return d}},g.prototype.getItems=function(a){a=e.makeArray(a);for(var b=[],c=0,d=a.length;d>c;c++){var f=a[c],g=this.getItem(f);g&&b.push(g)}return b},g.prototype.remove=function(a){var b=this.getItems(a);if(this._emitCompleteOnItems("remove",b),b&&b.length)for(var c=0,d=b.length;d>c;c++){var f=b[c];f.remove(),e.removeFrom(this.items,f)}},g.prototype.destroy=function(){var a=this.element.style;a.height="",a.position="",a.width="";for(var b=0,c=this.items.length;c>b;b++){var d=this.items[b];d.destroy()}this.unbindResize();var e=this.element.outlayerGUID;delete l[e],delete this.element.outlayerGUID,i&&i.removeData(this.element,this.constructor.namespace)},g.data=function(a){a=e.getQueryElement(a);var b=a&&a.outlayerGUID;return b&&l[b]},g.create=function(a,b){function c(){g.apply(this,arguments)}return Object.create?c.prototype=Object.create(g.prototype):e.extend(c.prototype,g.prototype),c.prototype.constructor=c,c.defaults=e.extend({},g.defaults),e.extend(c.defaults,b),c.prototype.settings={},c.namespace=a,c.data=g.data,c.Item=function(){f.apply(this,arguments)},c.Item.prototype=new f,e.htmlInit(c,a),i&&i.bridget&&i.bridget(a,c),c},g.Item=f,g}),function(a,b){"function"==typeof define&&define.amd?define(["outlayer/outlayer","get-size/get-size","fizzy-ui-utils/utils"],b):"object"==typeof exports?module.exports=b(require("outlayer"),require("get-size"),require("fizzy-ui-utils")):a.Masonry=b(a.Outlayer,a.getSize,a.fizzyUIUtils)}(window,function(a,b,c){var d=a.create("masonry");return d.prototype._resetLayout=function(){this.getSize(),this._getMeasurement("columnWidth","outerWidth"),this._getMeasurement("gutter","outerWidth"),this.measureColumns();var a=this.cols;for(this.colYs=[];a--;)this.colYs.push(0);this.maxY=0},d.prototype.measureColumns=function(){if(this.getContainerWidth(),!this.columnWidth){var a=this.items[0],c=a&&a.element;this.columnWidth=c&&b(c).outerWidth||this.containerWidth}var d=this.columnWidth+=this.gutter,e=this.containerWidth+this.gutter,f=e/d,g=d-e%d,h=g&&1>g?"round":"floor";f=Math[h](f),this.cols=Math.max(f,1)},d.prototype.getContainerWidth=function(){var a=this.options.isFitWidth?this.element.parentNode:this.element,c=b(a);this.containerWidth=c&&c.innerWidth},d.prototype._getItemLayoutPosition=function(a){a.getSize();var b=a.size.outerWidth%this.columnWidth,d=b&&1>b?"round":"ceil",e=Math[d](a.size.outerWidth/this.columnWidth);e=Math.min(e,this.cols);for(var f=this._getColGroup(e),g=Math.min.apply(Math,f),h=c.indexOf(f,g),i={x:this.columnWidth*h,y:g},j=g+a.size.outerHeight,k=this.cols+1-f.length,l=0;k>l;l++)this.colYs[h+l]=j;return i},d.prototype._getColGroup=function(a){if(2>a)return this.colYs;for(var b=[],c=this.cols+1-a,d=0;c>d;d++){var e=this.colYs.slice(d,d+a);b[d]=Math.max.apply(Math,e)}return b},d.prototype._manageStamp=function(a){var c=b(a),d=this._getElementOffset(a),e=this.options.isOriginLeft?d.left:d.right,f=e+c.outerWidth,g=Math.floor(e/this.columnWidth);g=Math.max(0,g);var h=Math.floor(f/this.columnWidth);h-=f%this.columnWidth?0:1,h=Math.min(this.cols-1,h);for(var i=(this.options.isOriginTop?d.top:d.bottom)+c.outerHeight,j=g;h>=j;j++)this.colYs[j]=Math.max(i,this.colYs[j])},d.prototype._getContainerSize=function(){this.maxY=Math.max.apply(Math,this.colYs);var a={height:this.maxY};return this.options.isFitWidth&&(a.width=this._getContainerFitWidth()),a},d.prototype._getContainerFitWidth=function(){for(var a=0,b=this.cols;--b&&0===this.colYs[b];)a++;return(this.cols-a)*this.columnWidth-this.gutter},d.prototype.needsResizeLayout=function(){var a=this.containerWidth;return this.getContainerWidth(),a!==this.containerWidth},d});
 
+/**
+ * @fileOverview Renders KML on the Google Maps JavaScript API Version 3
+ * @name GeoXML3
+ * @author Sterling Udell, Larry Ross, Brendan Byrd
+ * @see http://code.google.com/p/geoxml3/
+ *
+ * geoxml3.js
+ *
+ * Renders KML on the Google Maps JavaScript API Version 3
+ * http://code.google.com/p/geoxml3/
+ *
+ * Copyright 2010 Sterling Udell, Larry Ross
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+/**
+ * A MultiGeometry object that will allow multiple polylines in a MultiGeometry
+ * containing LineStrings to be treated as a single object
+ *
+ * @param {MutiGeometryOptions} anonymous object.  Available properties:
+ * map: The map on which to attach the MultiGeometry
+ * paths: the individual polylines
+ * polylineOptions: options to use when constructing all the polylines
+ *
+ * @constructor
+ */
+// only if Google Maps API included
+if (!!window.google && !! google.maps) { 
+function MultiGeometry(multiGeometryOptions) {
+   function createPolyline(polylineOptions, mg) {
+     var polyline = new google.maps.Polyline(polylineOptions);
+     google.maps.event.addListener(polyline,'click', function(evt) { google.maps.event.trigger(mg,'click',evt);});
+     google.maps.event.addListener(polyline,'dblclick', function(evt) { google.maps.event.trigger(mg, 'dblclick', evt);});
+     google.maps.event.addListener(polyline,'mousedown', function(evt) { google.maps.event.trigger(mg, 'mousedown', evt);});
+     google.maps.event.addListener(polyline,'mousemove', function(evt) { google.maps.event.trigger(mg, 'mousemove', evt);});
+     google.maps.event.addListener(polyline,'mouseout', function(evt) { google.maps.event.trigger(mg, 'mouseout', evt);});
+     google.maps.event.addListener(polyline,'mouseover', function(evt) { google.maps.event.trigger(mg, 'mouseover', evt);});
+     google.maps.event.addListener(polyline,'mouseup', function(evt) { google.maps.event.trigger(mg, 'mouseup', evt);});
+     google.maps.event.addListener(polyline,'rightclick', function(evt) { google.maps.event.trigger(mg, 'rightclick', evt);});
+     return polyline;
+   }
+   this.setValues(multiGeometryOptions);
+   this.polylines = [];
+
+   for (i=0; i<this.paths.length;i++) {
+     var polylineOptions = multiGeometryOptions;
+     polylineOptions.path = this.paths[i];
+     var polyline = createPolyline(polylineOptions,this);
+     // Bind the polyline properties to the MultiGeometry properties
+     this.polylines.push(polyline);
+   }
+}
+MultiGeometry.prototype = new google.maps.MVCObject();
+MultiGeometry.prototype.changed = function(key) {
+    // alert(key+" changed");
+    if (this.polylines) {
+	for (var i=0; i<this.polylines.length; i++) {
+	    this.polylines[i].set(key,this.get(key));
+	}
+    }
+};
+MultiGeometry.prototype.setMap = function(map) { this.set('map',map); };
+MultiGeometry.prototype.getMap = function() { return this.get('map'); };
+}
+
+// Extend the global String object with a method to remove leading and trailing whitespace
+if (!String.prototype.trim) {
+/**
+ * Remove leading and trailing whitespace.
+ *
+ * @augments String
+ * @return {String}
+ */
+  String.prototype.trim = function () {
+    return this.replace(/^\s+|\s+$/g, '');
+  };
+}
+
+/**
+ * @namespace The GeoXML3 namespace.
+ */
+geoXML3 = window.geoXML3 || {instances: []};
+
+/**
+ * Constructor for the root KML parser object.
+ *
+ * <p>All top-level objects and functions are declared under a namespace of geoXML3.
+ * The core object is geoXML3.parser; typically, you'll instantiate a one parser
+ * per map.</p>
+ *
+ * @class Main XML parser.
+ * @param {geoXML3.parserOptions} options
+ */
+geoXML3.parser = function (options) {
+  // Inherit from Google MVC Object to include event handling   
+  google.maps.MVCObject.call(this);   
+
+  // Private variables
+  var parserOptions = new geoXML3.parserOptions(options);
+  var docs        = [];  // Individual KML documents
+  var docsByUrl   = {};  // Same docs as an hash by cleanURL
+  var kmzMetaData = {};  // Extra files from KMZ data
+  var styles      = {};  // Global list of styles
+  var lastPlacemark;
+  var parserName;
+  if (!parserOptions.infoWindow && parserOptions.singleInfoWindow)
+    parserOptions.infoWindow = new google.maps.InfoWindow();
+
+  var parseKmlString = function (kmlString, docSet) {
+    // Internal values for the set of documents as a whole
+    var internals = {
+      parser: this,
+      docSet: docSet || [],
+      remaining: 1,
+      parseOnly: !(parserOptions.afterParse || parserOptions.processStyles)
+    };
+    thisDoc = new Object();
+    thisDoc.internals = internals;
+    internals.docSet.push(thisDoc);
+    render(geoXML3.xmlParse(kmlString),thisDoc);
+  }
+
+  var parse = function (urls, docSet) {
+    // Process one or more KML documents
+    if (!parserName) {
+      parserName = 'geoXML3.instances[' + (geoXML3.instances.push(this) - 1) + ']';
+    }
+
+    if (typeof urls === 'string') {
+      // Single KML document
+      urls = [urls];
+    }
+
+    // Internal values for the set of documents as a whole
+    var internals = {
+      parser: this,
+      docSet: docSet || [],
+      remaining: urls.length,
+      parseOnly: !(parserOptions.afterParse || parserOptions.processStyles)
+    };
+    var thisDoc, j;
+    for (var i = 0; i < urls.length; i++) {
+      var baseUrl = cleanURL(defileURL(location.pathname), urls[i]);
+      if (docsByUrl[baseUrl]) {
+        // Reloading an existing document
+        thisDoc = docsByUrl[baseUrl];
+        thisDoc.reload = true;
+      }
+      else {
+        thisDoc = new Object();
+        thisDoc.baseUrl = baseUrl;
+        internals.docSet.push(thisDoc);
+      }
+      thisDoc.url       = urls[i];
+      thisDoc.internals = internals;
+      fetchDoc(thisDoc.url, thisDoc);
+    }
+  };
+
+  function fetchDoc(url, doc, resFunc) {
+    resFunc = resFunc || function (responseXML) { render(responseXML, doc); };
+
+    if (typeof ZipFile === 'function' && typeof JSIO === 'object' && typeof JSIO.guessFileType === 'function') {  // KMZ support requires these modules loaded
+      // if url is a data URI scheme, do not guess type based on extension.
+      if (/^data:[^,]*(kmz)/.test(doc.baseUrl)) {
+         contentType = JSIO.FileType.Binary;
+      } else if (/^data:[^,]*(kml|xml)/.test(doc.baseUrl)) {
+         contentType = JSIO.FileType.XML;
+      } else if (/^data:/.test(doc.baseUrl)) {
+         contentType = JSIO.FileType.Unknown;
+      } else if (parserOptions.forceZip) {	
+         contentType = JSIO.FileType.Binary;
+      } else {
+         contentType = JSIO.guessFileType(doc.baseUrl);
+      }
+      if (contentType == JSIO.FileType.Binary || contentType == JSIO.FileType.Unknown) {
+         doc.isCompressed = true;
+         doc.baseDir = doc.baseUrl + '/';
+         geoXML3.fetchZIP(url, resFunc, doc.internals.parser);
+         return;
+      }
+    }
+    doc.isCompressed = false;
+    doc.baseDir = defileURL(doc.baseUrl);
+    geoXML3.fetchXML(url, resFunc);
+  }
+
+  var hideDocument = function (doc) {
+    if (!doc) doc = docs[0];
+    // Hide the map objects associated with a document
+    var i;
+    if (!!doc.markers) {
+      for (i = 0; i < doc.markers.length; i++) {
+        if(!!doc.markers[i].infoWindow) doc.markers[i].infoWindow.close();
+        doc.markers[i].setVisible(false);
+      }
+    }
+    if (!!doc.ggroundoverlays) {
+      for (i = 0; i < doc.ggroundoverlays.length; i++) {
+        doc.ggroundoverlays[i].setOpacity(0);
+      }
+    }
+    if (!!doc.gpolylines) {
+      for (i=0;i<doc.gpolylines.length;i++) {
+        if(!!doc.gpolylines[i].infoWindow) doc.gpolylines[i].infoWindow.close();
+        doc.gpolylines[i].setMap(null);
+      }
+    }
+    if (!!doc.gpolygons) {
+      for (i=0;i<doc.gpolygons.length;i++) {
+        if(!!doc.gpolygons[i].infoWindow) doc.gpolygons[i].infoWindow.close();
+        doc.gpolygons[i].setMap(null);
+      }
+    }
+  };
+
+  var showDocument = function (doc) {
+    if (!doc) doc = docs[0];
+    // Show the map objects associated with a document
+    var i;
+    if (!!doc.markers) {
+      for (i = 0; i < doc.markers.length; i++) {
+        doc.markers[i].setVisible(true);
+      }
+    }
+    if (!!doc.ggroundoverlays) {
+      for (i = 0; i < doc.ggroundoverlays.length; i++) {
+        doc.ggroundoverlays[i].setOpacity(doc.ggroundoverlays[i].percentOpacity_);
+      }
+    }
+    if (!!doc.gpolylines) {
+      for (i=0;i<doc.gpolylines.length;i++) {
+        doc.gpolylines[i].setMap(parserOptions.map);
+      }
+    }
+    if (!!doc.gpolygons) {
+      for (i=0;i<doc.gpolygons.length;i++) {
+        doc.gpolygons[i].setMap(parserOptions.map);
+      }
+    }
+  };
+
+  var defaultStyle = {
+    balloon: {
+      bgColor:   'ffffffff',
+      textColor: 'ff000000',
+      text: "<h3>$[name]</h3>\n<div>$[description]</div>\n<div>$[geDirections]</div>",
+      displayMode: 'default'
+    },
+    icon: {
+      scale: 1.0,
+      dim: {
+        x: 0,
+        y: 0,
+        w: -1,
+        h: -1
+      },
+      hotSpot: {
+        x: 0.5,
+        y: 0.5,
+        xunits: 'fraction',
+        yunits: 'fraction'
+      }
+    },
+    line: {
+      color: 'ffffffff', // white (KML default)
+      colorMode: 'normal',
+      width: 1.0
+    },
+    poly: {
+      color: 'ffffffff', // white (KML default)
+      colorMode: 'normal',
+      fill: true,
+      outline: true
+    }
+  };
+
+  var kmlNS = 'http://www.opengis.net/kml/2.2';
+  var gxNS  = 'http://www.google.com/kml/ext/2.2';
+  var nodeValue              = geoXML3.nodeValue;
+  var getBooleanValue        = geoXML3.getBooleanValue;
+  var getElementsByTagNameNS = geoXML3.getElementsByTagNameNS;
+  var getElementsByTagName   = geoXML3.getElementsByTagName;
+
+function processStyleUrl(node) {
+  var styleUrlStr = nodeValue(getElementsByTagName(node, 'styleUrl')[0]);
+  if (!!styleUrlStr && styleUrlStr.indexOf('#') != -1) 
+    var styleUrl = styleUrlStr.split('#');
+  else var styleUrl = ["",""];
+  return styleUrl;
+}
+
+  function processStyle(thisNode, baseUrl, styleID, baseDir) {
+    var style = (baseUrl === '{inline}') ? clone(defaultStyle) : (styles[baseUrl][styleID] = styles[baseUrl][styleID] || clone(defaultStyle));
+
+    var styleNodes = getElementsByTagName(thisNode, 'BalloonStyle');
+    if (!!styleNodes && styleNodes.length > 0) {
+      style.balloon.bgColor     = nodeValue(getElementsByTagName(styleNodes[0], 'bgColor')[0],     style.balloon.bgColor);
+      style.balloon.textColor   = nodeValue(getElementsByTagName(styleNodes[0], 'textColor')[0],   style.balloon.textColor);
+      style.balloon.text        = nodeValue(getElementsByTagName(styleNodes[0], 'text')[0],        style.balloon.text);
+      style.balloon.displayMode = nodeValue(getElementsByTagName(styleNodes[0], 'displayMode')[0], style.balloon.displayMode);
+    }
+
+    // style.list = (unsupported; doesn't make sense in Google Maps)
+
+    var styleNodes = getElementsByTagName(thisNode, 'IconStyle');
+    if (!!styleNodes && styleNodes.length > 0) {
+      var icon = style.icon;
+
+      icon.scale = parseFloat(nodeValue(getElementsByTagName(styleNodes[0], 'scale')[0], icon.scale));
+      // style.icon.heading   = (unsupported; not supported in API)
+      // style.icon.color     = (unsupported; not supported in API)
+      // style.icon.colorMode = (unsupported; not supported in API)
+
+      styleNodes = getElementsByTagName(styleNodes[0], 'hotSpot');
+      if (!!styleNodes && styleNodes.length > 0) {
+        icon.hotSpot = {
+          x:      styleNodes[0].getAttribute('x'),
+          y:      styleNodes[0].getAttribute('y'),
+          xunits: styleNodes[0].getAttribute('xunits'),
+          yunits: styleNodes[0].getAttribute('yunits')
+        };
+      }
+
+      styleNodes = getElementsByTagName(thisNode, 'Icon');
+      if (!!styleNodes && styleNodes.length > 0) {
+        icon.href = nodeValue(getElementsByTagName(styleNodes[0], 'href')[0]);
+        icon.url  = cleanURL(baseDir, icon.href);
+        // Detect images buried in KMZ files (and use a base64 encoded URL)
+        if (kmzMetaData[icon.url]) icon.url = kmzMetaData[icon.url].dataUrl;
+
+        // Support for icon palettes and exact size dimensions
+        icon.dim = {
+          x: parseInt(nodeValue(getElementsByTagNameNS(styleNodes[0], gxNS, 'x')[0], icon.dim.x)),
+          y: parseInt(nodeValue(getElementsByTagNameNS(styleNodes[0], gxNS, 'y')[0], icon.dim.y)),
+          w: parseInt(nodeValue(getElementsByTagNameNS(styleNodes[0], gxNS, 'w')[0], icon.dim.w)),
+          h: parseInt(nodeValue(getElementsByTagNameNS(styleNodes[0], gxNS, 'h')[0], icon.dim.h))
+        };
+
+        // certain occasions where we need the pixel size of the image (like the default settings...)
+        // (NOTE: Scale is applied to entire image, not just the section of the icon palette.  So,
+        //  if we need scaling, we'll need the img dimensions no matter what.)
+        if (true /* (icon.dim.w < 0 || icon.dim.h < 0) && (icon.xunits != 'pixels' || icon.yunits == 'fraction') || icon.scale != 1.0 */) {
+          // (hopefully, this will load by the time we need it...)
+          icon.img = new Image();
+          icon.img.onload = function() {
+            if (icon.dim.w < 0 || icon.dim.h < 0) {
+              icon.dim.w = this.width;
+              icon.dim.h = this.height;
+            } else {
+              icon.dim.th = this.height;
+            }
+          };
+          icon.img.src = icon.url;
+
+          // sometimes the file is already cached and it never calls onLoad
+          if (icon.img.width > 0) {
+            if (icon.dim.w < 0 || icon.dim.h < 0) {
+             icon.dim.w = icon.img.width;
+             icon.dim.h = icon.img.height;
+            } else {
+             icon.dim.th = icon.img.height;
+            }
+          }
+        }
+      }
+    }
+
+    // style.label = (unsupported; may be possible but not with API)
+
+    styleNodes = getElementsByTagName(thisNode, 'LineStyle');
+    if (!!styleNodes && styleNodes.length > 0) {
+      style.line.color     = nodeValue(getElementsByTagName(styleNodes[0], 'color')[0],     style.line.color);
+      style.line.colorMode = nodeValue(getElementsByTagName(styleNodes[0], 'colorMode')[0], style.line.colorMode);
+      style.line.width     = nodeValue(getElementsByTagName(styleNodes[0], 'width')[0],     style.line.width);
+      // style.line.outerColor      = (unsupported; not supported in API)
+      // style.line.outerWidth      = (unsupported; not supported in API)
+      // style.line.physicalWidth   = (unsupported; unneccesary in Google Maps)
+      // style.line.labelVisibility = (unsupported; possible to implement)
+    }
+
+    styleNodes = getElementsByTagName(thisNode, 'PolyStyle');
+    if (!!styleNodes && styleNodes.length > 0) {
+      style.poly.color     = nodeValue(      getElementsByTagName(styleNodes[0], 'color')[0],     style.poly.color);
+      style.poly.colorMode = nodeValue(      getElementsByTagName(styleNodes[0], 'colorMode')[0], style.poly.colorMode);
+      style.poly.outline   = getBooleanValue(getElementsByTagName(styleNodes[0], 'outline')[0],   style.poly.outline);
+      style.poly.fill      = getBooleanValue(getElementsByTagName(styleNodes[0], 'fill')[0],      style.poly.fill);
+    }
+    return style;
+  }
+
+  // from http://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-clone-a-javascript-object
+  // http://keithdevens.com/weblog/archive/2007/Jun/07/javascript.clone
+  function clone(obj){
+    if(obj == null || typeof(obj) != 'object') return obj;
+    if (obj.cloneNode) return obj.cloneNode(true);
+    var temp = new obj.constructor();
+    for(var key in obj) temp[key] = clone(obj[key]);
+    return temp;
+  }
+
+  function processStyleMap(thisNode, baseUrl, styleID, baseDir) {
+    var pairs = getElementsByTagName(thisNode, 'Pair');
+    var map = new Object();
+
+    // add each key to the map
+    for (var pr=0;pr<pairs.length;pr++) {
+      var pairKey      = nodeValue(getElementsByTagName(pairs[pr], 'key')[0]);
+      var pairStyle    = nodeValue(getElementsByTagName(pairs[pr], 'Style')[0]);
+      var pairStyleUrl = processStyleUrl(pairs[pr]);
+      var pairStyleBaseUrl = pairStyleUrl[0] ? cleanURL(baseDir, pairStyleUrl[0]) : baseUrl;
+      var pairStyleID      = pairStyleUrl[1];
+
+      if (!!pairStyle) {
+        map[pairKey] = processStyle(pairStyle, pairStyleBaseUrl, pairStyleID);
+      } else if (!!pairStyleID && !!styles[pairStyleBaseUrl][pairStyleID]) {
+        map[pairKey] = clone(styles[pairStyleBaseUrl][pairStyleID]);
+      }
+    }
+    if (!!map["normal"]) {
+      styles[baseUrl][styleID] = clone(map["normal"]);
+    } else {
+      styles[baseUrl][styleID] = clone(defaultStyle);
+    }
+    if (!!map["highlight"] && !!parserOptions.processStyles) {
+      processStyleID(map["highlight"]);
+    }
+    styles[baseUrl][styleID].map = clone(map);
+  }
+
+  function processPlacemarkCoords(node, tag) {
+    var parent = getElementsByTagName(node, tag);
+    var coordListA = [];
+    for (var i=0; i<parent.length; i++) {
+      var coordNodes = getElementsByTagName(parent[i], 'coordinates');
+      if (!coordNodes) {
+        if (coordListA.length > 0) {
+          break;
+        } else {
+          return [{coordinates: []}];
+        }
+      }
+
+      for (var j=0; j<coordNodes.length;j++) {
+        var coords = nodeValue(coordNodes[j]).trim();
+        coords = coords.replace(/,\s+/g, ',');
+        var path = coords.split(/\s+/g);
+        var pathLength = path.length;
+        var coordList = [];
+        for (var k = 0; k < pathLength; k++) {
+          coords = path[k].split(',');
+          if (!isNaN(coords[0]) && !isNaN(coords[1])) {
+            coordList.push({
+              lat: parseFloat(coords[1]),
+              lng: parseFloat(coords[0]),
+              alt: parseFloat(coords[2])
+            });
+          }
+        }
+        coordListA.push({coordinates: coordList});
+      }
+    }
+    return coordListA;
+  }
+
+  var render = function (responseXML, doc) {
+    // Callback for retrieving a KML document: parse the KML and display it on the map
+    if (!responseXML || responseXML == "failed parse") {
+      // Error retrieving the data
+      geoXML3.log('Unable to retrieve ' + doc.url);
+      if (parserOptions.failedParse) parserOptions.failedParse(doc);
+      doc.failed = true;
+      return;
+    } else if (responseXML.parseError && responseXML.parseError.errorCode != 0) {
+      // IE parse error
+      var err = responseXML.parseError;
+      var msg = 'Parse error in line ' + err.line + ', col ' + err.linePos + ' (error code: ' + err.errorCode + ")\n" +
+        "\nError Reason: " + err.reason +
+        'Error Line: ' + err.srcText;
+
+      geoXML3.log('Unable to retrieve ' + doc.url + ': ' + msg);
+      if (parserOptions.failedParse) parserOptions.failedParse(doc);
+      doc.failed = true;
+      return;
+    } else if (responseXML.documentElement && responseXML.documentElement.nodeName == 'parsererror') {
+      // Firefox parse error
+      geoXML3.log('Unable to retrieve ' + doc.url + ': ' + responseXML.documentElement.childNodes[0].nodeValue);
+      if (parserOptions.failedParse) parserOptions.failedParse(doc);
+      doc.failed = true;
+      return;
+    } else if (!doc) {
+      throw 'geoXML3 internal error: render called with null document';
+    } else { //no errors
+      var i;
+      doc.placemarks      = [];
+      doc.groundoverlays  = [];
+      doc.ggroundoverlays = [];
+      doc.networkLinks    = [];
+      doc.gpolygons       = [];
+      doc.gpolylines      = [];
+
+      // Check for dependent KML files
+      var nodes = getElementsByTagName(responseXML, 'styleUrl');
+      var docSet = doc.internals.docSet;
+
+      for (var i = 0; i < nodes.length; i++) {
+        var url = nodeValue(nodes[i]).split('#')[0];
+        if (!url)                 continue;  // #id (inside doc)
+        var rUrl = cleanURL( doc.baseDir, url );
+        if (rUrl === doc.baseUrl) continue;  // self
+        if (docsByUrl[rUrl])      continue;  // already loaded
+
+        var thisDoc;
+        var j = docSet.indexOfObjWithItem('baseUrl', rUrl);
+        if (j != -1) {
+          // Already listed to be loaded, but probably in the wrong order.
+          // Load it right away to immediately resolve dependency.
+          thisDoc = docSet[j];
+          if (thisDoc.failed) continue;  // failed to load last time; don't retry it again
+        }
+        else {
+          // Not listed at all; add it in
+          thisDoc           = new Object();
+          thisDoc.url       = rUrl;  // url can't be trusted inside KMZ files, since it may .. outside of the archive
+          thisDoc.baseUrl   = rUrl;
+          thisDoc.internals = doc.internals;
+
+          doc.internals.docSet.push(thisDoc);
+          doc.internals.remaining++;
+        }
+
+        // render dependent KML first then re-run renderer
+        fetchDoc(rUrl, thisDoc, function (thisResXML) {
+          render(thisResXML, thisDoc);
+          render(responseXML, doc);
+        });
+
+        // to prevent cross-dependency issues, just load the one
+        // file first and re-check the rest later
+        return;
+      }
+
+      // Parse styles
+      doc.styles = styles[doc.baseUrl] = styles[doc.baseUrl] || {};
+      var styleID, styleNodes;
+      nodes = getElementsByTagName(responseXML, 'Style');
+      nodeCount = nodes.length;
+      for (i = 0; i < nodeCount; i++) {
+        thisNode = nodes[i];
+        var styleID = thisNode.getAttribute('id');
+        if (!!styleID) processStyle(thisNode, doc.baseUrl, styleID, doc.baseDir);
+      }
+      // Parse StyleMap nodes
+      nodes = getElementsByTagName(responseXML, 'StyleMap');
+      for (i = 0; i < nodes.length; i++) {
+        thisNode = nodes[i];
+        var styleID = thisNode.getAttribute('id');
+        if (!!styleID) processStyleMap(thisNode, doc.baseUrl, styleID, doc.baseDir);
+      }
+
+      if (!!parserOptions.processStyles || !parserOptions.createMarker) {
+        // Convert parsed styles into GMaps equivalents
+        processStyles(doc);
+      }
+
+      // Parse placemarks
+      if (!!doc.reload && !!doc.markers) {
+        for (i = 0; i < doc.markers.length; i++) {
+          doc.markers[i].active = false;
+        }
+      }
+      var placemark, node, coords, path, marker, poly;
+      var pathLength, marker, polygonNodes, coordList;
+      var placemarkNodes = getElementsByTagName(responseXML, 'Placemark');
+      for (pm = 0; pm < placemarkNodes.length; pm++) {
+        // Init the placemark object
+        node = placemarkNodes[pm];
+        var styleUrl = processStyleUrl(node);
+        placemark = {
+          name:         nodeValue(getElementsByTagName(node, 'name')[0]),
+          description:  nodeValue(getElementsByTagName(node, 'description')[0]),
+          styleUrl:     styleUrl.join('#'),
+          styleBaseUrl: styleUrl[0] ? cleanURL(doc.baseDir, styleUrl[0]) : doc.baseUrl,
+          styleID:      styleUrl[1],
+          visibility:        getBooleanValue(getElementsByTagName(node, 'visibility')[0], true),
+          balloonVisibility: getBooleanValue(getElementsByTagNameNS(node, gxNS, 'balloonVisibility')[0], !parserOptions.suppressInfoWindows),
+          id:           node.getAttribute('id')
+        };
+        placemark.style = (styles[placemark.styleBaseUrl] && styles[placemark.styleBaseUrl][placemark.styleID]) || clone(defaultStyle);
+        // inline style overrides shared style
+        var inlineStyles = getElementsByTagName(node, 'Style');
+        if (inlineStyles && (inlineStyles.length > 0)) {
+          var style = processStyle(node, '{inline}', '{inline}');
+          processStyleID(style);
+          if (style) placemark.style = style;
+        }
+
+        if (/^https?:\/\//.test(placemark.description)) {
+          placemark.description = ['<a href="', placemark.description, '">', placemark.description, '</a>'].join('');
+        }
+
+        // record list of variables for substitution
+        placemark.vars = {
+          display: {
+            name:         'Name',
+            description:  'Description',
+            address:      'Street Address',
+            id:           'ID',
+            Snippet:      'Snippet',
+            geDirections: 'Directions'
+          },
+          val: {
+            name:        placemark.name || '',
+            description: placemark.description || '',
+            address:     nodeValue(getElementsByTagName(node, 'address')[0], ''),
+            id:          node.getAttribute('id') || '',
+            Snippet:     nodeValue(getElementsByTagName(node, 'Snippet')[0], '')
+          },
+          directions: [
+            'f=d',
+            'source=GeoXML3'
+          ]
+        };
+
+        // add extended data to variables
+        var extDataNodes = getElementsByTagName(node, 'ExtendedData');
+        if (!!extDataNodes && extDataNodes.length > 0) {
+          var dataNodes = getElementsByTagName(extDataNodes[0], 'Data');
+          for (var d = 0; d < dataNodes.length; d++) {
+            var dn    = dataNodes[d];
+            var name  = dn.getAttribute('name');
+            if (!name) continue;
+            var dName = nodeValue(getElementsByTagName(dn, 'displayName')[0], name);
+            var val   = nodeValue(getElementsByTagName(dn, 'value')[0]);
+
+            placemark.vars.val[name]     = val;
+            placemark.vars.display[name] = dName;
+          }
+        }
+
+        // process MultiGeometry
+        var GeometryNodes = getElementsByTagName(node, 'coordinates');
+        var Geometry = null;
+        if (!!GeometryNodes && (GeometryNodes.length > 0)) {
+          for (var gn=0;gn<GeometryNodes.length;gn++) {
+            if (GeometryNodes[gn].parentNode &&
+                GeometryNodes[gn].parentNode.nodeName) {
+              var GeometryPN = GeometryNodes[gn].parentNode;
+              Geometry = GeometryPN.nodeName;
+
+              // Extract the coordinates
+              // What sort of placemark?
+              switch(Geometry) {
+                case "Point":
+                  placemark.Point = processPlacemarkCoords(node, "Point")[0];
+                  placemark.latlng = new google.maps.LatLng(placemark.Point.coordinates[0].lat, placemark.Point.coordinates[0].lng);
+                  pathLength = 1;
+                  break;
+                case "LinearRing":
+                  // Polygon/line
+                  polygonNodes = getElementsByTagName(node, 'Polygon');
+                  // Polygon
+                  if (!placemark.Polygon)
+                    placemark.Polygon = [{
+                      outerBoundaryIs: {coordinates: []},
+                      innerBoundaryIs: [{coordinates: []}]
+                    }];
+                  for (var pg=0;pg<polygonNodes.length;pg++) {
+                     placemark.Polygon[pg] = {
+                       outerBoundaryIs: {coordinates: []},
+                       innerBoundaryIs: [{coordinates: []}]
+                     }
+                     placemark.Polygon[pg].outerBoundaryIs = processPlacemarkCoords(polygonNodes[pg], "outerBoundaryIs");
+                     placemark.Polygon[pg].innerBoundaryIs = processPlacemarkCoords(polygonNodes[pg], "innerBoundaryIs");
+                  }
+                  coordList = placemark.Polygon[0].outerBoundaryIs;
+                  break;
+
+                case "LineString":
+                  pathLength = 0;
+                  placemark.LineString = processPlacemarkCoords(node,"LineString");
+                  break;
+
+                default:
+                  break;
+              }
+            }
+          }
+        }
+
+	// parse MultiTrack/Track
+        var TrackNodes = getElementsByTagNameNS(node,gxNS,"Track");
+        var coordListA = [];
+        if (TrackNodes.length > 0) {  
+          for (var i=0; i<TrackNodes.length; i++) {
+            var coordNodes = getElementsByTagNameNS(TrackNodes[i],gxNS,"coord");
+            var coordList = [];
+            for (var j=0; j<coordNodes.length;j++) { 
+              var coords = geoXML3.nodeValue(coordNodes[j]).trim();
+              coords = coords.split(/\s+/g);
+              if (!isNaN(coords[0]) && !isNaN(coords[1])) {
+                coordList.push({
+                  lat: parseFloat(coords[1]), 
+                  lng: parseFloat(coords[0]), 
+                  alt: parseFloat(coords[2])
+                });
+              }
+            }
+	    coordListA.push({coordinates:coordList});
+          }
+          placemark.Track = coordListA;
+        }
+	      
+        // call the custom placemark parse function if it is defined
+        if (!!parserOptions.pmParseFn) parserOptions.pmParseFn(node, placemark);
+        doc.placemarks.push(placemark);
+
+        // single marker
+        if (placemark.Point) {
+          if (!!google.maps) {
+            doc.bounds = doc.bounds || new google.maps.LatLngBounds();
+            doc.bounds.extend(placemark.latlng);
+          }
+
+          // Potential user-defined marker handler
+          var pointCreateFunc = parserOptions.createMarker || createMarker;
+          var found = false;
+          if (!parserOptions.createMarker) {
+            // Check to see if this marker was created on a previous load of this document
+            if (!!doc) {
+              doc.markers = doc.markers || [];
+              if (doc.reload) {
+                for (var j = 0; j < doc.markers.length; j++) {
+                    if ((doc.markers[j].id == placemark.id) ||
+			// if no id, check position
+                        (!doc.markers[j].id && 
+                         (doc.markers[j].getPosition().equals(placemark.latlng)))) {
+                    found = doc.markers[j].active = true;
+                    break;
+                  }
+                }
+              }
+            }
+          }
+          if (!found) {
+            // Call the marker creator
+            var marker = pointCreateFunc(placemark, doc);
+            if (marker) { 
+              marker.active = placemark.visibility;
+              marker.id = placemark.id;
+            }
+          }
+        }
+        // polygon/line
+        var poly, line;
+        if (!!doc) {
+          if (placemark.Polygon)    doc.gpolygons  = doc.gpolygons  || [];
+          if (placemark.LineString) doc.gpolylines = doc.gpolylines || [];
+          if (placemark.Track)      doc.gpolylines = doc.gpolylines || [];
+        }
+
+        var polyCreateFunc = parserOptions.createPolygon    || createPolygon;
+        var lineCreateFunc = parserOptions.createLineString || createPolyline;
+        if (placemark.Polygon) {
+          poly = polyCreateFunc(placemark,doc);
+          if (poly) poly.active = placemark.visibility;
+        }
+        if (placemark.LineString) {
+          line = lineCreateFunc(placemark,doc);
+          if (line) line.active = placemark.visibility;
+        }
+	if (placemark.Track) { // gx:Track polyline
+          line = lineCreateFunc(placemark,doc);
+          if (line) line.active = placemark.visibility;
+        }
+        if (!!google.maps) {
+          doc.bounds = doc.bounds || new google.maps.LatLngBounds();
+          if (poly) doc.bounds.union(poly.bounds);
+          if (line) doc.bounds.union(line.bounds);
+        }
+
+      } // placemark loop
+
+      if (!!doc.reload && !!doc.markers) {
+        for (i = doc.markers.length - 1; i >= 0 ; i--) {
+          if (!doc.markers[i].active) {
+            if (!!doc.markers[i].infoWindow) {
+              doc.markers[i].infoWindow.close();
+            }
+            doc.markers[i].setMap(null);
+            doc.markers.splice(i, 1);
+          }
+        }
+      }
+
+      var overlayCreateFunc = parserOptions.createOverlay || createOverlay;
+      // Parse ground overlays
+      if (!!doc.reload && !!doc.groundoverlays) {
+        for (i = 0; i < doc.groundoverlays.length; i++) {
+          doc.groundoverlays[i].active = false;
+        }
+      }
+
+      if (!!doc) {
+        doc.groundoverlays = doc.groundoverlays || [];
+      }
+      // doc.groundoverlays =[];
+      var groundOverlay, color, transparency, overlay;
+      var groundNodes = getElementsByTagName(responseXML, 'GroundOverlay');
+      for (i = 0; i < groundNodes.length; i++) {
+        node = groundNodes[i];
+
+        // Detect images buried in KMZ files (and use a base64 encoded URL)
+        var gnUrl = cleanURL( doc.baseDir, nodeValue(getElementsByTagName(node, 'href')[0]) );
+        if (kmzMetaData[gnUrl]) gnUrl = kmzMetaData[gnUrl].dataUrl;
+
+        // Init the ground overlay object
+        groundOverlay = {
+          name:        nodeValue(getElementsByTagName(node, 'name')[0]),
+          description: nodeValue(getElementsByTagName(node, 'description')[0]),
+          icon: { href: gnUrl },
+          latLonBox: {
+            north: parseFloat(nodeValue(getElementsByTagName(node, 'north')[0])),
+            east:  parseFloat(nodeValue(getElementsByTagName(node, 'east')[0])),
+            south: parseFloat(nodeValue(getElementsByTagName(node, 'south')[0])),
+            west:  parseFloat(nodeValue(getElementsByTagName(node, 'west')[0]))
+          },
+          rotation: -1 * parseFloat(nodeValue(getElementsByTagName(node, 'rotation')[0]))
+        };
+        if (!!google.maps) {
+          doc.bounds = doc.bounds || new google.maps.LatLngBounds();
+          doc.bounds.union(new google.maps.LatLngBounds(
+            new google.maps.LatLng(groundOverlay.latLonBox.south, groundOverlay.latLonBox.west),
+            new google.maps.LatLng(groundOverlay.latLonBox.north, groundOverlay.latLonBox.east)
+          ));
+        }
+
+        // Opacity is encoded in the color node
+        var colorNode = getElementsByTagName(node, 'color');
+        if (colorNode && colorNode.length > 0) {
+          groundOverlay.opacity = geoXML3.getOpacity(nodeValue(colorNode[0]));
+        } else {
+          groundOverlay.opacity = 1.0;  // KML default
+        }
+
+        doc.groundoverlays.push(groundOverlay);
+        // Check to see if this overlay was created on a previous load of this document
+        var found = false;
+        if (!!doc) {
+          doc.groundoverlays = doc.groundoverlays || [];
+          if (doc.reload) {
+            overlayBounds = new google.maps.LatLngBounds(
+              new google.maps.LatLng(groundOverlay.latLonBox.south, groundOverlay.latLonBox.west),
+              new google.maps.LatLng(groundOverlay.latLonBox.north, groundOverlay.latLonBox.east)
+            );
+            var overlays = doc.groundoverlays;
+            for (i = overlays.length; i--;) {
+              if ((overlays[i].bounds().equals(overlayBounds)) &&
+                  (overlays.url_ === groundOverlay.icon.href)) {
+                found = overlays[i].active = true;
+                break;
+              }
+            }
+          }
+
+          if (!found) {
+            overlay = overlayCreateFunc(groundOverlay, doc);
+            overlay.active = true;
+          }
+        }
+        if (!!doc.reload && !!doc.groundoverlays && !!doc.groundoverlays.length) {
+          var overlays = doc.groundoverlays;
+          for (i = overlays.length; i--;) {
+            if (!overlays[i].active) {
+              overlays[i].remove();
+              overlays.splice(i, 1);
+            }
+          }
+          doc.groundoverlays = overlays;
+        }
+      }
+
+      // Parse network links
+      var networkLink;
+      var docPath = document.location.pathname.split('/');
+      docPath = docPath.splice(0, docPath.length - 1).join('/');
+      var linkNodes = getElementsByTagName(responseXML, 'NetworkLink');
+      for (i = 0; i < linkNodes.length; i++) {
+        node = linkNodes[i];
+
+        // Init the network link object
+        networkLink = {
+          name: nodeValue(getElementsByTagName(node, 'name')[0]),
+          link: {
+            href:        nodeValue(getElementsByTagName(node, 'href')[0]),
+            refreshMode: nodeValue(getElementsByTagName(node, 'refreshMode')[0])
+          }
+        };
+
+        // Establish the specific refresh mode
+        if (!networkLink.link.refreshMode) {
+          networkLink.link.refreshMode = 'onChange';
+        }
+        if (networkLink.link.refreshMode === 'onInterval') {
+          networkLink.link.refreshInterval = parseFloat(nodeValue(getElementsByTagName(node, 'refreshInterval')[0]));
+          if (isNaN(networkLink.link.refreshInterval)) {
+            networkLink.link.refreshInterval = 0;
+          }
+        } else if (networkLink.link.refreshMode === 'onChange') {
+          networkLink.link.viewRefreshMode = nodeValue(getElementsByTagName(node, 'viewRefreshMode')[0]);
+          if (!networkLink.link.viewRefreshMode) {
+            networkLink.link.viewRefreshMode = 'never';
+          }
+          if (networkLink.link.viewRefreshMode === 'onStop') {
+            networkLink.link.viewRefreshTime = nodeValue(getElementsByTagName(node, 'refreshMode')[0]);
+            networkLink.link.viewFormat =      nodeValue(getElementsByTagName(node, 'refreshMode')[0]);
+            if (!networkLink.link.viewFormat) {
+              networkLink.link.viewFormat = 'BBOX=[bboxWest],[bboxSouth],[bboxEast],[bboxNorth]';
+            }
+          }
+        }
+
+        if (!/^[\/|http]/.test(networkLink.link.href)) {
+          // Fully-qualify the HREF
+          networkLink.link.href = docPath + '/' + networkLink.link.href;
+        }
+
+        // Apply the link
+        if ((networkLink.link.refreshMode === 'onInterval') &&
+            (networkLink.link.refreshInterval > 0)) {
+          // Reload at regular intervals
+          setInterval(parserName + '.parse("' + networkLink.link.href + '")',
+                      1000 * networkLink.link.refreshInterval);
+        } else if (networkLink.link.refreshMode === 'onChange') {
+          if (networkLink.link.viewRefreshMode === 'never') {
+            // Load the link just once
+            doc.internals.parser.parse(networkLink.link.href, doc.internals.docSet);
+          } else if (networkLink.link.viewRefreshMode === 'onStop') {
+            // Reload when the map view changes
+
+          }
+        }
+      }
+    }
+
+    if (!!doc.bounds) {
+      doc.internals.bounds = doc.internals.bounds || new google.maps.LatLngBounds();
+      doc.internals.bounds.union(doc.bounds);
+    }
+    if (!!doc.markers || !!doc.groundoverlays || !!doc.gpolylines || !!doc.gpolygons) {
+      doc.internals.parseOnly = false;
+    }
+
+    if (!doc.internals.parseOnly) {
+      // geoXML3 is not being used only as a real-time parser, so keep the processed documents around
+      if (doc.baseUrl){ // handle case from parseKmlString (no doc.baseUrl)
+        if (!docsByUrl[doc.baseUrl]) {
+          docs.push(doc);
+          docsByUrl[doc.baseUrl] = doc;
+        } else {
+          // internal replacement, which keeps the same memory ref loc in docs and docsByUrl
+          for (var i in docsByUrl[doc.baseUrl]) {
+            docsByUrl[doc.baseUrl][i] = doc[i];
+          }
+        }
+      }	  
+    }
+
+    doc.internals.remaining--;
+    if (doc.internals.remaining === 0) {
+      // We're done processing this set of KML documents
+      // Options that get invoked after parsing completes
+      if (parserOptions.zoom && !!doc.internals.bounds &&
+	  !doc.internals.bounds.isEmpty() && !!parserOptions.map) {
+        parserOptions.map.fitBounds(doc.internals.bounds);
+      }
+      if (parserOptions.afterParse) {
+        parserOptions.afterParse(doc.internals.docSet);
+      }
+      google.maps.event.trigger(doc.internals.parser, 'parsed');   
+    }
+  };
+
+  var kmlColor = function (kmlIn, colorMode) {
+    var kmlColor = {};
+    kmlIn = kmlIn || 'ffffffff';  // white (KML 2.2 default)
+
+    var aa = kmlIn.substr(0,2);
+    var bb = kmlIn.substr(2,2);
+    var gg = kmlIn.substr(4,2);
+    var rr = kmlIn.substr(6,2);
+
+    kmlColor.opacity = parseInt(aa, 16) / 256;
+    kmlColor.color   = (colorMode === 'random') ? randomColor(rr, gg, bb) : '#' + rr + gg + bb;
+    return kmlColor;
+  };
+
+  // Implemented per KML 2.2 <ColorStyle> specs
+  var randomColor = function(rr, gg, bb) {
+    var col = { rr: rr, gg: gg, bb: bb };
+    for (var k in col) {
+      var v = col[k];
+      if (v == null) v = 'ff';
+
+      // RGB values are limiters for random numbers (ie: 7f would be a random value between 0 and 7f)
+      v = Math.round(Math.random() * parseInt(rr, 16)).toString(16);
+      if (v.length === 1) v = '0' + v;
+      col[k] = v;
+    }
+
+    return '#' + col.rr + col.gg + col.bb;
+  };
+
+  var processStyleID = function (style) {
+    var icon = style.icon;
+    if (!icon || !icon.href) return;
+
+    if (icon.img && !icon.img.complete && (icon.dim.w < 0) && (icon.dim.h < 0) ) {
+      // we're still waiting on the image loading (probably because we've been blocking since the declaration)
+      // so, let's queue this function on the onload stack
+      icon.markerBacklog = [];
+      icon.img.onload = function() {
+        if (icon.dim.w < 0 || icon.dim.h < 0) {
+          icon.dim.w = this.width;
+          icon.dim.h = this.height;
+        } else {
+          icon.dim.th = this.height;
+        }
+        processStyleID(style);
+
+        // we will undoubtedly get some createMarker queuing, so set this up in advance
+        for (var i = 0; i < icon.markerBacklog.length; i++) {
+          var p = icon.markerBacklog[i][0];
+          var d = icon.markerBacklog[i][1];
+          createMarker(p, d);
+          if (p.marker) p.marker.active = true;
+        }
+        delete icon.markerBacklog;
+      };
+      return;
+    }
+    else { //if (icon.dim.w < 0 || icon.dim.h < 0) {
+      if (icon.img && icon.img.complete) {
+        // sometimes the file is already cached and it never calls onLoad
+        if (icon.dim.w < 0 || icon.dim.h < 0) {
+        icon.dim.w = icon.img.width;
+        icon.dim.h = icon.img.height;
+        } else {
+          icon.dim.th = icon.img.height;
+        }
+      }
+      else {
+        // settle for a default of 32x32
+        icon.dim.whGuess = true;
+        icon.dim.w = 32;
+        icon.dim.h = 32;
+        icon.dim.th = 32;
+      }
+    }
+
+    // pre-scaled variables
+    var rnd = Math.round;
+    var y = icon.dim.y;
+    if (typeof icon.dim.th !== 'undefined' && icon.dim.th != icon.dim.h) { // palette - reverse kml y for maps
+      y = Math.abs(y - (icon.dim.th - icon.dim.h));
+    }
+
+    var scaled = {
+      x: icon.dim.x     * icon.scale,
+      y: y * icon.scale,
+      w: icon.dim.w     * icon.scale,
+      h: icon.dim.h     * icon.scale,
+      aX:icon.hotSpot.x * icon.scale,
+      aY:icon.hotSpot.y * icon.scale,
+      iW:(icon.img ? icon.img.width  : icon.dim.w) * icon.scale,
+      iH:(icon.img ? icon.img.height : icon.dim.h) * icon.scale
+    };
+
+    // Figure out the anchor spot
+    // Origins, anchor positions and coordinates of the marker increase in the X direction to the right and in
+    // the Y direction down.
+    var aX, aY;
+    switch (icon.hotSpot.xunits) {
+      case 'fraction':    aX = rnd(scaled.aX * icon.dim.w); break;
+      case 'insetPixels': aX = rnd(icon.dim.w * icon.scale - scaled.aX); break;
+      default:            aX = rnd(scaled.aX); break; // already pixels
+    }
+    switch(icon.hotSpot.yunits) {
+      case 'fraction':    aY = scaled.h - rnd(icon.dim.h * scaled.aY);   break;
+      case 'insetPixels': aY = rnd(scaled.aY); break; 
+      default:            aY = rnd(icon.dim.h * icon.scale - scaled.aY); break;
+    }
+    var iconAnchor = new google.maps.Point(aX, aY);
+
+    // Sizes
+    // (NOTE: Scale is applied to entire image, not just the section of the icon palette.)
+    var iconSize   = icon.dim.whGuess  ? null : new google.maps.Size(rnd(scaled.w),  rnd(scaled.h));
+    var iconScale  = icon.scale == 1.0 ? null :
+                     icon.dim.whGuess  ?        new google.maps.Size(rnd(scaled.w),  rnd(scaled.h))
+                                              : new google.maps.Size(rnd(scaled.iW), rnd(scaled.iH));
+    var iconOrigin = new google.maps.Point(rnd(scaled.x), rnd(scaled.y));
+
+    // Detect images buried in KMZ files (and use a base64 encoded URL)
+    if (kmzMetaData[icon.url]) icon.url = kmzMetaData[icon.url].dataUrl;
+
+    // Init the style object with the KML icon
+    icon.marker = {
+      url: icon.url,        // url
+      size: iconSize,       // size
+      origin: iconOrigin,   // origin
+      anchor: iconAnchor,   // anchor
+      scaledSize: iconScale // scaledSize
+    };
+
+    // Look for a predictable shadow
+    var stdRegEx = /\/(red|blue|green|yellow|lightblue|purple|pink|orange)(-dot)?\.png/;
+    var shadowSize = new google.maps.Size(59, 32);
+    var shadowPoint = new google.maps.Point(16, 32);
+    if (stdRegEx.test(icon.href)) {
+      // A standard GMap-style marker icon
+	icon.shadow = {
+	  url: 'http://maps.google.com/mapfiles/ms/micons/msmarker.shadow.png', // url
+          size: shadowSize,    // size
+          origin: null,        // origin
+	  anchor: shadowPoint, // anchor
+          scaledSize: shadowSize // scaledSize
+	};
+    } else if (icon.href.indexOf('-pushpin.png') > -1) {
+      // Pushpin marker icon
+      icon.shadow = {
+	url: 'http://maps.google.com/mapfiles/ms/micons/pushpin_shadow.png',  // url
+        size: shadowSize,    // size
+        origin: null,        // origin
+        anchor: shadowPoint, // anchor
+        scaledSize: shadowSize // scaledSize
+      };
+    } /* else {
+      // Other MyMaps KML standard icon
+      icon.shadow = new google.maps.MarkerImage(
+        icon.href.replace('.png', '.shadow.png'),                        // url
+        shadowSize,                                                      // size
+        null,                                                            // origin
+        anchorPoint,                                                     // anchor
+        shadowSize                                                       // scaledSize
+      );
+    } */
+  }
+
+  var processStyles = function (doc) {
+    for (var styleID in doc.styles) {
+      processStyleID(doc.styles[styleID]);
+    }
+  };
+
+  var createMarker = function (placemark, doc) {
+    // create a Marker to the map from a placemark KML object
+    var icon = placemark.style.icon;
+
+    if ( !icon.marker && icon.img ) {
+      // yay, single point of failure is holding up multiple markers...
+      icon.markerBacklog = icon.markerBacklog || [];
+      icon.markerBacklog.push([placemark, doc]);
+      return;
+    }
+
+    // Load basic marker properties
+    var markerOptions = geoXML3.combineOptions(parserOptions.markerOptions, {
+      map:      parserOptions.map,
+      position: new google.maps.LatLng(placemark.Point.coordinates[0].lat, placemark.Point.coordinates[0].lng),
+      title:    placemark.name,
+      zIndex:   Math.round(placemark.Point.coordinates[0].lat * -100000)<<5,
+      icon:     icon.marker,
+      shadow:   icon.shadow,
+      flat:     !icon.shadow,
+      visible:  placemark.visibility
+    });
+
+    // Create the marker on the map
+    var marker = new google.maps.Marker(markerOptions);
+    if (!!doc) doc.markers.push(marker);
+
+    // Set up and create the infowindow if it is not suppressed
+    createInfoWindow(placemark, doc, marker);
+    placemark.marker = marker;
+    return marker;
+  };
+
+  var createOverlay = function (groundOverlay, doc) {
+    // Add a ProjectedOverlay to the map from a groundOverlay KML object
+
+    if (!window.ProjectedOverlay) {
+      throw 'geoXML3 error: ProjectedOverlay not found while rendering GroundOverlay from KML';
+    }
+
+    var bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(groundOverlay.latLonBox.south, groundOverlay.latLonBox.west),
+        new google.maps.LatLng(groundOverlay.latLonBox.north, groundOverlay.latLonBox.east)
+    );
+    var overlayOptions = geoXML3.combineOptions(parserOptions.overlayOptions, {
+      percentOpacity: groundOverlay.opacity*100,
+      rotation: groundOverlay.rotation
+    });
+    var overlay = new ProjectedOverlay(parserOptions.map, groundOverlay.icon.href, bounds, overlayOptions);
+
+    if (!!doc) {
+      doc.ggroundoverlays = doc.ggroundoverlays || [];
+      doc.ggroundoverlays.push(overlay);
+    }
+
+    return overlay;
+  };
+
+  // Create Polyline
+  var createPolyline = function(placemark, doc) {
+    var paths = [];
+    var bounds = new google.maps.LatLngBounds();
+    if (placemark.LineString) {
+      for (var j=0; j<placemark.LineString.length; j++) {
+        var path = [];
+        var coords = placemark.LineString[j].coordinates;
+        for (var i=0;i<coords.length;i++) {
+          var pt = new google.maps.LatLng(coords[i].lat, coords[i].lng);
+          path.push(pt);
+          bounds.extend(pt);
+        }
+        paths.push(path);
+      }
+    } else if (placemark.Track) {
+      for (var j=0; j<placemark.Track.length; j++) {
+        var path = [];
+        var coords = placemark.Track[j].coordinates;
+        for (var i=0;i<coords.length;i++) {
+          var pt = new google.maps.LatLng(coords[i].lat, coords[i].lng);
+          path.push(pt);
+          bounds.extend(pt);
+        }
+        paths.push(path);
+      }
+    }
+    // point to open the infowindow if triggered
+    var point = paths[0][Math.floor(path.length/2)];
+    // Load basic polyline properties
+    var kmlStrokeColor = kmlColor(placemark.style.line.color, placemark.style.line.colorMode);
+    var polyOptions = geoXML3.combineOptions(parserOptions.polylineOptions, {
+      map:           parserOptions.map,
+      path:          path,
+      strokeColor:   kmlStrokeColor.color,
+      strokeWeight:  placemark.style.line.width,
+      strokeOpacity: kmlStrokeColor.opacity,
+      title:         placemark.name,
+      visible:       placemark.visibility
+    });
+    if (paths.length > 1) {
+      polyOptions.paths = paths;
+      var p = new MultiGeometry(polyOptions);
+    } else {
+      polyOptions.path = paths[0];
+      var p = new google.maps.Polyline(polyOptions);
+    }
+    p.bounds = bounds;
+
+    // setup and create the infoWindow if it is not suppressed
+    createInfoWindow(placemark, doc, p);
+    if (!!doc) doc.gpolylines.push(p);
+    placemark.polyline = p;
+    return p;
+  }
+
+  // Create Polygon
+  var createPolygon = function(placemark, doc) {
+    var bounds = new google.maps.LatLngBounds();
+    var pathsLength = 0;
+    var paths = [];
+    for (var polygonPart=0;polygonPart<placemark.Polygon.length;polygonPart++) {
+      for (var j=0; j<placemark.Polygon[polygonPart].outerBoundaryIs.length; j++) {
+        var coords = placemark.Polygon[polygonPart].outerBoundaryIs[j].coordinates;
+        var path = [];
+        for (var i=0;i<coords.length;i++) {
+          var pt = new google.maps.LatLng(coords[i].lat, coords[i].lng);
+          path.push(pt);
+          bounds.extend(pt);
+        }
+        paths.push(path);
+        pathsLength += path.length;
+      }
+      for (var j=0; j<placemark.Polygon[polygonPart].innerBoundaryIs.length; j++) {
+        var coords = placemark.Polygon[polygonPart].innerBoundaryIs[j].coordinates;
+        var path = [];
+        for (var i=0;i<coords.length;i++) {
+          var pt = new google.maps.LatLng(coords[i].lat, coords[i].lng);
+          path.push(pt);
+          bounds.extend(pt);
+        }
+        paths.push(path);
+        pathsLength += path.length;
+      }
+    }
+
+    // Load basic polygon properties
+    var kmlStrokeColor = kmlColor(placemark.style.line.color, placemark.style.line.colorMode);
+    var kmlFillColor = kmlColor(placemark.style.poly.color, placemark.style.poly.colorMode);
+    if (!placemark.style.poly.fill) kmlFillColor.opacity = 0.0;
+    var strokeWeight = placemark.style.line.width;
+    if (!placemark.style.poly.outline) {
+      strokeWeight = 0;
+      kmlStrokeColor.opacity = 0.0;
+    }
+    var polyOptions = geoXML3.combineOptions(parserOptions.polygonOptions, {
+      map:           parserOptions.map,
+      paths:         paths,
+      title:         placemark.name,
+      strokeColor:   kmlStrokeColor.color,
+      strokeWeight:  strokeWeight,
+      strokeOpacity: kmlStrokeColor.opacity,
+      fillColor:     kmlFillColor.color,
+      fillOpacity:   kmlFillColor.opacity,
+      visible:       placemark.visibility
+    });
+    var p = new google.maps.Polygon(polyOptions);
+    p.bounds = bounds;
+
+    createInfoWindow(placemark, doc, p);
+    if (!!doc) doc.gpolygons.push(p);
+    placemark.polygon = p;
+    return p;
+  }
+
+  var createInfoWindow = function(placemark, doc, gObj) {
+    var bStyle = placemark.style.balloon;
+    var vars = placemark.vars;
+
+    if (!placemark.balloonVisibility || bStyle.displayMode === 'hide') return;
+
+    // define geDirections 
+    if (placemark.latlng && 
+        (!parserOptions.suppressDirections || !parserOptions.suppressDirections)) {
+      vars.directions.push('sll=' + placemark.latlng.toUrlValue());
+
+      var url = 'http://maps.google.com/maps?' + vars.directions.join('&');
+      var address = encodeURIComponent( vars.val.address || placemark.latlng.toUrlValue() ).replace(/\%20/g, '+');
+
+      vars.val.geDirections = '<a href="' + url + '&daddr=' + address + '" target=_blank>To Here</a> - <a href="' + url + '&saddr=' + address + '" target=_blank>From Here</a>';
+    }
+    else vars.val.geDirections = '';
+
+    // add in the variables
+    var iwText = bStyle.text.replace(/\$\[(\w+(\/displayName)?)\]/g, function(txt, n, dn) { return dn ? vars.display[n] : vars.val[n]; });
+    var classTxt = 'geoxml3_infowindow geoxml3_style_' + placemark.styleID;
+
+    // color styles
+    var styleArr = [];
+    if (bStyle.bgColor   != 'ffffffff') styleArr.push('background: ' + kmlColor(bStyle.bgColor  ).color + ';');
+    if (bStyle.textColor != 'ff000000') styleArr.push('color: '      + kmlColor(bStyle.textColor).color + ';');
+    var styleProp = styleArr.length ? ' style="' + styleArr.join(' ') + '"' : '';
+
+    var infoWindowOptions = geoXML3.combineOptions(parserOptions.infoWindowOptions, {
+      content: '<div class="' + classTxt + '"' + styleProp + '>' + iwText + '</div>',
+      pixelOffset: new google.maps.Size(0, 2)
+    });
+
+    gObj.infoWindow = parserOptions.infoWindow || new google.maps.InfoWindow(infoWindowOptions);
+    gObj.infoWindowOptions = infoWindowOptions;
+
+    // Info Window-opening event handler
+    google.maps.event.addListener(gObj, 'click', function(e) {
+      var iW = this.infoWindow;
+      iW.close();
+      iW.setOptions(this.infoWindowOptions);
+
+      if      (e && e.latLng) iW.setPosition(e.latLng);
+      else if (this.bounds)   iW.setPosition(this.bounds.getCenter());
+
+      iW.setContent("<div id='geoxml3_infowindow'>"+iW.getContent()+"</div>");
+      google.maps.event.addListenerOnce(iW, "domready", function() {
+        var node = document.getElementById('geoxml3_infowindow');
+        var imgArray = node.getElementsByTagName('img');
+        for (var i = 0; i < imgArray.length; i++) 
+        {
+          var imgUrlIE = imgArray[i].getAttribute("src");
+          var imgUrl  = cleanURL(doc.baseDir, imgUrlIE);
+
+          if (kmzMetaData[imgUrl]) {
+             imgArray[i].src = kmzMetaData[imgUrl].dataUrl;
+          } else if (kmzMetaData[imgUrlIE]) {
+             imgArray[i].src = kmzMetaData[imgUrlIE].dataUrl;
+          }
+        }
+      });
+      iW.open(this.map, this.bounds ? null : this);
+    });
+
+  }
+
+  return {
+    // Expose some properties and methods
+
+    options:     parserOptions,
+    docs:        docs,
+    docsByUrl:   docsByUrl,
+    kmzMetaData: kmzMetaData,
+
+    parse:          parse,
+    render:         render,
+    parseKmlString: parseKmlString,
+    hideDocument:   hideDocument,
+    showDocument:   showDocument,
+    processStyles:  processStyles,
+    createMarker:   createMarker,
+    createOverlay:  createOverlay,
+    createPolyline: createPolyline,
+    createPolygon:  createPolygon
+  };
+};
+// End of KML Parser
+
+// Helper objects and functions
+geoXML3.getOpacity = function (kmlColor) {
+  // Extract opacity encoded in a KML color value. Returns a number between 0 and 1.
+  if (!!kmlColor &&
+      (kmlColor !== '') &&
+      (kmlColor.length == 8)) {
+    var transparency = parseInt(kmlColor.substr(0, 2), 16);
+    return transparency / 255;
+  } else {
+    return 1;
+  }
+};
+
+// Log a message to the debugging console, if one exists
+geoXML3.log = function(msg) {
+  if (!!window.console) {
+    console.log(msg);
+  } else { alert("log:"+msg); }
+};
+
+/**
+ * Creates a new parserOptions object.
+ * @class GeoXML3 parser options.
+ * @param {Object} overrides Any options you want to declare outside of the defaults should be included here.
+ * @property {google.maps.Map} map The API map on which geo objects should be rendered.
+ * @property {google.maps.MarkerOptions} markerOptions If the parser is adding Markers to the map itself, any options specified here will be applied to them.
+ * @property {google.maps.InfoWindowOptions} infoWindowOptions If the parser is adding Markers to the map itself, any options specified here will be applied to their attached InfoWindows.
+ * @property {ProjectedOverlay.options} overlayOptions If the parser is adding ProjectedOverlays to the map itself, any options specified here will be applied to them.
+ */
+geoXML3.parserOptions = function (overrides) {
+  this.map                 = null,
+  /** If true, the parser will automatically move the map to a best-fit of the geodata after parsing of a KML document completes.
+   * @type Boolean
+   * @default true
+   */
+  this.zoom                = true,
+  /**#@+ @type Boolean
+   *     @default false */
+  /** If true, only a single Marker created by the parser will be able to have its InfoWindow open at once (simulating the behavior of GMaps API v2). */
+  this.singleInfoWindow    = false,
+  /** If true, suppresses the rendering of info windows. */
+  this.suppressInfoWindows = false,
+  /**
+   * Control whether to process styles now or later.
+   *
+   * <p>By default, the parser only processes KML &lt;Style&gt; elements into their GMaps equivalents
+   * if it will be creating its own Markers (the createMarker option is null). Setting this option
+   * to true will force such processing to happen anyway, useful if you're going to be calling parser.createMarker
+   * yourself later. OTOH, leaving this option false removes runtime dependency on the GMaps API, enabling
+   * the use of geoXML3 as a standalone KML parser.</p>
+   */
+  this.processStyles       = false,
+  /**#@-*/
+
+  this.markerOptions       = {},
+  this.infoWindowOptions   = {},
+  this.overlayOptions      = {},
+
+  /**#@+ @event */
+  /** This function will be called when parsing of a KML document is complete.
+   * @param {geoXML3.parser#docs} doc Parsed KML data. */
+  this.afterParse          = null,
+  /** This function will be called when parsing of a KML document is complete.
+   * @param {geoXML3.parser#docs} doc Parsed KML data. */
+  this.failedParse         = null,
+  /**
+   * If supplied, this function will be called once for each marker <Placemark> in the KML document, instead of the parser adding its own Marker to the map.
+   * @param {geoXML3.parser.render#placemark} placemark Placemark object.
+   * @param {geoXML3.parser#docs} doc Parsed KML data.
+   */
+  this.createMarker        = null,
+  /**
+   * If supplied, this function will be called once for each <GroundOverlay> in the KML document, instead of the parser adding its own ProjectedOverlay to the map.
+   * @param {geoXML3.parser.render#groundOverlay} groundOverlay GroundOverlay object.
+   * @param {geoXML3.parser#docs} doc Parsed KML data.
+   */
+  this.createOverlay       = null
+  /**#@-*/
+
+  if (overrides) {
+    for (var prop in overrides) {
+      if (overrides.hasOwnProperty(prop)) this[prop] = overrides[prop];
+    }
+  }
+  return this;
+};
+
+/**
+ * Combine two options objects: a set of default values and a set of override values.
+ *
+ * @deprecated This has been replaced with {@link geoXML3.parserOptions#combineOptions}.
+ * @param {geoXML3.parserOptions|Object} overrides Override values.
+ * @param {geoXML3.parserOptions|Object} defaults Default values.
+ * @return {geoXML3.parserOptions} Combined result.
+ */
+geoXML3.combineOptions = function (overrides, defaults) {
+  var result = {};
+  if (!!overrides) {
+    for (var prop in overrides) {
+      if (overrides.hasOwnProperty(prop))                              result[prop] = overrides[prop];
+    }
+  }
+  if (!!defaults) {
+    for (prop in defaults) {
+      if (defaults.hasOwnProperty(prop) && result[prop] === undefined) result[prop] = defaults[prop];
+    }
+  }
+  return result;
+};
+
+/**
+ * Combine two options objects: a set of default values and a set of override values.
+ *
+ * @function
+ * @param {geoXML3.parserOptions|Object} overrides Override values.
+ * @param {geoXML3.parserOptions|Object} defaults Default values.
+ * @return {geoXML3.parserOptions} Combined result.
+ */
+geoXML3.parserOptions.prototype.combineOptions = geoXML3.combineOptions;
+
+// Retrieve an XML document from url and pass it to callback as a DOM document
+geoXML3.fetchers = [];
+
+/**
+ * Parses a XML string.
+ *
+ * <p>Parses the given XML string and returns the parsed document in a
+ * DOM data structure. This function will return an empty DOM node if
+ * XML parsing is not supported in this browser.</p>
+ *
+ * @param {String} str XML string.
+ * @return {Element|Document} DOM.
+ */
+geoXML3.xmlParse = function (str) {
+  if ((typeof ActiveXObject != 'undefined') || ("ActiveXObject" in window)) {
+    var doc = new ActiveXObject('Microsoft.XMLDOM');
+    doc.loadXML(str);
+    return doc;
+  }
+
+  if (typeof DOMParser != 'undefined') {
+    return (new DOMParser()).parseFromString(str, 'text/xml');
+  }
+
+  return document.createElement('div', null);
+}
+
+/**
+ * Checks for XML parse error.
+ *
+ * @param {xmlDOM} XML DOM.
+ * @return boolean.
+ */
+// from http://stackoverflow.com/questions/11563554/how-do-i-detect-xml-parsing-errors-when-using-javascripts-domparser-in-a-cross
+geoXML3.isParseError = function(parsedDocument) {
+    if ((typeof ActiveXObject != 'undefined') || ("ActiveXObject" in window))
+	return false;
+    // parser and parsererrorNS could be cached on startup for efficiency
+    var p = new DOMParser(),
+        errorneousParse = p.parseFromString('<', 'text/xml'),
+        parsererrorNS = errorneousParse.getElementsByTagName("parsererror")[0].namespaceURI;
+
+    if (parsererrorNS === 'http://www.w3.org/1999/xhtml') {
+        // In PhantomJS the parseerror element doesn't seem to have a special namespace, so we are just guessing here :(
+        return parsedDocument.getElementsByTagName("parsererror").length > 0;
+    }
+
+    return parsedDocument.getElementsByTagNameNS(parsererrorNS, 'parsererror').length > 0;
+};
+
+/**
+ * Fetches a XML document.
+ *
+ * <p>Fetches/parses the given XML URL and passes the parsed document (in a
+ * DOM data structure) to the given callback.  Documents are downloaded
+ * and parsed asynchronously.</p>
+ *
+ * @param {String} url URL of XML document.  Must be uncompressed XML only.
+ * @param {Function(Document)} callback Function to call when the document is processed.
+ */
+geoXML3.fetchXML = function (url, callback) {
+  function timeoutHandler() { callback(); };
+
+  var xhrFetcher = new Object();
+  if      (!!geoXML3.fetchers.length) xhrFetcher = geoXML3.fetchers.pop();
+  else if (!!window.XMLHttpRequest)   xhrFetcher.fetcher = new window.XMLHttpRequest();  // Most browsers
+  else if (!!window.ActiveXObject) {                                                     // Some IE
+    // the many versions of IE's XML fetchers
+    var AXOs = [
+      'MSXML2.XMLHTTP.6.0',
+      'MSXML2.XMLHTTP.5.0',
+      'MSXML2.XMLHTTP.4.0',
+      'MSXML2.XMLHTTP.3.0',
+      'MSXML2.XMLHTTP',
+      'Microsoft.XMLHTTP',
+      'MSXML.XMLHTTP'
+    ];
+    for (var i = 0; i < AXOs.length; i++) {
+      try      { xhrFetcher.fetcher = new ActiveXObject(AXOs[i]); break; }
+      catch(e) { continue; }
+    }
+    if (!xhrFetcher.fetcher) {
+      geoXML3.log('Unable to create XHR object');
+      callback(null);
+      return null;
+    }
+  }
+
+  xhrFetcher.fetcher.open('GET', url, true);
+  if (!!xhrFetcher.fetcher.overrideMimeType) xhrFetcher.fetcher.overrideMimeType('text/xml');
+  xhrFetcher.fetcher.onreadystatechange = function () {
+    if (xhrFetcher.fetcher.readyState === 4) {
+      // Retrieval complete
+      if (!!xhrFetcher.xhrtimeout) clearTimeout(xhrFetcher.xhrtimeout);
+      if (xhrFetcher.fetcher.status >= 400) {
+        geoXML3.log('HTTP error ' + xhrFetcher.fetcher.status + ' retrieving ' + url);
+        callback();
+      }
+      // Returned successfully
+      else {
+       if (xhrFetcher.fetcher.responseXML) {
+        // Sometimes IE will get the data, but won't bother loading it as an XML doc
+        var xml = xhrFetcher.fetcher.responseXML;
+        if (xml && !xml.documentElement && !xml.ownerElement) {
+         xml.loadXML(xhrFetcher.fetcher.responseText);
+        }
+       } else {// handle valid xml sent with wrong MIME type 
+        xml=geoXML3.xmlParse(xhrFetcher.fetcher.responseText);
+       }
+       // handle parse errors
+       if (xml.parseError && (xml.parseError.errorCode != 0)) {
+        geoXML3.log("XML parse error "+xml.parseError.errorCode+", "+xml.parseError.reason+"\nLine:"+xml.parseError.line+", Position:"+xml.parseError.linepos+", srcText:"+xml.parseError.srcText);
+        xml = "failed parse"
+       } else if (geoXML3.isParseError(xml)) {
+        geoXML3.log("XML parse error");
+        xml = "failed parse"
+       }
+       callback(xml);          
+      }
+      // We're done with this fetcher object
+      geoXML3.fetchers.push(xhrFetcher);
+    }
+  };
+
+  xhrFetcher.xhrtimeout = setTimeout(timeoutHandler, 60000);
+  xhrFetcher.fetcher.send(null);
+  return null;
+};
+
+var IEversion = function() {
+  // http://msdn.microsoft.com/workshop/author/dhtml/overview/browserdetection.asp
+  // Returns the version of Internet Explorer or a -1
+  // (indicating the use of another browser).
+  var rv = -1; // Return value assumes failure
+  if (navigator.appName == 'Microsoft Internet Explorer') {
+    var ua = navigator.userAgent;
+    var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null) {
+      rv = parseFloat( RegExp.$1 );
+    }
+  }
+  return rv;
+};
+
+/**
+ * Fetches a KMZ document.
+ *
+ * <p>Fetches/parses the given ZIP URL, parses each image file, and passes
+ * the parsed KML document to the given callback.  Documents are downloaded
+ * and parsed asynchronously, though the KML file is always passed after the
+ * images have been processed, in case the callback requires the image data.</p>
+ *
+ * @requires ZipFile.complete.js
+ * @param {String} url URL of KMZ document.  Must be a valid KMZ/ZIP archive.
+ * @param {Function(Document)} callback Function to call when the document is processed.
+ * @param {geoXML3.parser} parser A geoXML3.parser object.  This is used to populate the KMZ image data.
+ * @author Brendan Byrd
+ * @see http://code.google.com/apis/kml/documentation/kmzarchives.html
+ */
+geoXML3.fetchZIP = function (url, callback, parser) {
+  // Just need a single 'new' declaration with a really long function...
+  var zipFile = new ZipFile(url, function (zip) {
+    // Retrieval complete
+
+    // Check for ERRORs in zip.status
+    for (var i = 0; i < zip.status.length; i++) {
+      var msg = zip.status[i];
+      if (msg.indexOf("ERROR") == 0) {
+        geoXML3.log('HTTP/ZIP error retrieving ' + url + ': ' + msg);
+        callback();
+        return;
+      }
+      else if (msg.indexOf("EXCEPTION") == 0) {  
+        geoXML3.log('HTTP/ZIP exception retrieving ' + url + ': ' + msg);
+        callback();
+        return;
+      } else if (msg.indexOf("WARNING") == 0) {  // non-fatal, but still might be useful
+        geoXML3.log('HTTP/ZIP warning retrieving ' + url + ': ' + msg);
+      } else if (msg.indexOf("INFO") == 0) {  // non-fatal, but still might be useful
+        geoXML3.log('HTTP/ZIP info retrieving ' + url + ': ' + msg);
+      }
+    }
+
+    // Make sure KMZ structure is according to spec (with a single KML file in the root dir)
+    var KMLCount = 0;
+    var KML;
+    for (var i = 0; i < zip.entries.length; i++) {
+      var name = zip.entries[i].name;
+      if (!/\.kml$/.test(name)) continue;
+
+      KMLCount++;
+      if (KMLCount == 1) KML = i;
+      else {
+        geoXML3.log('KMZ warning retrieving ' + url + ': found extra KML "' + name + '" in KMZ; discarding...');
+      }
+    }
+
+    // Returned successfully, but still needs extracting
+    var baseUrl = cleanURL(defileURL(url), url) + '/';
+    var kmlProcessing = {  // this is an object just so it gets passed properly
+      timer: null,
+      extractLeft: 0,
+      timerCalls: 0
+    };
+    var extractCb = function(entry, entryContent) {
+      var mdUrl = cleanURL(baseUrl, entry.name);
+      var ext = entry.name.substring(entry.name.lastIndexOf(".") + 1).toLowerCase();
+      kmlProcessing.extractLeft--;
+
+      if ((typeof entryContent.description == "string") && (entryContent.name == "Error")) {
+        geoXML3.log('KMZ error extracting ' + mdUrl + ': ' + entryContent.description);
+        callback();
+        return;
+      }
+
+      // MIME types that can be used in KML
+      var mime;
+      if (ext === 'jpg') ext = 'jpeg';
+      if (/^(gif|jpeg|png)$/.test(ext)) mime = 'image/' + ext;
+      else if (ext === 'mp3')           mime = 'audio/mpeg';
+      else if (ext === 'm4a')           mime = 'audio/mp4';
+      else if (ext === 'm4a')           mime = 'audio/MP4-LATM';
+      else                              mime = 'application/octet-stream';
+
+      parser.kmzMetaData[mdUrl] = {};
+      parser.kmzMetaData[mdUrl].entry = entry;
+      // data:image/gif;base64,R0lGODlhEAAOALMA...
+      parser.kmzMetaData[mdUrl].dataUrl = 'data:' + mime + ';base64,' + base64Encode(entryContent);
+      // IE cannot handle GET requests beyond 2071 characters, even if it's an inline image
+	if (/msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent))
+        { 
+            if (((IEversion() < 8.0) &&
+                 (parser.kmzMetaData[mdUrl].dataUrl.length > 2071)) ||
+                ((IEversion < 9.0) && 
+                 (parser.kmzMetaData[mdUrl].dataUrl.length > 32767))) {
+             parser.kmzMetaData[mdUrl].dataUrl =
+             // this is a simple IE icon; to hint at the problem...
+             'data:image/gif;base64,R0lGODlhDwAQAOMPADBPvSpQ1Dpoyz1p6FhwvU2A6ECP63CM04CWxYCk+V6x+UK++Jao3rvC3fj7+v///yH5BAEKAA8ALAAAAAAPABAAAASC8Mk5mwCAUMlWwcLRHEelLA' +
+             'oGDMgzSsiyGCAhCETDPMh5XQCBwYBrNBIKWmg0MCQHj8MJU5IoroYCY6AAAgrDIbbQDGIK6DR5UPhlNo0JAlSUNAiDgH7eNAxEDWAKCQM2AAFheVxYAA0AIkFOJ1gBcQQaUQKKA5w7LpcEBwkJaKMUEQA7';
+            } 
+       }
+       parser.kmzMetaData[internalSrc(entry.name)]=parser.kmzMetaData[mdUrl];	
+
+    };
+    var kmlExtractCb = function(entry, entryContent) {
+      if ((typeof entryContent.description == "string") && (entryContent.name == "Error")) {
+        geoXML3.log('KMZ error extracting ' + entry.name + ': ' + entryContent.description);
+        callback();
+        return;
+      }
+
+      // check to see if the KML is the last file extracted
+      clearTimeout(kmlProcessing.timer);
+      if (kmlProcessing.extractLeft <= 1) {
+        kmlProcessing.extractLeft--;
+        callback(geoXML3.xmlParse(entryContent));
+        return;
+      }
+      else {
+        // KML file isn't last yet; it may need to use those files, so wait a bit (100ms)
+        kmlProcessing.timerCalls++;
+        if (kmlProcessing.timerCalls < 100) {
+          kmlProcessing.timer = setTimeout(function() { kmlExtractCb(entry, entryContent); }, 100);
+        }
+        else {
+          geoXML3.log('KMZ warning extracting ' + url + ': entire ZIP has not been extracted after 10 seconds; running through KML, anyway...');
+          kmlProcessing.extractLeft--;
+          callback(geoXML3.xmlParse(entryContent));
+        }
+      }
+      return;
+    };
+    for (var i = 0; i < zip.entries.length; i++) {
+      var entry = zip.entries[i];
+      var ext = entry.name.substring(entry.name.lastIndexOf(".") + 1).toLowerCase();
+      if (!/^(gif|jpe?g|png|kml)$/.test(ext)) continue;  // not going to bother to extract files we don't support
+      if (ext === "kml" && i != KML)          continue;  // extra KMLs get discarded
+      if (!parser && ext != "kml")            continue;  // cannot store images without a parser object
+
+      // extract asynchronously
+      kmlProcessing.extractLeft++;
+      if (ext === "kml") entry.extract(kmlExtractCb);
+      else               entry.extract(extractCb);
+    }
+  }); //,3 for most verbose logging
+
+};
+
+/**
+ * Extract the text value of a DOM node, with leading and trailing whitespace trimmed.
+ *
+ * @param {Element} node XML node/element.
+ * @param {Any} delVal Default value if the node doesn't exist.
+ * @return {String|Null}
+ */
+geoXML3.nodeValue = function(node, defVal) {
+  var retStr="";
+  if (!node) {
+    return (typeof defVal === 'undefined' || defVal === null) ? null : defVal;
+  }
+   if(node.nodeType==3||node.nodeType==4||node.nodeType==2){
+      retStr+=node.nodeValue;
+   }else if(node.nodeType==1||node.nodeType==9||node.nodeType==11){
+      for(var i=0;i<node.childNodes.length;++i){
+         retStr+=arguments.callee(node.childNodes[i]);
+      }
+   }
+   return retStr;
+};
+
+/**
+ * Loosely translate various values of a DOM node to a boolean.
+ *
+ * @param {Element} node XML node/element.
+ * @param {Boolean} delVal Default value if the node doesn't exist.
+ * @return {Boolean|Null}
+ */
+geoXML3.getBooleanValue = function(node, defVal) {
+  var nodeContents = geoXML3.nodeValue(node);
+  if (nodeContents === null) return defVal || false;
+  nodeContents = parseInt(nodeContents);
+  if (isNaN(nodeContents)) return true;
+  if (nodeContents == 0) return false;
+  else return true;
+}
+
+/**
+ * Browser-normalized version of getElementsByTagNameNS.
+ *
+ * <p>Required because IE8 doesn't define it.</p>
+ *
+ * @param {Element|Document} node DOM object.
+ * @param {String} namespace Full namespace URL to search against.
+ * @param {String} tagname XML local tag name.
+ * @return {Array of Elements}
+ * @author Brendan Byrd
+ */
+geoXML3.getElementsByTagNameNS = function(node, namespace, tagname) {
+  if (node && typeof node.getElementsByTagNameNS != 'undefined') return node.getElementsByTagNameNS(namespace, tagname);
+  if (!node) return [];
+
+  var root = node.documentElement || node.ownerDocument && node.ownerDocument.documentElement;
+  if (!root || !root.attributes) return [];
+
+  // search for namespace prefix
+  for (var i = 0; i < root.attributes.length; i++) {
+    var attr = root.attributes[i];
+    if      (attr.prefix   === 'xmlns' && attr.nodeValue === namespace) return node.getElementsByTagName(attr.baseName + ':' + tagname);
+    else if (attr.nodeName === 'xmlns' && attr.nodeValue === namespace) {
+      // default namespace
+      if (typeof node.selectNodes != 'undefined') {
+        // Newer IEs have the SelectionNamespace property that can be used with selectNodes
+        if (!root.ownerDocument.getProperty('SelectionNamespaces'))
+          root.ownerDocument.setProperty('SelectionNamespaces', "xmlns:defaultNS='" + namespace + "'");
+        return node.selectNodes('.//defaultNS:' + tagname);
+      }
+      else {
+        // Otherwise, you can still try to tack on the 'xmlns' attribute to root
+        root.setAttribute('xmlns:defaultNS', namespace);
+        return node.getElementsByTagName('defaultNS:' + tagname);
+      }
+    }
+  }
+  return geoXML3.getElementsByTagName(node, tagname);  // try the unqualified version
+};
+
+/**
+ * Browser-normalized version of getElementsByTagName.
+ *
+ * <p>Required because MSXML 6.0 will treat this function as a NS-qualified function,
+ * despite the missing NS parameter.</p>
+ *
+ * @param {Element|Document} node DOM object.
+ * @param {String} tagname XML local tag name.
+ * @return {Array of Elements}
+ * @author Brendan Byrd
+ */
+geoXML3.getElementsByTagName = function(node, tagname) {
+  if (node && typeof node.getElementsByTagNameNS != 'undefined') return node.getElementsByTagName(tagname);  // if it has both functions, it should be accurate
+//  if (node && typeof node.selectNodes != 'undefined')            return node.selectNodes(".//*[local-name()='" + tagname + "']");
+  return node.getElementsByTagName(tagname);  // hope for the best...
+}
+
+/**
+ * Turn a directory + relative URL into an absolute one.
+ *
+ * @private
+ * @param {String} d Base directory.
+ * @param {String} s Relative URL.
+ * @return {String} Absolute URL.
+ * @author Brendan Byrd
+ */
+var toAbsURL = function (d, s) {
+  var p, f, i;
+  var h = location.protocol + "://" + location.host;
+
+  if (!s.length)           return '';
+  if (/^\w+:/.test(s))     return s;
+  if (s.indexOf('/') == 0) return h + s;
+
+  p = d.replace(/\/[^\/]*$/, '');
+  f = s.match(/\.\.\//g);
+  if (f) {
+    s = s.substring(f.length * 3);
+    for (i = f.length; i--;) { p = p.substring(0, p.lastIndexOf('/')); }
+  }
+
+  return h + p + '/' + s;
+}
+
+var internalSrc = function(src) {
+  //this gets the full url
+  var url = document.location.href;
+  //this removes everything after the last slash in the path
+  url = url.substring(0,url.lastIndexOf("/") + 1);
+  var internalPath= url+src;
+  return internalPath;
+}
+
+/**
+ * Remove current host from URL
+ *
+ * @private
+ * @param {String} s Absolute or relative URL.
+ * @return {String} Root-based relative URL.
+ * @author Brendan Byrd
+ */
+var dehostURL = function (s) {
+  var h = location.protocol + "://" + location.host;
+  h = h.replace(/([\.\\\+\*\?\[\^\]\$\(\)])/g, '\\$1');  // quotemeta
+  return s.replace(new RegExp('^' + h, 'i'), '');
+}
+
+/**
+ * Removes all query strings, #IDs, '../' references, and
+ * hosts from a URL.
+ *
+ * @private
+ * @param {String} d Base directory.
+ * @param {String} s Absolute or relative URL.
+ * @return {String} Root-based relative URL.
+ * @author Brendan Byrd
+ */
+var cleanURL  = function (d, s) { return dehostURL(toAbsURL(d ? d.split('#')[0].split('?')[0] : defileURL(location.pathname), s ? s.split('#')[0].split('?')[0] : '')); }
+/**
+ * Remove filename from URL
+ *
+ * @private
+ * @param {String} s Relative URL.
+ * @return {String} Base directory.
+ * @author Brendan Byrd
+ */
+var defileURL = function (s)    { return s ? s.substr(0, s.lastIndexOf('/') + 1) : '/'; }
+
+
+// Some extra Array subs for ease of use
+// http://stackoverflow.com/questions/143847/best-way-to-find-an-item-in-a-javascript-array
+Array.prototype.hasObject = (
+  !Array.indexOf ? function (obj) {
+    var l = this.length + 1;
+    while (l--) {
+      if (this[l - 1] === obj) return true;
+    }
+    return false;
+  } : function (obj) {
+    return (this.indexOf(obj) !== -1);
+  }
+);
+Array.prototype.hasItemInObj = function (name, item) {
+  var l = this.length + 1;
+  while (l--) {
+    if (this[l - 1][name] === item) return true;
+  }
+  return false;
+};
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function (obj, fromIndex) {
+    if (fromIndex == null) {
+      fromIndex = 0;
+    } else if (fromIndex < 0) {
+      fromIndex = Math.max(0, this.length + fromIndex);
+    }
+    for (var i = fromIndex, j = this.length; i < j; i++) {
+      if (this[i] === obj) return i;
+    }
+    return -1;
+  };
+}
+Array.prototype.indexOfObjWithItem = function (name, item, fromIndex) {
+  if (fromIndex == null) {
+    fromIndex = 0;
+  } else if (fromIndex < 0) {
+    fromIndex = Math.max(0, this.length + fromIndex);
+  }
+  for (var i = fromIndex, j = this.length; i < j; i++) {
+    if (this[i][name] === item) return i;
+  }
+  return -1;
+};
+
+/**
+ * Borrowed from jquery.base64.js, with some "Array as input" corrections
+ *
+ * @private
+ * @param {Array of charCodes} input An array of byte ASCII codes (0-255).
+ * @return {String} A base64-encoded string.
+ * @author Brendan Byrd
+ */
+var base64Encode = function(input) {
+  var keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  var output = "";
+  var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+  var i = 0;
+  while (i < input.length) {
+    chr1 = input[i++];
+    chr2 = input[i++];
+    chr3 = input[i++];
+    enc1 = chr1 >> 2;
+    enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+    enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+    enc4 = chr3 & 63;
+
+    if      (chr2 == undefined) enc3 = enc4 = 64;
+    else if (chr3 == undefined) enc4 = 64;
+
+    output = output + keyString.charAt(enc1) + keyString.charAt(enc2) + keyString.charAt(enc3) + keyString.charAt(enc4);
+  }
+  return output;
+};
+
 /*! Lity - v1.6.6 - 2016-04-22
 * http://sorgalla.com/lity/
 * Copyright (c) 2016 Jan Sorgalla; Licensed MIT */
@@ -574,66 +2650,109 @@ window._initMaps = function() {
 		       'packages': ['table']
 		    });
 			google.charts.setOnLoadCallback(zoomMap);
-			var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
-				center: new google.maps.LatLng(30, 0),
-				zoom: 2,
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				disableDefaultUI: true,
-				scrollwheel: false,
-				draggable: false,
-			});
-			
-			var jointCountriesArray = CountriesServed.map(function(val, index){
-				if( index < CountriesServed.length - 1 ){
-					return '\'' + val + '\', ';
-				}
-				else{
-					return '\'' + val + '\'';
-				}
-			});
-			jointCountriesArray = jointCountriesArray.join('');
 
-			var world_geometry = new google.maps.FusionTablesLayer({
-				query: {
-					select: 'geometry',
-					from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
-					where: "ISO_2DIGIT IN (" + jointCountriesArray + ")",
-				},
-				heatmap: {
-					enabled: false
-				},
-				suppressInfoWindows: true,
-				map: map,
-				options: {
-					styleId: 2,
-					templateId: 2
-				},
-		    });
 		    function zoomMap(){
-		    	var queryCountriesServed = '';
 
-		    	CountriesServed.forEach(function(val, index){
-		    		if( index < CountriesServed.length - 1 ){
-			    		queryCountriesServed += 'ISO_2DIGIT = ' + val + ' OR ';
-		    		}
-		    		else{
-		    			queryCountriesServed +=  'ISO_2DIGIT = ' + val;
-		    		}
-		    	});
-			    var queryText = encodeURIComponent("SELECT geometry FROM 1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk WHERE " + queryCountriesServed);
-			    // does _not_ work  var queryText = encodeURIComponent("SELECT 'Latitude' FROM "+FT_TableID+" WHERE District = "+term);
-			    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
-			    console.log("SELECT geometry FROM 1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk WHERE " + queryCountriesServed);
+	    		var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
+	    			center: new google.maps.LatLng(30, 0),
+	    			zoom: 2,
+	    			mapTypeId: google.maps.MapTypeId.ROADMAP,
+	    			disableDefaultUI: true,
+	    			scrollwheel: false,
+	    			draggable: false,
+	    		});
+	
+	    		var jointCountriesArray = CountriesServed.map(function(val, index){
+	    			if( index < CountriesServed.length - 1 ){
+	    				return '\'' + val + '\', ';
+	    			}
+	    			else{
+	    				return '\'' + val + '\'';
+	    			}
+	    		});
+	    		jointCountriesArray = jointCountriesArray.join('');
+
+	    		var world_geometry = new google.maps.FusionTablesLayer({
+	    			query: {
+	    				select: 'geometry',
+	    				from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
+	    				where: "ISO_2DIGIT IN (" + jointCountriesArray + ")",
+	    			},
+	    			heatmap: {
+	    				enabled: false
+	    			},
+	    			suppressInfoWindows: true,
+	    			map: map,
+	    			options: {
+	    				styleId: 2,
+	    				templateId: 2
+	    			},
+	    	    });
+
+			    var queryText = encodeURIComponent("select geometry from 1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk where 'ISO_2DIGIT' in (" + jointCountriesArray + ")");
+
+			    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+
 			    query.send(handleQuery);
+
 			    function handleQuery(response){
 			    	if (!response) {
-			    	  console.log('no response');
-			    	  return;
+			    		console.log('no response');
+			    		return;
 			    	}
 			    	if (response.isError()) {
-			    	  console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-			    	  return;
+			    		console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+			    		return;
 			    	} 
+			    	FTresponse = response;
+			    	
+			    	numRows = FTresponse.getDataTable().getNumberOfRows();
+
+		    		var coordinates = [];
+					var bounds = new google.maps.LatLngBounds();
+			    	
+			    	for(var i = 0; i < numRows; i++) {
+
+			    		var kml = FTresponse.getDataTable().getValue(i,0);
+
+			    		var coordEls = geoXML3.xmlParse(kml).querySelectorAll('coordinates');
+		    			var coordinateString = '';
+		    			for(var j = 0; j < coordEls.length; j++){
+		    				coordinateString += coordEls[j].innerHTML + ' ';
+		    			}
+		    			
+			    		var unpairedCoordinates = coordinateString.split(',').map(function(val,index, arr){
+			    			if( val == '0.0' ){
+			    				arr.splice(index,1);
+			    			}
+			    			else{
+				    			return val.replace('0.0 ', '');
+			    			}
+			    		});
+			    		for(var k = 0; k < unpairedCoordinates.length; k++){
+			    			if( (k == 0 || k % 2 == 0) && k < unpairedCoordinates.length - 2 ){
+				    			// is even or zero and we're not at the end of the array
+				    			bounds.extend({
+				    				lat : parseFloat(unpairedCoordinates[k+1]),
+				    				lng : parseFloat(unpairedCoordinates[k])
+				    			});
+			    			}
+			    		}
+
+			    	}
+
+			    	map.fitBounds(bounds, -300);
+			    	map.setCenter(bounds.getCenter());
+
+			    	// var rect = new google.maps.Rectangle({
+			    	// 	strokeColor: '#FFFFFF',
+			    	// 	strokeOpacity: 0.8,
+			    	// 	strokeWeight: 2,
+			    	// 	fillColor: '#FFFFFF',
+			    	// 	fillOpacity: 0.35,
+			    	// 	map: map,
+			    	// 	bounds: bounds
+			    	// });
 			    }
 		    }
 		}

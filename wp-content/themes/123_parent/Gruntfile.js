@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         separator: '\n',
       },
       buildjs: {
-        src: ['js_vendor/jquery-1.12.4.min.js', '../../../wp-includes/js/masonry.min.js', 'js_vendor/lity.min.js', 'js_vendor/baguetteBox.min.js', 'js_vendor/ofi.browser.js', 'js/main.js'],
+        src: ['js_vendor/jquery-1.12.4.min.js', '../../../wp-includes/js/masonry.min.js', 'js_vendor/geoxml3.js', 'js_vendor/lity.min.js', 'js_vendor/baguetteBox.min.js', 'js_vendor/ofi.browser.js', 'js/main.js'],
         dest: 'build/js/build.js',
       },
       execjs :{
