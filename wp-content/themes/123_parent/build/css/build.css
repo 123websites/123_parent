@@ -2527,7 +2527,8 @@ footer, header, hgroup, menu, nav, section, img {
     border-bottom: 4px solid #32A2AE;
     width: 100%;
     position: relative;
-    display: block; }
+    display: block;
+    top: 10px; }
   .main .areas-served-hero-text-header:after,
   .main .contact-hero-text-header:after {
     border-bottom: none; }
