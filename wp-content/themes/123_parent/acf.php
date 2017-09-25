@@ -2439,7 +2439,7 @@ add_action('acf/input/admin_footer', 'my_acf_input_admin_footer');
 if( !function_exists('acf_update_site_title') ){
 	function acf_update_site_title( $value, $post_id, $field ){
 		if( !empty($value) ){
-			update_option( 'blogname', $value );
+			update_option( 'blogname', stripslashes($value) );
 		}
 		return $value;
 	}
@@ -2451,7 +2451,7 @@ add_action('acf/update_value/key=field_npy320af', 'acf_update_site_title', 10, 3
 if( !function_exists('acf_update_tagline') ){
 	function acf_update_tagline( $value, $post_id, $field ){
 		if( !empty($value) ){
-			update_option( 'blogdescription', $value );
+			update_option( 'blogdescription', stripslashes($value) );
 		}
 		return $value;
 	}

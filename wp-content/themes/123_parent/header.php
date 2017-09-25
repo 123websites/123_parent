@@ -17,7 +17,7 @@
 		<meta property="og:site_name" content="<?php echo get_bloginfo('name'); ?>"/>
 		<meta property="og:url" content="<?php echo $_SERVER['HTTP_REFERER']; ?>"/>
 		<?php endif; ?>
-		<title><?php echo stripslashes(get_bloginfo('name'));?></title>
+		<title><?php echo get_bloginfo('name');?></title>
 		<?php wp_head(); ?>		
 		<?php echo !empty(get_field('custom-css', 'option')) ? '<style type="text/css">' . get_field('custom-css', 'option') . '</style>' : ''; ?>
 		<?php include( locate_template( 'partials/color-pickers.php' ) ); ?>
