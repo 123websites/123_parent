@@ -72,7 +72,9 @@ if( get_field('buttons-underlines-toggle', 'option') ):
 			.mobilefooter-sociallinks-item,
 			.company-employees-grid-item-socialcontainer-link,
 			.home-hero-text-button,
-			.global-contact-content-button
+			.global-contact-content-button,
+			.home-services-viewall,
+			.home-testimonials-viewall
 			{
 				border-color: <?php echo $color; ?>;
 				background-color: <?php echo $color; ?>;
