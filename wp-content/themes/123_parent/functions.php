@@ -93,15 +93,28 @@ if( !function_exists('localize_areas_served') ){
 			$fields = get_field('locations', 'option');
 			$fields_array = [];
 			if(!empty($fields)){
+				$mh = curl_multi_init();
+				$handles = [];
 				foreach($fields as $row) {
 					$ch = curl_init();
+					$handles[] = $ch;
 					curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-					$curl_return = curl_exec($ch);
-					$contents = simplexml_load_string($curl_return);
+					curl_multi_add_handle($mh, $ch);
+				}	
+				$running = null;
+				do{
+					curl_multi_exec($mh, $running);
+				} while ($running);
+
+				foreach($handles as $ch){
+					$result = curl_multi_getcontent($ch);
+					$contents = simplexml_load_string($result);
 					preg_match_all('/\d{5}/', $contents->result->formatted_address, $preg_match_all_matches);
 					array_push($fields_array, $preg_match_all_matches[0][0]);
-				}	
+					curl_multi_remove_handle($mh, $ch);
+					curl_close($ch);
+				}
 			}
 			wp_localize_script( 'theme', 'AreasServed', $fields_array );
 		}
