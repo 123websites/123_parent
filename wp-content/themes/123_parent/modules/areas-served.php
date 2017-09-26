@@ -29,7 +29,7 @@
 									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 									$curl_return = curl_exec($ch);
 									$contents = simplexml_load_string($curl_return);
-									preg_match_all('/^.*?(?=(\d))/', $contents->result->formatted_address, $preg_match_all_matches);
+									preg_match_all('/^.*?(?=(\d))/', $contents->result->formatted_address, $preg_match_all_matches); 
 									echo $preg_match_all_matches[0][0];
 								?></div>
 							</a>
