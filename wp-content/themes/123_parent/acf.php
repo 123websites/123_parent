@@ -140,7 +140,6 @@ if( !function_exists('add_acf_fields') ){
 					'name' => 'locations',
 					'type' => 'repeater',
 					'button_label' => 'Add Location',
-					'instructions' => 'No more than 1 zip code per city!',
 					'sub_fields' => array(
 						array(
 							'key' => 'field_2',
