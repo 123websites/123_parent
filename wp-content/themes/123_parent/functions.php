@@ -1213,9 +1213,8 @@ if( !function_exists('action_create_custom_css') ){
 add_action( 'wppusher_theme_was_updated', 'action_wppusher_theme_was_updated');
 
 if( !function_exists('action_wppusher_theme_was_updated') ){
-	function action_wppusher_theme_was_updated($stylesheet) use ($notifier){
+	function action_wppusher_theme_was_updated($stylesheet){
 		error_log(print_r($stylesheet, true));
-		error_log(print_r($notifier, true));
 		update_logo_text_image();
 	}
 }
