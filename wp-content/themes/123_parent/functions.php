@@ -109,9 +109,8 @@ if( !function_exists('localize_areas_served') ){
 
 				foreach($handles as $ch){
 					$result = curl_multi_getcontent($ch);
-					error_log(print_r($result, true));
 					$contents = simplexml_load_string($result);
-					preg_match_all('/\d{5}/', $contents->result->formatted_address, $preg_match_all_matches);
+					preg_match_all('/\d{5}(?=\,)/', $contents->result->formatted_address, $preg_match_all_matches);
 					array_push($fields_array, $preg_match_all_matches[0][0]);
 					curl_multi_remove_handle($mh, $ch);
 					curl_close($ch);

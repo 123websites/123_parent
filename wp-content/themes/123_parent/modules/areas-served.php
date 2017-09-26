@@ -23,9 +23,9 @@
 							<a href="https://www.google.com/maps/@<?php echo $contents->result->geometry->location->lat . ',' . $contents->result->geometry->location->lng . ',14z'; ?>" class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
 								<div style="background-image: url('<?php echo $row['area-image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
 								<div class="areas-served-areas-grid-imagecontainer-citystate"><?php 
-									preg_match_all('/\d{5}/', $contents->result->formatted_address, $preg_match_all_matches);
+									preg_match_all('/\d{5}(?=\,)/', $contents->result->formatted_address, $preg_match_all_matches);
 									$ch = curl_init();
-									curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?address=' . $preg_match_all_matches[0][0] . '&sensor=true');
+									curl_setopt($ch, CURLOPT_URL, 'https://maps.googleapis.com/maps/api/geocode/xml?address=' . $preg_match_all_matches[0][0] . '&sensor=true&key=' . get_field('gmaps-api-key', 'option'));
 									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 									$curl_return = curl_exec($ch);
 									$contents = simplexml_load_string($curl_return);
