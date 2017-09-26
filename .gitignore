@@ -34,6 +34,3 @@ wp-signup.php
 wp-trackback.php
 xmlrpc.php
 !wp-content/themes/123_parent/*
-wp-content/themes/123_parent/build/css/custom.css
-wp-content/themes/123_parent/library/img/logo-text.png
-#
