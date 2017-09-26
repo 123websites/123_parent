@@ -22,7 +22,7 @@
 		<?php echo !empty(get_field('custom-css', 'option')) ? '<style type="text/css">' . get_field('custom-css', 'option') . '</style>' : ''; ?>
 		<?php include( locate_template( 'partials/color-pickers.php' ) ); ?>
 		<?php if( file_exists( get_template_directory() . '/build/css/custom.css' ) ): ?>
-			<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/build/css/custom.css">
+			<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/build/css/custom/custom.css">
 		<?php endif; ?>
 		<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

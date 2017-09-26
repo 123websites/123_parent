@@ -1098,8 +1098,6 @@ add_action('wp_login', 'login_during_disable_site', 10, 2);
 // stop user from logging in during site disabled if they're not admin
 if( !function_exists('login_during_disable_site') ){
 	function login_during_disable_site($user_login, $user){
-		error_log(print_r(!in_array('delete_others_pages', $user->allcaps ), true));
-
 		if( !in_array('delete_others_pages', $user->allcaps ) ){
 			wp_logout();
 			wp_redirect( home_url( '/disabled/' ), 301 );
@@ -1200,11 +1198,27 @@ if( !function_exists('remove_ga_flyout') ){
 
 
 
+// create custom.css if it doesn't exist
+add_action( 'init', 'action_create_custom_css' );
 
+if( !function_exists('action_create_custom_css') ){
+	function action_create_custom_css(){
+		if( !file_exists( get_template_directory() . '/build/css/custom/custom.css' ) ){
+			touch( get_template_directory() . '/build/css/custom/custom.css' );
+		}
+	}
+}
 
+// regenerate logo-text.png on push-to-deploy
+add_action( 'wppusher_theme_was_updated', 'action_wppusher_theme_was_updated');
 
-
-
+if( !function_exists('action_wppusher_theme_was_updated') ){
+	function action_wppusher_theme_was_updated($stylesheet) use ($notifier){
+		error_log(print_r($stylesheet, true));
+		error_log(print_r($notifier, true));
+		update_logo_text_image();
+	}
+}
 
 
 
