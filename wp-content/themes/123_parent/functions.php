@@ -906,44 +906,48 @@ if( !function_exists('get_blog_image') ){
 if( !function_exists('update_logo_text_image') ){
 	function update_logo_text_image(){
 		if( basename($_SERVER['REQUEST_URI']) == 'admin.php?page=general-settings' && get_field('logo-type-switch', 'option') == 'text' ){
-
-			$bg = get_template_directory() . '/library/img/logo-canvas.png';
-
-			$phpimg = new PHPImage();
-
-			$phpimg->setDimensionsFromImage($bg);
-			$phpimg->setQuality(9);
-			$phpimg->setFont(get_template_directory() . '/library/fonts/GothamHTF-Medium.ttf');
-
-			$text_color = array(255, 255, 255);
-
-			if( get_field('navs-text-toggle', 'option') ){
-				$text_color = hex_to_rgb(get_field('navs-text', 'option'));
-			}
-
-			$phpimg->setTextColor($text_color);
-
-			$phpimg->text(get_field('site_title', 'option'), array(
-		        'fontSize' => 60, 
-		        'x' => 0,
-		        'y' => 0,
-		        'width' => 560,
-		        'height' => 128,
-		        'alignHorizontal' => 'center',
-		        'alignVertical' => 'center',
-		    ));
-
-			$phpimg->imagetrim();
-
-			$phpimg->setOutput('png');
-
-			$phpimg->save(get_template_directory() . '/library/img/logo-text.png');
-
+			do_update_logo_text_image();	
 		}
 	}
 }
 
 add_action('save_post', 'update_logo_text_image');
+
+if( !function_exists('do_update_logo_text_image') ){
+	function do_update_logo_text_image(){
+		$bg = get_template_directory() . '/library/img/logo-canvas.png';
+
+		$phpimg = new PHPImage();
+
+		$phpimg->setDimensionsFromImage($bg);
+		$phpimg->setQuality(9);
+		$phpimg->setFont(get_template_directory() . '/library/fonts/GothamHTF-Medium.ttf');
+
+		$text_color = array(255, 255, 255);
+
+		if( get_field('navs-text-toggle', 'option') ){
+			$text_color = hex_to_rgb(get_field('navs-text', 'option'));
+		}
+
+		$phpimg->setTextColor($text_color);
+
+		$phpimg->text(get_field('site_title', 'option'), array(
+	        'fontSize' => 60, 
+	        'x' => 0,
+	        'y' => 0,
+	        'width' => 560,
+	        'height' => 128,
+	        'alignHorizontal' => 'center',
+	        'alignVertical' => 'center',
+	    ));
+
+		$phpimg->imagetrim();
+
+		$phpimg->setOutput('png');
+
+		$phpimg->save(get_template_directory() . '/library/img/logo-text.png');
+	}
+}
 
 // returns the logo based on the logo type switch set in Theme Settings > 1. Company Info
 if( !function_exists('get_logo') ){
@@ -1215,7 +1219,7 @@ add_action( 'wppusher_theme_was_updated', 'action_wppusher_theme_was_updated');
 if( !function_exists('action_wppusher_theme_was_updated') ){
 	function action_wppusher_theme_was_updated($stylesheet){
 		error_log(print_r($stylesheet, true));
-		update_logo_text_image();
+		do_update_logo_text_image();
 	}
 }
 
