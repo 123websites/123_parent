@@ -1207,15 +1207,16 @@ add_action( 'after_setup_theme', 'action_create_custom_css' );
 
 if( !function_exists('action_create_custom_css') ){
 	function action_create_custom_css(){
-		var_dump( !file_exists(get_template_directory() . '/build/css/custom/custom.css') );
-		if( !file_exists( get_template_directory() . '/build/css/custom/custom.css' ) ){
+		require(ABSPATH . 'wp-admin/includes/file.php');
+		var_dump( get_home_path() . '/build/css/custom/custom.css' );
+		if( !file_exists( get_home_path() . '/build/css/custom/custom.css' ) ){
 			touch( get_template_directory() . '/build/css/custom/custom.css' );
 		}
 	}
 }
 
 // regenerate logo-text.png on push-to-deploy
-add_action( 'wppusher_theme_was_updated', function($stylesheet) use ($notifier){
+add_action( 'wppusher_theme_was_updated', function(){
 	do_update_logo_text_image();
 });
 
