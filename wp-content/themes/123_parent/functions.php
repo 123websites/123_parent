@@ -1207,6 +1207,7 @@ add_action( 'init', 'action_create_custom_css' );
 
 if( !function_exists('action_create_custom_css') ){
 	function action_create_custom_css(){
+		var_dump( !file_exists( get_template_directory() . '/build/css/custom/custom.css' ) );
 		if( !file_exists( get_template_directory() . '/build/css/custom/custom.css' ) ){
 			touch( get_template_directory() . '/build/css/custom/custom.css' );
 		}
@@ -1219,6 +1220,7 @@ add_action( 'wppusher_theme_was_updated', function($stylesheet) use ($notifier){
 	$notification = ThemeWasUpdated::fromStylesheet($stylesheet);
 	$notifier->notify($notification);
 });
+
 
 
 
