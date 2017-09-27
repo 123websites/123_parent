@@ -1203,7 +1203,7 @@ if( !function_exists('remove_ga_flyout') ){
 
 
 // create custom.css if it doesn't exist
-add_action( 'init', 'action_create_custom_css' );
+add_action( 'after_setup_theme', 'action_create_custom_css' );
 
 if( !function_exists('action_create_custom_css') ){
 	function action_create_custom_css(){
