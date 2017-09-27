@@ -1836,6 +1836,13 @@ if( !function_exists('add_acf_fields') ){
 					'mode' => 'css',
 				),
 				array(
+					'key' => 'field_c98zvcuhuf12',
+					'label' => 'External CSS',
+					'type' => 'url',
+					'name' => 'external-css',
+					'instructions' => 'Leaving this field blank will not output a link tag in the head with this url as the href property.',
+				),
+				array(
 					'key' => 'field_oohpadf812',
 					'label' => 'Disable Site',
 					'type' => 'tab',
