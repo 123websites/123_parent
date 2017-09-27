@@ -1201,13 +1201,20 @@ if( !function_exists('remove_ga_flyout') ){
 }
 
 
+if( !function_exists('URL_exists') ){
+	function URL_exists($url){
+		$headers=get_headers($url);
+		return stripos($headers[0],"200 OK")?true:false;
+	}
+}
+
 
 // create custom.css if it doesn't exist
 add_action( 'after_setup_theme', 'action_create_custom_css' );
 
 if( !function_exists('action_create_custom_css') ){
 	function action_create_custom_css(){
-		var_dump(!file_exists( get_template_directory() . '/build/css/custom/custom.css' ));
+		var_dump(!URL_exists( get_template_directory_uri() . '/build/css/custom/custom.css' ));
 		if( !file_exists( get_template_directory() . '/build/css/custom/custom.css' ) ){
 			touch( get_template_directory() . '/build/css/custom/custom.css' );
 			chmod(get_template_directory() . '/build/css/custom/custom.css', 0755);
