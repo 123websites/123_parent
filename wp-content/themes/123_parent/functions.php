@@ -1203,8 +1203,19 @@ if( !function_exists('remove_ga_flyout') ){
 
 if( !function_exists('URL_exists') ){
 	function URL_exists($url){
-		$headers=get_headers($url);
-		return stripos($headers[0],"200 OK")?true:false;
+		$ch = curl_init($url);    
+	    curl_setopt($ch, CURLOPT_NOBODY, true);
+	    curl_exec($ch);
+	    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+	    if($code == 200){
+	    	$status = true;
+	    }
+	    else{
+    		$status = false;
+	    }
+	    curl_close($ch);
+	   	return $status;
 	}
 }
 
