@@ -1210,6 +1210,7 @@ if( !function_exists('action_create_custom_css') ){
 		var_dump( !file_exists( get_template_directory() . '/build/css/build.css' ) );
 		if( !file_exists( get_template_directory() . '/build/css/custom/custom.css' ) ){
 			touch( get_template_directory() . '/build/css/custom/custom.css' );
+			chmod(get_template_directory() . '/build/css/custom/custom.css', '0755');
 		}
 	}
 }
