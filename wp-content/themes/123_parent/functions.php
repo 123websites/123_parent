@@ -1214,14 +1214,12 @@ if( !function_exists('action_create_custom_css') ){
 }
 
 // regenerate logo-text.png on push-to-deploy
-add_action( 'wppusher_theme_was_updated', 'action_wppusher_theme_was_updated');
+add_action( 'wppusher_theme_was_updated', function($stylesheet) use ($notifier){
+	do_update_logo_text_image();
+	$notification = ThemeWasUpdated::fromStylesheet($stylesheet);
+	$notifier->notify($notification);
+});
 
-if( !function_exists('action_wppusher_theme_was_updated') ){
-	function action_wppusher_theme_was_updated($stylesheet){
-		error_log(print_r($stylesheet, true));
-		do_update_logo_text_image();
-	}
-}
 
 
 
