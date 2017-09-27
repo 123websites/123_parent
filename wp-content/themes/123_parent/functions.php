@@ -1216,8 +1216,6 @@ if( !function_exists('action_create_custom_css') ){
 // regenerate logo-text.png on push-to-deploy
 add_action( 'wppusher_theme_was_updated', function($stylesheet) use ($notifier){
 	do_update_logo_text_image();
-	// $notification = ThemeWasUpdated::fromStylesheet($stylesheet);
-	// $notifier->notify($notification);
 });
 
 
