@@ -945,7 +945,8 @@ if( !function_exists('do_update_logo_text_image') ){
 
 		$phpimg->setOutput('png');
 
-		$phpimg->save(get_template_directory() . '/library/img/logo-text.png');
+		$phpimg->save(wp_upload_dir()['basedir'] . '/logo-text.png');
+		chmod(wp_upload_dir()['basedir'] . '/logo-text.png', 0755);
 	}
 }
 
@@ -953,7 +954,7 @@ if( !function_exists('do_update_logo_text_image') ){
 if( !function_exists('get_logo') ){
 	function get_logo(){
 		if(get_field('logo-type-switch', 'option') == 'text'){
-			return get_template_directory_uri() . '/library/img/logo-text.png';
+			return wp_upload_dir()['baseurl'] . '/logo-text.png';
 		}
 		else{
 			return get_field('general-logo', 'option');
@@ -1223,6 +1224,29 @@ if( !function_exists('URL_exists') ){
 add_action( 'wppusher_theme_was_updated', function(){
 	do_update_logo_text_image();
 });
+
+
+add_action( 'after_setup_theme', 'check_logo_text_exists' );
+
+if( !function_exists('check_logo_text_exists') ){
+	function check_logo_text_exists(){
+		if( !file_exists(wp_upload_dir()['basedir'] . '/logo-text.png') ){
+			do_update_logo_text_image();
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
