@@ -1245,5 +1245,4 @@ if( !function_exists('check_logo_text_exists') ){
 
 
 
-
 ?>
