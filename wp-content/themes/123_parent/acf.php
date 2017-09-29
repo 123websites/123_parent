@@ -11,6 +11,17 @@ if( !function_exists('get_countries') ){
 		return $arr;
 	}
 }
+if( !function_exists('get_states') ){
+	function get_states(){
+		$json = json_decode(file_get_contents_curl("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT%20name,%20id%20FROM%2017aT9Ud-YnGiXdXEJUyycH2ocUqreOeKGbzCkUw&key=AIzaSyCrc4UkG5XPkC_W6AVLeO_udtkM5tgoskQ"));
+		$arr = [];
+		foreach($json->rows as $row){
+			$arr[$row[1]] = $row[0];
+		}
+		asort($arr);
+		return $arr;
+	}
+}
 if( !function_exists('file_get_contents_curl') ){
 	function file_get_contents_curl($url) {
 	    $ch = curl_init();
@@ -126,11 +137,12 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_89dsuahf',
-					'label' => 'Zip Codes or Countries?',
+					'label' => 'Cities, States or Countries?',
 					'type' => 'select',
-					'name' => 'zips_or_countries',
+					'name' => 'areas_served_select',
 					'choices' => array(
 						'zips' => 'Cities',
+						'states' => 'States',
 						'countries' => 'Countries',
 					),
 				),
@@ -169,6 +181,45 @@ if( !function_exists('add_acf_fields') ){
 								'field' => 'field_89dsuahf',
 								'operator' => '==',
 								'value' => 'zips',
+							),
+						),
+					),
+				),
+				array(
+					'key' => 'field_09zcjxivohfasa',
+					'label' => 'Locations',
+					'name' => 'states',
+					'type' => 'repeater',
+					'button_label' => 'Add State',
+					'sub_fields' => array(
+						array(
+							'key' => 'field_zxcovvhv09u12nf',
+							'label' => 'State',
+							'name' => 'state',
+							'type' => 'select',
+							'ui' => true,
+							'return_format' => 'array',
+							'required' => true,
+							'choices' => get_states(),
+							'wrapper' => array(
+								'width' => 20,
+							),
+						),
+						array(
+							'key' => 'field_9czv8hcofda',
+							'label' => 'Image',
+							'name' => 'image',
+							'type' => 'image',
+							'return_format' => 'url',
+							'required' => true,
+						),
+					),
+					'conditional_logic' => array(
+						array(
+							array(
+								'field' => 'field_89dsuahf',
+								'operator' => '==',
+								'value' => 'states',
 							),
 						),
 					),

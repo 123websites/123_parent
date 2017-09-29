@@ -89,7 +89,7 @@ if( !function_exists('clean_head') ){
 // make areas served zips available to javascript
 if( !function_exists('localize_areas_served') ){
 	function localize_areas_served(){
-		if( get_field('zips_or_countries', 'option') == 'zips' ){
+		if( get_field('areas_served_select', 'option') == 'zips' ){
 			$fields = get_field('locations', 'option');
 			$fields_array = [];
 			if(!empty($fields)){
@@ -118,6 +118,16 @@ if( !function_exists('localize_areas_served') ){
 				}
 			}
 			wp_localize_script( 'theme', 'AreasServed', $fields_array );
+		}
+		elseif( get_field('areas_served_select', 'option') == 'states' ){
+			$fields = get_field('states', 'option');
+			$fields_array = [];
+			if( !empty($fields) ){
+				foreach($fields as $field){
+					array_push($fields_array, $field['state']['value']);
+				}
+			}
+			wp_localize_script( 'theme', 'StatesServed', $fields_array );
 		}
 		else{
 			$fields = get_field('countries', 'option');
