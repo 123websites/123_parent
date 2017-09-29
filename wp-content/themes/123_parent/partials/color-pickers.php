@@ -74,7 +74,7 @@ if( get_field('buttons-underlines-toggle', 'option') ):
 			.home-hero-text-button,
 			.global-contact-content-button,
 			.home-services-viewall,
-			.home-testimonials-viewall
+			.home-testimonials-viewall,
 			{
 				border-color: <?php echo $color; ?>;
 				background-color: <?php echo $color; ?>;
@@ -82,6 +82,8 @@ if( get_field('buttons-underlines-toggle', 'option') ):
 
 			.blog-blog-sidebar-recentposts-header, 
 			.blog-blog-sidebar-archive-header, 
+			.global-recentposts-header,
+			.global-recentposts-grid-item-header:after,
 			.blog-blog-sidebar-categories-header{
 				border-color: <?php echo $color; ?>;	
 			}
