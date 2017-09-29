@@ -96,9 +96,10 @@ if( !function_exists('localize_areas_served') ){
 				$mh = curl_multi_init();
 				$handles = [];
 				foreach($fields as $row) {
+					$url = 'https://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true&key=' . get_field('gmaps-api-key', 'option');
 					$ch = curl_init();
 					$handles[] = $ch;
-					curl_setopt($ch, CURLOPT_URL, 'https://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true&key=' . get_field('gmaps-api-key', 'option'));
+					curl_setopt($ch, CURLOPT_URL, $url);
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 					curl_multi_add_handle($mh, $ch);
 				}	
