@@ -1227,6 +1227,7 @@ add_action( 'wppusher_theme_was_updated', function(){
 });
 
 
+// checks if logo-text.png exists in uploads dir if it doesn't then generate it
 add_action( 'after_setup_theme', 'check_logo_text_exists' );
 
 if( !function_exists('check_logo_text_exists') ){
@@ -1237,9 +1238,38 @@ if( !function_exists('check_logo_text_exists') ){
 	}
 }
 
+// if section-sort doesn't exist or all rows are empty in db create it in options table
+add_action( 'after_setup_theme', 'check_section_sort_exists' );
 
-
-
+if( !function_exists('check_section_sort_exists') ){
+	function check_section_sort_exists(){
+		$sections = array(
+			'Company',
+			'Gallery',
+			'Services',
+			'Blog',
+			'Testimonials',
+			'Areas Served',
+			'Coupons',
+			'Contact',
+			'Menu'
+		);
+		$all_empty = true;
+		foreach( $sections as $index => $section ){
+			if( !empty( get_option( 'options_section-sort_' . $index . '_section-sort-text' ) ) ){
+				$all_empty = false;
+			}
+		}
+		if( !is_null( get_option( 'options_section-sort' ) ) && $all_empty ){
+			foreach( $sections as $index => $section ){
+				update_option( 'options_section-sort_' . $index . '_section-sort-text', $section );
+				update_option( '_options_section-sort_' . $index . '_section-sort-text', 'field_98czxvz' );
+			}
+			update_option( 'options_section-sort', 9 );
+			update_option( '_options_section-sort', 'field_cuzixvhu123afs' );
+		}
+	}
+}
 
 
 

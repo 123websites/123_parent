@@ -1325,6 +1325,28 @@ if( !function_exists('add_acf_fields') ){
 					),
 				),
 				array(
+					'key' => 'field_czoczivhz0',
+					'label' => '<h1>Reorder Sections</h1><div>NOTE: This only applies to single-page themes</div>',
+					'type' => 'message',
+				),
+				array(
+					'key' => 'field_cuzixvhu123afs',
+					'label' => ' ',
+					'type' => 'repeater',
+					'name' => 'section-sort',
+					'min' => 9,
+					'max' => 9,
+					'sub_fields' => array(
+						array(
+							'key' => 'field_98czxvz',
+							'label' => ' ',
+							'type' => 'text',
+							'name' => 'section-sort-text',
+							'readonly' => true,
+						),
+					),
+				),
+				array(
 					'key' => 'field_zcvoiknclzxv342ewdf',
 					'label' => '<h1 style="color: red;">Looking for something?</h1>
 								<div>

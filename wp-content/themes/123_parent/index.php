@@ -1,17 +1,13 @@
 <?php get_header(); 
 
-$sections = array(
-	'heroslider',
-	'company',
-	'gallery',
-	'services',
-	'menu',
-	'blog',
-	'testimonials',
-	'areas-served',
-	'coupons',
-	'contact',
-);
+
+$sorted = get_field('section-sort', 'option');
+$built_sorted = array();
+foreach( $sorted as $item ){
+	array_push($built_sorted, str_replace( ' ', '-', strtolower($item['section-sort-text']) ) );
+}
+
+$sections = array_merge(array('heroslider'), $built_sorted);
 
 foreach($sections as $section){
 	if($section !== 'heroslider'){
