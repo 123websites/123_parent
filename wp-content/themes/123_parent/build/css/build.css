@@ -4019,7 +4019,7 @@ footer, header, hgroup, menu, nav, section, img {
       margin-top: 20px; }
 
   .footer-middlecolumn2-payment-type {
-    margin-right: 20px;
+    margin-right: 10px;
     margin-left: 0px; }
 
   .footer-rightcolumn {
@@ -5273,7 +5273,9 @@ footer, header, hgroup, menu, nav, section, img {
 
   .testimonials-testimonials-grid-item-quote {
     padding-top: 20px;
-    font-size: 1.6rem; }
+    font-size: 1.6rem;
+    line-height: 175%;
+    text-align: justify; }
 
   .testimonials-testimonials-grid-item-youtubecontainer {
     text-align: center;
@@ -5317,7 +5319,8 @@ footer, header, hgroup, menu, nav, section, img {
     vertical-align: middle;
     box-sizing: border-box; }
   .hasimage .testimonials-testimonials-grid-item-image {
-    padding-right: 10px; }
+    background-size: calc(100% - 10px) auto;
+    background-position-x: 0px; }
   .hasimage .testimonials-testimonials-grid-item-textwrap {
     padding-left: 10px; } }
 @media only screen {
