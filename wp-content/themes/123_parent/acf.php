@@ -1334,6 +1334,7 @@ if( !function_exists('add_acf_fields') ){
 					'label' => ' ',
 					'type' => 'repeater',
 					'name' => 'section-sort',
+					'instructions' => 'Click/Drag the numbers on the left to reorder',
 					'min' => 9,
 					'max' => 9,
 					'sub_fields' => array(
