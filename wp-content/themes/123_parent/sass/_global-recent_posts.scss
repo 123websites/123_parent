@@ -26,14 +26,15 @@
 		&:after{
 			content: '';
 			border-bottom: 3px solid $primary;
-			width: 20%;
+			width: 100%;
 			display: block;
 			padding: 5px;
 		}
 	}
 	.global-recentposts-grid-item-description{
-		text-align: left;
+		text-align: justify;
 		margin: 10px;
+		line-height: 1.4;
 	}
 	.global-recentposts-grid-item-sociallinks{
 		text-align: center;
