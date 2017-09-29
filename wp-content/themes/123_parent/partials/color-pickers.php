@@ -94,10 +94,14 @@ endif;
 if( get_field('bold-title-text-toggle', 'option') ):
 	$color = get_field('bold-title-text', 'option');?>
 	<style type="text/css">
-		.section-header,
-		section:not(.home-hero):not(#coupons):not(#blog) .hero-text-header{
+		.section-header{
 			color: <?php echo $color ?>;
 		}
+		<?php if( wp_get_theme()->get('Name') == '123 - Parent' ): ?>
+			section:not(.home-hero):not(#coupons):not(#blog) .hero-text-header{
+				color: <?php echo $color ?>;	
+			}
+		<?php endif; ?>
 	</style>
 <?php
 endif;
