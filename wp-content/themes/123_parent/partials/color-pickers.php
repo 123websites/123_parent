@@ -83,6 +83,8 @@ if( get_field('buttons-underlines-toggle', 'option') ):
 			.blog-blog-sidebar-recentposts-header, 
 			.blog-blog-sidebar-archive-header, 
 			.global-recentposts-header,
+			.section-header,
+			.section-header:after,
 			.global-recentposts-grid-item-header:after,
 			.blog-blog-sidebar-categories-header{
 				border-color: <?php echo $color; ?>;	
