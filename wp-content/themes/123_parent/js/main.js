@@ -460,7 +460,6 @@ var Theme = {};
 
 })( jQuery, Theme, window, document );
 
-
 window._initMaps = function() {
 	// areas served map
 	if (document.querySelector('.areas-served-hero-map') !== null) {
