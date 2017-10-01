@@ -468,7 +468,7 @@ window._initMaps = function() {
 			// build latlangs
 			var geocoder = new google.maps.Geocoder();
 			var latlangs = [];
-
+			var counter = 0;
 			for(var i = 0; i < AreasServed.length; i++){
 				geocoder.geocode({address: AreasServed[i]}, setup_latlangs(i, latlangs));
 			}
@@ -479,9 +479,10 @@ window._initMaps = function() {
 					temparr.push(results[0].geometry.location.lat());
 					temparr.push(results[0].geometry.location.lng());
 					latlangs.push(temparr);
-					if( i === AreasServed.length - 1 ){
+					if( counter === AreasServed.length - 1 ){
 						build_map(latlangs);
 					}
+					counter++;
 				}
 				return build_latlangs;
 			}
@@ -491,6 +492,7 @@ window._initMaps = function() {
 				var map_center = [];
 				var x = 0;
 				var y = 0;
+
 
 				// build bounds & make center of map coords
 				bounds  = new google.maps.LatLngBounds();
@@ -515,22 +517,22 @@ window._initMaps = function() {
 		        });
 
 				// add circles
-				for (var i = 0; i < latlangs.length; i++) {
-			         var cityCircle = new google.maps.Circle({
-			         	strokeColor: '#FF0000',
-			         	strokeOpacity: 0.8,
-			         	strokeWeight: 2,
-			         	fillColor: '#FF0000',
-			         	fillOpacity: 0.35,
-			         	map: map,
-			         	center: {lat: latlangs[i][0], lng: latlangs[i][1]},
-			         	radius: 9000,
-			        });
-			         var marker = new google.maps.Marker({
-			         	position: {lat: latlangs[i][0], lng: latlangs[i][1]},
-			         	map: map,
-			         });
-			    }
+				latlangs.forEach(function(currentValue, i, arr){
+					var cityCircle = new google.maps.Circle({
+						strokeColor: '#FF0000',
+						strokeOpacity: 0.8,
+						strokeWeight: 2,
+						fillColor: '#FF0000',
+						fillOpacity: 0.35,
+						map: map,
+						center: {lat: latlangs[i][0], lng: latlangs[i][1]},
+						radius: 9000,
+					});
+					var marker = new google.maps.Marker({
+						position: {lat: latlangs[i][0], lng: latlangs[i][1]},
+						map: map,
+					});
+			    });
 		     	// zoom to bounds
 		     	if(latlangs.length > 1){
 		     		map.fitBounds(bounds);	
