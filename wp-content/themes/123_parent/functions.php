@@ -1282,8 +1282,8 @@ if( !function_exists('check_section_sort_exists') ){
 }
 
 
+$contents = file_get_contents('https://raw.githubusercontent.com/bahamas10/css-color-names/master/css-color-names.json');
 
-
-
+var_dump($contents);
 
 ?>
