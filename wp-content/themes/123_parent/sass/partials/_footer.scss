@@ -9,33 +9,32 @@
 		display: none;
 	}
 	.footer-middlecolumn2-payment-type{
-		height: 30px;
-		background-image: url('../../library/img/payment-types.jpg');
+		height: 40px;
 		background-repeat: no-repeat;
 		margin: 5px;
-		width: 47.3px;
+		width: 60px;
 	    display: inline-block;
 		background-position: 0 0;
 	    &.mastercard{
-	    	background-position: 0% 0;
+	    	background-image: url('../../library/img/payment_types/mc.png');
 	    }
 		&.visa{
-			background-position: calc(100% / 6) 0;
+			background-image: url('../../library/img/payment_types/visa.png');
 		}
 		&.amex{
-			background-position: calc(calc(2 / 6) * 100%) 0;
+			background-image: url('../../library/img/payment_types/amex.png');
 		}
 		&.discover{
-			background-position: 50% 0;
+			background-image: url('../../library/img/payment_types/discover.png');
 		}
 		&.paypal{
-			background-position: calc(calc(4 / 6) * 100%) 0;
+			background-image: url('../../library/img/payment_types/pp.png');
 		}
 		&.cash{
-			background-position: calc(calc(5 / 6) * 100%) 0;
+			background-image: url('../../library/img/payment_types/cash.png');
 		}
 		&.check{
-			background-position: 100% 0;
+			background-image: url('../../library/img/payment_types/check.png');
 		}
 		&.hasimage{
 			background-image: none;
