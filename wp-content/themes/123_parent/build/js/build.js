@@ -2576,17 +2576,23 @@ window._initMaps = function() {
 			var latlangs = [];
 			var counter = 0;
 			for(var i = 0; i < AreasServed.length; i++){
-				geocoder.geocode({address: AreasServed[i]}, setup_latlangs(i, latlangs));
+				(function(i, latlangs){
+					setTimeout(function(){
+						geocoder.geocode({address: AreasServed[i]}, setup_latlangs(latlangs));
+					}, 150);
+				})(i, latlangs);
 			}
-			function setup_latlangs(index, latlangs){
+			function setup_latlangs(latlangs){
 				var build_latlangs = function(results, status){
-					var i = index;
-					var temparr = [];
-					temparr.push(results[0].geometry.location.lat());
-					temparr.push(results[0].geometry.location.lng());
-					latlangs.push(temparr);
-					if( counter === AreasServed.length - 1 ){
-						build_map(latlangs);
+					if( status == google.maps.GeocoderStatus.OK ){
+						var temparr = [];
+						console.log(results);
+						temparr.push(results[0].geometry.location.lat());
+						temparr.push(results[0].geometry.location.lng());
+						latlangs.push(temparr);
+						if( counter === AreasServed.length - 1 ){
+							build_map(latlangs);
+						}
 					}
 					counter++;
 				}

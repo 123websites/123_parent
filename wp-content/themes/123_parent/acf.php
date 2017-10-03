@@ -155,7 +155,7 @@ if( !function_exists('add_acf_fields') ){
 					'sub_fields' => array(
 						array(
 							'key' => 'field_2',
-							'label' => 'Zip Code',
+							'label' => 'City',
 							'name' => 'zip',
 							'type' => 'google_map',
 							'center_lat' => '40.141256',	
