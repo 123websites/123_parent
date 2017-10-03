@@ -25,7 +25,7 @@
 								<div class="areas-served-areas-grid-imagecontainer-citystate"><?php 
 									preg_match_all('/\d{5}(?=\,)/', $contents->result->formatted_address, $preg_match_all_matches); 
 									$ch = curl_init();
-									curl_setopt($ch, CURLOPT_URL, 'https://maps.googleapis.com/maps/api/geocode/xml?address=' . $preg_match_all_matches[0][0] . '&sensor=true&key=' . get_field('gmaps-api-key', 'option'));
+									curl_setopt($ch, CURLOPT_URL, 'https://maps.googleapis.com/maps/api/geocode/xml?address=' . $preg_match_all_matches[0][0] . '&sensor=true&key=' . get_gmap_api_key());
 									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 									$curl_return = curl_exec($ch);
 									$contents = simplexml_load_string($curl_return);

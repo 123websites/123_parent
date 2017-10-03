@@ -1869,13 +1869,6 @@ if( !function_exists('add_acf_fields') ){
 					'name' => 'featured-placeholder',
 				),
 				array(
-					'key' => 'field_23436',
-					'label' => 'Google Maps API Key',
-					'type' => 'text',
-					'name' => 'gmaps-api-key',
-					'instructions' => 'Anything here but a Google API Key won\'t work. Please make sure that on your project on console.developers.google.com has the Google Maps Geocode API and the Google Maps Javascript API enabled and it\'s restrictions are set appropriately.',
-				),
-				array(
 					'key' => 'field_16',
 					'label' => '404 Background Image',
 					'name' => 'general-404-bg',
@@ -2465,13 +2458,7 @@ add_action('acf/init', 'add_acf_fields');
 // update google map api key
 if( !function_exists('set_acf_google_api_key') ){
 	function set_acf_google_api_key(){
-		if(get_field('gmaps-api-key', 'option') !== ''){
-			acf_update_setting('google_api_key', get_field('gmaps-api-key', 'option'));	
-		}
-		else{
-			acf_update_setting('google_api_key', 'AIzaSyBrRJwJFfNCdVLJwa6yhR8UBZR1m2A018Q');
-		}
-
+		acf_update_setting('google_api_key', get_gmap_api_key());
 	}
 }
 

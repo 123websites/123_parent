@@ -41,12 +41,9 @@ if( !function_exists('action_wp_enqueue_scripts') ){
 
 if( !function_exists('enqueue_javascript') ){
 	function enqueue_javascript(){
-		if(get_field('gmaps-api-key', 'option') !== '' && is_home()){
-			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=' . get_field('gmaps-api-key', 'option'), array(), null, false);	
-		}
-		else{
-			wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=AIzaSyBrRJwJFfNCdVLJwa6yhR8UBZR1m2A018Q', array(), null, false);	
-		}
+		
+		wp_enqueue_script('gmaps','https://maps.googleapis.com/maps/api/js?key=' . get_gmap_api_key(), array(), null, false);	
+		
 		wp_enqueue_script('gstatic', 'https://www.gstatic.com/charts/loader.js');
 		localize_areas_served();
 
@@ -96,7 +93,7 @@ if( !function_exists('localize_areas_served') ){
 				$mh = curl_multi_init();
 				$handles = [];
 				foreach($fields as $row) {
-					$url = 'https://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true&key=' . get_field('gmaps-api-key', 'option');
+					$url = 'https://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true&key=' . get_gmap_api_key();
 					$ch = curl_init();
 					$handles[] = $ch;
 					curl_setopt($ch, CURLOPT_URL, $url);
@@ -1281,6 +1278,10 @@ if( !function_exists('check_section_sort_exists') ){
 	}
 }
 
-
+if( !function_exists('get_gmap_api_key') ){
+	function get_gmap_api_key(){
+		return 'AIzaSyBOKWaxjiKG_kyx9exUfs32OFb8fwEqVBY';
+	}
+}
 
 ?>
