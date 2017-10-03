@@ -14,8 +14,9 @@
 					if(have_rows('locations', 'option')) :
 						$rows = get_field('locations', 'option'); 
 						foreach($rows as $index => $row): 
+							error_log('https://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true&key=' . get_gmap_api_key());
 							$ch = curl_init();
-							curl_setopt($ch, CURLOPT_URL, 'http://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true');
+							curl_setopt($ch, CURLOPT_URL, 'https://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true&key=' . get_gmap_api_key());
 							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 							$curl_return = curl_exec($ch);
 							$contents = simplexml_load_string($curl_return);
