@@ -337,7 +337,7 @@ var Theme = {};
 			_clickHandler : function(e){
 				if($(e.target).hasClass('pa') || $(e.target).hasClass('popupcontainer-times')){
 					if($(e.target).has('.ginput_container').length == 0){
-						Theme.CookieMonster._setCookie('ad_set', 'active', parseInt(PopupTimes.short), true);
+						Theme.CookieMonster._setCookie('ad_set', 'active', 30, true);
 						Theme.CookieMonster._deleteCookie('ad_notset');
 						Theme.CookieMonster._deleteCookie('ad_firsttime');	
 						Theme.PA.container.off('click');
