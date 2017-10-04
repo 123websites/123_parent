@@ -1911,7 +1911,7 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_08cvoizhcxvhxz',
-					'label' => 'Popup Time (not submitted/first time)',
+					'label' => 'Popup Time (first time)',
 					'type' => 'number',
 					'append' => 'seconds',
 					'name' => 'popuptime-short',
@@ -1922,7 +1922,7 @@ if( !function_exists('add_acf_fields') ){
 				),
 				array(
 					'key' => 'field_pqowfjsklhv23reg',
-					'label' => 'Popup Time (submitted)',
+					'label' => 'Popup Time (saw ad but clicked out)',
 					'type' => 'number',
 					'append' => 'seconds',
 					'name' => 'popuptime-long',
