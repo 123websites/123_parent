@@ -337,7 +337,7 @@ var Theme = {};
 			_clickHandler : function(e){
 				if($(e.target).hasClass('pa') || $(e.target).hasClass('popupcontainer-times')){
 					if($(e.target).has('.ginput_container').length == 0){
-						Theme.CookieMonster._setCookie('ad_set', 'active', 30, true);
+						Theme.CookieMonster._setCookie('ad_set', 'active', parseInt(PopupTimes.short), true);
 						Theme.CookieMonster._deleteCookie('ad_notset');
 						Theme.CookieMonster._deleteCookie('ad_firsttime');	
 						Theme.PA.container.off('click');
@@ -348,7 +348,7 @@ var Theme = {};
 			_hidePA : function(){
 				Theme.PA.container.fadeOut(250);
 				if(Theme.CookieMonster._cookieExists('ad_set') == false){
-					Theme.CookieMonster._setCookie('ad_notset', 'active', 3600, false);
+					Theme.CookieMonster._setCookie('ad_notset', 'active', parseInt(PopupTimes.long), false);
 					Theme.CookieMonster._listenCookieExpire('ad_notset', Theme.CookieMonster._firstTimeExpire);	
 				}
 			},
@@ -366,9 +366,12 @@ var Theme = {};
 			_init : function(){
 				// Theme.CookieMonster._deleteCookie('ad_firsttime');
 				// Theme.CookieMonster._deleteCookie('ad_notset');
+
+				// if there's no cookies ie. first time on the site
 				if(Theme.CookieMonster._cookieExists('ad_notset') == false && Theme.CookieMonster._cookieExists('ad_set') == false && Theme.CookieMonster._cookieExists('ad_firsttime') == false){
-					Theme.CookieMonster._setCookie('ad_firsttime', 'active', 30, false);
+					Theme.CookieMonster._setCookie('ad_firsttime', 'active', parseInt(PopupTimes.short), false);
 				}
+				// if the other cookies don't exist then listen for the expiration of the firstitme cookie
 				if(Theme.CookieMonster._cookieExists('ad_set') == false && Theme.CookieMonster._cookieExists('ad_notset') == false){
 					Theme.CookieMonster._listenCookieExpire('ad_firsttime', Theme.CookieMonster._firstTimeExpire);	
 				}
@@ -479,7 +482,6 @@ window._initMaps = function() {
 				var build_latlangs = function(results, status){
 					if( status == google.maps.GeocoderStatus.OK ){
 						var temparr = [];
-						console.log(results);
 						temparr.push(results[0].geometry.location.lat());
 						temparr.push(results[0].geometry.location.lng());
 						latlangs.push(temparr);

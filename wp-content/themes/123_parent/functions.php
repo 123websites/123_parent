@@ -1284,5 +1284,14 @@ if( !function_exists('get_gmap_api_key') ){
 	}
 }
 
+if( !function_exists('localize_popuptimes') ){
+	function localize_popuptimes(){
+		wp_localize_script('theme', 'PopupTimes', array(
+			'short' => !empty( get_field('popuptime-short', 'option') ) ? get_field('popuptime-short', 'option') : 30,
+			'long' => !empty( get_field('popuptime-long', 'option') ) ? get_field('popuptime-long', 'option') : 3600,
+		));
+	}
+}
 
+add_action('wp_enqueue_scripts', 'localize_popuptimes');
 ?>

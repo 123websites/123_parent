@@ -1910,6 +1910,28 @@ if( !function_exists('add_acf_fields') ){
 					'instructions' => 'Leaving this field blank will not output a link tag in the head with this url as the href property.',
 				),
 				array(
+					'key' => 'field_08cvoizhcxvhxz',
+					'label' => 'Popup Time (not submitted/first time)',
+					'type' => 'number',
+					'append' => 'seconds',
+					'name' => 'popuptime-short',
+					'instructions' => 'If left blank this is 30 seconds',
+					'wrapper' => array(
+						'width' => 40
+					),
+				),
+				array(
+					'key' => 'field_pqowfjsklhv23reg',
+					'label' => 'Popup Time (submitted)',
+					'type' => 'number',
+					'append' => 'seconds',
+					'name' => 'popuptime-long',
+					'instructions' => 'If left blank this is 3600 seconds (one hour)',
+					'wrapper' => array(
+						'width' => 40
+					),
+				),
+				array(
 					'key' => 'field_oohpadf812',
 					'label' => 'Disable Site',
 					'type' => 'tab',
@@ -2606,5 +2628,6 @@ if( !function_exists('acf_disable_terms_page') ){
 }
 
 add_action( 'acf/update_value/key=field_ocozvzcvh213', 'acf_disable_terms_page', 10, 3 );
+
 
 ?>
