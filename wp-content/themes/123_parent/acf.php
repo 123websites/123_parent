@@ -143,6 +143,7 @@ if( !function_exists('add_acf_fields') ){
 					'choices' => array(
 						'zips' => 'Cities',
 						'states' => 'States',
+						'counties' => 'Counties',
 						'countries' => 'Countries',
 					),
 				),
@@ -220,6 +221,45 @@ if( !function_exists('add_acf_fields') ){
 								'field' => 'field_89dsuahf',
 								'operator' => '==',
 								'value' => 'states',
+							),
+						),
+					),
+				),
+				array(
+					'key' => 'field_39qifdiuadiasadsf',
+					'label' => 'Locations',
+					'name' => 'counties',
+					'type' => 'repeater',
+					'button_label' => 'Add County',
+					'sub_fields' => array(
+						array(
+							'key' => 'field_998afohidadsfhadu',
+							'label' => 'County',
+							'name' => 'county',
+							'type' => 'google_map',
+							'center_lat' => '40.141256',	
+							'center_lng' => '-97.681034',
+							'required' => true,
+							'instructions' => 'Search for a county. Eg: Orange County',
+							'wrapper' => array(
+								'width' => '70',
+							),
+						),
+						array(
+							'key' => 'field_1298houisduaig',
+							'label' => 'Image',
+							'name' => 'image',
+							'type' => 'image',
+							'return_format' => 'url',
+							'required' => true,
+						),
+					),
+					'conditional_logic' => array(
+						array(
+							array(
+								'field' => 'field_89dsuahf',
+								'operator' => '==',
+								'value' => 'counties',
 							),
 						),
 					),

@@ -52,6 +52,22 @@
 						endforeach;	
 					endif;
 				}
+				elseif( get_field('areas_served_select', 'option') == 'counties' ){
+					if( have_rows('counties', 'option') ):
+						$rows = get_field('counties', 'option');
+						foreach($rows as $index => $row): 
+						?>
+							<div class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
+								<div style="background-image: url('<?php echo $row['image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
+								<div class="areas-served-areas-grid-imagecontainer-citystate"><?php 
+									preg_match_all('/(.*)(?=\,)/', $row['county']['address'], $matches);
+									echo $matches[0][0];
+								?></div>
+							</div>
+					<?php 
+						endforeach;	
+					endif;
+				}
 				else{
 					if( have_rows('countries', 'option') ):
 						$rows = get_field('countries', 'option');

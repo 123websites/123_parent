@@ -126,6 +126,20 @@ if( !function_exists('localize_areas_served') ){
 			}
 			wp_localize_script( 'theme', 'StatesServed', $fields_array );
 		}
+		elseif( get_field('areas_served_select', 'option') == 'counties' ){
+			$fields = get_field('counties', 'option');
+			$fields_array = [];
+			if( !empty($fields) ){
+				foreach($fields as $field){
+					$explosion = explode(', ', $field['county']['address']);
+					array_push($fields_array, array(
+						'county' => str_replace(' County', '', $explosion[0]),
+						'state' => $explosion[1]
+					));
+				}
+			}
+			wp_localize_script( 'theme', 'CountiesServed', $fields_array );
+		}
 		else{
 			$fields = get_field('countries', 'option');
 			$fields_array = [];

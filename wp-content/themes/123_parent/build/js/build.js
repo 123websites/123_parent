@@ -2765,6 +2765,121 @@ window._initMaps = function() {
 			    }
 		    }
 		}
+		else if( typeof(CountiesServed) !== 'undefined' ){
+			google.charts.load('current', {
+		       'packages': ['table']
+		    });
+			google.charts.setOnLoadCallback(zoomMap);
+
+		    function zoomMap(){
+
+	    		var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
+	    			center: new google.maps.LatLng(30, 0),
+	    			zoom: 2,
+	    			mapTypeId: google.maps.MapTypeId.ROADMAP,
+	    			disableDefaultUI: true,
+	    			scrollwheel: false,
+	    			draggable: false,
+	    		});
+	
+	    		var jointCountiesArray = CountiesServed.map(function(val, index){
+	    			if( index < CountiesServed.length - 1 ){
+	    				return '\'' + val.county + '\', ';
+	    			}
+	    			else{
+	    				return '\'' + val.county + '\'';
+	    			}
+	    		});
+	    		jointCountiesArray = jointCountiesArray.join('');
+
+	    		var jointStatesArray = CountiesServed.map(function(val, index){
+	    			if( index < CountiesServed.length - 1 ){
+	    				return '\'' + val.state + '\', ';
+	    			}
+	    			else{
+	    				return '\'' + val.state + '\'';
+	    			}
+	    		});
+	    		jointStatesArray = jointStatesArray.join('');
+
+	    		var world_geometry = new google.maps.FusionTablesLayer({
+	    			query: {
+	    				select: 'geometry',
+	    				from: '1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa',
+	    				where: "'County Name' IN (" + jointCountiesArray + ") AND 'State Abbr' IN (" + jointStatesArray + ")",
+	    			},
+	    			heatmap: {
+	    				enabled: false
+	    			},
+	    			suppressInfoWindows: true,
+	    			map: map,
+	    			options: {
+	    				styleId: 2,
+	    				templateId: 2
+	    			},
+	    	    });
+
+			    var queryText = encodeURIComponent("select geometry from 1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa where 'County Name' in (" + jointCountiesArray + ") and 'State Abbr' in (" + jointStatesArray + ")");
+
+			    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+
+			    query.send(handleQuery);
+
+			    function handleQuery(response){
+			    	if (!response) {
+			    		console.log('no response');
+			    		return;
+			    	}
+			    	if (response.isError()) {
+			    		console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+			    		return;
+			    	} 
+			    	FTresponse = response;
+			    	
+			    	numRows = FTresponse.getDataTable().getNumberOfRows();
+
+		    		var coordinates = [];
+					var bounds = new google.maps.LatLngBounds();
+			    	
+			    	for(var i = 0; i < numRows; i++) {
+
+			    		var kml = FTresponse.getDataTable().getValue(i,0);
+
+			    		var coordEls = geoXML3.xmlParse(kml).querySelectorAll('coordinates');
+		    			var coordinateString = '';
+		    			for(var j = 0; j < coordEls.length; j++){
+		    				coordinateString += coordEls[j].innerHTML + ' ';
+		    			}
+		    			
+			    		var unpairedCoordinates = coordinateString.split(/[\,\s]/);
+			    		
+			    		for(var k = 0; k < unpairedCoordinates.length; k++){
+			    			if( (k == 0 || k % 2 == 0) && k < unpairedCoordinates.length - 2 ){
+				    			// is even or zero and we're not at the end of the array
+				    			bounds.extend({
+				    				lat : parseFloat(unpairedCoordinates[k+1]),
+				    				lng : parseFloat(unpairedCoordinates[k])
+				    			});
+			    			}
+			    		}
+
+			    	}
+
+			    	map.fitBounds(bounds, 0);
+			    	map.setCenter(bounds.getCenter());
+
+			    	// var rect = new google.maps.Rectangle({
+			    	// 	strokeColor: '#FFFFFF',
+			    	// 	strokeOpacity: 0.8,
+			    	// 	strokeWeight: 2,
+			    	// 	fillColor: '#FFFFFF',
+			    	// 	fillOpacity: 0.35,
+			    	// 	map: map,
+			    	// 	bounds: bounds
+			    	// });
+			    }
+		    }
+		}
 		else if( typeof(CountriesServed) !== 'undefined' ){
 			google.charts.load('current', {
 		       'packages': ['table']
