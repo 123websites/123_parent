@@ -14,24 +14,18 @@
 					if(have_rows('locations', 'option')) :
 						$rows = get_field('locations', 'option'); 
 						foreach($rows as $index => $row): 
-							error_log('https://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true&key=' . get_gmap_api_key());
 							$ch = curl_init();
 							curl_setopt($ch, CURLOPT_URL, 'https://maps.googleapis.com/maps/api/geocode/xml?latlng=' . $row['zip']['lat'] . ',' . $row['zip']['lng'] . '&sensor=true&key=' . get_gmap_api_key());
 							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 							$curl_return = curl_exec($ch);
 							$contents = simplexml_load_string($curl_return);
+							$city_name = $contents->xpath('/GeocodeResponse/result/address_component[type = "locality"]/long_name/text()')[0]->__toString();
+							$state_name = $contents->xpath('/GeocodeResponse/result/address_component[type = "administrative_area_level_1"]/short_name/text()')[0]->__toString();
 						?>
 							<div class="fade fade-up areas-served-areas-grid-imagecontainer" target="_blank">
 								<div style="background-image: url('<?php echo $row['area-image']; ?>');" class="areas-served-areas-grid-imagecontainer-image"></div>
 								<div class="areas-served-areas-grid-imagecontainer-citystate"><?php 
-									preg_match_all('/\d{5}(?=\,)/', $contents->result->formatted_address, $preg_match_all_matches); 
-									$ch = curl_init();
-									curl_setopt($ch, CURLOPT_URL, 'https://maps.googleapis.com/maps/api/geocode/xml?address=' . $preg_match_all_matches[0][0] . '&sensor=true&key=' . get_gmap_api_key());
-									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-									$curl_return = curl_exec($ch);
-									$contents = simplexml_load_string($curl_return);
-									preg_match_all('/^.*?(?=(\d))/', $contents->result->formatted_address, $preg_match_all_matches); 
-									echo $preg_match_all_matches[0][0];
+									echo $city_name . ', ' . $state_name;
 								?></div>
 							</div>
 					<?php 
