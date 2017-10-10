@@ -1791,6 +1791,28 @@ if( !function_exists('add_acf_fields') ){
 					'type' => 'message',
 				),
 				array(
+					'key' => 'field_08cvoizhcxvhxz',
+					'label' => 'Popup Time (first time)',
+					'type' => 'number',
+					'append' => 'seconds',
+					'name' => 'popuptime-short',
+					'instructions' => 'If left blank this is 30 seconds',
+					'wrapper' => array(
+						'width' => 40
+					),
+				),
+				array(
+					'key' => 'field_pqowfjsklhv23reg',
+					'label' => 'Popup Time (saw ad but clicked out)',
+					'type' => 'number',
+					'append' => 'seconds',
+					'name' => 'popuptime-long',
+					'instructions' => 'If left blank this is 3600 seconds (one hour)',
+					'wrapper' => array(
+						'width' => 40
+					),
+				),
+				array(
 					'key' => 'field_218372012173',
 					'label' => '7. Blog',
 					'name' => 'blog-settings',
@@ -1948,28 +1970,6 @@ if( !function_exists('add_acf_fields') ){
 					'type' => 'url',
 					'name' => 'external-css',
 					'instructions' => 'Leaving this field blank will not output a link tag in the head with this url as the href property.',
-				),
-				array(
-					'key' => 'field_08cvoizhcxvhxz',
-					'label' => 'Popup Time (first time)',
-					'type' => 'number',
-					'append' => 'seconds',
-					'name' => 'popuptime-short',
-					'instructions' => 'If left blank this is 30 seconds',
-					'wrapper' => array(
-						'width' => 40
-					),
-				),
-				array(
-					'key' => 'field_pqowfjsklhv23reg',
-					'label' => 'Popup Time (saw ad but clicked out)',
-					'type' => 'number',
-					'append' => 'seconds',
-					'name' => 'popuptime-long',
-					'instructions' => 'If left blank this is 3600 seconds (one hour)',
-					'wrapper' => array(
-						'width' => 40
-					),
 				),
 				array(
 					'key' => 'field_oohpadf812',
