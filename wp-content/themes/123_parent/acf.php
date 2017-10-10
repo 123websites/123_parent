@@ -1783,14 +1783,6 @@ if( !function_exists('add_acf_fields') ){
 					'instructions' => 'If checked this will disable the Header Button and it\'s popup', 
 				),
 				array(
-					'key' => 'field_mp92adf13123wsf',
-					'label' => '<h1 style="color: red;">Looking for something?</h1>
-								<div>
-								- Company Email - Please see "1. Company info" tab.
-								</div>',
-					'type' => 'message',
-				),
-				array(
 					'key' => 'field_08cvoizhcxvhxz',
 					'label' => 'Popup Time (first time)',
 					'type' => 'number',
@@ -1811,6 +1803,14 @@ if( !function_exists('add_acf_fields') ){
 					'wrapper' => array(
 						'width' => 40
 					),
+				),
+				array(
+					'key' => 'field_mp92adf13123wsf',
+					'label' => '<h1 style="color: red;">Looking for something?</h1>
+								<div>
+								- Company Email - Please see "1. Company info" tab.
+								</div>',
+					'type' => 'message',
 				),
 				array(
 					'key' => 'field_218372012173',
