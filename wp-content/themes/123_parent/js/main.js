@@ -428,12 +428,15 @@ var Theme = {};
 		Theme.MenuGrid = {
 			grid : $('.menu-menu-grid-category-grid'),
 			_init : function(){
+				$(window).on('load', Theme.MenuGrid._loadHandler);
+			},
+			_loadHandler : function(){
 				for(var i = 0; i < Theme.MenuGrid.grid.length; i++){
 					$(Theme.MenuGrid.grid[i]).masonry({
 						itemSelector : '.menu-menu-grid-category:nth-child(' + (i+1) + ') .menu-menu-grid-category-grid-item',
 					});
 				}
-			},
+			}
 		}
 
 
