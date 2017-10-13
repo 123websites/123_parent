@@ -9,7 +9,7 @@ get_header(); ?>
 <main class="blog page">
 	<section class="blog-hero hero" style="background-image: url('<?php echo get_field('general-blog-bg', 'option'); ?>');">
 		<div class="blog-hero-text hero-text">
-			<h1 class="blog-hero-text-header hero-text-header">blog</h1>
+			<h1 class="blog-hero-text-header hero-text-header"><?php echo get_field('blog-alt-toggle', 'option') ? get_field('blog-alt', 'option') : 'blog' ?></h1>
 		</div>
 		<div class="blog-hero-tint hero-tint"></div>
 	</section>

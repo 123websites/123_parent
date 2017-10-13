@@ -1,7 +1,7 @@
 <main class="company main" id="company">
 	<section class="company-hero hero">
 		<div class="company-hero-text hero-text">
-			<h1 class="fade fade-in company-hero-text-header hero-text-header"><?php echo get_field('company-header', 'option'); ?></h1>
+			<h1 class="fade fade-in company-hero-text-header hero-text-header"><?php echo get_field('company-alt-toggle', 'option') ? get_field('company-alt', 'option') : 'company' ?></h1>
 			<?php 
 				$selected_option = get_field('company-page-option-toggle', 'option');
 			?>
