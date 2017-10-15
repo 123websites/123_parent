@@ -1,3 +1,4 @@
+<?php do_action( '123_before_mobile_nav' ); ?>
 <header class="mobileheader<?php echo get_field('general-theme-invert-headerfooter-logo-colors', 'option') ? ' invertlogo' : ''; ?>">
 	<div class="mobileheader-bar">
 		<a href="<?php echo site_url(); ?>" class="mobileheader-bar-logo">
@@ -58,3 +59,4 @@
 	</div>
 	<div class="mobileheader-tint"></div>
 </header>
+<?php do_action( '123_after_mobile_nav' ); ?>
