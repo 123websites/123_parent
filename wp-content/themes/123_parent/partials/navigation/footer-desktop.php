@@ -18,6 +18,7 @@
 		</div>
 		<div class="footer-middlecolumn1">
 			<div class="footer-middlecolumn1-sitemap">sitemap</div>
+			<?php do_action('123_before_desktop_footer_social_links'); ?>
 			<?php render_page_links('footer-pagelinks', 'footer-pagelinks-item', 'footer-pagelinks-item-link'); ?>
 		</div>
 		<?php if( !empty(get_field('mastercard', 'option')) || !empty(get_field('visa', 'option')) || !empty(get_field('amex', 'option')) || !empty(get_field('discover', 'option')) || !empty(get_field('paypal', 'option')) ): ?>
