@@ -524,7 +524,7 @@ if( !function_exists('update_gform_menu_position') ){
 
 
 // setup editor and author admin backend
-add_action('admin_init','setup_admin_menus_all_roles', 40);
+add_action('admin_menu','setup_admin_menus_all_roles', 99);
 
 if( !function_exists('setup_admin_menus_all_roles') ){
 	function setup_admin_menus_all_roles(){
@@ -603,9 +603,50 @@ if( !function_exists('setup_admin_menus_all_roles') ){
 	    	remove_menu_page( 'upload.php' );
 	    	remove_menu_page( 'wppusher' );
 	    }
+	    // admin
+	    elseif( array_intersect( array('administrator'), $user->roles ) ){
+	    	add_menu_page( 'Themes', 'Themes', 'activate_plugins', 'themes.php?noconflict=yeah', '', 'dashicons-star-filled', 8 );
+
+	    	$separator = array('', 'read', 'separator', '', 'wp-menu-separator');
+
+	    	$new_menu_order = array(
+	    		'9' => 'about',
+	    		'9.1' => 'areas served',
+	    		'9.2' => 'blog posts',
+	    		'9.3' => 'coupons',
+	    		'9.4' => 'gallery',
+	    		'9.5' => 'locations',
+	    		'9.6' => 'menu',
+	    		'9.7' => 'services',
+	    		'9.8' => 'testimonials',
+	    		'9.9' => 'separator',
+	    		'60.05' => 'appearance', // appearance
+	    		'60.1' => 'upload.php', // media
+	    		'60.2' => 'edit.php?post_type=page', // pages
+	    		'60.3' => 'plugins.php', // plugins
+	    		'60.4' => 'settings', // settings
+	    		'60.5' => 'tools.php', // tools
+	    		'60.6' => 'users.php', // users
+	    		'99.5' => 'edit-comments.php', // comments
+    		);
+    		foreach($menu as $menu_index => $menu_item) {
+				foreach( $new_menu_order as $new_menu_order_index => $new_menu_order_item ){
+					if( $new_menu_order_item !== 'separator' && in_array($new_menu_order_item, array_map(function($val){ return strtolower($val); }, array_values($menu_item))) ){
+						$menu[$new_menu_order_index] = $menu[$menu_index];
+						unset($new_menu_order[$new_menu_order_index]);
+						unset($menu[$menu_index]);
+						break;
+					}
+					elseif( $new_menu_order_item == 'separator' ){
+						$menu[$new_menu_order_index] = $separator;
+					}
+				}
+    		}
+	    }
 
 	}
 }
+
 
 add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets', 20 );
 
