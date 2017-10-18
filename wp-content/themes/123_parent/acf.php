@@ -2,7 +2,7 @@
 
 if( !function_exists('get_countries') ){
 	function get_countries(){
-		$json = json_decode(file_get_contents_curl("https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20Name,%20ISO_2DIGIT%20FROM%201N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk&key=AIzaSyCrc4UkG5XPkC_W6AVLeO_udtkM5tgoskQ"));
+		$json = json_decode(file_get_contents_curl("https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20Name,%20ISO_2DIGIT%20FROM%201N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk&key=" . get_gmap_api_key()));
 		$arr = [];
 		foreach($json->rows as $row){
 			$arr[$row[1]] = $row[0];
@@ -13,7 +13,7 @@ if( !function_exists('get_countries') ){
 }
 if( !function_exists('get_states') ){
 	function get_states(){
-		$json = json_decode(file_get_contents_curl("https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20name,%20id%20FROM%2017aT9Ud-YnGiXdXEJUyycH2ocUqreOeKGbzCkUw&key=AIzaSyCrc4UkG5XPkC_W6AVLeO_udtkM5tgoskQ"));
+		$json = json_decode(file_get_contents_curl("https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20name,%20id%20FROM%2017aT9Ud-YnGiXdXEJUyycH2ocUqreOeKGbzCkUw&key=" . get_gmap_api_key()));
 		$arr = [];
 		foreach($json->rows as $row){
 			$arr[$row[1]] = $row[0];
