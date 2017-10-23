@@ -36,7 +36,7 @@ get_header(); ?>
 					<a href="<?php echo get_permalink(); ?>" class="blog-blog-grid-item-textcontainer-header"><?php echo $post->post_title; ?></a>
 					<div class="blog-blog-grid-item-textcontainer-date"><?php echo 'Posted on: ' . date('n/j/Y', strtotime($post->post_date)) . ' at ' . date('g:i A', strtotime($post->post_date)); ?></div>
 					<div class="blog-blog-grid-item-socialcontainer"><?php render_post_social_links($post->ID, 'blog-blog-grid-item-socialcontainer-link', 'blog-blog-grid-item-socialcontainer-link-icon'); ?></div>
-					<div class="blog-blog-grid-item-textcontainer-description"><?php echo $post->post_content; ?></div>
+					<div class="blog-blog-grid-item-textcontainer-description"><?php echo apply_filters('123_post_content', $post->post_content); ?></div>
 				</div>
 			</div>
 			<?php endwhile; ?>
