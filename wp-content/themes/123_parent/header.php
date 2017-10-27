@@ -23,6 +23,7 @@
 		<?php wp_head(); ?>		
 		<?php echo !empty(get_field('custom-css', 'option')) ? '<style type="text/css">' . get_field('custom-css', 'option') . '</style>' : ''; ?>
 		<?php include( locate_template( 'partials/color-pickers.php' ) ); ?>
+		<?php do_action('123_after_color_pickers'); ?>
 		<?php if( !empty( get_field('external-css', 'option') ) ): ?>
 			<link rel="stylesheet" type="text/css" href="<?php the_field('external-css', 'option'); ?>">
 		<?php endif; ?>
