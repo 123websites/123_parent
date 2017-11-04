@@ -1029,6 +1029,13 @@ if( !function_exists('add_acf_fields') ){
 					'instructions' => 'This is the text that appears on the homepage section',
 				),
 				array(
+					'key' => 'field_8czoivadhs',
+					'label' => 'Slider Tagline 2',
+					'name' => 'home-hero-header-text-2',
+					'type' => 'text',
+					'instructions' => 'Only used when the theme uses a 2nd line',
+				),
+				array(
 					'key' => 'field_14',
 					'label' => 'Slider Images',
 					'name' => 'general-home-slider',
