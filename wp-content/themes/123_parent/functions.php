@@ -3,6 +3,7 @@
 // register ACF fields & PHPImage Library
 require('acf.php');
 require('PHPImage.php');
+require('fusiontables/handler.php');
 
 show_admin_bar( false );
 

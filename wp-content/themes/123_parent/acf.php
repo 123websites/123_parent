@@ -1,14 +1,21 @@
 <?php 
 
+
+
 if( !function_exists('get_countries') ){
 	function get_countries(){
-		$json = json_decode(file_get_contents_curl("https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20Name,%20ISO_2DIGIT%20FROM%201N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk&key=" . get_gmap_api_key()));
-		$arr = [];
-		foreach($json->rows as $row){
-			$arr[$row[1]] = $row[0];
+		if( get_field('areas_served_select', 'option') == 'countries' ){
+			$json = json_decode(file_get_contents_curl("https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20Name,%20ISO_2DIGIT%20FROM%201N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk&key=" . get_gmap_api_key()));
+			$arr = [];
+			foreach($json->rows as $row){
+				$arr[$row[1]] = $row[0];
+			}
+			asort($arr);
+			return $arr;
 		}
-		asort($arr);
-		return $arr;
+		else{
+			return null;
+		}
 	}
 }
 if( !function_exists('get_states') ){
