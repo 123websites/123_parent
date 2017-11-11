@@ -2573,504 +2573,300 @@ var Theme = {};
 
 })( jQuery, Theme, window, document );
 
-window._initMaps = function() {
-	// areas served map
-	if (document.querySelector('.areas-served-hero-map') !== null) {
-		if( typeof(AreasServed) !== 'undefined' ){
-			// build latlangs
-			var geocoder = new google.maps.Geocoder();
-			var latlangs = [];
-			var counter = 0;
-			for(var i = 0; i < AreasServed.length; i++){
-				(function(i, latlangs){
-					setTimeout(function(){
-						geocoder.geocode({address: AreasServed[i]}, setup_latlangs(latlangs));
-					}, 150);
-				})(i, latlangs);
-			}
-			function setup_latlangs(latlangs){
-				var build_latlangs = function(results, status){
-					if( status == google.maps.GeocoderStatus.OK ){
-						var temparr = [];
-						temparr.push(results[0].geometry.location.lat());
-						temparr.push(results[0].geometry.location.lng());
-						latlangs.push(temparr);
-						if( counter === AreasServed.length - 1 ){
-							build_map(latlangs);
+
+var map;
+var MapServer = {
+	potentialMaps : {
+		StatesServed:{},
+		CountiesServed:{},
+		CountriesServed:{},
+		AreasServed:{},
+	},
+	_init: function(){
+		if (document.querySelector('.areas-served-hero-map') !== null){
+			Object.keys(MapServer.potentialMaps).forEach(function(el, index){
+				try {
+					if(eval(el)){
+						if(el !== 'AreasServed'){
+							MapServer._generateMap(el);
+						}
+						if(el == 'AreasServed'){
+							MapServer._manualGeocoder();
 						}
 					}
-					counter++;
-				}
-				return build_latlangs;
-			}
-			
-			function build_map(latlangs){
-				// build map center
-				var map_center = [];
-				var x = 0;
-				var y = 0;
-
-
-				// build bounds & make center of map coords
-				bounds  = new google.maps.LatLngBounds();
-
-				for(var i = 0; i < latlangs.length; i++){
-					x += latlangs[i][0];
-					y += latlangs[i][1];
-					bounds.extend({lat: latlangs[i][0], lng: latlangs[i][1]});
-				}
-				
-				map_center[0] = x / latlangs.length;
-				map_center[1] = y / latlangs.length;
-
-				// build map
-				var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
-		          zoom: 11,
-		          center: {lat: map_center[0], lng: map_center[1]},
-		          mapTypeId: 'terrain',
-		          disableDefaultUI: true,
-		          scrollwheel: false,
-		          draggable: false,
-		        });
-
-				// add circles
-				latlangs.forEach(function(currentValue, i, arr){
-					var cityCircle = new google.maps.Circle({
-						strokeColor: '#FF0000',
-						strokeOpacity: 0.8,
-						strokeWeight: 2,
-						fillColor: '#FF0000',
-						fillOpacity: 0.35,
-						map: map,
-						center: {lat: latlangs[i][0], lng: latlangs[i][1]},
-						radius: 9000,
-					});
-					var marker = new google.maps.Marker({
-						position: {lat: latlangs[i][0], lng: latlangs[i][1]},
-						map: map,
-					});
-			    });
-		     	// zoom to bounds
-		     	if(latlangs.length > 1){
-		     		map.fitBounds(bounds);	
-		     	}	
-			    map.panToBounds(bounds);
-			}	
+				} catch(e){}
+			});
 		}
-		else if( typeof(StatesServed) !== 'undefined' ){
-			google.charts.load('current', {
-		       'packages': ['table']
-		    });
-			google.charts.setOnLoadCallback(zoomMap);
-
-		    function zoomMap(){
-
-	    		var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
-	    			center: new google.maps.LatLng(30, 0),
-	    			zoom: 2,
-	    			mapTypeId: google.maps.MapTypeId.ROADMAP,
-	    			disableDefaultUI: true,
-	    			scrollwheel: false,
-	    			draggable: false,
-	    		});
-	
-	    		var jointCountriesArray = StatesServed.map(function(val, index){
-	    			if( index < StatesServed.length - 1 ){
-	    				return '\'' + val + '\', ';
-	    			}
-	    			else{
-	    				return '\'' + val + '\'';
-	    			}
-	    		});
-	    		jointCountriesArray = jointCountriesArray.join('');
-
-	    		var world_geometry = new google.maps.FusionTablesLayer({
-	    			query: {
-	    				select: 'geometry',
-	    				from: '17aT9Ud-YnGiXdXEJUyycH2ocUqreOeKGbzCkUw',
-	    				where: "id IN (" + jointCountriesArray + ")",
-	    			},
-	    			heatmap: {
-	    				enabled: false
-	    			},
-	    			suppressInfoWindows: true,
-	    			map: map,
-	    			options: {
-	    				styleId: 2,
-	    				templateId: 2
-	    			},
-	    	    });
-
-			    var queryText = encodeURIComponent("select geometry from 17aT9Ud-YnGiXdXEJUyycH2ocUqreOeKGbzCkUw where 'id' in (" + jointCountriesArray + ")");
-
-			    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-
-			    query.send(handleQuery);
-
-			    function handleQuery(response){
-			    	if (!response) {
-			    		console.log('no response');
-			    		return;
-			    	}
-			    	if (response.isError()) {
-			    		console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-			    		return;
-			    	} 
-			    	FTresponse = response;
-			    	
-			    	numRows = FTresponse.getDataTable().getNumberOfRows();
-
-		    		var coordinates = [];
-					var bounds = new google.maps.LatLngBounds();
-			    	
-			    	for(var i = 0; i < numRows; i++) {
-
-			    		var kml = FTresponse.getDataTable().getValue(i,0);
-
-			    		var coordEls = geoXML3.xmlParse(kml).querySelectorAll('coordinates');
-		    			var coordinateString = '';
-		    			for(var j = 0; j < coordEls.length; j++){
-		    				coordinateString += coordEls[j].innerHTML + ' ';
-		    			}
-		    			
-			    		var unpairedCoordinates = coordinateString.split(',').map(function(val,index, arr){
-			    			if( val == '0.0' ){
-			    				arr.splice(index,1);
-			    			}
-			    			else{
-				    			return val.replace('0.0 ', '');
-			    			}
-			    		});
-			    		for(var k = 0; k < unpairedCoordinates.length; k++){
-			    			if( (k == 0 || k % 2 == 0) && k < unpairedCoordinates.length - 2 ){
-				    			// is even or zero and we're not at the end of the array
-				    			bounds.extend({
-				    				lat : parseFloat(unpairedCoordinates[k+1]),
-				    				lng : parseFloat(unpairedCoordinates[k])
-				    			});
-			    			}
-			    		}
-
-			    	}
-
-			    	map.fitBounds(bounds, 0);
-			    	map.setCenter(bounds.getCenter());
-
-			    	// var rect = new google.maps.Rectangle({
-			    	// 	strokeColor: '#FFFFFF',
-			    	// 	strokeOpacity: 0.8,
-			    	// 	strokeWeight: 2,
-			    	// 	fillColor: '#FFFFFF',
-			    	// 	fillOpacity: 0.35,
-			    	// 	map: map,
-			    	// 	bounds: bounds
-			    	// });
-			    }
-		    }
+		if( document.querySelector('.contact-hero-map') != null && typeof(ContactAddresses) !== 'undefined'){
+			MapServer._createContactMap()
 		}
-		else if( typeof(CountiesServed) !== 'undefined' ){
-			google.charts.load('current', {
-		       'packages': ['table']
-		    });
-			google.charts.setOnLoadCallback(zoomMap);
-
-		    function zoomMap(){
-
-	    		var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
-	    			center: new google.maps.LatLng(30, 0),
-	    			zoom: 2,
-	    			mapTypeId: google.maps.MapTypeId.ROADMAP,
-	    			disableDefaultUI: true,
-	    			scrollwheel: false,
-	    			draggable: false,
-	    		});
-	
-	    		var jointCountiesArray = CountiesServed.map(function(val, index){
-	    			if( index < CountiesServed.length - 1 ){
-	    				return '\'' + val.county + '\', ';
-	    			}
-	    			else{
-	    				return '\'' + val.county + '\'';
-	    			}
-	    		});
-	    		jointCountiesArray = jointCountiesArray.join('');
-
-	    		var jointStatesArray = CountiesServed.map(function(val, index){
-	    			if( index < CountiesServed.length - 1 ){
-	    				return '\'' + val.state + '\', ';
-	    			}
-	    			else{
-	    				return '\'' + val.state + '\'';
-	    			}
-	    		});
-	    		jointStatesArray = jointStatesArray.join('');
-
-	    		var world_geometry = new google.maps.FusionTablesLayer({
-	    			query: {
-	    				select: 'geometry',
-	    				from: '1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa',
-	    				where: "'County Name' IN (" + jointCountiesArray + ") AND 'State Abbr' IN (" + jointStatesArray + ")",
-	    			},
-	    			heatmap: {
-	    				enabled: false
-	    			},
-	    			suppressInfoWindows: true,
-	    			map: map,
-	    			options: {
-	    				styleId: 2,
-	    				templateId: 2
-	    			},
-	    	    });
-
-			    var queryText = encodeURIComponent("select geometry from 1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa where 'County Name' in (" + jointCountiesArray + ") and 'State Abbr' in (" + jointStatesArray + ")");
-
-			    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-
-			    query.send(handleQuery);
-
-			    function handleQuery(response){
-			    	if (!response) {
-			    		console.log('no response');
-			    		return;
-			    	}
-			    	if (response.isError()) {
-			    		console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-			    		return;
-			    	} 
-			    	FTresponse = response;
-			    	
-			    	numRows = FTresponse.getDataTable().getNumberOfRows();
-
-		    		var coordinates = [];
-					var bounds = new google.maps.LatLngBounds();
-			    	
-			    	for(var i = 0; i < numRows; i++) {
-
-			    		var kml = FTresponse.getDataTable().getValue(i,0);
-
-			    		var coordEls = geoXML3.xmlParse(kml).querySelectorAll('coordinates');
-		    			var coordinateString = '';
-		    			for(var j = 0; j < coordEls.length; j++){
-		    				coordinateString += coordEls[j].innerHTML + ' ';
-		    			}
-		    			
-			    		var unpairedCoordinates = coordinateString.split(/[\,\s]/);
-			    		
-			    		for(var k = 0; k < unpairedCoordinates.length; k++){
-			    			if( (k == 0 || k % 2 == 0) && k < unpairedCoordinates.length - 2 ){
-				    			// is even or zero and we're not at the end of the array
-				    			bounds.extend({
-				    				lat : parseFloat(unpairedCoordinates[k+1]),
-				    				lng : parseFloat(unpairedCoordinates[k])
-				    			});
-			    			}
-			    		}
-
-			    	}
-
-			    	map.fitBounds(bounds, 0);
-			    	map.setCenter(bounds.getCenter());
-
-			    	// var rect = new google.maps.Rectangle({
-			    	// 	strokeColor: '#FFFFFF',
-			    	// 	strokeOpacity: 0.8,
-			    	// 	strokeWeight: 2,
-			    	// 	fillColor: '#FFFFFF',
-			    	// 	fillOpacity: 0.35,
-			    	// 	map: map,
-			    	// 	bounds: bounds
-			    	// });
-			    }
-		    }
-		}
-		else if( typeof(CountriesServed) !== 'undefined' ){
-			google.charts.load('current', {
-		       'packages': ['table']
-		    });
-			google.charts.setOnLoadCallback(zoomMap);
-
-		    function zoomMap(){
-
-	    		var map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
-	    			center: new google.maps.LatLng(30, 0),
-	    			zoom: 2,
-	    			mapTypeId: google.maps.MapTypeId.ROADMAP,
-	    			disableDefaultUI: true,
-	    			scrollwheel: false,
-	    			draggable: false,
-	    		});
-	
-	    		var jointCountriesArray = CountriesServed.map(function(val, index){
-	    			if( index < CountriesServed.length - 1 ){
-	    				return '\'' + val + '\', ';
-	    			}
-	    			else{
-	    				return '\'' + val + '\'';
-	    			}
-	    		});
-	    		jointCountriesArray = jointCountriesArray.join('');
-
-	    		var world_geometry = new google.maps.FusionTablesLayer({
-	    			query: {
-	    				select: 'geometry',
-	    				from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
-	    				where: "ISO_2DIGIT IN (" + jointCountriesArray + ")",
-	    			},
-	    			heatmap: {
-	    				enabled: false
-	    			},
-	    			suppressInfoWindows: true,
-	    			map: map,
-	    			options: {
-	    				styleId: 2,
-	    				templateId: 2
-	    			},
-	    	    });
-
-			    var queryText = encodeURIComponent("select geometry from 1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk where 'ISO_2DIGIT' in (" + jointCountriesArray + ")");
-
-			    var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-
-			    query.send(handleQuery);
-
-			    function handleQuery(response){
-			    	if (!response) {
-			    		console.log('no response');
-			    		return;
-			    	}
-			    	if (response.isError()) {
-			    		console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-			    		return;
-			    	} 
-			    	FTresponse = response;
-			    	
-			    	numRows = FTresponse.getDataTable().getNumberOfRows();
-
-		    		var coordinates = [];
-					var bounds = new google.maps.LatLngBounds();
-			    	
-			    	for(var i = 0; i < numRows; i++) {
-
-			    		var kml = FTresponse.getDataTable().getValue(i,0);
-
-			    		var coordEls = geoXML3.xmlParse(kml).querySelectorAll('coordinates');
-		    			var coordinateString = '';
-		    			for(var j = 0; j < coordEls.length; j++){
-		    				coordinateString += coordEls[j].innerHTML + ' ';
-		    			}
-		    			
-			    		var unpairedCoordinates = coordinateString.split(',').map(function(val,index, arr){
-			    			if( val == '0.0' ){
-			    				arr.splice(index,1);
-			    			}
-			    			else{
-				    			return val.replace('0.0 ', '');
-			    			}
-			    		});
-			    		for(var k = 0; k < unpairedCoordinates.length; k++){
-			    			if( (k == 0 || k % 2 == 0) && k < unpairedCoordinates.length - 2 ){
-				    			// is even or zero and we're not at the end of the array
-				    			bounds.extend({
-				    				lat : parseFloat(unpairedCoordinates[k+1]),
-				    				lng : parseFloat(unpairedCoordinates[k])
-				    			});
-			    			}
-			    		}
-
-			    	}
-
-			    	map.fitBounds(bounds, -300);
-			    	map.setCenter(bounds.getCenter());
-
-			    	// var rect = new google.maps.Rectangle({
-			    	// 	strokeColor: '#FFFFFF',
-			    	// 	strokeOpacity: 0.8,
-			    	// 	strokeWeight: 2,
-			    	// 	fillColor: '#FFFFFF',
-			    	// 	fillOpacity: 0.35,
-			    	// 	map: map,
-			    	// 	bounds: bounds
-			    	// });
-			    }
-		    }
-		}
-	}
-
-	// contact map
-
-
-	var element = document.querySelector('.contact-hero-map');
-	if(element != null && typeof(ContactAddresses) !== 'undefined'){
-
+	},
+	_generateMap: function(el){
+		mapOptions = {
+			center: new google.maps.LatLng(30, 0),
+			zoom: 2,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			disableDefaultUI: true,
+			scrollwheel: false,
+			draggable: false,
+		},
+		map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0],mapOptions);
+		MapServer._generateFTL(el);
+	},
+	_manualGeocoder: function(){
+		var geocoder = new google.maps.Geocoder();
 		var latlangs = [];
-
+		var counter = 0;
+		for(var i = 0; i < AreasServed.length; i++){
+			(function(i, latlangs){
+				setTimeout(function(){
+					geocoder.geocode({address: AreasServed[i]}, setup_latlangs(latlangs));
+				}, 150);
+			})(i, latlangs);
+		}
+		function setup_latlangs(latlangs){
+			var build_latlangs = function(results, status){
+				if( status == google.maps.GeocoderStatus.OK ){
+					var temparr = [];
+					temparr.push(results[0].geometry.location.lat());
+					temparr.push(results[0].geometry.location.lng());
+					latlangs.push(temparr);
+					if( counter === AreasServed.length - 1 ){
+						setupMap(latlangs);
+					}
+				}
+				counter++;
+			}
+			return build_latlangs;
+		}
+		function setupMap(latlangs){
+			var map_center = [];
+			var x = 0;
+			var y = 0;
+			// build bounds & make center of map coords
+			bounds  = new google.maps.LatLngBounds();
+			for(var i = 0; i < latlangs.length; i++){
+				x += latlangs[i][0];
+				y += latlangs[i][1];
+				bounds.extend({lat: latlangs[i][0], lng: latlangs[i][1]});
+			}
+			map_center[0] = x / latlangs.length;
+			map_center[1] = y / latlangs.length;
+			// build map
+			map = new google.maps.Map(document.querySelectorAll('.areas-served-hero-map')[0], {
+				zoom: 11,
+				center: {lat: map_center[0], lng: map_center[1]},
+				mapTypeId: 'terrain',
+				disableDefaultUI: true,
+				scrollwheel: false,
+				draggable: false,
+			});
+			// add circles
+			latlangs.forEach(function(currentValue, i, arr){
+				var cityCircle = new google.maps.Circle({
+					strokeColor: '#FF0000',
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: '#FF0000',
+					fillOpacity: 0.35,
+					map: map,
+					center: {lat: latlangs[i][0], lng: latlangs[i][1]},
+					radius: 9000,
+				});
+				var marker = new google.maps.Marker({
+					position: {lat: latlangs[i][0], lng: latlangs[i][1]},
+					map: map,
+				});
+			});
+			// zoom to bounds
+			if(latlangs.length > 1){
+				map.fitBounds(bounds);	
+			}	
+			map.panToBounds(bounds);
+		}
+	},
+	_generateFTL: function(el){
+		ftloptions = {
+			query: {},
+			heatmap: {
+				enabled: false
+			},
+			suppressInfoWindows: true,
+			map: map,
+			options: {
+				styleId: 2,
+				templateId: 2
+			},
+		}
+		if(el == 'StatesServed'){
+			jointCountriesArray = StatesServed.map(function(val, index){
+				if ( index < StatesServed.length - 1 ){ return '\'' + val + '\', '; }
+				else { return '\'' + val + '\''; }
+			});
+			jointCountriesArray = jointCountriesArray.join('');
+			ftloptions.query = {
+				select: 'geometry',
+				from: '17aT9Ud-YnGiXdXEJUyycH2ocUqreOeKGbzCkUw',
+				where: "id IN (" + jointCountriesArray + ")",
+			}
+			queryText = encodeURIComponent("select geometry from 17aT9Ud-YnGiXdXEJUyycH2ocUqreOeKGbzCkUw where 'id' in (" + jointCountriesArray + ")");
+		}
+		if(el == 'CountiesServed'){
+			jointCountiesArray = CountiesServed.map(function(val, index){
+				if( index < CountiesServed.length - 1 ){
+					return '\'' + val.county + '\', ';
+				}
+				else{
+					return '\'' + val.county + '\'';
+				}
+			});
+			jointCountiesArray = jointCountiesArray.join('');
+			jointStatesArray = CountiesServed.map(function(val, index){
+				if( index < CountiesServed.length - 1 ){
+					return '\'' + val.state + '\', ';
+				}
+				else{
+					return '\'' + val.state + '\'';
+				}
+			});
+			jointStatesArray = jointStatesArray.join('');
+			ftloptions.query = {
+				select: 'geometry',
+				from: '1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa',
+				where: "'County Name' IN (" + jointCountiesArray + ") AND 'State Abbr' IN (" + jointStatesArray + ")",
+			}
+			queryText = encodeURIComponent("select geometry from 1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa where 'County Name' in (" + jointCountiesArray + ") and 'State Abbr' in (" + jointStatesArray + ")");
+		}
+		if(el == 'CountriesServed'){
+			jointCountriesArray = CountriesServed.map(function(val, index){
+				if( index < CountriesServed.length - 1 ){
+					return '\'' + val + '\', ';
+				}
+				else{
+					return '\'' + val + '\'';
+				}
+			});
+			jointCountriesArray = jointCountriesArray.join('');
+			ftloptions.query = {
+				select: 'geometry',
+				from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
+				where: "ISO_2DIGIT IN (" + jointCountriesArray + ")",
+			}
+			queryText = encodeURIComponent("select geometry from 1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk where 'ISO_2DIGIT' in (" + jointCountriesArray + ")");
+		}
+		world_geometry = new google.maps.FusionTablesLayer(ftloptions);
+		MapServer._generateQuery(el)
+	},
+	_generateQuery: function(el){
+		google.charts.load('current', {
+		   'packages': ['table']
+		});
+		google.charts.setOnLoadCallback(sendQuery);
+		function sendQuery(){
+			query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+			query.send(receiveQuery);
+		}
+		function receiveQuery(response){
+			if (!response) { console.log('no response'); return;}
+			if (response.isError()) {console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());return;} 
+			FTresponse = response;
+			numRows = FTresponse.getDataTable().getNumberOfRows();
+			var coordinates = [];
+			var bounds = new google.maps.LatLngBounds();
+			for(var i = 0; i < numRows; i++) {
+				var kml = FTresponse.getDataTable().getValue(i,0);
+				var coordEls = geoXML3.xmlParse(kml).querySelectorAll('coordinates');
+				var coordinateString = '';
+				for(var j = 0; j < coordEls.length; j++){
+					coordinateString += coordEls[j].innerHTML + ' ';
+				}
+				if( el == 'StatesServed' || el == 'CountriesServed'){
+					var unpairedCoordinates = coordinateString.split(',').map(function(val,index, arr){
+						if( val == '0.0' ){
+							arr.splice(index,1);
+						}
+						else{
+							return val.replace('0.0 ', '');
+						}
+					});
+				}
+				if( el == 'CountiesServed'){
+					var unpairedCoordinates = coordinateString.split(/[\,\s]/);
+				}
+				for(var k = 0; k < unpairedCoordinates.length; k++){
+					if( (k == 0 || k % 2 == 0) && k < unpairedCoordinates.length - 2 ){
+						// is even or zero and we're not at the end of the array
+						bounds.extend({
+							lat : parseFloat(unpairedCoordinates[k+1]),
+							lng : parseFloat(unpairedCoordinates[k])
+						});
+					}
+				}
+			}
+			if( el == 'StatesServed' || el == 'CountiesServed'){
+				map.fitBounds(bounds, 0);
+				map.setCenter(bounds.getCenter());
+			}
+			if (el == 'CountriesServed'){
+				map.fitBounds(bounds, -300);
+				map.setCenter(bounds.getCenter());
+			}
+		}
+	},
+	_createContactMap: function(){
+		var element =  document.querySelector('.contact-hero-map');
+		var latlangs = [];
 		ContactAddresses.forEach(function(el, index, parent){
 			latlangs.push({lat: Number(el.lat), lng: Number(el.lng)});
 		});
-
 		// build bounds & make center of map coords
 		var bounds  = new google.maps.LatLngBounds();
 		var map_center = [];
 		var x = 0;
 		var y = 0;
-
-
 		var map = new google.maps.Map(element, {
-	      zoom: 28,
-	      mapTypeId: 'terrain',
-	      disableDefaultUI: true,
-	      scrollwheel: false,
-	      draggable: false,
-	    });
-
+		  zoom: 28,
+		  mapTypeId: 'terrain',
+		  disableDefaultUI: true,
+		  scrollwheel: false,
+		  draggable: false,
+		});
 		latlangs.forEach(function(el){
-
 			x += Number(el.lat);
 			y += Number(el.lng);
-
 			var marker = new google.maps.Marker({
 			  position: el,
 			  map: map,
 			});	
-
 			bounds.extend(el);
-
 		});
-
 		map_center[0] = x / latlangs.length;
 		map_center[1] = y / latlangs.length;
-
 		map.setCenter({lat: map_center[0], lng: map_center[1]});
-
-
 		google.maps.event.addListener(map, 'zoom_changed', function() {
-		    zoomChangeBoundsListener = 
-		        google.maps.event.addListener(map, 'bounds_changed', function(event) {
-		            if (this.getZoom() > 15 && this.initialZoom == true) {
-		                // Change max/min zoom here
-		                this.setZoom(15);
-		                this.initialZoom = false;
-		            }
-		        google.maps.event.removeListener(zoomChangeBoundsListener);
-		    });
+			zoomChangeBoundsListener = 
+				google.maps.event.addListener(map, 'bounds_changed', function(event) {
+					if (this.getZoom() > 15 && this.initialZoom == true) {
+						// Change max/min zoom here
+						this.setZoom(15);
+						this.initialZoom = false;
+					}
+				google.maps.event.removeListener(zoomChangeBoundsListener);
+			});
 		});
 		map.initialZoom = true;
-
-
-	 	// zoom to bounds
-	 	if(latlangs.length > 1){
-	 		map.fitBounds(bounds);
-	 		var listener = google.maps.event.addListener(map, "idle", function() { 
-	 		  map.setZoom(map.getZoom() - 1); 
-	 		  google.maps.event.removeListener(listener); 
-	 		});
-	 		
-	 	}	
-	    map.panToBounds(bounds);
-		
-	}
-}
-
-google.maps.event.addDomListener(window, "load", window._initMaps);
+		// zoom to bounds
+		if(latlangs.length > 1){
+			map.fitBounds(bounds);
+			var listener = google.maps.event.addListener(map, "idle", function() { 
+			  map.setZoom(map.getZoom() - 1); 
+			  google.maps.event.removeListener(listener); 
+			});
+			
+		}	
+		map.panToBounds(bounds);
+	},
+};
+google.maps.event.addDomListener(window, "load", MapServer._init);
 
 window.Theme = Theme;

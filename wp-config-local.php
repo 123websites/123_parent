@@ -78,7 +78,7 @@ $table_prefix  = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define('WP_DEBUG', true);
-
+define( 'WP_MEMORY_LIMIT', '1024M' );
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */

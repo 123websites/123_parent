@@ -3,7 +3,6 @@
 // register ACF fields & PHPImage Library
 require('acf.php');
 require('PHPImage.php');
-require('fusiontables/handler.php');
 
 show_admin_bar( false );
 
@@ -1350,4 +1349,25 @@ if( !function_exists('localize_popuptimes') ){
 }
 
 add_action('wp_enqueue_scripts', 'localize_popuptimes');
+
+
+// recursive empty() for arrays
+if( !function_exists('is_array_empty') ){
+	function is_array_empty($InputVariable){
+	   $Result = true;
+
+	   if (is_array($InputVariable) && count($InputVariable) > 0){
+	      foreach ($InputVariable as $Value){
+	         $Result = $Result && is_array_empty($Value);
+	      }
+	   }
+	   else{
+	      $Result = empty($InputVariable);
+	   }
+
+	   return $Result;
+	}
+}
+
+require('fusiontables/handler.php');
 ?>
