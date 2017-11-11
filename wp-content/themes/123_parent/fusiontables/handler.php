@@ -34,8 +34,8 @@ class FusionTableHandler{
 								$el_explode = explode(',', $el);
 								// build coordinate pair latlng
 								array_push($coord_pairs_array, array(
-									'lat' => $el_explode[0],
-									'lng' => $el_explode[1]
+									'lat' => $el_explode[1],
+									'lng' => $el_explode[0]
 								));
 							}
 							array_push($all_coord_pairs, $coord_pairs_array);
@@ -85,8 +85,8 @@ class FusionTableHandler{
 								
 								//build coordinate pair latlng
 								$coord_pairs_array[] = array(
-									'lat' => $el_explode[0],
-									'lng' => $el_explode[1]
+									'lat' => $el_explode[1],
+									'lng' => $el_explode[0]
 								);
 							}
 							$all_coord_pairs[] = $coord_pairs_array;
@@ -151,8 +151,8 @@ class FusionTableHandler{
 								// build coordinate pair latlng
 								if( isset($el_explode[1]) ){
 									array_push($coord_pairs_array, array(
-										'lat' => $el_explode[0],
-										'lng' => $el_explode[1]
+										'lat' => $el_explode[1],
+										'lng' => $el_explode[0]
 									));
 								}
 								$el_explode = null;
