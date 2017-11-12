@@ -19,12 +19,6 @@ class FusionTableHandler{
 		),
 	);
 
-	private $table_names = ['states', 'counties', 'countries'];
-
-	private $pair_delimiters = [',0.0 ', ' ', ',0'];
-
-	private $geometry_indexes = [2, 4, 0];
-
 	private $fusion_table_columns = array(
 		'states' => ['name', 'id', 'geometry'],
 		'counties' => ['county name', 'basic county', 'state abbr', 'State Abbr UC', 'geometry', 'value', 'GEO_ID', 'GEO_ID2', 'Geographic Name', 'STATE num', 'COUNTY num', 'FIPS formula', 'Has error'],
@@ -37,12 +31,14 @@ class FusionTableHandler{
 
 	public function __construct(){
 		global $wpdb;
+		
 		$this->table_prefix = $wpdb->prefix . '123ft_';
 
 		$this->sql_table_names = array_map(function($el){
 			return $this->table_prefix . $el['name'];
 		}, $this->table_data);
 	}
+
 	public function build_sql_tables(){
 		foreach($this->sql_table_names as $index => $sql_table_name){
 			if( $this->sql_table_exists($sql_table_name) == false ){
@@ -52,6 +48,7 @@ class FusionTableHandler{
 			}
 		}
 	}
+
 	public function get_fusion_table_data($table_name){
 		// setup internal vars
 		$geometry_index;
@@ -124,6 +121,7 @@ class FusionTableHandler{
 		}
 		return $contents_arr;
 	}
+
 	private function insert_fusion_table_data($sql_table_name, $fusion_table_data){
 		global $wpdb;
 		$columns = $wpdb->get_results('SHOW COLUMNS FROM ' . $sql_table_name . ';');
@@ -143,8 +141,10 @@ class FusionTableHandler{
 		}
 
 	}
+
 	private function create_sql_table($sql_table_name){
 		global $wpdb;
+		// build query_string
 		$query_string = 'CREATE TABLE ' . $sql_table_name . ' (';
 		foreach( $this->fusion_table_columns[str_replace($this->table_prefix, '', $sql_table_name)] as $index => $col ){
 			if( $index !== count($this->fusion_table_columns[str_replace($this->table_prefix, '', $sql_table_name)]) - 1 ){
@@ -156,6 +156,7 @@ class FusionTableHandler{
 		}
 		$wpdb->query($query_string);
 	}
+
 	private function sql_table_exists($sql_table_name){
 		global $wpdb;
 		$rows = $wpdb->get_results('SHOW TABLES LIKE "' . $sql_table_name . '"');
