@@ -31,7 +31,7 @@ class FusionTableHandler{
 
 	public function __construct(){
 		global $wpdb;
-		
+
 		$this->table_prefix = $wpdb->prefix . '123ft_';
 
 		$this->sql_table_names = array_map(function($el){
@@ -87,7 +87,6 @@ class FusionTableHandler{
 
 					// get all the coordinates elements
 					$coords_xml = $xml->xpath('//coordinates');
-
 					// every polygon coordinate element
 					$all_coord_pairs = [];
 					foreach($coords_xml as $coords_el){
@@ -98,6 +97,7 @@ class FusionTableHandler{
 						// every coordinate pair - comma separated
 						$coord_pairs_array = [];
 						foreach($comma_separated_coordinate_pairs as $el){
+							// removing white spaces because of countries delimiter
 							$el_explode = explode(',', str_replace(' ', '', $el));
 							
 							//build coordinate pair latlng if a complete latlng is available
@@ -122,6 +122,16 @@ class FusionTableHandler{
 		return $contents_arr;
 	}
 
+	public function get_countries(){
+		global $wpdb;
+		return $wpdb->get_col('SELECT Name FROM ' . $this->table_prefix . 'countries ORDER BY Name;');
+	}
+
+	public function get_states(){
+		global $wpdb;
+		return $wpdb->get_col('SELECT name FROM ' . $this->table_prefix . 'states ORDER BY name;');
+	}
+
 	private function insert_fusion_table_data($sql_table_name, $fusion_table_data){
 		global $wpdb;
 		$columns = $wpdb->get_results('SHOW COLUMNS FROM ' . $sql_table_name . ';');
@@ -132,8 +142,20 @@ class FusionTableHandler{
 				foreach( $row as $index => $val ){
 					$insert_data[$columns[$index]->Field] = gettype($val) == 'array' ? serialize($val) : $val;
 				}
-				error_log(print_r($insert_data, true));
-				$wpdb->insert($sql_table_name, $insert_data);
+
+				$count = 0;
+				$fields = '';
+
+				foreach($insert_data as $col => $val) {
+					if($count++ != 0) $fields .= ', ';
+					$col = esc_sql($col);
+					$val = "'" . esc_sql($val) . "'";
+					if(empty($val))	$val = '" "';
+					$fields .= "`$col` = $val";
+				}
+				$query = "INSERT INTO $sql_table_name SET $fields;";
+
+				$wpdb->query($query);
 			}
 		}
 		else{

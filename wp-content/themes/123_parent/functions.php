@@ -1369,5 +1369,4 @@ if( !function_exists('is_array_empty') ){
 	}
 }
 
-require('fusiontables/handler.php');
 ?>

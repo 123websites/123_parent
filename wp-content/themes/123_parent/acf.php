@@ -1,6 +1,6 @@
 <?php 
 
-
+require_once('fusiontables/handler.php');
 
 if( !function_exists('get_countries') ){
 	function get_countries(){
@@ -130,6 +130,8 @@ if( function_exists('acf_add_options_page') ) {
 
 if( !function_exists('add_acf_fields') ){
 	function add_acf_fields() {
+
+		$fth = new FusionTableHandler();
 		
 		// Areas Served Settings
 
@@ -208,7 +210,7 @@ if( !function_exists('add_acf_fields') ){
 							'ui' => true,
 							'return_format' => 'array',
 							'required' => true,
-							'choices' => get_states(),
+							'choices' => $fth->get_states(),
 							'wrapper' => array(
 								'width' => 20,
 							),
@@ -286,7 +288,7 @@ if( !function_exists('add_acf_fields') ){
 							'ui' => true,
 							'return_format' => 'array',
 							'required' => true,
-							'choices' => get_countries(),
+							'choices' => $fth->get_countries(),
 							'wrapper' => array(
 								'width' => 20,
 							),
