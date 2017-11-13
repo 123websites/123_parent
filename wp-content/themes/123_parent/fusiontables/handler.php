@@ -65,6 +65,7 @@ class FusionTableHandler{
 		$lines = file(get_template_directory_uri() . '/fusiontables/' . $table_name . '.csv', FILE_IGNORE_NEW_LINES);
 		foreach ($lines as $key => $value) {
 		    $csv[$key] = str_getcsv($value);
+		    unset($value);
 		}
 
 		$contents_arr = [];
@@ -125,6 +126,9 @@ class FusionTableHandler{
 					$contents_arr[] = $content;
 				}
 			}
+			unset($content);
+			unset($csv);
+			unset($lines);
 		}
 		return $contents_arr;
 	}
