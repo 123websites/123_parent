@@ -109,6 +109,7 @@ class FusionTableHandler{
 							}
 							// cleanup
 							unset($el_explode);
+							unset($el);
 						}
 						// add to all coordinate pairs for this polygon coordinate element
 						$all_coord_pairs[] = $coord_pairs_array;
