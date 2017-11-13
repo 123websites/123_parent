@@ -108,7 +108,7 @@ class FusionTableHandler{
 								);
 							}
 							// cleanup
-							$el_explode = null;
+							unset($el_explode);
 						}
 						// add to all coordinate pairs for this polygon coordinate element
 						$all_coord_pairs[] = $coord_pairs_array;
