@@ -125,7 +125,8 @@ if( !function_exists('localize_areas_served') ){
 				}
 			}
 			$fth = new FusionTableHandler();
-			wp_localize_script( 'theme', 'StatesServed', $fields_array );
+			wp_localize_script( 'theme', 'StatesServed', $fth->get_states_geometry($fields_array) );
+			// wp_localize_script( 'theme', 'StatesServed', $fields_array );
 		}
 		elseif( get_field('areas_served_select', 'option') == 'counties' ){
 			$fields = get_field('counties', 'option');
@@ -137,7 +138,8 @@ if( !function_exists('localize_areas_served') ){
 				}
 			}
 			$fth = new FusionTableHandler();
-			wp_localize_script( 'theme', 'CountiesServed', $fields_array );
+			wp_localize_script( 'theme', 'CountiesServed', $fth->get_counties_geometry($fields_array) );
+			// wp_localize_script( 'theme', 'CountiesServed', $fields_array );
 		}
 		else{
 			$fields = get_field('countries', 'option');
@@ -148,8 +150,8 @@ if( !function_exists('localize_areas_served') ){
 				}
 			}
 			$fth = new FusionTableHandler();
-			wp_localize_script( 'theme', 'CountriesServed2', $fth->get_countries_geometry($fields_array) );
-			wp_localize_script( 'theme', 'CountriesServed', $fields_array );
+			wp_localize_script( 'theme', 'CountriesServed', $fth->get_countries_geometry($fields_array) );
+			// wp_localize_script( 'theme', 'CountriesServed', $fields_array );
 		}
 	}
 }

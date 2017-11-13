@@ -157,7 +157,7 @@ class FusionTableHandler{
 				$sql_states .= '"' . $state . '"';
 			}
 		}
-		$result = $wpdb->get_results('SELECT geometry FROM ' . $this->table_prefix . 'states WHERE id IN (' . $sql_states . ');')[0]->geometry;
+		$result = $wpdb->get_results('SELECT geometry FROM ' . $this->table_prefix . 'states WHERE id IN (' . $sql_states . ');', ARRAY_A);
 		return $result;
 	}
 
@@ -172,7 +172,7 @@ class FusionTableHandler{
 				$sql_counties .= '"' . $county . '"';
 			}
 		}
-		$result = $wpdb->get_results('SELECT geometry FROM ' . $this->table_prefix . 'counties WHERE basic_county IN (' . $sql_counties . ');')[0]->geometry;
+		$result = $wpdb->get_results('SELECT geometry FROM ' . $this->table_prefix . 'counties WHERE basic_county IN (' . $sql_counties . ');', ARRAY_A);
 		return $result;
 	}
 
