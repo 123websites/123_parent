@@ -210,7 +210,7 @@ if( !function_exists('add_acf_fields') ){
 							'ui' => true,
 							'return_format' => 'array',
 							'required' => true,
-							'choices' => $fth->get_states(),
+							'choices' => $fth->get_states_for_acf_select(),
 							'wrapper' => array(
 								'width' => 20,
 							),
@@ -288,7 +288,7 @@ if( !function_exists('add_acf_fields') ){
 							'ui' => true,
 							'return_format' => 'array',
 							'required' => true,
-							'choices' => $fth->get_countries(),
+							'choices' => $fth->get_countries_for_acf_select(),
 							'wrapper' => array(
 								'width' => 20,
 							),

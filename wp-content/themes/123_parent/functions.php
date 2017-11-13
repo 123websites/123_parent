@@ -124,6 +124,7 @@ if( !function_exists('localize_areas_served') ){
 					array_push($fields_array, $field['state']['value']);
 				}
 			}
+			$fth = new FusionTableHandler();
 			wp_localize_script( 'theme', 'StatesServed', $fields_array );
 		}
 		elseif( get_field('areas_served_select', 'option') == 'counties' ){
@@ -132,12 +133,10 @@ if( !function_exists('localize_areas_served') ){
 			if( !empty($fields) ){
 				foreach($fields as $field){
 					$explosion = explode(', ', $field['county']['address']);
-					array_push($fields_array, array(
-						'county' => str_replace(' County', '', $explosion[0]),
-						'state' => $explosion[1]
-					));
+					array_push($fields_array, $explosion[1] . '-' . str_replace(' County', '', $explosion[0]));
 				}
 			}
+			$fth = new FusionTableHandler();
 			wp_localize_script( 'theme', 'CountiesServed', $fields_array );
 		}
 		else{
@@ -148,6 +147,8 @@ if( !function_exists('localize_areas_served') ){
 					array_push($fields_array, $field['country']['value']);
 				}
 			}
+			$fth = new FusionTableHandler();
+			wp_localize_script( 'theme', 'CountriesServed2', $fth->get_countries_geometry($fields_array) );
 			wp_localize_script( 'theme', 'CountriesServed', $fields_array );
 		}
 	}

@@ -103,8 +103,8 @@ class FusionTableHandler{
 							//build coordinate pair latlng if a complete latlng is available
 							if( isset($el_explode[1]) ){
 								$coord_pairs_array[] = array(
-									'lat' => $el_explode[1],
-									'lng' => $el_explode[0]
+									'lat' => utf8_encode($el_explode[1]),
+									'lng' => utf8_encode($el_explode[0])
 								);
 							}
 						}
@@ -113,7 +113,11 @@ class FusionTableHandler{
 					}
 					// replace the kml geometry with the arrays of coordinate pairs
 					$content[$geometry_index] = $all_coord_pairs;
-
+					// make sure all content besides geometry is utf8 encoded
+					foreach($content as $index => &$val){
+						if( $index == $geometry_index ) continue;
+						$val = utf8_encode($val);
+					}
 					// build array of rows from csv
 					$contents_arr[] = $content;
 				}
@@ -122,14 +126,69 @@ class FusionTableHandler{
 		return $contents_arr;
 	}
 
-	public function get_countries(){
+	public function get_countries_for_acf_select(){
 		global $wpdb;
-		return $wpdb->get_col('SELECT Name FROM ' . $this->table_prefix . 'countries ORDER BY Name;');
+		$results = $wpdb->get_results('SELECT ISO_2DIGIT, Name FROM ' . $this->table_prefix . 'countries ORDER BY Name;', ARRAY_N);
+		$for_return = [];
+		foreach($results as $result){
+			$for_return[$result[0]] = $result[1];
+		}
+		return $for_return;
 	}
 
-	public function get_states(){
+	public function get_states_for_acf_select(){
 		global $wpdb;
-		return $wpdb->get_col('SELECT name FROM ' . $this->table_prefix . 'states ORDER BY name;');
+		$results = $wpdb->get_results('SELECT id, name FROM ' . $this->table_prefix . 'states ORDER BY name;', ARRAY_N);
+		$for_return = [];
+		foreach($results as $result){
+			$for_return[$result[0]] = $result[1];
+		}
+		return $for_return;
+	}
+
+	public function get_states_geometry($states){
+		global $wpdb;	
+		$sql_states = '';
+		foreach($states as $index => $state){
+			if( $index !== count($states) - 1 ){
+				$sql_states .= '"' . $state . '", ';
+			}
+			else{
+				$sql_states .= '"' . $state . '"';
+			}
+		}
+		$result = $wpdb->get_results('SELECT geometry FROM ' . $this->table_prefix . 'states WHERE id IN (' . $sql_states . ');')[0]->geometry;
+		return $result;
+	}
+
+	public function get_counties_geometry($counties){
+		global $wpdb;	
+		$sql_counties = '';
+		foreach($counties as $index => $county){
+			if( $index !== count($counties) - 1 ){
+				$sql_counties .= '"' . $county . '", ';
+			}
+			else{
+				$sql_counties .= '"' . $county . '"';
+			}
+		}
+		$result = $wpdb->get_results('SELECT geometry FROM ' . $this->table_prefix . 'counties WHERE basic_county IN (' . $sql_counties . ');')[0]->geometry;
+		return $result;
+	}
+
+	public function get_countries_geometry($countries){
+		global $wpdb;	
+		$sql_countries = '';
+		foreach($countries as $index => $country){
+			if( $index !== count($countries) - 1 ){
+				$sql_countries .= '"' . $country . '", ';
+			}
+			else{
+				$sql_countries .= '"' . $country . '"';
+			}
+		}
+		$result = $wpdb->get_results('SELECT geometry FROM ' . $this->table_prefix . 'countries WHERE ISO_2DIGIT IN (' . $sql_countries . ');', ARRAY_A);
+		return $result;
 	}
 
 	private function insert_fusion_table_data($sql_table_name, $fusion_table_data){
@@ -139,8 +198,14 @@ class FusionTableHandler{
 		if( !empty($columns) ){
 			foreach( $fusion_table_data as $row ){
 				$insert_data = [];
+
 				foreach( $row as $index => $val ){
-					$insert_data[$columns[$index]->Field] = gettype($val) == 'array' ? serialize($val) : $val;
+					if( gettype($val) == 'array' ){
+						$insert_data[$columns[$index]->Field] = json_encode( $val );
+					}
+					else{
+						$insert_data[$columns[$index]->Field] = $val;
+					}
 				}
 
 				$count = 0;
@@ -170,10 +235,14 @@ class FusionTableHandler{
 		$query_string = 'CREATE TABLE ' . $sql_table_name . ' (';
 		foreach( $this->fusion_table_columns[str_replace($this->table_prefix, '', $sql_table_name)] as $index => $col ){
 			if( $index !== count($this->fusion_table_columns[str_replace($this->table_prefix, '', $sql_table_name)]) - 1 ){
-				$query_string .= str_replace(' ', '_', $col) . " TEXT, ";
+				$type = 'TEXT';
+				if( $col == 'geometry' ){
+					$type = 'LONGTEXT';
+				}
+				$query_string .= str_replace(' ', '_', $col) . " " . $type . ", ";
 			}
 			else{
-				$query_string .= str_replace(' ', '_', $col) . " TEXT);";	
+				$query_string .= str_replace(' ', '_', $col) . " " . $type . ");";	
 			}
 		}
 		$wpdb->query($query_string);
