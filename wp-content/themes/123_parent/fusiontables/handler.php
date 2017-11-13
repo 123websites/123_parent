@@ -107,6 +107,8 @@ class FusionTableHandler{
 									'lng' => utf8_encode($el_explode[0])
 								);
 							}
+							// cleanup
+							$el_explode = null;
 						}
 						// add to all coordinate pairs for this polygon coordinate element
 						$all_coord_pairs[] = $coord_pairs_array;
