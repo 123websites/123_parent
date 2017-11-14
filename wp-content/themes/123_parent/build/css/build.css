@@ -4244,7 +4244,8 @@ footer, header, hgroup, menu, nav, section, img {
     font-weight: normal; } }
 @media only screen and (min-width: 1025px) {
   .home-hero-text-header {
-    font-size: 8rem; } }
+    font-size: 8rem;
+    max-width: 1440px; } }
 @media only screen {
   .home-services-header {
     position: relative;
