@@ -5801,7 +5801,9 @@ footer, header, hgroup, menu, nav, section, img {
 
   .disabled-center-image {
     display: block;
-    margin: 0 auto; } }
+    margin: 0 auto;
+    width: 435px;
+    max-width: 90%; } }
 @media only screen and (min-width: 641px) {
   .disabled-center-header {
     font-size: 4rem; } }
