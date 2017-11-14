@@ -1025,6 +1025,12 @@ if( !function_exists('add_acf_fields') ){
 					),
 				),
 				array(
+				     'key' => 'field_123_colorpicker_wrapper',
+				     'label' => '',
+				     'name' => 'add_extra_theme_colors',
+				     'type' => 'group',
+			    ),
+				array(
 					'key' => 'field_218372173',
 					'label' => '3. Home',
 					'name' => 'home-settings',
