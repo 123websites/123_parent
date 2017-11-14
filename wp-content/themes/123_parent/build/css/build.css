@@ -5755,7 +5755,9 @@ footer, header, hgroup, menu, nav, section, img {
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center; }
+    background-position: center center;
+    position: relative;
+    overflow: hidden; }
 
   .disabled-tint {
     background-color: rgba(0, 0, 0, 0.3);
