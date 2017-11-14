@@ -1291,6 +1291,11 @@ add_action( 'wppusher_theme_was_updated', function(){
 	do_update_logo_text_image();
 });
 
+// regenerate logo-text.png on theme switch
+add_action( 'after_switch_theme', function(){
+	do_update_logo_text_image();
+});
+
 
 // checks if logo-text.png exists in uploads dir if it doesn't then generate it
 add_action( 'after_setup_theme', 'check_logo_text_exists' );
