@@ -46,7 +46,7 @@ if( !function_exists('enqueue_javascript') ){
 		
 		wp_enqueue_script('gstatic', 'https://www.gstatic.com/charts/loader.js');
 		localize_areas_served();
-
+		wp_localize_script( 'theme', 'DisableTimedPopup', json_encode(get_field('ad-disable', 'option')) );
 		wp_enqueue_script( 'theme' );
 		wp_enqueue_script( 'exec' );
 	}

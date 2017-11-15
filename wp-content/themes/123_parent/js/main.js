@@ -364,16 +364,18 @@ var Theme = {};
 
 		Theme.CookieMonster = {
 			_init : function(){
-				// Theme.CookieMonster._deleteCookie('ad_firsttime');
-				// Theme.CookieMonster._deleteCookie('ad_notset');
+				if( DisableTimedPopup === 'false' ){
+					// Theme.CookieMonster._deleteCookie('ad_firsttime');
+					// Theme.CookieMonster._deleteCookie('ad_notset');
 
-				// if there's no cookies ie. first time on the site
-				if(Theme.CookieMonster._cookieExists('ad_notset') == false && Theme.CookieMonster._cookieExists('ad_set') == false && Theme.CookieMonster._cookieExists('ad_firsttime') == false){
-					Theme.CookieMonster._setCookie('ad_firsttime', 'active', parseInt(PopupTimes.short), false);
-				}
-				// if the other cookies don't exist then listen for the expiration of the firstitme cookie
-				if(Theme.CookieMonster._cookieExists('ad_set') == false && Theme.CookieMonster._cookieExists('ad_notset') == false){
-					Theme.CookieMonster._listenCookieExpire('ad_firsttime', Theme.CookieMonster._firstTimeExpire);	
+					// if there's no cookies ie. first time on the site
+					if(Theme.CookieMonster._cookieExists('ad_notset') == false && Theme.CookieMonster._cookieExists('ad_set') == false && Theme.CookieMonster._cookieExists('ad_firsttime') == false){
+						Theme.CookieMonster._setCookie('ad_firsttime', 'active', parseInt(PopupTimes.short), false);
+					}
+					// if the other cookies don't exist then listen for the expiration of the firstitme cookie
+					if(Theme.CookieMonster._cookieExists('ad_set') == false && Theme.CookieMonster._cookieExists('ad_notset') == false){
+						Theme.CookieMonster._listenCookieExpire('ad_firsttime', Theme.CookieMonster._firstTimeExpire);	
+					}
 				}
 			},
 			_listenCookieExpire : function(cookieName, callback) {
