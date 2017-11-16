@@ -983,48 +983,6 @@ if( !function_exists('add_acf_fields') ){
 					),
 				),
 				array(
-					'key' => 'field_2oiufweajk',
-					'label' => 'Accent Color 2',
-					'type' => 'color_picker',
-					'name' => 'accent-color-2',
-					'wrapper' => array(
-						'width' => 25
-					),
-				),
-				array(
-					'key' => 'field_23u8rhoewfajnds',
-					'label' => 'On / Off',
-					'type' => 'true_false',
-					'name' => 'accent-color-2-toggle',
-					'ui' => true,
-					'ui_on_text' => 'On',
-					'ui_off_text' => 'Off',
-					'wrapper' => array(
-						'width' => 75
-					),
-				),
-				array(
-					'key' => 'field_98213horafsdn',
-					'label' => 'Accent Color 3',
-					'type' => 'color_picker',
-					'name' => 'accent-color-3',
-					'wrapper' => array(
-						'width' => 25
-					),
-				),
-				array(
-					'key' => 'field_ui1oenlfdsajb',
-					'label' => 'On / Off',
-					'type' => 'true_false',
-					'name' => 'accent-color-3-toggle',
-					'ui' => true,
-					'ui_on_text' => 'On',
-					'ui_off_text' => 'Off',
-					'wrapper' => array(
-						'width' => 75
-					),
-				),
-				array(
 				     'key' => 'field_123_colorpicker_wrapper',
 				     'label' => '',
 				     'name' => 'add_extra_theme_colors',
